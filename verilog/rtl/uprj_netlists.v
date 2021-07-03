@@ -16,6 +16,7 @@
 // Include caravel global defines for the number of the user project IO pads 
 `include "defines.v"
 `define USE_POWER_PINS
+`define FUNCTIONAL
 
 `ifdef GL
     // Assume default net type to be wire because GL netlists don't have the wire definitions
@@ -24,5 +25,8 @@
     `include "gl/user_proj_example.v"
 `else
     `include "user_project_wrapper.v"
-    `include "user_proj_example.v"
+    `include "user_proj_cgra.v"
+    `include "garnet_3t_4x8_nopipe.v"
+    `include "wishbone_ctl.v"
+    `include "ckmux.v"
 `endif
