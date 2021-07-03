@@ -112,6 +112,8 @@ assign io_out[34] = 1'b0;
 assign io_out[35] = 1'b0; 
 
 
+/* Manually add buffers, these buffers are used to avoid hold-time violation in final array level PD */
+// The power pins are essential for simulation
 localparam P = 8;
 wire [31:0] POHAN_BUF_CGRA_config_config_data [0:P-1];
 wire [3:0]  POHAN_BUF_CGRA_stall [0:P-1];
@@ -119,18 +121,46 @@ genvar i, j, k;
 generate
     // stage 0
     for (j=0; j<32; j=j+1) begin : BUF_STAGE_0_CONFIG_BIT
-        sky130_fd_sc_hd__buf_12 POHAN_BUF_CONFIG_DATA (.VPWR(vccd1), .VGND(vssd1), .A(CGRA_config_config_data[j]),  .X(POHAN_BUF_CGRA_config_config_data[0][j]));
+        sky130_fd_sc_hd__buf_12 POHAN_BUF_CONFIG_DATA (
+        `ifdef USE_POWER_PINS
+            .VPWR(vccd1),
+            .VGND(vssd1),
+        `endif
+            .A(CGRA_config_config_data[j]), 
+            .X(POHAN_BUF_CGRA_config_config_data[0][j])
+        );
     end
     for (k=0; k<4; k=k+1) begin : BUF_STAGE_0_STALL_BIT
-        sky130_fd_sc_hd__buf_12 POHAN_BUF_STALL (.VPWR(vccd1), .VGND(vssd1), .A(CGRA_stall[k]), .X(POHAN_BUF_CGRA_stall[0][k]));
+        sky130_fd_sc_hd__buf_12 POHAN_BUF_STALL (
+        `ifdef USE_POWER_PINS
+            .VPWR(vccd1),
+            .VGND(vssd1),
+        `endif
+            .A(CGRA_stall[k]),
+            .X(POHAN_BUF_CGRA_stall[0][k])
+        );
     end
     // stage 1~(P-1)
     for (i=0; i<(P-1); i=i+1) begin : BUF_STAGE
         for (j=0; j<32; j=j+1) begin : CONFIG_BIT
-            sky130_fd_sc_hd__buf_12 POHAN_BUF_CONFIG_DATA (.VPWR(vccd1), .VGND(vssd1), .A(POHAN_BUF_CGRA_config_config_data[i][j]), .X(POHAN_BUF_CGRA_config_config_data[i+1][j]));
+            sky130_fd_sc_hd__buf_12 POHAN_BUF_CONFIG_DATA (
+            `ifdef USE_POWER_PINS
+                .VPWR(vccd1),
+                .VGND(vssd1),
+            `endif
+                .A(POHAN_BUF_CGRA_config_config_data[i][j]),
+                .X(POHAN_BUF_CGRA_config_config_data[i+1][j])
+            );
         end
         for (k=0; k<4; k=k+1) begin : STALL_BIT
-            sky130_fd_sc_hd__buf_12 POHAN_BUF_STALL (.VPWR(vccd1), .VGND(vssd1), .A(POHAN_BUF_CGRA_stall[i][k]),  .X(POHAN_BUF_CGRA_stall[i+1][k]));
+            sky130_fd_sc_hd__buf_12 POHAN_BUF_STALL (
+            `ifdef USE_POWER_PINS
+                .VPWR(vccd1),
+                .VGND(vssd1),
+            `endif
+                .A(POHAN_BUF_CGRA_stall[i][k]),
+                .X(POHAN_BUF_CGRA_stall[i+1][k])
+            );
         end
     end
 endgenerate
