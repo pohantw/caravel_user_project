@@ -1,13 +1,13 @@
 ---
 project:
-  description: "A template SoC for Google sponsored Open MPW shuttles for SKY130."
+  description: "A Toy 4x8 Coarsed Grained Reconfigurable Array"
   foundry: "SkyWater"
-  git_url: "https://github.com/efabless/caravel_project_example.git"
-  organization: "Efabless"
-  organization_url: "http://efabless.com"
-  owner: "Tim Edwards"
+  git_url: "https://github.com/pohantw/caravel_user_project.git"
+  organization: "Stanford University"
+  organization_url: "https://www.stanford.edu/"
+  owner: "Po-Han Chen"
   process: "SKY130"
-  project_name: "Caravel"
+  project_name: "Toy CGRA"
   project_id: "00000000"
   tags:
     - "Open MPW"

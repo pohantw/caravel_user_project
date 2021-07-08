@@ -26860,7 +26860,7 @@ sky130_fd_sc_hd__diode_2 POHAN_DIODE_305 (.DIODE(stall[0]));
 // sky130_fd_sc_hd__diode_2 POHAN_DIODE_448 (.DIODE(SB_T2_EAST_SB_OUT_B16[5]));
 // sky130_fd_sc_hd__diode_2 POHAN_DIODE_449 (.DIODE(SB_T2_EAST_SB_OUT_B16[6]));
 // sky130_fd_sc_hd__diode_2 POHAN_DIODE_450 (.DIODE(SB_T2_EAST_SB_OUT_B16[7]));
-// sky130_fd_sc_hd__diode_2 POHAN_DIODE_451 (.DIODE(SB_T2_EAST_SB_OUT_B16[8]));
+sky130_fd_sc_hd__diode_2 POHAN_DIODE_451 (.DIODE(SB_T2_EAST_SB_OUT_B16[8]));
 // sky130_fd_sc_hd__diode_2 POHAN_DIODE_452 (.DIODE(SB_T2_EAST_SB_OUT_B16[9]));
 // sky130_fd_sc_hd__diode_2 POHAN_DIODE_453 (.DIODE(SB_T2_EAST_SB_OUT_B16[10]));
 // sky130_fd_sc_hd__diode_2 POHAN_DIODE_454 (.DIODE(SB_T2_EAST_SB_OUT_B16[11]));
