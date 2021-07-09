@@ -1,91 +1,41 @@
 # EE272B Toy CGRA
 
-
 ## Table of contents
 - [Overview](#overview)
-- [CGRA Submodules](#cgra-submodules)
-- [Getting Started](#getting-started)
-- [Synthesis](#synthesis)
-- [Area Estimates](#area-estimates)
+- [Halide Applications](#halide-applications)
+- [AHA Compiler Tool Chains](#aha-compiler-tool-chains)
+- [CGRA Architecture](#cgra-architecture)
+- [Layout](#layout)
+- [Future Work](#future-work)
+- [Special Thanks](#special-thanks)
+- [Contributors](#contributors)
 
 ## Overview
 ![](img/proj_intro.png)
-This repo contains the necesary files for the EE272B Toy CGRA project. This project was built by [Charles Tsao](https://github.com/chtsao8) and [Po-Han Chen](https://github.com/pohantw) off of the existing toolchain from the [Stanford AHA Project](https://github.com/StanfordAHA). 
 
-The objective of the Toy CGRA project is to create a reconfigurable accelerator specialized for Convolutional Neural Networks (CNNs), but simpler applications can also be mapped to this CGRA.
+This project realized a 4x8 toy CGRA (Coarsed Grained Reconfigurable Array) modified from the [Garnet chip](https://github.com/StanfordAHA/garnet) from [Stanford Agile Hardware Project](https://aha.stanford.edu/). Its enables hardware acceleration on applications (such as deep neural networks, image signal processing algorithms...) written in [Halide](https://halide-lang.org/). Comparing to FPGA, it provides faster configuration time and lower power consumption. Comparing to ASIC, it shows better flexibility because its reconfigurability. At signoff stage, our toy CGRA runs at 66MHz takes the area around 3.5mm x 2.9mm.
 
-Applications mapped to the CGRA can be found in the [Halide-to-Hardware](https://github.com/StanfordAHA/Halide-to-Hardware) application pipeline.
+## Halide Applications
+Halide is an programming language that targets high performance array processing algorithms. It decouples the computation and scheduling of the algorithm. We first write our applicaions in Halide and send it through AHA compiler toolchains to map it to our CGRA. For more information please visit https://halide-lang.org/
 
-## CGRA Submodules
+## AHA Compiler Tool Chains
+--under-construction--
 
-### PE Tiles
-This module is written in a pythonic domain-specific language (DSL) called [PEak](https://github.com/StanfordAHA/lassen).
+## CGRA Architecture
+--under-construction--
 
-Tests run on PE Tiles:
-- conv3_3
-- conv2_2
-- other conv applications
-- resnet_layer_gen
+## Layout
+![](img/cgra.png)
 
-### MemoryCore Tiles
-This module is written in a pythonic domain-specific language (DSL) called [Lake](https://github.com/StanfordAHA/lake).
+## Future Work
+The original goal of this project is to design a CGRA with specialized processing elements (PEs). However, due to very limited amount of time, we are only able to finish the baseline version. In future works, we aim at designing PEs that are specilized in MAC (multiply-and-add) so that we can have a CGRA that is less flexible in other applications but has higher performance in applications that are mainly composed of MACs (such as neural networks).
 
-Tests run on MemoryCore Tiles:
-- conv3_3
-- conv2_2
-- other conv applications
-- resnet_layer_gen
+## Special Thanks
+* Professor Priyanka Raina: for offering this opportunity and countless advises during the tape-out.
+* Members of Stanford AHA Group (Keyi, Max, Joey, Alex, and many other students): for giving lots of suggestions on both the hardware generation part and physical design part.
+* Professor Matthew Guthaus: for developing the openRAM macro that are free for anyone to use.
+* People from efabless: for helping with the caravel SoC integration.
 
-## Getting Started
-NOTE: This flow currently has only been tested on the `kiwi` cluster.
-
-Follow the instructions below to:
-1. set up the docker container environment on kiwi
-2. generate a 4x10 CGRA
-3. map an example application to the CGRA (in this case `conv_3_3`)
-4. simulate the CGRA using xcelium
-
-```
-# prepare docker container
-docker pull stanfordaha/garnet:latest
-docker run -it --rm -v /cad:/cad --name <container-name> stanfordaha/garnet:latest bash
-docker attach <container-name>
-
-# load required simulator
-module load incisive
-module load xcelium
-
-# update Docker
-apt update
-apt install vim
-
-# prepare environment variables
-top=/aha/Halide-to-Hardware/apps/hardware_benchmarks/
-conv_3_3=/aha/Halide-to-Hardware/apps/hardware_benchmarks/tests/conv_3_3
-
-# update lake
-cd /aha/lake/
-git checkout -b po-han_sky130
-git pull origin po-han_sky130
-
-# create CGRA
-cd $top
-aha garnet -v --interconnect-only --no-pond --width 4 --height 10
-
-# clean tests/conv_3_3
-cd $conv_3_3; make clean; make clean; cd $top
-
-# run testing flow
-aha halide tests/conv_3_3
-aha map tests/conv_3_3 --interconnect-only --no-pond --width 4 --height 10
-aha test tests/conv_3_3
-```
-
-## Synthesis
-*Currently*, we can run synthesis on PE tiles and Memory tiles. Instructions for running synthesis can be found [here](./mflowgen).
-
-## [Area Estimates](https://docs.google.com/spreadsheets/d/1w1shJzUsbrwJGZH6TT89Ch0ieKiYy3Sjunufp8H5RN4/edit?usp=sharing)
-
-PE and Memory Tile area estimates can be found [here](https://docs.google.com/spreadsheets/d/1w1shJzUsbrwJGZH6TT89Ch0ieKiYy3Sjunufp8H5RN4/edit?usp=sharing).
-
-In summary, our total project area will be around 9.03 mm^2 according to synthesis estimates with a 4x10 CGRA. This should give enough leeway for additional area for interconnects, IO tiles, and other std cells to fit within the alloted project area of 10.2784 mm^2.
+## Contributors
+* [Charles Tsao @(chtsao8)](https://github.com/chtsao8)
+* [Po-Han Chen @(pohantw)](https://github.com/pohantw)
