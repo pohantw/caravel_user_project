@@ -10,12 +10,12 @@ export PRECHECK_ROOT=/tmp/pohan/precheck
 export GCC_PATH=/tmp/pohan/riscv/bin
 
 # new pdk
-#export PDK_ROOT=/tmp/pohan/pdk-test
-#export PDK_PATH=/tmp/pohan/pdk-test/sky130A
+export PDK_ROOT=/tmp/pohan/pdk-test
+export PDK_PATH=/tmp/pohan/pdk-test/sky130A
 
 # original pdk
-export PDK_ROOT=/tmp/pohan/
-export PDK_PATH=/tmp/pohan/sky130A
+#export PDK_ROOT=/tmp/pohan/
+#export PDK_PATH=/tmp/pohan/sky130A
 
 # class pdk
 #export PDK_ROOT=/afs/ir.stanford.edu/class/ee272/PDKS
