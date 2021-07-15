@@ -1,0 +1,245 @@
+First Layout: /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/magic/user_project_wrapper.gds
+Second Layout: /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/klayout/user_project_wrapper.gds
+Design Name: user_project_wrapper
+Output GDS will be: /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/klayout/user_project_wrapper.xor.xml
+Reading /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/magic/user_project_wrapper.gds ..
+Reading /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/klayout/user_project_wrapper.gds ..
+--- Running XOR for 122/16 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"^" in: xor.drc:38
+Elapsed: 39.690s
+XOR differences: 2223946
+"_output" in: xor.drc:40
+Elapsed: 9.820s
+--- Running XOR for 22/21 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 8.040s
+XOR differences: 1909440
+"_output" in: xor.drc:40
+Elapsed: 7.640s
+--- Running XOR for 22/22 ---
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 4.490s
+XOR differences: 549120
+"_output" in: xor.drc:40
+Elapsed: 1.980s
+--- Running XOR for 235/0 ---
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"^" in: xor.drc:38
+Elapsed: 5.230s
+XOR differences: 823680
+"_output" in: xor.drc:40
+Elapsed: 3.050s
+--- Running XOR for 235/4 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"^" in: xor.drc:38
+Elapsed: 14.250s
+XOR differences: 218
+"_output" in: xor.drc:40
+Elapsed: 0.010s
+--- Running XOR for 236/0 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 13.010s
+XOR differences: 49865
+"_output" in: xor.drc:40
+Elapsed: 0.450s
+--- Running XOR for 237/0 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 0.010s
+XOR differences: 1
+"_output" in: xor.drc:40
+Elapsed: 0.020s
+--- Running XOR for 33/42 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"^" in: xor.drc:38
+Elapsed: 22.410s
+XOR differences: 6635200
+"_output" in: xor.drc:40
+Elapsed: 32.940s
+--- Running XOR for 33/43 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 26.160s
+XOR differences: 8161920
+"_output" in: xor.drc:40
+Elapsed: 39.830s
+--- Running XOR for 64/16 ---
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 39.370s
+XOR differences: 2210120
+"_output" in: xor.drc:40
+Elapsed: 9.910s
+--- Running XOR for 64/18 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 2.570s
+XOR differences: 16
+"_output" in: xor.drc:40
+Elapsed: 0.020s
+--- Running XOR for 64/20 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 55.220s
+XOR differences: 10070
+"_output" in: xor.drc:40
+Elapsed: 0.040s
+--- Running XOR for 64/5 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"^" in: xor.drc:38
+Elapsed: 11.350s
+XOR differences: 448
+"_output" in: xor.drc:40
+Elapsed: 0.020s
+--- Running XOR for 64/59 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 11.260s
+XOR differences: 448
+"_output" in: xor.drc:40
+Elapsed: 0.020s
+--- Running XOR for 65/20 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 40.380s
+XOR differences: 2324989
+"_output" in: xor.drc:40
+Elapsed: 11.380s
+--- Running XOR for 65/44 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 17.210s
+XOR differences: 1274616
+"_output" in: xor.drc:40
+Elapsed: 4.850s
+--- Running XOR for 65/5 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 2.660s
+XOR differences: 0
+"_output" in: xor.drc:40
+Elapsed: 0.010s
+--- Running XOR for 66/15 ---
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 4.350s
+XOR differences: 11380
+"_output" in: xor.drc:40
+Elapsed: 0.040s
+--- Running XOR for 66/20 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 132.750s
+XOR differences: 3672737
+"_output" in: xor.drc:40
+Elapsed: 27.610s
+--- Running XOR for 66/44 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"^" in: xor.drc:38
+Elapsed: 229.180s
+XOR differences: 20016686
+"_output" in: xor.drc:40
+Elapsed: 90.350s
+--- Running XOR for 66/5 ---
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"^" in: xor.drc:38
+Elapsed: 2.890s
+XOR differences: 0
+"_output" in: xor.drc:40
+Elapsed: 0.010s
+--- Running XOR for 66/83 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.020s
+"^" in: xor.drc:38
+Elapsed: 3.740s
+XOR differences: 0
+"_output" in: xor.drc:40
+Elapsed: 0.020s
+--- Running XOR for 67/16 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+Elapsed: 37.820s
+XOR differences: 3848544
+"_output" in: xor.drc:40
+Elapsed: 16.350s
+--- Running XOR for 67/20 ---
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"_input" in: xor.drc:38
+Elapsed: 0.010s
+"^" in: xor.drc:38
+ERROR: In /openLANE_flow/scripts/klayout/xor.drc: std::bad_alloc in Region::^
+Writing report database: /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/klayout/user_project_wrapper.xor.xml ..
+/usr/bin/xvfb-run: line 181:  1525 Killed                  DISPLAY=:$SERVERNUM XAUTHORITY=$AUTHFILE "$@" 2>&1

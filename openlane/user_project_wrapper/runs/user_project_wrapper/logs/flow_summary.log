@@ -1,0 +1,152 @@
+[INFO]: Current run directory is /project/openlane/user_project_wrapper/runs/user_project_wrapper
+[INFO]: Preparing LEF Files
+[INFO]: Extracting the number of available metal layers from /tmp/pohan//sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd.tlef
+[INFO]: The number of available metal layers is 6
+[INFO]: The available metal layers are li1 met1 met2 met3 met4 met5
+[INFO]: Merging LEF Files...
+[INFO]: Merging the following extra LEFs:  /project/openlane/user_project_wrapper/../../lef/user_proj_example.lef
+[INFO]: Trimming Liberty...
+[INFO]: Generating Exclude List...
+[INFO]: Storing configs into config.tcl ...
+[INFO]: Preparation complete
+[INFO]: Running Synthesis...
+[INFO]: current step index: 1
+[INFO]: Changing netlist from 0 to /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/synthesis/user_project_wrapper.synthesis.v
+[INFO]: Running Static Timing Analysis...
+[INFO]: current step index: 2
+[INFO]: Synthesis was successful
+[INFO]: Creating a synthesis netlist with PG pins.
+[INFO]: current step index: 3
+[INFO]: Running Floorplanning...
+[INFO]: Running Initial Floorplanning...
+[INFO]: current step index: 4
+[INFO]: Core area width: 2908.96
+[INFO]: Core area height: 3498.24
+[INFO]: Changing layout from 0 to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/4-verilog2def_openroad.def
+[INFO]: current step index: 5
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/4-verilog2def_openroad.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/5-ioPlacer.def
+[INFO]:  Manual Macro Placement...
+[INFO]: current step index: 6
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/5-ioPlacer.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/5-ioPlacer.macro_placement.def
+[WARNING]: Skipping Tap/Decap Insertion.
+[INFO]: Taking a Screenshot of the Layout Using Klayout...
+[INFO]: current step index: 7
+[INFO]: Screenshot taken.
+[INFO]: Power planning the following nets
+[INFO]: Power: vccd1 vccd2 vdda1 vdda2
+[INFO]: Ground: vssd1 vssd2 vssa1 vssa2
+[INFO]: Generating PDN...
+[INFO]: current step index: 8
+[INFO]: PDN generation was successful.
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/5-ioPlacer.macro_placement.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/8-pdn.def
+[INFO]: Generating PDN...
+[INFO]: current step index: 9
+[INFO]: PDN generation was successful.
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/8-pdn.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/9-pdn.def
+[INFO]: Generating PDN...
+[INFO]: current step index: 10
+[INFO]: PDN generation was successful.
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/9-pdn.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/10-pdn.def
+[INFO]: Generating PDN...
+[INFO]: current step index: 11
+[INFO]: PDN generation was successful.
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/10-pdn.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/11-pdn.def
+[INFO]: Running Placement...
+[WARNING]: Performing Random Global Placement...
+[INFO]: current step index: 12
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/floorplan/11-pdn.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/placement/12-replace.def
+[INFO]: Skipping OpenPhySyn Timing Optimizations.
+[INFO]: Skipping Resizer Timing Optimizations.
+[INFO]: Running Detailed Placement...
+[INFO]: current step index: 13
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/placement/12-replace.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/placement/user_project_wrapper.placement.def
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/placement/user_project_wrapper.placement.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/placement/user_project_wrapper.placement.def
+[INFO]: Taking a Screenshot of the Layout Using Klayout...
+[INFO]: current step index: 14
+[INFO]: Screenshot taken.
+[INFO]: current step index: 15
+[INFO]: Skipping Resizer Timing Optimizations.
+[INFO]: Routing...
+[INFO]: Running Fill Insertion...
+[INFO]: current step index: 16
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/placement/user_project_wrapper.placement.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/16-addspacers.def
+[INFO]: Obstructions will be added over the whole die area: met5 0 0 2920 3520
+[INFO]: Adding routing obstructions...
+[WARNING]: Specifying a routing obstruction is now done using the coordinates
+[WARNING]: of its bounding box instead of the now deprecated (x, y, size_x, size_y).
+[INFO]: Obstructions added over met5 0 0 2920 3520
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/16-addspacers.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/16-addspacers.obs.def
+[INFO]: Running Global Routing...
+[INFO]: current step index: 17
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/16-addspacers.obs.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/17-fastroute.def
+[INFO]: Changing layout from 0 to /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/17-fastroute.guide
+[INFO]: Current Def is /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/17-fastroute.def
+[INFO]: Current Guide is /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/17-fastroute.guide
+[INFO]: Writing Verilog...
+[INFO]: current step index: 18
+[INFO]: Changing netlist from /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/synthesis/user_project_wrapper.synthesis.v to /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/synthesis/user_project_wrapper.synthesis_preroute.v
+[INFO]: Running Detailed Routing...
+[INFO]: current step index: 19
+[INFO]: No DRC violations after detailed routing.
+[INFO]: Changing layout from /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/routing/17-fastroute.def to /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/routing/user_project_wrapper.def
+[INFO]: Taking a Screenshot of the Layout Using Klayout...
+[INFO]: current step index: 20
+[INFO]: Screenshot taken.
+[INFO]: Running SPEF Extraction...
+[INFO]: current step index: 21
+[INFO]: Running Static Timing Analysis...
+[INFO]: current step index: 22
+[INFO]: Calculating Runtime From the Start...
+[INFO]: Routing completed for user_project_wrapper/08-07_23-21 in 0h2m52s
+[INFO]: Writing Powered Verilog...
+[INFO]: current step index: 23
+[INFO]: Writing Verilog...
+[INFO]: current step index: 24
+[INFO]: Yosys won't attempt to rewrite verilog, and the OpenROAD output will be used as is.
+[INFO]: Changing netlist from /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/synthesis/user_project_wrapper.synthesis_preroute.v to /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/lvs/user_project_wrapper.lvs.powered.v
+[INFO]: Running Magic to generate various views...
+[INFO]: Streaming out GDS II...
+[INFO]: current step index: 25
+[INFO]: Taking a Screenshot of the Layout Using Klayout...
+[INFO]: current step index: 26
+[INFO]: Screenshot taken.
+[INFO]: current step index: 27
+[INFO]: current step index: 28
+[INFO]: current step index: 29
+[INFO]: Running Klayout to re-generate GDS-II...
+[INFO]: Streaming out GDS II...
+[INFO]: current step index: 30
+[INFO]: Back-up GDS-II streamed out.
+[INFO]: Taking a Screenshot of the Layout Using Klayout...
+[INFO]: current step index: 31
+[INFO]: Screenshot taken.
+[INFO]: Running XOR on the layouts using Klayout...
+[INFO]: current step index: 32
+[INFO]: Taking a Screenshot of the Layout Using Klayout...
+[INFO]: current step index: 33
+[INFO]: Screenshot taken.
+[INFO]: current step index: 34
+[ERROR]: during executing: "bash /openLANE_flow/scripts/klayout/xor.sh /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/magic/user_project_wrapper.gds /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/klayout/user_project_wrapper.gds user_project_wrapper /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/klayout/user_project_wrapper.xor.xml |& tee >&@stdout /project/openlane/user_project_wrapper/runs/user_project_wrapper/logs/klayout/34-klayout.xor.log"
+[ERROR]: Exit code: 1
+[ERROR]: Last 10 lines:
+child process exited abnormally
+
+[ERROR]: Please check bash  log file
+[ERROR]: Dumping to /project/openlane/user_project_wrapper/runs/user_project_wrapper/error.log
+[INFO]: Calculating Runtime From the Start...
+[INFO]: Flow failed for user_project_wrapper/08-07_23-21 in 1h14m29s
+[INFO]: Generating Final Summary Report...
+[INFO]: Design Name: user_project_wrapper
+Run Directory: /project/openlane/user_project_wrapper/runs/user_project_wrapper
+Source not found.
+----------------------------------------
+
+LVS Summary:
+Source: /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/lvs/user_project_wrapper.lvs_parsed.gds.log
+Source not found.
+----------------------------------------
+
+Antenna Summary:
+No antenna report found.
+[INFO]: check full report here: /project/openlane/user_project_wrapper/runs/user_project_wrapper/reports/final_summary_report.csv
+[ERROR]: Flow Failed.

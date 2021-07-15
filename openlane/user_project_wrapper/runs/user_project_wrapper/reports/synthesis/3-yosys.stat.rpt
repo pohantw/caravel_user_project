@@ -1,0 +1,17 @@
+
+11. Printing statistics.
+
+=== user_project_wrapper ===
+
+   Number of wires:                 27
+   Number of wire bits:            645
+   Number of public wires:          27
+   Number of public wire bits:     645
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     user_proj_example               1
+
+   Area for cell type \user_proj_example is unknown!
+

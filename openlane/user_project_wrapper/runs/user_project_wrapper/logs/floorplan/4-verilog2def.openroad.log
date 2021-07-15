@@ -1,0 +1,11 @@
+OpenROAD 0.9.0 1415572a73
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Warning: /tmp/pohan/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib line 31, default_operating_condition tt_025C_1v80 not found.
+Notice 0: Reading LEF file:  /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/merged_unpadded.lef
+Notice 0:     Created 13 technology layers
+Notice 0:     Created 25 technology vias
+Notice 0:     Created 441 library cells
+Notice 0: Finished LEF file:  /project/openlane/user_project_wrapper/runs/user_project_wrapper/tmp/merged_unpadded.lef
+[WARNING ORD-1000] LEF master user_proj_example has no liberty cell.
+[INFO IFP-0001] Added 1286 rows of 6323 sites.

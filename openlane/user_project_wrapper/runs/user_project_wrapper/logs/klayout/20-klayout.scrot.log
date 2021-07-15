@@ -1,0 +1,6 @@
+Using Techfile: /tmp/pohan//sky130A/libs.tech/klayout/sky130A.lyt
+Using layout file: /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/routing/user_project_wrapper.def
+[INFO] Reading tech file: /tmp/pohan//sky130A/libs.tech/klayout/sky130A.lyt
+[INFO] Reading Layout file: /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/routing/user_project_wrapper.def
+[INFO] Writing out PNG screenshot '/project/openlane/user_project_wrapper/runs/user_project_wrapper/results/routing/user_project_wrapper.def.png'
+Done
