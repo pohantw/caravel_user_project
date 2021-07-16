@@ -5,4 +5,5 @@ checks/
 *.trn
 *.bs.out
 *.bs.out.valid
-
+**/handroute-power-stripes/*.gds
+**/handroute-power-stripes/*.log
