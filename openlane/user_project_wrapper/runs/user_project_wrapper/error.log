@@ -1,4 +1,0 @@
-during executing: "bash /openLANE_flow/scripts/klayout/xor.sh /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/magic/user_project_wrapper.gds /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/klayout/user_project_wrapper.gds user_project_wrapper /project/openlane/user_project_wrapper/runs/user_project_wrapper/results/klayout/user_project_wrapper.xor.xml |& tee >&@stdout /project/openlane/user_project_wrapper/runs/user_project_wrapper/logs/klayout/34-klayout.xor.log"
-Last 10 lines:
-child process exited abnormally
-
