@@ -23,6 +23,9 @@
     `default_nettype wire
     `include "gl/user_project_wrapper.v"
     `include "gl/user_proj_example.v"
+    `include "gl/Tile_PE.v"
+    `include "gl/Tile_MemCore.v"
+    `include "gl/sky130_sram_1kbyte_1rw1r_32x256_8.v"
 `else
     `include "user_project_wrapper.v"
     `include "user_proj_cgra.v"

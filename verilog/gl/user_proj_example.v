@@ -4,7 +4,7 @@
 #  OS:                Linux x86_64(Host ID caddyxtra)
 #  Generated on:      Thu Jul  8 16:11:33 2021
 #  Design:            user_proj_example
-#  Command:           saveNetlist -excludeLeafCell results/user_proj_example.vcs.v
+#  Command:           saveNetlist -includePowerGround -excludeLeafCell results/user_proj_example.vcs.pg.v
 ###############################################################
 */
 module user_proj_example_Tile_io_core (
@@ -48,6 +48,8 @@ module user_proj_example_Tile_io_core (
    assign io2glb_16[14] = f2io_16[14] ;
    assign io2glb_16[15] = f2io_16[15] ;
    assign io2glb_1[0] = f2io_1[0] ;
+
+   // Module instantiations
 endmodule
 
 module user_proj_example_Tile_io_core_1 (
@@ -91,6 +93,8 @@ module user_proj_example_Tile_io_core_1 (
    assign io2glb_16[14] = f2io_16[14] ;
    assign io2glb_16[15] = f2io_16[15] ;
    assign io2glb_1[0] = f2io_1[0] ;
+
+   // Module instantiations
 endmodule
 
 module user_proj_example_Interconnect (
@@ -132,7 +136,9 @@ module user_proj_example_Interconnect (
 	FE_OFN0_ckmux_rst, 
 	clk_clone1, 
 	clk, 
-	clk_clone2);
+	clk_clone2, 
+	VDD, 
+	VSS);
    input [31:0] config_0_config_addr;
    input [31:0] config_0_config_data;
    input [0:0] config_0_read;
@@ -172,6 +178,8 @@ module user_proj_example_Interconnect (
    input clk_clone1;
    input clk;
    input clk_clone2;
+   inout VDD;
+   inout VSS;
 
    // Internal wires
    wire FE_PHN89_FE_OFN244_CGRA_config_read;
@@ -11073,759 +11081,3086 @@ module user_proj_example_Interconnect (
    wire n_113;
    wire n_116;
 
-   sky130_fd_sc_hd__clkbuf_1 FE_PHC89_FE_OFN244_CGRA_config_read (.A(FE_PHN89_FE_OFN244_CGRA_config_read),
-	.X(FE_OFN244_CGRA_config_read));
-   sky130_fd_sc_hd__diode_2 DIODE_18 (.DIODE(FE_OFN79_io_in_12));
-   sky130_fd_sc_hd__diode_2 DIODE_17 (.DIODE(FE_OFN53_io_in_20));
-   sky130_fd_sc_hd__diode_2 DIODE_10 (.DIODE(FE_OFN18_io_in_29));
-   sky130_fd_sc_hd__diode_2 DIODE_9 (.DIODE(FE_OFN15_io_in_30));
-   sky130_fd_sc_hd__diode_2 DIODE_8 (.DIODE(FE_OFN36_io_in_24));
-   sky130_fd_sc_hd__diode_2 DIODE_3 (.DIODE(glb2io_16_X00_Y00[13]));
-   sky130_fd_sc_hd__diode_2 DIODE_2 (.DIODE(glb2io_16_X00_Y00[6]));
-   sky130_fd_sc_hd__diode_2 DIODE_1 (.DIODE(glb2io_1_X01_Y00[0]));
-   sky130_fd_sc_hd__clkbuf_1 FE_PHC0_CGRA_config_write (.A(config_3_write[0]),
-	.X(FE_PHN0_CGRA_config_write));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC5_FE_OFN289_Tile_X00_Y08_read_config_data_31 (.A(FE_OFN289_Tile_X00_Y08_read_config_data_31),
-	.X(FE_OFN37_FE_OFN289_Tile_X00_Y08_read_config_data_31));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00068 (.A(clk),
-	.Y(CTS_13));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00060 (.A(CTS_12),
-	.Y(CTS_11));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00077 (.A(clk_clone1),
-	.Y(CTS_12));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00064 (.A(CTS_5),
-	.Y(CTS_4));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00081 (.A(CTS_6),
-	.Y(CTS_5));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00097 (.A(CTS_7),
-	.Y(CTS_6));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00062 (.A(CTS_2),
-	.Y(CTS_1));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00079 (.A(CTS_3),
-	.Y(CTS_2));
-   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00095 (.A(CTS_7),
-	.Y(CTS_3));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_inv_00116 (.A(CTS_8),
-	.Y(CTS_7));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_inv_00122 (.A(CTS_9),
-	.Y(CTS_8));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00130 (.A(CTS_10),
-	.Y(CTS_9));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00137 (.A(clk_clone2),
-	.Y(CTS_10));
-   sky130_fd_sc_hd__conb_1 LTIE_169 (.LO(LTIE_169_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_168 (.LO(LTIE_168_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_167 (.LO(LTIE_167_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_166 (.LO(LTIE_166_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_165 (.LO(LTIE_165_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_164 (.LO(LTIE_164_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_163 (.LO(LTIE_163_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_162 (.LO(LTIE_162_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_161 (.LO(LTIE_161_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_160 (.LO(LTIE_160_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_159 (.LO(LTIE_159_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_158 (.LO(LTIE_158_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_157 (.LO(LTIE_157_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_156 (.LO(LTIE_156_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_155 (.LO(LTIE_155_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_154 (.LO(LTIE_154_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_153 (.LO(LTIE_153_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_152 (.LO(LTIE_152_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_151 (.LO(LTIE_151_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_150 (.LO(LTIE_150_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_149 (.LO(LTIE_149_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_148 (.LO(LTIE_148_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_147 (.LO(LTIE_147_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_146 (.LO(LTIE_146_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_145 (.LO(LTIE_145_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_144 (.LO(LTIE_144_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_143 (.LO(LTIE_143_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_142 (.LO(LTIE_142_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_141 (.LO(LTIE_141_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_140 (.LO(LTIE_140_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_139 (.LO(LTIE_139_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_138 (.LO(LTIE_138_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_137 (.LO(LTIE_137_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_136 (.LO(LTIE_136_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_135 (.LO(LTIE_135_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_134 (.LO(LTIE_134_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_133 (.LO(LTIE_133_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_132 (.LO(LTIE_132_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_131 (.LO(LTIE_131_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_130 (.LO(LTIE_130_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_129 (.LO(LTIE_129_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_128 (.LO(LTIE_128_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_127 (.LO(LTIE_127_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_126 (.LO(LTIE_126_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_125 (.LO(LTIE_125_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_124 (.LO(LTIE_124_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_123 (.LO(LTIE_123_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_122 (.LO(LTIE_122_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_121 (.LO(LTIE_121_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_120 (.LO(LTIE_120_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_119 (.LO(LTIE_119_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_118 (.LO(LTIE_118_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_117 (.LO(LTIE_117_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_116 (.LO(LTIE_116_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_115 (.LO(LTIE_115_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_114 (.LO(LTIE_114_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_113 (.LO(LTIE_113_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_112 (.LO(LTIE_112_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_111 (.LO(LTIE_111_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_110 (.LO(LTIE_110_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_109 (.LO(LTIE_109_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_108 (.LO(LTIE_108_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_107 (.LO(LTIE_107_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_106 (.LO(LTIE_106_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_105 (.LO(LTIE_105_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_104 (.LO(LTIE_104_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_103 (.LO(LTIE_103_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_102 (.LO(LTIE_102_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_101 (.LO(LTIE_101_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_100 (.LO(LTIE_100_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_99 (.LO(LTIE_99_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_98 (.LO(LTIE_98_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_97 (.LO(LTIE_97_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_96 (.LO(LTIE_96_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_95 (.LO(LTIE_95_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_94 (.LO(LTIE_94_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_93 (.LO(LTIE_93_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_92 (.LO(LTIE_92_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_91 (.LO(LTIE_91_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_90 (.LO(LTIE_90_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_89 (.LO(LTIE_89_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_88 (.LO(LTIE_88_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_87 (.LO(LTIE_87_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_86 (.LO(LTIE_86_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_85 (.LO(LTIE_85_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_84 (.LO(LTIE_84_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_83 (.LO(LTIE_83_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_82 (.LO(LTIE_82_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_81 (.LO(LTIE_81_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_80 (.LO(LTIE_80_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_79 (.LO(LTIE_79_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_78 (.LO(LTIE_78_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_77 (.LO(LTIE_77_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_76 (.LO(LTIE_76_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_75 (.LO(LTIE_75_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_74 (.LO(LTIE_74_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_73 (.LO(LTIE_73_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_72 (.LO(LTIE_72_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_71 (.LO(LTIE_71_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_70 (.LO(LTIE_70_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_69 (.LO(LTIE_69_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_68 (.LO(LTIE_68_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_67 (.LO(LTIE_67_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_66 (.LO(LTIE_66_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_65 (.LO(LTIE_65_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_64 (.LO(LTIE_64_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_63 (.LO(LTIE_63_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_62 (.LO(LTIE_62_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_61 (.LO(LTIE_61_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_60 (.LO(LTIE_60_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_59 (.LO(LTIE_59_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_58 (.LO(LTIE_58_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_57 (.LO(LTIE_57_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_56 (.LO(LTIE_56_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_55 (.LO(LTIE_55_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_54 (.LO(LTIE_54_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_53 (.LO(LTIE_53_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_52 (.LO(LTIE_52_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_51 (.LO(LTIE_51_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_50 (.LO(LTIE_50_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_49 (.LO(LTIE_49_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_48 (.LO(LTIE_48_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_47 (.LO(LTIE_47_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_46 (.LO(LTIE_46_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_45 (.LO(LTIE_45_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_44 (.LO(LTIE_44_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_43 (.LO(LTIE_43_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_42 (.LO(LTIE_42_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_41 (.LO(LTIE_41_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_40 (.LO(LTIE_40_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_39 (.LO(LTIE_39_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_38 (.LO(LTIE_38_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_37 (.LO(LTIE_37_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_36 (.LO(LTIE_36_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_35 (.LO(LTIE_35_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_34 (.LO(LTIE_34_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_33 (.LO(LTIE_33_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_32 (.LO(LTIE_32_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_31 (.LO(LTIE_31_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_30 (.LO(LTIE_30_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_29 (.LO(LTIE_29_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_28 (.LO(LTIE_28_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_27 (.LO(LTIE_27_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_26 (.LO(LTIE_26_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_25 (.LO(LTIE_25_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_24 (.LO(LTIE_24_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_23 (.LO(LTIE_23_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_22 (.LO(LTIE_22_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_21 (.LO(LTIE_21_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_20 (.LO(LTIE_20_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_19 (.LO(LTIE_19_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_18 (.LO(LTIE_18_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_17 (.LO(LTIE_17_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_16 (.LO(LTIE_16_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_15 (.LO(LTIE_15_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_14 (.LO(LTIE_14_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_13 (.LO(LTIE_13_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_12 (.LO(LTIE_12_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_11 (.LO(LTIE_11_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_10 (.LO(LTIE_10_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_9 (.LO(LTIE_9_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_8 (.LO(LTIE_8_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_7 (.LO(LTIE_7_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_6 (.LO(LTIE_6_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_5 (.LO(LTIE_5_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_4 (.LO(LTIE_4_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_3 (.LO(LTIE_3_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_2 (.LO(LTIE_2_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE_1 (.LO(LTIE_1_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE (.LO(LTIE_LONET));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC550_Tile_X01_Y08_read_config_data_30 (.A(Tile_X01_Y08_read_config_data_30),
-	.X(FE_OFN550_Tile_X01_Y08_read_config_data_30));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC548_Tile_X00_Y08_read_config_data_8 (.A(Tile_X00_Y08_read_config_data_8),
-	.X(FE_OFN548_Tile_X00_Y08_read_config_data_8));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC547_Tile_X01_Y08_read_config_data_20 (.A(Tile_X01_Y08_read_config_data_20),
-	.X(FE_OFN547_Tile_X01_Y08_read_config_data_20));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC539_FE_OFN29_io_in_26 (.A(FE_OFN29_io_in_26),
-	.X(FE_OFN539_FE_OFN29_io_in_26));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC534_FE_OFN247_CGRA_config_read (.A(FE_OFN247_CGRA_config_read),
-	.X(FE_OFN534_FE_OFN247_CGRA_config_read));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC532_CGRA_config_write (.A(config_3_write[0]),
-	.X(FE_OFN532_CGRA_config_write));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC531_Tile_X03_Y08_read_config_data_31 (.A(Tile_X03_Y08_read_config_data_31),
-	.X(FE_OFN531_Tile_X03_Y08_read_config_data_31));
-   sky130_fd_sc_hd__buf_2 FE_OFC530_Tile_X03_Y08_read_config_data_30 (.A(Tile_X03_Y08_read_config_data_30),
-	.X(FE_OFN530_Tile_X03_Y08_read_config_data_30));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC529_Tile_X03_Y08_read_config_data_29 (.A(Tile_X03_Y08_read_config_data_29),
-	.X(FE_OFN529_Tile_X03_Y08_read_config_data_29));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC528_Tile_X03_Y08_read_config_data_28 (.A(Tile_X03_Y08_read_config_data_28),
-	.X(FE_OFN528_Tile_X03_Y08_read_config_data_28));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC527_Tile_X03_Y08_read_config_data_27 (.A(Tile_X03_Y08_read_config_data_27),
-	.X(FE_OFN527_Tile_X03_Y08_read_config_data_27));
-   sky130_fd_sc_hd__buf_2 FE_OFC526_Tile_X03_Y08_read_config_data_26 (.A(Tile_X03_Y08_read_config_data_26),
-	.X(FE_OFN526_Tile_X03_Y08_read_config_data_26));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC525_Tile_X03_Y08_read_config_data_25 (.A(Tile_X03_Y08_read_config_data_25),
-	.X(FE_OFN525_Tile_X03_Y08_read_config_data_25));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC524_Tile_X03_Y08_read_config_data_24 (.A(Tile_X03_Y08_read_config_data_24),
-	.X(FE_OFN524_Tile_X03_Y08_read_config_data_24));
-   sky130_fd_sc_hd__buf_2 FE_OFC523_Tile_X03_Y08_read_config_data_23 (.A(Tile_X03_Y08_read_config_data_23),
-	.X(FE_OFN523_Tile_X03_Y08_read_config_data_23));
-   sky130_fd_sc_hd__buf_2 FE_OFC522_Tile_X03_Y08_read_config_data_22 (.A(Tile_X03_Y08_read_config_data_22),
-	.X(FE_OFN522_Tile_X03_Y08_read_config_data_22));
-   sky130_fd_sc_hd__buf_2 FE_OFC521_Tile_X03_Y08_read_config_data_21 (.A(Tile_X03_Y08_read_config_data_21),
-	.X(FE_OFN521_Tile_X03_Y08_read_config_data_21));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC520_Tile_X03_Y08_read_config_data_20 (.A(Tile_X03_Y08_read_config_data_20),
-	.X(FE_OFN520_Tile_X03_Y08_read_config_data_20));
-   sky130_fd_sc_hd__buf_2 FE_OFC519_Tile_X03_Y08_read_config_data_19 (.A(Tile_X03_Y08_read_config_data_19),
-	.X(FE_OFN519_Tile_X03_Y08_read_config_data_19));
-   sky130_fd_sc_hd__buf_2 FE_OFC518_Tile_X03_Y08_read_config_data_18 (.A(Tile_X03_Y08_read_config_data_18),
-	.X(FE_OFN518_Tile_X03_Y08_read_config_data_18));
-   sky130_fd_sc_hd__buf_2 FE_OFC517_Tile_X03_Y08_read_config_data_17 (.A(Tile_X03_Y08_read_config_data_17),
-	.X(FE_OFN517_Tile_X03_Y08_read_config_data_17));
-   sky130_fd_sc_hd__buf_2 FE_OFC516_Tile_X03_Y08_read_config_data_16 (.A(Tile_X03_Y08_read_config_data_16),
-	.X(FE_OFN516_Tile_X03_Y08_read_config_data_16));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC515_Tile_X03_Y08_read_config_data_15 (.A(Tile_X03_Y08_read_config_data_15),
-	.X(FE_OFN515_Tile_X03_Y08_read_config_data_15));
-   sky130_fd_sc_hd__buf_2 FE_OFC514_Tile_X03_Y08_read_config_data_14 (.A(Tile_X03_Y08_read_config_data_14),
-	.X(FE_OFN514_Tile_X03_Y08_read_config_data_14));
-   sky130_fd_sc_hd__buf_2 FE_OFC513_Tile_X03_Y08_read_config_data_13 (.A(Tile_X03_Y08_read_config_data_13),
-	.X(FE_OFN513_Tile_X03_Y08_read_config_data_13));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC512_Tile_X03_Y08_read_config_data_12 (.A(Tile_X03_Y08_read_config_data_12),
-	.X(FE_OFN512_Tile_X03_Y08_read_config_data_12));
-   sky130_fd_sc_hd__buf_2 FE_OFC511_Tile_X03_Y08_read_config_data_11 (.A(Tile_X03_Y08_read_config_data_11),
-	.X(FE_OFN511_Tile_X03_Y08_read_config_data_11));
-   sky130_fd_sc_hd__buf_2 FE_OFC510_Tile_X03_Y08_read_config_data_10 (.A(Tile_X03_Y08_read_config_data_10),
-	.X(FE_OFN510_Tile_X03_Y08_read_config_data_10));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC509_Tile_X03_Y08_read_config_data_9 (.A(Tile_X03_Y08_read_config_data_9),
-	.X(FE_OFN509_Tile_X03_Y08_read_config_data_9));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC508_Tile_X03_Y08_read_config_data_8 (.A(Tile_X03_Y08_read_config_data_8),
-	.X(FE_OFN508_Tile_X03_Y08_read_config_data_8));
-   sky130_fd_sc_hd__buf_2 FE_OFC507_Tile_X03_Y08_read_config_data_7 (.A(Tile_X03_Y08_read_config_data_7),
-	.X(FE_OFN507_Tile_X03_Y08_read_config_data_7));
-   sky130_fd_sc_hd__buf_2 FE_OFC506_Tile_X03_Y08_read_config_data_6 (.A(Tile_X03_Y08_read_config_data_6),
-	.X(FE_OFN506_Tile_X03_Y08_read_config_data_6));
-   sky130_fd_sc_hd__buf_2 FE_OFC505_Tile_X03_Y08_read_config_data_5 (.A(Tile_X03_Y08_read_config_data_5),
-	.X(FE_OFN505_Tile_X03_Y08_read_config_data_5));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC504_Tile_X03_Y08_read_config_data_4 (.A(Tile_X03_Y08_read_config_data_4),
-	.X(FE_OFN504_Tile_X03_Y08_read_config_data_4));
-   sky130_fd_sc_hd__buf_2 FE_OFC503_Tile_X03_Y08_read_config_data_3 (.A(Tile_X03_Y08_read_config_data_3),
-	.X(FE_OFN503_Tile_X03_Y08_read_config_data_3));
-   sky130_fd_sc_hd__buf_2 FE_OFC502_Tile_X03_Y08_read_config_data_2 (.A(Tile_X03_Y08_read_config_data_2),
-	.X(FE_OFN502_Tile_X03_Y08_read_config_data_2));
-   sky130_fd_sc_hd__buf_2 FE_OFC501_Tile_X03_Y08_read_config_data_1 (.A(Tile_X03_Y08_read_config_data_1),
-	.X(FE_OFN501_Tile_X03_Y08_read_config_data_1));
-   sky130_fd_sc_hd__buf_2 FE_OFC500_Tile_X03_Y08_read_config_data_0 (.A(Tile_X03_Y08_read_config_data_0),
-	.X(FE_OFN500_Tile_X03_Y08_read_config_data_0));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC499_Tile_X02_Y08_read_config_data_31 (.A(Tile_X02_Y08_read_config_data_31),
-	.X(FE_OFN499_Tile_X02_Y08_read_config_data_31));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC498_Tile_X02_Y08_read_config_data_29 (.A(Tile_X02_Y08_read_config_data_29),
-	.X(FE_OFN498_Tile_X02_Y08_read_config_data_29));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC497_Tile_X02_Y08_read_config_data_28 (.A(Tile_X02_Y08_read_config_data_28),
-	.X(FE_OFN497_Tile_X02_Y08_read_config_data_28));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC496_Tile_X02_Y08_read_config_data_27 (.A(Tile_X02_Y08_read_config_data_27),
-	.X(FE_OFN496_Tile_X02_Y08_read_config_data_27));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC493_Tile_X02_Y08_read_config_data_24 (.A(Tile_X02_Y08_read_config_data_24),
-	.X(FE_OFN493_Tile_X02_Y08_read_config_data_24));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC492_Tile_X02_Y08_read_config_data_9 (.A(Tile_X02_Y08_read_config_data_9),
-	.X(FE_OFN492_Tile_X02_Y08_read_config_data_9));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC491_Tile_X02_Y08_read_config_data_8 (.A(Tile_X02_Y08_read_config_data_8),
-	.X(FE_OFN491_Tile_X02_Y08_read_config_data_8));
-   sky130_fd_sc_hd__buf_2 FE_OFC489_Tile_X01_Y08_read_config_data_31 (.A(Tile_X01_Y08_read_config_data_31),
-	.X(FE_OFN489_Tile_X01_Y08_read_config_data_31));
-   sky130_fd_sc_hd__buf_2 FE_OFC488_Tile_X01_Y08_read_config_data_30 (.A(FE_OFN550_Tile_X01_Y08_read_config_data_30),
-	.X(FE_OFN488_Tile_X01_Y08_read_config_data_30));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC487_Tile_X01_Y08_read_config_data_29 (.A(Tile_X01_Y08_read_config_data_29),
-	.X(FE_OFN487_Tile_X01_Y08_read_config_data_29));
-   sky130_fd_sc_hd__buf_2 FE_OFC486_Tile_X01_Y08_read_config_data_28 (.A(Tile_X01_Y08_read_config_data_28),
-	.X(FE_OFN486_Tile_X01_Y08_read_config_data_28));
-   sky130_fd_sc_hd__buf_2 FE_OFC485_Tile_X01_Y08_read_config_data_27 (.A(Tile_X01_Y08_read_config_data_27),
-	.X(FE_OFN485_Tile_X01_Y08_read_config_data_27));
-   sky130_fd_sc_hd__buf_2 FE_OFC484_Tile_X01_Y08_read_config_data_26 (.A(Tile_X01_Y08_read_config_data_26),
-	.X(FE_OFN484_Tile_X01_Y08_read_config_data_26));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC483_Tile_X01_Y08_read_config_data_25 (.A(Tile_X01_Y08_read_config_data_25),
-	.X(FE_OFN483_Tile_X01_Y08_read_config_data_25));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC482_Tile_X01_Y08_read_config_data_24 (.A(Tile_X01_Y08_read_config_data_24),
-	.X(FE_OFN482_Tile_X01_Y08_read_config_data_24));
-   sky130_fd_sc_hd__buf_2 FE_OFC481_Tile_X01_Y08_read_config_data_23 (.A(Tile_X01_Y08_read_config_data_23),
-	.X(FE_OFN481_Tile_X01_Y08_read_config_data_23));
-   sky130_fd_sc_hd__buf_2 FE_OFC480_Tile_X01_Y08_read_config_data_22 (.A(Tile_X01_Y08_read_config_data_22),
-	.X(FE_OFN480_Tile_X01_Y08_read_config_data_22));
-   sky130_fd_sc_hd__buf_2 FE_OFC479_Tile_X01_Y08_read_config_data_21 (.A(Tile_X01_Y08_read_config_data_21),
-	.X(FE_OFN479_Tile_X01_Y08_read_config_data_21));
-   sky130_fd_sc_hd__buf_2 FE_OFC477_Tile_X01_Y08_read_config_data_19 (.A(Tile_X01_Y08_read_config_data_19),
-	.X(FE_OFN477_Tile_X01_Y08_read_config_data_19));
-   sky130_fd_sc_hd__buf_2 FE_OFC476_Tile_X01_Y08_read_config_data_18 (.A(Tile_X01_Y08_read_config_data_18),
-	.X(FE_OFN476_Tile_X01_Y08_read_config_data_18));
-   sky130_fd_sc_hd__buf_2 FE_OFC475_Tile_X01_Y08_read_config_data_17 (.A(Tile_X01_Y08_read_config_data_17),
-	.X(FE_OFN475_Tile_X01_Y08_read_config_data_17));
-   sky130_fd_sc_hd__buf_2 FE_OFC474_Tile_X01_Y08_read_config_data_16 (.A(Tile_X01_Y08_read_config_data_16),
-	.X(FE_OFN474_Tile_X01_Y08_read_config_data_16));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC473_Tile_X01_Y08_read_config_data_15 (.A(Tile_X01_Y08_read_config_data_15),
-	.X(FE_OFN473_Tile_X01_Y08_read_config_data_15));
-   sky130_fd_sc_hd__buf_2 FE_OFC472_Tile_X01_Y08_read_config_data_14 (.A(Tile_X01_Y08_read_config_data_14),
-	.X(FE_OFN472_Tile_X01_Y08_read_config_data_14));
-   sky130_fd_sc_hd__buf_2 FE_OFC471_Tile_X01_Y08_read_config_data_13 (.A(Tile_X01_Y08_read_config_data_13),
-	.X(FE_OFN471_Tile_X01_Y08_read_config_data_13));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC470_Tile_X01_Y08_read_config_data_12 (.A(Tile_X01_Y08_read_config_data_12),
-	.X(FE_OFN470_Tile_X01_Y08_read_config_data_12));
-   sky130_fd_sc_hd__buf_2 FE_OFC469_Tile_X01_Y08_read_config_data_11 (.A(Tile_X01_Y08_read_config_data_11),
-	.X(FE_OFN469_Tile_X01_Y08_read_config_data_11));
-   sky130_fd_sc_hd__buf_2 FE_OFC468_Tile_X01_Y08_read_config_data_10 (.A(Tile_X01_Y08_read_config_data_10),
-	.X(FE_OFN468_Tile_X01_Y08_read_config_data_10));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC467_Tile_X01_Y08_read_config_data_9 (.A(Tile_X01_Y08_read_config_data_9),
-	.X(FE_OFN467_Tile_X01_Y08_read_config_data_9));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC466_Tile_X01_Y08_read_config_data_8 (.A(Tile_X01_Y08_read_config_data_8),
-	.X(FE_OFN466_Tile_X01_Y08_read_config_data_8));
-   sky130_fd_sc_hd__buf_2 FE_OFC465_Tile_X01_Y08_read_config_data_7 (.A(Tile_X01_Y08_read_config_data_7),
-	.X(FE_OFN465_Tile_X01_Y08_read_config_data_7));
-   sky130_fd_sc_hd__buf_2 FE_OFC464_Tile_X01_Y08_read_config_data_6 (.A(Tile_X01_Y08_read_config_data_6),
-	.X(FE_OFN464_Tile_X01_Y08_read_config_data_6));
-   sky130_fd_sc_hd__buf_2 FE_OFC463_Tile_X01_Y08_read_config_data_5 (.A(Tile_X01_Y08_read_config_data_5),
-	.X(FE_OFN463_Tile_X01_Y08_read_config_data_5));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC462_Tile_X01_Y08_read_config_data_4 (.A(Tile_X01_Y08_read_config_data_4),
-	.X(FE_OFN462_Tile_X01_Y08_read_config_data_4));
-   sky130_fd_sc_hd__buf_2 FE_OFC461_Tile_X01_Y08_read_config_data_3 (.A(Tile_X01_Y08_read_config_data_3),
-	.X(FE_OFN461_Tile_X01_Y08_read_config_data_3));
-   sky130_fd_sc_hd__buf_2 FE_OFC460_Tile_X01_Y08_read_config_data_2 (.A(Tile_X01_Y08_read_config_data_2),
-	.X(FE_OFN460_Tile_X01_Y08_read_config_data_2));
-   sky130_fd_sc_hd__buf_2 FE_OFC459_Tile_X01_Y08_read_config_data_1 (.A(Tile_X01_Y08_read_config_data_1),
-	.X(FE_OFN459_Tile_X01_Y08_read_config_data_1));
-   sky130_fd_sc_hd__buf_2 FE_OFC458_Tile_X01_Y08_read_config_data_0 (.A(Tile_X01_Y08_read_config_data_0),
-	.X(FE_OFN458_Tile_X01_Y08_read_config_data_0));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC457_Tile_X00_Y08_read_config_data_31 (.A(Tile_X00_Y08_read_config_data_31),
-	.X(FE_OFN457_Tile_X00_Y08_read_config_data_31));
-   sky130_fd_sc_hd__buf_2 FE_OFC456_Tile_X00_Y08_read_config_data_30 (.A(Tile_X00_Y08_read_config_data_30),
-	.X(FE_OFN456_Tile_X00_Y08_read_config_data_30));
-   sky130_fd_sc_hd__buf_2 FE_OFC455_Tile_X00_Y08_read_config_data_29 (.A(Tile_X00_Y08_read_config_data_29),
-	.X(FE_OFN455_Tile_X00_Y08_read_config_data_29));
-   sky130_fd_sc_hd__buf_2 FE_OFC454_Tile_X00_Y08_read_config_data_28 (.A(Tile_X00_Y08_read_config_data_28),
-	.X(FE_OFN454_Tile_X00_Y08_read_config_data_28));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC453_Tile_X00_Y08_read_config_data_27 (.A(Tile_X00_Y08_read_config_data_27),
-	.X(FE_OFN453_Tile_X00_Y08_read_config_data_27));
-   sky130_fd_sc_hd__buf_2 FE_OFC452_Tile_X00_Y08_read_config_data_26 (.A(Tile_X00_Y08_read_config_data_26),
-	.X(FE_OFN452_Tile_X00_Y08_read_config_data_26));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC451_Tile_X00_Y08_read_config_data_25 (.A(Tile_X00_Y08_read_config_data_25),
-	.X(FE_OFN451_Tile_X00_Y08_read_config_data_25));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC450_Tile_X00_Y08_read_config_data_24 (.A(Tile_X00_Y08_read_config_data_24),
-	.X(FE_OFN450_Tile_X00_Y08_read_config_data_24));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC449_Tile_X00_Y08_read_config_data_23 (.A(Tile_X00_Y08_read_config_data_23),
-	.X(FE_OFN449_Tile_X00_Y08_read_config_data_23));
-   sky130_fd_sc_hd__buf_2 FE_OFC448_Tile_X00_Y08_read_config_data_22 (.A(Tile_X00_Y08_read_config_data_22),
-	.X(FE_OFN448_Tile_X00_Y08_read_config_data_22));
-   sky130_fd_sc_hd__buf_2 FE_OFC447_Tile_X00_Y08_read_config_data_21 (.A(Tile_X00_Y08_read_config_data_21),
-	.X(FE_OFN447_Tile_X00_Y08_read_config_data_21));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC446_Tile_X00_Y08_read_config_data_20 (.A(Tile_X00_Y08_read_config_data_20),
-	.X(FE_OFN446_Tile_X00_Y08_read_config_data_20));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC445_Tile_X00_Y08_read_config_data_19 (.A(Tile_X00_Y08_read_config_data_19),
-	.X(FE_OFN445_Tile_X00_Y08_read_config_data_19));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC444_Tile_X00_Y08_read_config_data_18 (.A(Tile_X00_Y08_read_config_data_18),
-	.X(FE_OFN444_Tile_X00_Y08_read_config_data_18));
-   sky130_fd_sc_hd__buf_2 FE_OFC443_Tile_X00_Y08_read_config_data_17 (.A(Tile_X00_Y08_read_config_data_17),
-	.X(FE_OFN443_Tile_X00_Y08_read_config_data_17));
-   sky130_fd_sc_hd__buf_2 FE_OFC442_Tile_X00_Y08_read_config_data_16 (.A(Tile_X00_Y08_read_config_data_16),
-	.X(FE_OFN442_Tile_X00_Y08_read_config_data_16));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC441_Tile_X00_Y08_read_config_data_15 (.A(Tile_X00_Y08_read_config_data_15),
-	.X(FE_OFN441_Tile_X00_Y08_read_config_data_15));
-   sky130_fd_sc_hd__buf_2 FE_OFC440_Tile_X00_Y08_read_config_data_14 (.A(Tile_X00_Y08_read_config_data_14),
-	.X(FE_OFN440_Tile_X00_Y08_read_config_data_14));
-   sky130_fd_sc_hd__buf_2 FE_OFC439_Tile_X00_Y08_read_config_data_13 (.A(Tile_X00_Y08_read_config_data_13),
-	.X(FE_OFN439_Tile_X00_Y08_read_config_data_13));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC438_Tile_X00_Y08_read_config_data_12 (.A(Tile_X00_Y08_read_config_data_12),
-	.X(FE_OFN438_Tile_X00_Y08_read_config_data_12));
-   sky130_fd_sc_hd__buf_2 FE_OFC437_Tile_X00_Y08_read_config_data_11 (.A(Tile_X00_Y08_read_config_data_11),
-	.X(FE_OFN437_Tile_X00_Y08_read_config_data_11));
-   sky130_fd_sc_hd__buf_2 FE_OFC436_Tile_X00_Y08_read_config_data_10 (.A(Tile_X00_Y08_read_config_data_10),
-	.X(FE_OFN436_Tile_X00_Y08_read_config_data_10));
-   sky130_fd_sc_hd__buf_2 FE_OFC435_Tile_X00_Y08_read_config_data_9 (.A(Tile_X00_Y08_read_config_data_9),
-	.X(FE_OFN435_Tile_X00_Y08_read_config_data_9));
-   sky130_fd_sc_hd__buf_4 FE_OFC433_Tile_X00_Y08_read_config_data_7 (.A(Tile_X00_Y08_read_config_data_7),
-	.X(FE_OFN433_Tile_X00_Y08_read_config_data_7));
-   sky130_fd_sc_hd__buf_2 FE_OFC432_Tile_X00_Y08_read_config_data_6 (.A(Tile_X00_Y08_read_config_data_6),
-	.X(FE_OFN432_Tile_X00_Y08_read_config_data_6));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC431_Tile_X00_Y08_read_config_data_5 (.A(Tile_X00_Y08_read_config_data_5),
-	.X(FE_OFN431_Tile_X00_Y08_read_config_data_5));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC430_Tile_X00_Y08_read_config_data_4 (.A(Tile_X00_Y08_read_config_data_4),
-	.X(FE_OFN430_Tile_X00_Y08_read_config_data_4));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC429_Tile_X00_Y08_read_config_data_3 (.A(Tile_X00_Y08_read_config_data_3),
-	.X(FE_OFN429_Tile_X00_Y08_read_config_data_3));
-   sky130_fd_sc_hd__buf_2 FE_OFC428_Tile_X00_Y08_read_config_data_2 (.A(Tile_X00_Y08_read_config_data_2),
-	.X(FE_OFN428_Tile_X00_Y08_read_config_data_2));
-   sky130_fd_sc_hd__buf_2 FE_OFC427_Tile_X00_Y08_read_config_data_1 (.A(Tile_X00_Y08_read_config_data_1),
-	.X(FE_OFN427_Tile_X00_Y08_read_config_data_1));
-   sky130_fd_sc_hd__buf_2 FE_OFC426_Tile_X00_Y08_read_config_data_0 (.A(Tile_X00_Y08_read_config_data_0),
-	.X(FE_OFN426_Tile_X00_Y08_read_config_data_0));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC425_io_in_33 (.A(FE_OFN8_io_in_33),
-	.X(FE_OFN425_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC424_io_in_32 (.A(FE_OFN10_io_in_32),
-	.X(FE_OFN424_n));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC423_io_in_25 (.A(FE_OFN33_io_in_25),
-	.X(FE_OFN423_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC422_io_in_23 (.A(FE_OFN41_io_in_23),
-	.X(FE_OFN422_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC421_io_in_22 (.A(FE_OFN45_io_in_22),
-	.X(FE_OFN421_n));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC420_io_in_17 (.A(FE_OFN66_io_in_17),
-	.X(FE_OFN420_n));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC419_io_in_12 (.A(FE_OFN80_io_in_12),
-	.X(FE_OFN419_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC418_io_in_11 (.A(FE_OFN82_io_in_11),
-	.X(FE_OFN418_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC417_io_in_7 (.A(FE_OFN90_io_in_7),
-	.X(FE_OFN417_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC416_io_in_5 (.A(FE_OFN94_io_in_5),
-	.X(FE_OFN416_n));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC381_n_116 (.A(n_116),
-	.X(FE_OFN381_n_116));
-   sky130_fd_sc_hd__inv_2 FE_OFC380_ckmux_rst (.A(FE_OFN378_ckmux_rst),
-	.Y(FE_OFN380_ckmux_rst));
-   sky130_fd_sc_hd__inv_2 FE_OFC379_ckmux_rst (.A(FE_OFN378_ckmux_rst),
-	.Y(FE_OFN379_ckmux_rst));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC378_ckmux_rst (.A(FE_OFN0_ckmux_rst),
-	.Y(FE_OFN378_ckmux_rst));
-   sky130_fd_sc_hd__buf_2 FE_OFC377_ckmux_rst (.A(FE_OFN0_ckmux_rst),
-	.X(FE_OFN377_ckmux_rst));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC315_Tile_X03_Y08_read_config_data_31 (.A(FE_OFN531_Tile_X03_Y08_read_config_data_31),
-	.X(FE_OFN315_Tile_X03_Y08_read_config_data_31));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC314_Tile_X03_Y08_read_config_data_29 (.A(FE_OFN529_Tile_X03_Y08_read_config_data_29),
-	.X(FE_OFN314_Tile_X03_Y08_read_config_data_29));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC313_Tile_X03_Y08_read_config_data_28 (.A(FE_OFN528_Tile_X03_Y08_read_config_data_28),
-	.X(FE_OFN313_Tile_X03_Y08_read_config_data_28));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC312_Tile_X03_Y08_read_config_data_27 (.A(FE_OFN527_Tile_X03_Y08_read_config_data_27),
-	.X(FE_OFN312_Tile_X03_Y08_read_config_data_27));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC310_Tile_X03_Y08_read_config_data_25 (.A(FE_OFN525_Tile_X03_Y08_read_config_data_25),
-	.X(FE_OFN310_Tile_X03_Y08_read_config_data_25));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC309_Tile_X03_Y08_read_config_data_24 (.A(FE_OFN524_Tile_X03_Y08_read_config_data_24),
-	.X(FE_OFN309_Tile_X03_Y08_read_config_data_24));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC308_Tile_X03_Y08_read_config_data_20 (.A(FE_OFN520_Tile_X03_Y08_read_config_data_20),
-	.X(FE_OFN308_Tile_X03_Y08_read_config_data_20));
-   sky130_fd_sc_hd__buf_2 FE_OFC307_Tile_X03_Y08_read_config_data_15 (.A(FE_OFN515_Tile_X03_Y08_read_config_data_15),
-	.X(FE_OFN307_Tile_X03_Y08_read_config_data_15));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC306_Tile_X03_Y08_read_config_data_12 (.A(FE_OFN512_Tile_X03_Y08_read_config_data_12),
-	.X(FE_OFN306_Tile_X03_Y08_read_config_data_12));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC305_Tile_X03_Y08_read_config_data_9 (.A(FE_OFN509_Tile_X03_Y08_read_config_data_9),
-	.X(FE_OFN305_Tile_X03_Y08_read_config_data_9));
-   sky130_fd_sc_hd__buf_2 FE_OFC304_Tile_X03_Y08_read_config_data_8 (.A(FE_OFN508_Tile_X03_Y08_read_config_data_8),
-	.X(FE_OFN304_Tile_X03_Y08_read_config_data_8));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC303_Tile_X03_Y08_read_config_data_4 (.A(FE_OFN504_Tile_X03_Y08_read_config_data_4),
-	.X(FE_OFN303_Tile_X03_Y08_read_config_data_4));
-   sky130_fd_sc_hd__buf_2 FE_OFC301_Tile_X01_Y08_read_config_data_29 (.A(FE_OFN487_Tile_X01_Y08_read_config_data_29),
-	.X(FE_OFN301_Tile_X01_Y08_read_config_data_29));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC297_Tile_X01_Y08_read_config_data_25 (.A(FE_OFN483_Tile_X01_Y08_read_config_data_25),
-	.X(FE_OFN297_Tile_X01_Y08_read_config_data_25));
-   sky130_fd_sc_hd__buf_2 FE_OFC296_Tile_X01_Y08_read_config_data_24 (.A(FE_OFN482_Tile_X01_Y08_read_config_data_24),
-	.X(FE_OFN296_Tile_X01_Y08_read_config_data_24));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC295_Tile_X01_Y08_read_config_data_20 (.A(FE_OFN547_Tile_X01_Y08_read_config_data_20),
-	.X(FE_OFN295_Tile_X01_Y08_read_config_data_20));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC294_Tile_X01_Y08_read_config_data_15 (.A(FE_OFN473_Tile_X01_Y08_read_config_data_15),
-	.X(FE_OFN294_Tile_X01_Y08_read_config_data_15));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC293_Tile_X01_Y08_read_config_data_12 (.A(FE_OFN470_Tile_X01_Y08_read_config_data_12),
-	.X(FE_OFN293_Tile_X01_Y08_read_config_data_12));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC292_Tile_X01_Y08_read_config_data_9 (.A(FE_OFN467_Tile_X01_Y08_read_config_data_9),
-	.X(FE_OFN292_Tile_X01_Y08_read_config_data_9));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC291_Tile_X01_Y08_read_config_data_8 (.A(FE_OFN466_Tile_X01_Y08_read_config_data_8),
-	.X(FE_OFN291_Tile_X01_Y08_read_config_data_8));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC290_Tile_X01_Y08_read_config_data_4 (.A(FE_OFN462_Tile_X01_Y08_read_config_data_4),
-	.X(FE_OFN290_Tile_X01_Y08_read_config_data_4));
-   sky130_fd_sc_hd__buf_2 FE_OFC289_Tile_X00_Y08_read_config_data_31 (.A(FE_OFN457_Tile_X00_Y08_read_config_data_31),
-	.X(FE_OFN289_Tile_X00_Y08_read_config_data_31));
-   sky130_fd_sc_hd__buf_2 FE_OFC288_Tile_X00_Y08_read_config_data_30 (.A(FE_OFN456_Tile_X00_Y08_read_config_data_30),
-	.X(FE_OFN288_Tile_X00_Y08_read_config_data_30));
-   sky130_fd_sc_hd__buf_2 FE_OFC287_Tile_X00_Y08_read_config_data_29 (.A(FE_OFN455_Tile_X00_Y08_read_config_data_29),
-	.X(FE_OFN287_Tile_X00_Y08_read_config_data_29));
-   sky130_fd_sc_hd__buf_2 FE_OFC286_Tile_X00_Y08_read_config_data_28 (.A(FE_OFN454_Tile_X00_Y08_read_config_data_28),
-	.X(FE_OFN286_Tile_X00_Y08_read_config_data_28));
-   sky130_fd_sc_hd__buf_2 FE_OFC285_Tile_X00_Y08_read_config_data_27 (.A(FE_OFN453_Tile_X00_Y08_read_config_data_27),
-	.X(FE_OFN285_Tile_X00_Y08_read_config_data_27));
-   sky130_fd_sc_hd__buf_2 FE_OFC284_Tile_X00_Y08_read_config_data_26 (.A(FE_OFN452_Tile_X00_Y08_read_config_data_26),
-	.X(FE_OFN284_Tile_X00_Y08_read_config_data_26));
-   sky130_fd_sc_hd__buf_2 FE_OFC283_Tile_X00_Y08_read_config_data_25 (.A(FE_OFN451_Tile_X00_Y08_read_config_data_25),
-	.X(FE_OFN283_Tile_X00_Y08_read_config_data_25));
-   sky130_fd_sc_hd__buf_2 FE_OFC282_Tile_X00_Y08_read_config_data_24 (.A(FE_OFN450_Tile_X00_Y08_read_config_data_24),
-	.X(FE_OFN282_Tile_X00_Y08_read_config_data_24));
-   sky130_fd_sc_hd__buf_2 FE_OFC281_Tile_X00_Y08_read_config_data_22 (.A(FE_OFN448_Tile_X00_Y08_read_config_data_22),
-	.X(FE_OFN281_Tile_X00_Y08_read_config_data_22));
-   sky130_fd_sc_hd__buf_2 FE_OFC280_Tile_X00_Y08_read_config_data_21 (.A(FE_OFN447_Tile_X00_Y08_read_config_data_21),
-	.X(FE_OFN280_Tile_X00_Y08_read_config_data_21));
-   sky130_fd_sc_hd__buf_2 FE_OFC279_Tile_X00_Y08_read_config_data_20 (.A(FE_OFN446_Tile_X00_Y08_read_config_data_20),
-	.X(FE_OFN279_Tile_X00_Y08_read_config_data_20));
-   sky130_fd_sc_hd__buf_2 FE_OFC278_Tile_X00_Y08_read_config_data_17 (.A(FE_OFN443_Tile_X00_Y08_read_config_data_17),
-	.X(FE_OFN278_Tile_X00_Y08_read_config_data_17));
-   sky130_fd_sc_hd__buf_2 FE_OFC277_Tile_X00_Y08_read_config_data_16 (.A(FE_OFN442_Tile_X00_Y08_read_config_data_16),
-	.X(FE_OFN277_Tile_X00_Y08_read_config_data_16));
-   sky130_fd_sc_hd__buf_2 FE_OFC276_Tile_X00_Y08_read_config_data_15 (.A(FE_OFN441_Tile_X00_Y08_read_config_data_15),
-	.X(FE_OFN276_Tile_X00_Y08_read_config_data_15));
-   sky130_fd_sc_hd__buf_2 FE_OFC275_Tile_X00_Y08_read_config_data_14 (.A(FE_OFN440_Tile_X00_Y08_read_config_data_14),
-	.X(FE_OFN275_Tile_X00_Y08_read_config_data_14));
-   sky130_fd_sc_hd__buf_2 FE_OFC274_Tile_X00_Y08_read_config_data_13 (.A(FE_OFN439_Tile_X00_Y08_read_config_data_13),
-	.X(FE_OFN274_Tile_X00_Y08_read_config_data_13));
-   sky130_fd_sc_hd__buf_2 FE_OFC273_Tile_X00_Y08_read_config_data_12 (.A(FE_OFN438_Tile_X00_Y08_read_config_data_12),
-	.X(FE_OFN273_Tile_X00_Y08_read_config_data_12));
-   sky130_fd_sc_hd__buf_2 FE_OFC272_Tile_X00_Y08_read_config_data_11 (.A(FE_OFN437_Tile_X00_Y08_read_config_data_11),
-	.X(FE_OFN272_Tile_X00_Y08_read_config_data_11));
-   sky130_fd_sc_hd__buf_2 FE_OFC271_Tile_X00_Y08_read_config_data_10 (.A(FE_OFN436_Tile_X00_Y08_read_config_data_10),
-	.X(FE_OFN271_Tile_X00_Y08_read_config_data_10));
-   sky130_fd_sc_hd__buf_2 FE_OFC270_Tile_X00_Y08_read_config_data_9 (.A(FE_OFN435_Tile_X00_Y08_read_config_data_9),
-	.X(FE_OFN270_Tile_X00_Y08_read_config_data_9));
-   sky130_fd_sc_hd__buf_2 FE_OFC269_Tile_X00_Y08_read_config_data_8 (.A(FE_OFN548_Tile_X00_Y08_read_config_data_8),
-	.X(FE_OFN269_Tile_X00_Y08_read_config_data_8));
-   sky130_fd_sc_hd__buf_2 FE_OFC267_Tile_X00_Y08_read_config_data_6 (.A(FE_OFN432_Tile_X00_Y08_read_config_data_6),
-	.X(FE_OFN267_Tile_X00_Y08_read_config_data_6));
-   sky130_fd_sc_hd__buf_2 FE_OFC266_Tile_X00_Y08_read_config_data_4 (.A(FE_OFN430_Tile_X00_Y08_read_config_data_4),
-	.X(FE_OFN266_Tile_X00_Y08_read_config_data_4));
-   sky130_fd_sc_hd__buf_2 FE_OFC265_Tile_X00_Y08_read_config_data_2 (.A(FE_OFN428_Tile_X00_Y08_read_config_data_2),
-	.X(FE_OFN265_Tile_X00_Y08_read_config_data_2));
-   sky130_fd_sc_hd__buf_2 FE_OFC264_Tile_X00_Y08_read_config_data_1 (.A(FE_OFN427_Tile_X00_Y08_read_config_data_1),
-	.X(FE_OFN264_Tile_X00_Y08_read_config_data_1));
-   sky130_fd_sc_hd__buf_2 FE_OFC263_Tile_X00_Y08_read_config_data_0 (.A(FE_OFN426_Tile_X00_Y08_read_config_data_0),
-	.X(FE_OFN263_Tile_X00_Y08_read_config_data_0));
-   sky130_fd_sc_hd__inv_8 FE_OFC251_CGRA_config_write (.A(FE_OFN248_CGRA_config_write),
-	.Y(FE_OFN251_CGRA_config_write));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC249_CGRA_config_write (.A(FE_OFN248_CGRA_config_write),
-	.Y(FE_OFN249_CGRA_config_write));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC248_CGRA_config_write (.A(FE_OFN532_CGRA_config_write),
-	.Y(FE_OFN248_CGRA_config_write));
-   sky130_fd_sc_hd__inv_4 FE_OFC247_CGRA_config_read (.A(FE_OFN243_CGRA_config_read),
-	.Y(FE_OFN247_CGRA_config_read));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC245_CGRA_config_read (.A(FE_OFN243_CGRA_config_read),
-	.Y(FE_OFN245_CGRA_config_read));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC244_CGRA_config_read (.A(FE_OFN243_CGRA_config_read),
-	.Y(FE_PHN89_FE_OFN244_CGRA_config_read));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC243_CGRA_config_read (.A(config_3_read[0]),
-	.Y(FE_OFN243_CGRA_config_read));
-   sky130_fd_sc_hd__buf_2 FE_OFC101_io_in_0 (.A(glb2io_16_X00_Y00[0]),
-	.X(FE_OFN101_io_in_0));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC100_io_in_1 (.A(glb2io_16_X00_Y00[1]),
-	.X(FE_OFN100_io_in_1));
-   sky130_fd_sc_hd__buf_6 FE_OFC99_io_in_2 (.A(glb2io_16_X00_Y00[2]),
-	.X(FE_OFN99_io_in_2));
-   sky130_fd_sc_hd__buf_2 FE_OFC98_io_in_3 (.A(FE_OFN97_io_in_3),
-	.X(FE_OFN98_io_in_3));
-   sky130_fd_sc_hd__buf_2 FE_OFC97_io_in_3 (.A(glb2io_16_X00_Y00[3]),
-	.X(FE_OFN97_io_in_3));
-   sky130_fd_sc_hd__buf_2 FE_OFC96_io_in_4 (.A(FE_OFN95_io_in_4),
-	.X(FE_OFN96_io_in_4));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC95_io_in_4 (.A(glb2io_16_X00_Y00[4]),
-	.X(FE_OFN95_io_in_4));
-   sky130_fd_sc_hd__clkinv_2 FE_OFC94_io_in_5 (.A(FE_OFN93_io_in_5),
-	.Y(FE_OFN94_io_in_5));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC93_io_in_5 (.A(glb2io_16_X00_Y00[5]),
-	.Y(FE_OFN93_io_in_5));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC92_io_in_6 (.A(FE_OFN91_io_in_6),
-	.X(FE_OFN92_io_in_6));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC91_io_in_6 (.A(glb2io_16_X00_Y00[6]),
-	.X(FE_OFN91_io_in_6));
-   sky130_fd_sc_hd__inv_2 FE_OFC90_io_in_7 (.A(FE_OFN89_io_in_7),
-	.Y(FE_OFN90_io_in_7));
-   sky130_fd_sc_hd__clkinv_2 FE_OFC89_io_in_7 (.A(glb2io_16_X00_Y00[7]),
-	.Y(FE_OFN89_io_in_7));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC88_io_in_8 (.A(FE_OFN87_io_in_8),
-	.Y(FE_OFN88_io_in_8));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC87_io_in_8 (.A(glb2io_16_X00_Y00[8]),
-	.Y(FE_OFN87_io_in_8));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC86_io_in_9 (.A(FE_OFN85_io_in_9),
-	.Y(FE_OFN86_io_in_9));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC85_io_in_9 (.A(glb2io_16_X00_Y00[9]),
-	.Y(FE_OFN85_io_in_9));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC84_io_in_10 (.A(FE_OFN83_io_in_10),
-	.Y(FE_OFN84_io_in_10));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC83_io_in_10 (.A(glb2io_16_X00_Y00[10]),
-	.Y(FE_OFN83_io_in_10));
-   sky130_fd_sc_hd__inv_2 FE_OFC82_io_in_11 (.A(FE_OFN81_io_in_11),
-	.Y(FE_OFN82_io_in_11));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC81_io_in_11 (.A(glb2io_16_X00_Y00[11]),
-	.Y(FE_OFN81_io_in_11));
-   sky130_fd_sc_hd__inv_2 FE_OFC80_io_in_12 (.A(FE_OFN79_io_in_12),
-	.Y(FE_OFN80_io_in_12));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC79_io_in_12 (.A(glb2io_16_X00_Y00[12]),
-	.Y(FE_OFN79_io_in_12));
-   sky130_fd_sc_hd__buf_2 FE_OFC78_io_in_13 (.A(FE_OFN77_io_in_13),
-	.X(FE_OFN78_io_in_13));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC77_io_in_13 (.A(FE_OFN76_io_in_13),
-	.Y(FE_OFN77_io_in_13));
-   sky130_fd_sc_hd__clkinv_2 FE_OFC76_io_in_13 (.A(glb2io_16_X00_Y00[13]),
-	.Y(FE_OFN76_io_in_13));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC75_io_in_14 (.A(FE_OFN74_io_in_14),
-	.X(FE_OFN75_io_in_14));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC74_io_in_14 (.A(FE_OFN73_io_in_14),
-	.Y(FE_OFN74_io_in_14));
-   sky130_fd_sc_hd__inv_4 FE_OFC73_io_in_14 (.A(glb2io_16_X00_Y00[14]),
-	.Y(FE_OFN73_io_in_14));
-   sky130_fd_sc_hd__buf_2 FE_OFC72_io_in_15 (.A(FE_OFN71_io_in_15),
-	.X(FE_OFN72_io_in_15));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC71_io_in_15 (.A(FE_OFN70_io_in_15),
-	.Y(FE_OFN71_io_in_15));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC70_io_in_15 (.A(glb2io_16_X00_Y00[15]),
-	.Y(FE_OFN70_io_in_15));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC69_io_in_16 (.A(FE_OFN68_io_in_16),
-	.X(FE_OFN69_io_in_16));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC68_io_in_16 (.A(FE_OFN67_io_in_16),
-	.Y(FE_OFN68_io_in_16));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC67_io_in_16 (.A(glb2io_1_X00_Y00[0]),
-	.Y(FE_OFN67_io_in_16));
-   sky130_fd_sc_hd__inv_2 FE_OFC66_io_in_17 (.A(FE_OFN65_io_in_17),
-	.Y(FE_OFN66_io_in_17));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC65_io_in_17 (.A(FE_OFN64_io_in_17),
-	.Y(FE_OFN65_io_in_17));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC64_io_in_17 (.A(FE_OFN63_io_in_17),
-	.Y(FE_OFN64_io_in_17));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC63_io_in_17 (.A(glb2io_16_X01_Y00[0]),
-	.Y(FE_OFN63_io_in_17));
-   sky130_fd_sc_hd__buf_2 FE_OFC62_io_in_18 (.A(FE_OFN61_io_in_18),
-	.X(FE_OFN62_io_in_18));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC61_io_in_18 (.A(FE_OFN60_io_in_18),
-	.Y(FE_OFN61_io_in_18));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC60_io_in_18 (.A(FE_OFN59_io_in_18),
-	.Y(FE_OFN60_io_in_18));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC59_io_in_18 (.A(glb2io_16_X01_Y00[1]),
-	.X(FE_OFN59_io_in_18));
-   sky130_fd_sc_hd__buf_2 FE_OFC58_io_in_19 (.A(FE_OFN57_io_in_19),
-	.X(FE_OFN58_io_in_19));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC57_io_in_19 (.A(FE_OFN56_io_in_19),
-	.Y(FE_OFN57_io_in_19));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC56_io_in_19 (.A(FE_OFN55_io_in_19),
-	.Y(FE_OFN56_io_in_19));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC55_io_in_19 (.A(glb2io_16_X01_Y00[2]),
-	.X(FE_OFN55_io_in_19));
-   sky130_fd_sc_hd__buf_2 FE_OFC54_io_in_20 (.A(FE_OFN53_io_in_20),
-	.X(FE_OFN54_io_in_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC53_io_in_20 (.A(FE_OFN52_io_in_20),
-	.Y(FE_OFN53_io_in_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC52_io_in_20 (.A(FE_OFN51_io_in_20),
-	.Y(FE_OFN52_io_in_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC51_io_in_20 (.A(FE_OFN50_io_in_20),
-	.Y(FE_OFN51_io_in_20));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC50_io_in_20 (.A(glb2io_16_X01_Y00[3]),
-	.Y(FE_OFN50_io_in_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC49_io_in_21 (.A(FE_OFN48_io_in_21),
-	.Y(FE_OFN49_io_in_21));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC48_io_in_21 (.A(FE_OFN47_io_in_21),
-	.Y(FE_OFN48_io_in_21));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC47_io_in_21 (.A(FE_OFN46_io_in_21),
-	.Y(FE_OFN47_io_in_21));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC46_io_in_21 (.A(glb2io_16_X01_Y00[4]),
-	.Y(FE_OFN46_io_in_21));
-   sky130_fd_sc_hd__inv_2 FE_OFC45_io_in_22 (.A(FE_OFN44_io_in_22),
-	.Y(FE_OFN45_io_in_22));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC44_io_in_22 (.A(FE_OFN43_io_in_22),
-	.Y(FE_OFN44_io_in_22));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC43_io_in_22 (.A(FE_OFN42_io_in_22),
-	.Y(FE_OFN43_io_in_22));
-   sky130_fd_sc_hd__clkinv_2 FE_OFC42_io_in_22 (.A(glb2io_16_X01_Y00[5]),
-	.Y(FE_OFN42_io_in_22));
-   sky130_fd_sc_hd__inv_2 FE_OFC41_io_in_23 (.A(FE_OFN40_io_in_23),
-	.Y(FE_OFN41_io_in_23));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC40_io_in_23 (.A(FE_OFN39_io_in_23),
-	.Y(FE_OFN40_io_in_23));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC39_io_in_23 (.A(FE_OFN38_io_in_23),
-	.Y(FE_OFN39_io_in_23));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC38_io_in_23 (.A(glb2io_16_X01_Y00[6]),
-	.Y(FE_OFN38_io_in_23));
-   sky130_fd_sc_hd__buf_2 FE_OFC37_io_in_24 (.A(FE_OFN36_io_in_24),
-	.X(FE_OFN37_io_in_24));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC36_io_in_24 (.A(FE_OFN35_io_in_24),
-	.Y(FE_OFN36_io_in_24));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC35_io_in_24 (.A(FE_OFN34_io_in_24),
-	.Y(FE_OFN35_io_in_24));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC34_io_in_24 (.A(glb2io_16_X01_Y00[7]),
-	.X(FE_OFN34_io_in_24));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC33_io_in_25 (.A(FE_OFN32_io_in_25),
-	.Y(FE_OFN33_io_in_25));
-   sky130_fd_sc_hd__clkinv_2 FE_OFC32_io_in_25 (.A(FE_OFN31_io_in_25),
-	.Y(FE_OFN32_io_in_25));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC31_io_in_25 (.A(FE_OFN30_io_in_25),
-	.Y(FE_OFN31_io_in_25));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC30_io_in_25 (.A(glb2io_16_X01_Y00[8]),
-	.Y(FE_OFN30_io_in_25));
-   sky130_fd_sc_hd__inv_2 FE_OFC29_io_in_26 (.A(FE_OFN28_io_in_26),
-	.Y(FE_OFN29_io_in_26));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC28_io_in_26 (.A(FE_OFN27_io_in_26),
-	.Y(FE_OFN28_io_in_26));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC27_io_in_26 (.A(FE_OFN26_io_in_26),
-	.Y(FE_OFN27_io_in_26));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC26_io_in_26 (.A(glb2io_16_X01_Y00[9]),
-	.Y(FE_OFN26_io_in_26));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC25_io_in_27 (.A(FE_OFN24_io_in_27),
-	.X(FE_OFN25_io_in_27));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC24_io_in_27 (.A(FE_OFN23_io_in_27),
-	.Y(FE_OFN24_io_in_27));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC23_io_in_27 (.A(glb2io_16_X01_Y00[10]),
-	.Y(FE_OFN23_io_in_27));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC22_io_in_28 (.A(FE_OFN21_io_in_28),
-	.X(FE_OFN22_io_in_28));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC21_io_in_28 (.A(FE_OFN20_io_in_28),
-	.Y(FE_OFN21_io_in_28));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC20_io_in_28 (.A(glb2io_16_X01_Y00[11]),
-	.Y(FE_OFN20_io_in_28));
-   sky130_fd_sc_hd__buf_2 FE_OFC19_io_in_29 (.A(FE_OFN18_io_in_29),
-	.X(FE_OFN19_io_in_29));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC18_io_in_29 (.A(FE_OFN17_io_in_29),
-	.Y(FE_OFN18_io_in_29));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC17_io_in_29 (.A(glb2io_16_X01_Y00[12]),
-	.Y(FE_OFN17_io_in_29));
-   sky130_fd_sc_hd__buf_2 FE_OFC16_io_in_30 (.A(FE_OFN15_io_in_30),
-	.X(FE_OFN16_io_in_30));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC15_io_in_30 (.A(FE_OFN14_io_in_30),
-	.Y(FE_OFN15_io_in_30));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC14_io_in_30 (.A(glb2io_16_X01_Y00[13]),
-	.Y(FE_OFN14_io_in_30));
-   sky130_fd_sc_hd__buf_2 FE_OFC13_io_in_31 (.A(FE_OFN12_io_in_31),
-	.X(FE_OFN13_io_in_31));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC12_io_in_31 (.A(FE_OFN11_io_in_31),
-	.Y(FE_OFN12_io_in_31));
-   sky130_fd_sc_hd__clkinv_2 FE_OFC11_io_in_31 (.A(glb2io_16_X01_Y00[14]),
-	.Y(FE_OFN11_io_in_31));
-   sky130_fd_sc_hd__inv_2 FE_OFC10_io_in_32 (.A(FE_OFN9_io_in_32),
-	.Y(FE_OFN10_io_in_32));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC9_io_in_32 (.A(glb2io_16_X01_Y00[15]),
-	.Y(FE_OFN9_io_in_32));
-   sky130_fd_sc_hd__inv_2 FE_OFC8_io_in_33 (.A(FE_OFN7_io_in_33),
-	.Y(FE_OFN8_io_in_33));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC7_io_in_33 (.A(glb2io_1_X01_Y00[0]),
-	.Y(FE_OFN7_io_in_33));
-   user_proj_example_Tile_io_core Tile_X00_Y00 (.tile_id({ Tile_X00_Y00_lo_7,
+   // Module instantiations
+   sky130_fd_sc_hd__clkbuf_1 FE_PHC89_FE_OFN244_CGRA_config_read (
+	.A(FE_PHN89_FE_OFN244_CGRA_config_read),
+	.X(FE_OFN244_CGRA_config_read), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_18 (
+	.DIODE(FE_OFN79_io_in_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_17 (
+	.DIODE(FE_OFN53_io_in_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_10 (
+	.DIODE(FE_OFN18_io_in_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_9 (
+	.DIODE(FE_OFN15_io_in_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_8 (
+	.DIODE(FE_OFN36_io_in_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_3 (
+	.DIODE(glb2io_16_X00_Y00[13]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_2 (
+	.DIODE(glb2io_16_X00_Y00[6]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_1 (
+	.DIODE(glb2io_1_X01_Y00[0]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_PHC0_CGRA_config_write (
+	.A(config_3_write[0]),
+	.X(FE_PHN0_CGRA_config_write), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC5_FE_OFN289_Tile_X00_Y08_read_config_data_31 (
+	.A(FE_OFN289_Tile_X00_Y08_read_config_data_31),
+	.X(FE_OFN37_FE_OFN289_Tile_X00_Y08_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00068 (
+	.A(clk),
+	.Y(CTS_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00060 (
+	.A(CTS_12),
+	.Y(CTS_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00077 (
+	.A(clk_clone1),
+	.Y(CTS_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00064 (
+	.A(CTS_5),
+	.Y(CTS_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00081 (
+	.A(CTS_6),
+	.Y(CTS_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00097 (
+	.A(CTS_7),
+	.Y(CTS_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00062 (
+	.A(CTS_2),
+	.Y(CTS_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00079 (
+	.A(CTS_3),
+	.Y(CTS_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00095 (
+	.A(CTS_7),
+	.Y(CTS_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_inv_00116 (
+	.A(CTS_8),
+	.Y(CTS_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_inv_00122 (
+	.A(CTS_9),
+	.Y(CTS_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00130 (
+	.A(CTS_10),
+	.Y(CTS_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00137 (
+	.A(clk_clone2),
+	.Y(CTS_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_169 (
+	.LO(LTIE_169_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_168 (
+	.LO(LTIE_168_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_167 (
+	.LO(LTIE_167_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_166 (
+	.LO(LTIE_166_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_165 (
+	.LO(LTIE_165_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_164 (
+	.LO(LTIE_164_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_163 (
+	.LO(LTIE_163_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_162 (
+	.LO(LTIE_162_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_161 (
+	.LO(LTIE_161_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_160 (
+	.LO(LTIE_160_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_159 (
+	.LO(LTIE_159_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_158 (
+	.LO(LTIE_158_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_157 (
+	.LO(LTIE_157_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_156 (
+	.LO(LTIE_156_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_155 (
+	.LO(LTIE_155_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_154 (
+	.LO(LTIE_154_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_153 (
+	.LO(LTIE_153_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_152 (
+	.LO(LTIE_152_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_151 (
+	.LO(LTIE_151_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_150 (
+	.LO(LTIE_150_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_149 (
+	.LO(LTIE_149_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_148 (
+	.LO(LTIE_148_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_147 (
+	.LO(LTIE_147_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_146 (
+	.LO(LTIE_146_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_145 (
+	.LO(LTIE_145_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_144 (
+	.LO(LTIE_144_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_143 (
+	.LO(LTIE_143_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_142 (
+	.LO(LTIE_142_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_141 (
+	.LO(LTIE_141_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_140 (
+	.LO(LTIE_140_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_139 (
+	.LO(LTIE_139_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_138 (
+	.LO(LTIE_138_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_137 (
+	.LO(LTIE_137_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_136 (
+	.LO(LTIE_136_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_135 (
+	.LO(LTIE_135_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_134 (
+	.LO(LTIE_134_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_133 (
+	.LO(LTIE_133_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_132 (
+	.LO(LTIE_132_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_131 (
+	.LO(LTIE_131_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_130 (
+	.LO(LTIE_130_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_129 (
+	.LO(LTIE_129_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_128 (
+	.LO(LTIE_128_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_127 (
+	.LO(LTIE_127_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_126 (
+	.LO(LTIE_126_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_125 (
+	.LO(LTIE_125_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_124 (
+	.LO(LTIE_124_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_123 (
+	.LO(LTIE_123_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_122 (
+	.LO(LTIE_122_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_121 (
+	.LO(LTIE_121_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_120 (
+	.LO(LTIE_120_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_119 (
+	.LO(LTIE_119_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_118 (
+	.LO(LTIE_118_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_117 (
+	.LO(LTIE_117_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_116 (
+	.LO(LTIE_116_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_115 (
+	.LO(LTIE_115_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_114 (
+	.LO(LTIE_114_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_113 (
+	.LO(LTIE_113_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_112 (
+	.LO(LTIE_112_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_111 (
+	.LO(LTIE_111_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_110 (
+	.LO(LTIE_110_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_109 (
+	.LO(LTIE_109_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_108 (
+	.LO(LTIE_108_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_107 (
+	.LO(LTIE_107_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_106 (
+	.LO(LTIE_106_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_105 (
+	.LO(LTIE_105_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_104 (
+	.LO(LTIE_104_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_103 (
+	.LO(LTIE_103_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_102 (
+	.LO(LTIE_102_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_101 (
+	.LO(LTIE_101_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_100 (
+	.LO(LTIE_100_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_99 (
+	.LO(LTIE_99_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_98 (
+	.LO(LTIE_98_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_97 (
+	.LO(LTIE_97_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_96 (
+	.LO(LTIE_96_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_95 (
+	.LO(LTIE_95_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_94 (
+	.LO(LTIE_94_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_93 (
+	.LO(LTIE_93_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_92 (
+	.LO(LTIE_92_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_91 (
+	.LO(LTIE_91_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_90 (
+	.LO(LTIE_90_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_89 (
+	.LO(LTIE_89_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_88 (
+	.LO(LTIE_88_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_87 (
+	.LO(LTIE_87_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_86 (
+	.LO(LTIE_86_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_85 (
+	.LO(LTIE_85_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_84 (
+	.LO(LTIE_84_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_83 (
+	.LO(LTIE_83_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_82 (
+	.LO(LTIE_82_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_81 (
+	.LO(LTIE_81_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_80 (
+	.LO(LTIE_80_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_79 (
+	.LO(LTIE_79_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_78 (
+	.LO(LTIE_78_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_77 (
+	.LO(LTIE_77_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_76 (
+	.LO(LTIE_76_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_75 (
+	.LO(LTIE_75_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_74 (
+	.LO(LTIE_74_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_73 (
+	.LO(LTIE_73_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_72 (
+	.LO(LTIE_72_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_71 (
+	.LO(LTIE_71_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_70 (
+	.LO(LTIE_70_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_69 (
+	.LO(LTIE_69_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_68 (
+	.LO(LTIE_68_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_67 (
+	.LO(LTIE_67_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_66 (
+	.LO(LTIE_66_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_65 (
+	.LO(LTIE_65_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_64 (
+	.LO(LTIE_64_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_63 (
+	.LO(LTIE_63_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_62 (
+	.LO(LTIE_62_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_61 (
+	.LO(LTIE_61_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_60 (
+	.LO(LTIE_60_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_59 (
+	.LO(LTIE_59_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_58 (
+	.LO(LTIE_58_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_57 (
+	.LO(LTIE_57_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_56 (
+	.LO(LTIE_56_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_55 (
+	.LO(LTIE_55_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_54 (
+	.LO(LTIE_54_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_53 (
+	.LO(LTIE_53_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_52 (
+	.LO(LTIE_52_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_51 (
+	.LO(LTIE_51_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_50 (
+	.LO(LTIE_50_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_49 (
+	.LO(LTIE_49_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_48 (
+	.LO(LTIE_48_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_47 (
+	.LO(LTIE_47_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_46 (
+	.LO(LTIE_46_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_45 (
+	.LO(LTIE_45_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_44 (
+	.LO(LTIE_44_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_43 (
+	.LO(LTIE_43_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_42 (
+	.LO(LTIE_42_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_41 (
+	.LO(LTIE_41_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_40 (
+	.LO(LTIE_40_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_39 (
+	.LO(LTIE_39_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_38 (
+	.LO(LTIE_38_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_37 (
+	.LO(LTIE_37_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_36 (
+	.LO(LTIE_36_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_35 (
+	.LO(LTIE_35_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_34 (
+	.LO(LTIE_34_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_33 (
+	.LO(LTIE_33_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_32 (
+	.LO(LTIE_32_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_31 (
+	.LO(LTIE_31_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_30 (
+	.LO(LTIE_30_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_29 (
+	.LO(LTIE_29_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_28 (
+	.LO(LTIE_28_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_27 (
+	.LO(LTIE_27_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_26 (
+	.LO(LTIE_26_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_25 (
+	.LO(LTIE_25_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_24 (
+	.LO(LTIE_24_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_23 (
+	.LO(LTIE_23_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_22 (
+	.LO(LTIE_22_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_21 (
+	.LO(LTIE_21_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_20 (
+	.LO(LTIE_20_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_19 (
+	.LO(LTIE_19_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_18 (
+	.LO(LTIE_18_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_17 (
+	.LO(LTIE_17_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_16 (
+	.LO(LTIE_16_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_15 (
+	.LO(LTIE_15_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_14 (
+	.LO(LTIE_14_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_13 (
+	.LO(LTIE_13_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_12 (
+	.LO(LTIE_12_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_11 (
+	.LO(LTIE_11_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_10 (
+	.LO(LTIE_10_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_9 (
+	.LO(LTIE_9_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_8 (
+	.LO(LTIE_8_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_7 (
+	.LO(LTIE_7_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_6 (
+	.LO(LTIE_6_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_5 (
+	.LO(LTIE_5_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_4 (
+	.LO(LTIE_4_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_3 (
+	.LO(LTIE_3_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_2 (
+	.LO(LTIE_2_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE_1 (
+	.LO(LTIE_1_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE (
+	.LO(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC550_Tile_X01_Y08_read_config_data_30 (
+	.A(Tile_X01_Y08_read_config_data_30),
+	.X(FE_OFN550_Tile_X01_Y08_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC548_Tile_X00_Y08_read_config_data_8 (
+	.A(Tile_X00_Y08_read_config_data_8),
+	.X(FE_OFN548_Tile_X00_Y08_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC547_Tile_X01_Y08_read_config_data_20 (
+	.A(Tile_X01_Y08_read_config_data_20),
+	.X(FE_OFN547_Tile_X01_Y08_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC539_FE_OFN29_io_in_26 (
+	.A(FE_OFN29_io_in_26),
+	.X(FE_OFN539_FE_OFN29_io_in_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC534_FE_OFN247_CGRA_config_read (
+	.A(FE_OFN247_CGRA_config_read),
+	.X(FE_OFN534_FE_OFN247_CGRA_config_read), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC532_CGRA_config_write (
+	.A(config_3_write[0]),
+	.X(FE_OFN532_CGRA_config_write), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC531_Tile_X03_Y08_read_config_data_31 (
+	.A(Tile_X03_Y08_read_config_data_31),
+	.X(FE_OFN531_Tile_X03_Y08_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC530_Tile_X03_Y08_read_config_data_30 (
+	.A(Tile_X03_Y08_read_config_data_30),
+	.X(FE_OFN530_Tile_X03_Y08_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC529_Tile_X03_Y08_read_config_data_29 (
+	.A(Tile_X03_Y08_read_config_data_29),
+	.X(FE_OFN529_Tile_X03_Y08_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC528_Tile_X03_Y08_read_config_data_28 (
+	.A(Tile_X03_Y08_read_config_data_28),
+	.X(FE_OFN528_Tile_X03_Y08_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC527_Tile_X03_Y08_read_config_data_27 (
+	.A(Tile_X03_Y08_read_config_data_27),
+	.X(FE_OFN527_Tile_X03_Y08_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC526_Tile_X03_Y08_read_config_data_26 (
+	.A(Tile_X03_Y08_read_config_data_26),
+	.X(FE_OFN526_Tile_X03_Y08_read_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC525_Tile_X03_Y08_read_config_data_25 (
+	.A(Tile_X03_Y08_read_config_data_25),
+	.X(FE_OFN525_Tile_X03_Y08_read_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC524_Tile_X03_Y08_read_config_data_24 (
+	.A(Tile_X03_Y08_read_config_data_24),
+	.X(FE_OFN524_Tile_X03_Y08_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC523_Tile_X03_Y08_read_config_data_23 (
+	.A(Tile_X03_Y08_read_config_data_23),
+	.X(FE_OFN523_Tile_X03_Y08_read_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC522_Tile_X03_Y08_read_config_data_22 (
+	.A(Tile_X03_Y08_read_config_data_22),
+	.X(FE_OFN522_Tile_X03_Y08_read_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC521_Tile_X03_Y08_read_config_data_21 (
+	.A(Tile_X03_Y08_read_config_data_21),
+	.X(FE_OFN521_Tile_X03_Y08_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC520_Tile_X03_Y08_read_config_data_20 (
+	.A(Tile_X03_Y08_read_config_data_20),
+	.X(FE_OFN520_Tile_X03_Y08_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC519_Tile_X03_Y08_read_config_data_19 (
+	.A(Tile_X03_Y08_read_config_data_19),
+	.X(FE_OFN519_Tile_X03_Y08_read_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC518_Tile_X03_Y08_read_config_data_18 (
+	.A(Tile_X03_Y08_read_config_data_18),
+	.X(FE_OFN518_Tile_X03_Y08_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC517_Tile_X03_Y08_read_config_data_17 (
+	.A(Tile_X03_Y08_read_config_data_17),
+	.X(FE_OFN517_Tile_X03_Y08_read_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC516_Tile_X03_Y08_read_config_data_16 (
+	.A(Tile_X03_Y08_read_config_data_16),
+	.X(FE_OFN516_Tile_X03_Y08_read_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC515_Tile_X03_Y08_read_config_data_15 (
+	.A(Tile_X03_Y08_read_config_data_15),
+	.X(FE_OFN515_Tile_X03_Y08_read_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC514_Tile_X03_Y08_read_config_data_14 (
+	.A(Tile_X03_Y08_read_config_data_14),
+	.X(FE_OFN514_Tile_X03_Y08_read_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC513_Tile_X03_Y08_read_config_data_13 (
+	.A(Tile_X03_Y08_read_config_data_13),
+	.X(FE_OFN513_Tile_X03_Y08_read_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC512_Tile_X03_Y08_read_config_data_12 (
+	.A(Tile_X03_Y08_read_config_data_12),
+	.X(FE_OFN512_Tile_X03_Y08_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC511_Tile_X03_Y08_read_config_data_11 (
+	.A(Tile_X03_Y08_read_config_data_11),
+	.X(FE_OFN511_Tile_X03_Y08_read_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC510_Tile_X03_Y08_read_config_data_10 (
+	.A(Tile_X03_Y08_read_config_data_10),
+	.X(FE_OFN510_Tile_X03_Y08_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC509_Tile_X03_Y08_read_config_data_9 (
+	.A(Tile_X03_Y08_read_config_data_9),
+	.X(FE_OFN509_Tile_X03_Y08_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC508_Tile_X03_Y08_read_config_data_8 (
+	.A(Tile_X03_Y08_read_config_data_8),
+	.X(FE_OFN508_Tile_X03_Y08_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC507_Tile_X03_Y08_read_config_data_7 (
+	.A(Tile_X03_Y08_read_config_data_7),
+	.X(FE_OFN507_Tile_X03_Y08_read_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC506_Tile_X03_Y08_read_config_data_6 (
+	.A(Tile_X03_Y08_read_config_data_6),
+	.X(FE_OFN506_Tile_X03_Y08_read_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC505_Tile_X03_Y08_read_config_data_5 (
+	.A(Tile_X03_Y08_read_config_data_5),
+	.X(FE_OFN505_Tile_X03_Y08_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC504_Tile_X03_Y08_read_config_data_4 (
+	.A(Tile_X03_Y08_read_config_data_4),
+	.X(FE_OFN504_Tile_X03_Y08_read_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC503_Tile_X03_Y08_read_config_data_3 (
+	.A(Tile_X03_Y08_read_config_data_3),
+	.X(FE_OFN503_Tile_X03_Y08_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC502_Tile_X03_Y08_read_config_data_2 (
+	.A(Tile_X03_Y08_read_config_data_2),
+	.X(FE_OFN502_Tile_X03_Y08_read_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC501_Tile_X03_Y08_read_config_data_1 (
+	.A(Tile_X03_Y08_read_config_data_1),
+	.X(FE_OFN501_Tile_X03_Y08_read_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC500_Tile_X03_Y08_read_config_data_0 (
+	.A(Tile_X03_Y08_read_config_data_0),
+	.X(FE_OFN500_Tile_X03_Y08_read_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC499_Tile_X02_Y08_read_config_data_31 (
+	.A(Tile_X02_Y08_read_config_data_31),
+	.X(FE_OFN499_Tile_X02_Y08_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC498_Tile_X02_Y08_read_config_data_29 (
+	.A(Tile_X02_Y08_read_config_data_29),
+	.X(FE_OFN498_Tile_X02_Y08_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC497_Tile_X02_Y08_read_config_data_28 (
+	.A(Tile_X02_Y08_read_config_data_28),
+	.X(FE_OFN497_Tile_X02_Y08_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC496_Tile_X02_Y08_read_config_data_27 (
+	.A(Tile_X02_Y08_read_config_data_27),
+	.X(FE_OFN496_Tile_X02_Y08_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC493_Tile_X02_Y08_read_config_data_24 (
+	.A(Tile_X02_Y08_read_config_data_24),
+	.X(FE_OFN493_Tile_X02_Y08_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC492_Tile_X02_Y08_read_config_data_9 (
+	.A(Tile_X02_Y08_read_config_data_9),
+	.X(FE_OFN492_Tile_X02_Y08_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC491_Tile_X02_Y08_read_config_data_8 (
+	.A(Tile_X02_Y08_read_config_data_8),
+	.X(FE_OFN491_Tile_X02_Y08_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC489_Tile_X01_Y08_read_config_data_31 (
+	.A(Tile_X01_Y08_read_config_data_31),
+	.X(FE_OFN489_Tile_X01_Y08_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC488_Tile_X01_Y08_read_config_data_30 (
+	.A(FE_OFN550_Tile_X01_Y08_read_config_data_30),
+	.X(FE_OFN488_Tile_X01_Y08_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC487_Tile_X01_Y08_read_config_data_29 (
+	.A(Tile_X01_Y08_read_config_data_29),
+	.X(FE_OFN487_Tile_X01_Y08_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC486_Tile_X01_Y08_read_config_data_28 (
+	.A(Tile_X01_Y08_read_config_data_28),
+	.X(FE_OFN486_Tile_X01_Y08_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC485_Tile_X01_Y08_read_config_data_27 (
+	.A(Tile_X01_Y08_read_config_data_27),
+	.X(FE_OFN485_Tile_X01_Y08_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC484_Tile_X01_Y08_read_config_data_26 (
+	.A(Tile_X01_Y08_read_config_data_26),
+	.X(FE_OFN484_Tile_X01_Y08_read_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC483_Tile_X01_Y08_read_config_data_25 (
+	.A(Tile_X01_Y08_read_config_data_25),
+	.X(FE_OFN483_Tile_X01_Y08_read_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC482_Tile_X01_Y08_read_config_data_24 (
+	.A(Tile_X01_Y08_read_config_data_24),
+	.X(FE_OFN482_Tile_X01_Y08_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC481_Tile_X01_Y08_read_config_data_23 (
+	.A(Tile_X01_Y08_read_config_data_23),
+	.X(FE_OFN481_Tile_X01_Y08_read_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC480_Tile_X01_Y08_read_config_data_22 (
+	.A(Tile_X01_Y08_read_config_data_22),
+	.X(FE_OFN480_Tile_X01_Y08_read_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC479_Tile_X01_Y08_read_config_data_21 (
+	.A(Tile_X01_Y08_read_config_data_21),
+	.X(FE_OFN479_Tile_X01_Y08_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC477_Tile_X01_Y08_read_config_data_19 (
+	.A(Tile_X01_Y08_read_config_data_19),
+	.X(FE_OFN477_Tile_X01_Y08_read_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC476_Tile_X01_Y08_read_config_data_18 (
+	.A(Tile_X01_Y08_read_config_data_18),
+	.X(FE_OFN476_Tile_X01_Y08_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC475_Tile_X01_Y08_read_config_data_17 (
+	.A(Tile_X01_Y08_read_config_data_17),
+	.X(FE_OFN475_Tile_X01_Y08_read_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC474_Tile_X01_Y08_read_config_data_16 (
+	.A(Tile_X01_Y08_read_config_data_16),
+	.X(FE_OFN474_Tile_X01_Y08_read_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC473_Tile_X01_Y08_read_config_data_15 (
+	.A(Tile_X01_Y08_read_config_data_15),
+	.X(FE_OFN473_Tile_X01_Y08_read_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC472_Tile_X01_Y08_read_config_data_14 (
+	.A(Tile_X01_Y08_read_config_data_14),
+	.X(FE_OFN472_Tile_X01_Y08_read_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC471_Tile_X01_Y08_read_config_data_13 (
+	.A(Tile_X01_Y08_read_config_data_13),
+	.X(FE_OFN471_Tile_X01_Y08_read_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC470_Tile_X01_Y08_read_config_data_12 (
+	.A(Tile_X01_Y08_read_config_data_12),
+	.X(FE_OFN470_Tile_X01_Y08_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC469_Tile_X01_Y08_read_config_data_11 (
+	.A(Tile_X01_Y08_read_config_data_11),
+	.X(FE_OFN469_Tile_X01_Y08_read_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC468_Tile_X01_Y08_read_config_data_10 (
+	.A(Tile_X01_Y08_read_config_data_10),
+	.X(FE_OFN468_Tile_X01_Y08_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC467_Tile_X01_Y08_read_config_data_9 (
+	.A(Tile_X01_Y08_read_config_data_9),
+	.X(FE_OFN467_Tile_X01_Y08_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC466_Tile_X01_Y08_read_config_data_8 (
+	.A(Tile_X01_Y08_read_config_data_8),
+	.X(FE_OFN466_Tile_X01_Y08_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC465_Tile_X01_Y08_read_config_data_7 (
+	.A(Tile_X01_Y08_read_config_data_7),
+	.X(FE_OFN465_Tile_X01_Y08_read_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC464_Tile_X01_Y08_read_config_data_6 (
+	.A(Tile_X01_Y08_read_config_data_6),
+	.X(FE_OFN464_Tile_X01_Y08_read_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC463_Tile_X01_Y08_read_config_data_5 (
+	.A(Tile_X01_Y08_read_config_data_5),
+	.X(FE_OFN463_Tile_X01_Y08_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC462_Tile_X01_Y08_read_config_data_4 (
+	.A(Tile_X01_Y08_read_config_data_4),
+	.X(FE_OFN462_Tile_X01_Y08_read_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC461_Tile_X01_Y08_read_config_data_3 (
+	.A(Tile_X01_Y08_read_config_data_3),
+	.X(FE_OFN461_Tile_X01_Y08_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC460_Tile_X01_Y08_read_config_data_2 (
+	.A(Tile_X01_Y08_read_config_data_2),
+	.X(FE_OFN460_Tile_X01_Y08_read_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC459_Tile_X01_Y08_read_config_data_1 (
+	.A(Tile_X01_Y08_read_config_data_1),
+	.X(FE_OFN459_Tile_X01_Y08_read_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC458_Tile_X01_Y08_read_config_data_0 (
+	.A(Tile_X01_Y08_read_config_data_0),
+	.X(FE_OFN458_Tile_X01_Y08_read_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC457_Tile_X00_Y08_read_config_data_31 (
+	.A(Tile_X00_Y08_read_config_data_31),
+	.X(FE_OFN457_Tile_X00_Y08_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC456_Tile_X00_Y08_read_config_data_30 (
+	.A(Tile_X00_Y08_read_config_data_30),
+	.X(FE_OFN456_Tile_X00_Y08_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC455_Tile_X00_Y08_read_config_data_29 (
+	.A(Tile_X00_Y08_read_config_data_29),
+	.X(FE_OFN455_Tile_X00_Y08_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC454_Tile_X00_Y08_read_config_data_28 (
+	.A(Tile_X00_Y08_read_config_data_28),
+	.X(FE_OFN454_Tile_X00_Y08_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC453_Tile_X00_Y08_read_config_data_27 (
+	.A(Tile_X00_Y08_read_config_data_27),
+	.X(FE_OFN453_Tile_X00_Y08_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC452_Tile_X00_Y08_read_config_data_26 (
+	.A(Tile_X00_Y08_read_config_data_26),
+	.X(FE_OFN452_Tile_X00_Y08_read_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC451_Tile_X00_Y08_read_config_data_25 (
+	.A(Tile_X00_Y08_read_config_data_25),
+	.X(FE_OFN451_Tile_X00_Y08_read_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC450_Tile_X00_Y08_read_config_data_24 (
+	.A(Tile_X00_Y08_read_config_data_24),
+	.X(FE_OFN450_Tile_X00_Y08_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC449_Tile_X00_Y08_read_config_data_23 (
+	.A(Tile_X00_Y08_read_config_data_23),
+	.X(FE_OFN449_Tile_X00_Y08_read_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC448_Tile_X00_Y08_read_config_data_22 (
+	.A(Tile_X00_Y08_read_config_data_22),
+	.X(FE_OFN448_Tile_X00_Y08_read_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC447_Tile_X00_Y08_read_config_data_21 (
+	.A(Tile_X00_Y08_read_config_data_21),
+	.X(FE_OFN447_Tile_X00_Y08_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC446_Tile_X00_Y08_read_config_data_20 (
+	.A(Tile_X00_Y08_read_config_data_20),
+	.X(FE_OFN446_Tile_X00_Y08_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC445_Tile_X00_Y08_read_config_data_19 (
+	.A(Tile_X00_Y08_read_config_data_19),
+	.X(FE_OFN445_Tile_X00_Y08_read_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC444_Tile_X00_Y08_read_config_data_18 (
+	.A(Tile_X00_Y08_read_config_data_18),
+	.X(FE_OFN444_Tile_X00_Y08_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC443_Tile_X00_Y08_read_config_data_17 (
+	.A(Tile_X00_Y08_read_config_data_17),
+	.X(FE_OFN443_Tile_X00_Y08_read_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC442_Tile_X00_Y08_read_config_data_16 (
+	.A(Tile_X00_Y08_read_config_data_16),
+	.X(FE_OFN442_Tile_X00_Y08_read_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC441_Tile_X00_Y08_read_config_data_15 (
+	.A(Tile_X00_Y08_read_config_data_15),
+	.X(FE_OFN441_Tile_X00_Y08_read_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC440_Tile_X00_Y08_read_config_data_14 (
+	.A(Tile_X00_Y08_read_config_data_14),
+	.X(FE_OFN440_Tile_X00_Y08_read_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC439_Tile_X00_Y08_read_config_data_13 (
+	.A(Tile_X00_Y08_read_config_data_13),
+	.X(FE_OFN439_Tile_X00_Y08_read_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC438_Tile_X00_Y08_read_config_data_12 (
+	.A(Tile_X00_Y08_read_config_data_12),
+	.X(FE_OFN438_Tile_X00_Y08_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC437_Tile_X00_Y08_read_config_data_11 (
+	.A(Tile_X00_Y08_read_config_data_11),
+	.X(FE_OFN437_Tile_X00_Y08_read_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC436_Tile_X00_Y08_read_config_data_10 (
+	.A(Tile_X00_Y08_read_config_data_10),
+	.X(FE_OFN436_Tile_X00_Y08_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC435_Tile_X00_Y08_read_config_data_9 (
+	.A(Tile_X00_Y08_read_config_data_9),
+	.X(FE_OFN435_Tile_X00_Y08_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_4 FE_OFC433_Tile_X00_Y08_read_config_data_7 (
+	.A(Tile_X00_Y08_read_config_data_7),
+	.X(FE_OFN433_Tile_X00_Y08_read_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC432_Tile_X00_Y08_read_config_data_6 (
+	.A(Tile_X00_Y08_read_config_data_6),
+	.X(FE_OFN432_Tile_X00_Y08_read_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC431_Tile_X00_Y08_read_config_data_5 (
+	.A(Tile_X00_Y08_read_config_data_5),
+	.X(FE_OFN431_Tile_X00_Y08_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC430_Tile_X00_Y08_read_config_data_4 (
+	.A(Tile_X00_Y08_read_config_data_4),
+	.X(FE_OFN430_Tile_X00_Y08_read_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC429_Tile_X00_Y08_read_config_data_3 (
+	.A(Tile_X00_Y08_read_config_data_3),
+	.X(FE_OFN429_Tile_X00_Y08_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC428_Tile_X00_Y08_read_config_data_2 (
+	.A(Tile_X00_Y08_read_config_data_2),
+	.X(FE_OFN428_Tile_X00_Y08_read_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC427_Tile_X00_Y08_read_config_data_1 (
+	.A(Tile_X00_Y08_read_config_data_1),
+	.X(FE_OFN427_Tile_X00_Y08_read_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC426_Tile_X00_Y08_read_config_data_0 (
+	.A(Tile_X00_Y08_read_config_data_0),
+	.X(FE_OFN426_Tile_X00_Y08_read_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC425_io_in_33 (
+	.A(FE_OFN8_io_in_33),
+	.X(FE_OFN425_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC424_io_in_32 (
+	.A(FE_OFN10_io_in_32),
+	.X(FE_OFN424_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC423_io_in_25 (
+	.A(FE_OFN33_io_in_25),
+	.X(FE_OFN423_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC422_io_in_23 (
+	.A(FE_OFN41_io_in_23),
+	.X(FE_OFN422_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC421_io_in_22 (
+	.A(FE_OFN45_io_in_22),
+	.X(FE_OFN421_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC420_io_in_17 (
+	.A(FE_OFN66_io_in_17),
+	.X(FE_OFN420_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC419_io_in_12 (
+	.A(FE_OFN80_io_in_12),
+	.X(FE_OFN419_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC418_io_in_11 (
+	.A(FE_OFN82_io_in_11),
+	.X(FE_OFN418_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC417_io_in_7 (
+	.A(FE_OFN90_io_in_7),
+	.X(FE_OFN417_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC416_io_in_5 (
+	.A(FE_OFN94_io_in_5),
+	.X(FE_OFN416_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC381_n_116 (
+	.A(n_116),
+	.X(FE_OFN381_n_116), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC380_ckmux_rst (
+	.A(FE_OFN378_ckmux_rst),
+	.Y(FE_OFN380_ckmux_rst), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC379_ckmux_rst (
+	.A(FE_OFN378_ckmux_rst),
+	.Y(FE_OFN379_ckmux_rst), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC378_ckmux_rst (
+	.A(FE_OFN0_ckmux_rst),
+	.Y(FE_OFN378_ckmux_rst), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC377_ckmux_rst (
+	.A(FE_OFN0_ckmux_rst),
+	.X(FE_OFN377_ckmux_rst), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC315_Tile_X03_Y08_read_config_data_31 (
+	.A(FE_OFN531_Tile_X03_Y08_read_config_data_31),
+	.X(FE_OFN315_Tile_X03_Y08_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC314_Tile_X03_Y08_read_config_data_29 (
+	.A(FE_OFN529_Tile_X03_Y08_read_config_data_29),
+	.X(FE_OFN314_Tile_X03_Y08_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC313_Tile_X03_Y08_read_config_data_28 (
+	.A(FE_OFN528_Tile_X03_Y08_read_config_data_28),
+	.X(FE_OFN313_Tile_X03_Y08_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC312_Tile_X03_Y08_read_config_data_27 (
+	.A(FE_OFN527_Tile_X03_Y08_read_config_data_27),
+	.X(FE_OFN312_Tile_X03_Y08_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC310_Tile_X03_Y08_read_config_data_25 (
+	.A(FE_OFN525_Tile_X03_Y08_read_config_data_25),
+	.X(FE_OFN310_Tile_X03_Y08_read_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC309_Tile_X03_Y08_read_config_data_24 (
+	.A(FE_OFN524_Tile_X03_Y08_read_config_data_24),
+	.X(FE_OFN309_Tile_X03_Y08_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC308_Tile_X03_Y08_read_config_data_20 (
+	.A(FE_OFN520_Tile_X03_Y08_read_config_data_20),
+	.X(FE_OFN308_Tile_X03_Y08_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC307_Tile_X03_Y08_read_config_data_15 (
+	.A(FE_OFN515_Tile_X03_Y08_read_config_data_15),
+	.X(FE_OFN307_Tile_X03_Y08_read_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC306_Tile_X03_Y08_read_config_data_12 (
+	.A(FE_OFN512_Tile_X03_Y08_read_config_data_12),
+	.X(FE_OFN306_Tile_X03_Y08_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC305_Tile_X03_Y08_read_config_data_9 (
+	.A(FE_OFN509_Tile_X03_Y08_read_config_data_9),
+	.X(FE_OFN305_Tile_X03_Y08_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC304_Tile_X03_Y08_read_config_data_8 (
+	.A(FE_OFN508_Tile_X03_Y08_read_config_data_8),
+	.X(FE_OFN304_Tile_X03_Y08_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC303_Tile_X03_Y08_read_config_data_4 (
+	.A(FE_OFN504_Tile_X03_Y08_read_config_data_4),
+	.X(FE_OFN303_Tile_X03_Y08_read_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC301_Tile_X01_Y08_read_config_data_29 (
+	.A(FE_OFN487_Tile_X01_Y08_read_config_data_29),
+	.X(FE_OFN301_Tile_X01_Y08_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC297_Tile_X01_Y08_read_config_data_25 (
+	.A(FE_OFN483_Tile_X01_Y08_read_config_data_25),
+	.X(FE_OFN297_Tile_X01_Y08_read_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC296_Tile_X01_Y08_read_config_data_24 (
+	.A(FE_OFN482_Tile_X01_Y08_read_config_data_24),
+	.X(FE_OFN296_Tile_X01_Y08_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC295_Tile_X01_Y08_read_config_data_20 (
+	.A(FE_OFN547_Tile_X01_Y08_read_config_data_20),
+	.X(FE_OFN295_Tile_X01_Y08_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC294_Tile_X01_Y08_read_config_data_15 (
+	.A(FE_OFN473_Tile_X01_Y08_read_config_data_15),
+	.X(FE_OFN294_Tile_X01_Y08_read_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC293_Tile_X01_Y08_read_config_data_12 (
+	.A(FE_OFN470_Tile_X01_Y08_read_config_data_12),
+	.X(FE_OFN293_Tile_X01_Y08_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC292_Tile_X01_Y08_read_config_data_9 (
+	.A(FE_OFN467_Tile_X01_Y08_read_config_data_9),
+	.X(FE_OFN292_Tile_X01_Y08_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC291_Tile_X01_Y08_read_config_data_8 (
+	.A(FE_OFN466_Tile_X01_Y08_read_config_data_8),
+	.X(FE_OFN291_Tile_X01_Y08_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC290_Tile_X01_Y08_read_config_data_4 (
+	.A(FE_OFN462_Tile_X01_Y08_read_config_data_4),
+	.X(FE_OFN290_Tile_X01_Y08_read_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC289_Tile_X00_Y08_read_config_data_31 (
+	.A(FE_OFN457_Tile_X00_Y08_read_config_data_31),
+	.X(FE_OFN289_Tile_X00_Y08_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC288_Tile_X00_Y08_read_config_data_30 (
+	.A(FE_OFN456_Tile_X00_Y08_read_config_data_30),
+	.X(FE_OFN288_Tile_X00_Y08_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC287_Tile_X00_Y08_read_config_data_29 (
+	.A(FE_OFN455_Tile_X00_Y08_read_config_data_29),
+	.X(FE_OFN287_Tile_X00_Y08_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC286_Tile_X00_Y08_read_config_data_28 (
+	.A(FE_OFN454_Tile_X00_Y08_read_config_data_28),
+	.X(FE_OFN286_Tile_X00_Y08_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC285_Tile_X00_Y08_read_config_data_27 (
+	.A(FE_OFN453_Tile_X00_Y08_read_config_data_27),
+	.X(FE_OFN285_Tile_X00_Y08_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC284_Tile_X00_Y08_read_config_data_26 (
+	.A(FE_OFN452_Tile_X00_Y08_read_config_data_26),
+	.X(FE_OFN284_Tile_X00_Y08_read_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC283_Tile_X00_Y08_read_config_data_25 (
+	.A(FE_OFN451_Tile_X00_Y08_read_config_data_25),
+	.X(FE_OFN283_Tile_X00_Y08_read_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC282_Tile_X00_Y08_read_config_data_24 (
+	.A(FE_OFN450_Tile_X00_Y08_read_config_data_24),
+	.X(FE_OFN282_Tile_X00_Y08_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC281_Tile_X00_Y08_read_config_data_22 (
+	.A(FE_OFN448_Tile_X00_Y08_read_config_data_22),
+	.X(FE_OFN281_Tile_X00_Y08_read_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC280_Tile_X00_Y08_read_config_data_21 (
+	.A(FE_OFN447_Tile_X00_Y08_read_config_data_21),
+	.X(FE_OFN280_Tile_X00_Y08_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC279_Tile_X00_Y08_read_config_data_20 (
+	.A(FE_OFN446_Tile_X00_Y08_read_config_data_20),
+	.X(FE_OFN279_Tile_X00_Y08_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC278_Tile_X00_Y08_read_config_data_17 (
+	.A(FE_OFN443_Tile_X00_Y08_read_config_data_17),
+	.X(FE_OFN278_Tile_X00_Y08_read_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC277_Tile_X00_Y08_read_config_data_16 (
+	.A(FE_OFN442_Tile_X00_Y08_read_config_data_16),
+	.X(FE_OFN277_Tile_X00_Y08_read_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC276_Tile_X00_Y08_read_config_data_15 (
+	.A(FE_OFN441_Tile_X00_Y08_read_config_data_15),
+	.X(FE_OFN276_Tile_X00_Y08_read_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC275_Tile_X00_Y08_read_config_data_14 (
+	.A(FE_OFN440_Tile_X00_Y08_read_config_data_14),
+	.X(FE_OFN275_Tile_X00_Y08_read_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC274_Tile_X00_Y08_read_config_data_13 (
+	.A(FE_OFN439_Tile_X00_Y08_read_config_data_13),
+	.X(FE_OFN274_Tile_X00_Y08_read_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC273_Tile_X00_Y08_read_config_data_12 (
+	.A(FE_OFN438_Tile_X00_Y08_read_config_data_12),
+	.X(FE_OFN273_Tile_X00_Y08_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC272_Tile_X00_Y08_read_config_data_11 (
+	.A(FE_OFN437_Tile_X00_Y08_read_config_data_11),
+	.X(FE_OFN272_Tile_X00_Y08_read_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC271_Tile_X00_Y08_read_config_data_10 (
+	.A(FE_OFN436_Tile_X00_Y08_read_config_data_10),
+	.X(FE_OFN271_Tile_X00_Y08_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC270_Tile_X00_Y08_read_config_data_9 (
+	.A(FE_OFN435_Tile_X00_Y08_read_config_data_9),
+	.X(FE_OFN270_Tile_X00_Y08_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC269_Tile_X00_Y08_read_config_data_8 (
+	.A(FE_OFN548_Tile_X00_Y08_read_config_data_8),
+	.X(FE_OFN269_Tile_X00_Y08_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC267_Tile_X00_Y08_read_config_data_6 (
+	.A(FE_OFN432_Tile_X00_Y08_read_config_data_6),
+	.X(FE_OFN267_Tile_X00_Y08_read_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC266_Tile_X00_Y08_read_config_data_4 (
+	.A(FE_OFN430_Tile_X00_Y08_read_config_data_4),
+	.X(FE_OFN266_Tile_X00_Y08_read_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC265_Tile_X00_Y08_read_config_data_2 (
+	.A(FE_OFN428_Tile_X00_Y08_read_config_data_2),
+	.X(FE_OFN265_Tile_X00_Y08_read_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC264_Tile_X00_Y08_read_config_data_1 (
+	.A(FE_OFN427_Tile_X00_Y08_read_config_data_1),
+	.X(FE_OFN264_Tile_X00_Y08_read_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC263_Tile_X00_Y08_read_config_data_0 (
+	.A(FE_OFN426_Tile_X00_Y08_read_config_data_0),
+	.X(FE_OFN263_Tile_X00_Y08_read_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC251_CGRA_config_write (
+	.A(FE_OFN248_CGRA_config_write),
+	.Y(FE_OFN251_CGRA_config_write), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC249_CGRA_config_write (
+	.A(FE_OFN248_CGRA_config_write),
+	.Y(FE_OFN249_CGRA_config_write), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC248_CGRA_config_write (
+	.A(FE_OFN532_CGRA_config_write),
+	.Y(FE_OFN248_CGRA_config_write), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_4 FE_OFC247_CGRA_config_read (
+	.A(FE_OFN243_CGRA_config_read),
+	.Y(FE_OFN247_CGRA_config_read), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC245_CGRA_config_read (
+	.A(FE_OFN243_CGRA_config_read),
+	.Y(FE_OFN245_CGRA_config_read), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC244_CGRA_config_read (
+	.A(FE_OFN243_CGRA_config_read),
+	.Y(FE_PHN89_FE_OFN244_CGRA_config_read), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC243_CGRA_config_read (
+	.A(config_3_read[0]),
+	.Y(FE_OFN243_CGRA_config_read), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC101_io_in_0 (
+	.A(glb2io_16_X00_Y00[0]),
+	.X(FE_OFN101_io_in_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC100_io_in_1 (
+	.A(glb2io_16_X00_Y00[1]),
+	.X(FE_OFN100_io_in_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_6 FE_OFC99_io_in_2 (
+	.A(glb2io_16_X00_Y00[2]),
+	.X(FE_OFN99_io_in_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC98_io_in_3 (
+	.A(FE_OFN97_io_in_3),
+	.X(FE_OFN98_io_in_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC97_io_in_3 (
+	.A(glb2io_16_X00_Y00[3]),
+	.X(FE_OFN97_io_in_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC96_io_in_4 (
+	.A(FE_OFN95_io_in_4),
+	.X(FE_OFN96_io_in_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC95_io_in_4 (
+	.A(glb2io_16_X00_Y00[4]),
+	.X(FE_OFN95_io_in_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_OFC94_io_in_5 (
+	.A(FE_OFN93_io_in_5),
+	.Y(FE_OFN94_io_in_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC93_io_in_5 (
+	.A(glb2io_16_X00_Y00[5]),
+	.Y(FE_OFN93_io_in_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC92_io_in_6 (
+	.A(FE_OFN91_io_in_6),
+	.X(FE_OFN92_io_in_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC91_io_in_6 (
+	.A(glb2io_16_X00_Y00[6]),
+	.X(FE_OFN91_io_in_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC90_io_in_7 (
+	.A(FE_OFN89_io_in_7),
+	.Y(FE_OFN90_io_in_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_OFC89_io_in_7 (
+	.A(glb2io_16_X00_Y00[7]),
+	.Y(FE_OFN89_io_in_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC88_io_in_8 (
+	.A(FE_OFN87_io_in_8),
+	.Y(FE_OFN88_io_in_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC87_io_in_8 (
+	.A(glb2io_16_X00_Y00[8]),
+	.Y(FE_OFN87_io_in_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC86_io_in_9 (
+	.A(FE_OFN85_io_in_9),
+	.Y(FE_OFN86_io_in_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC85_io_in_9 (
+	.A(glb2io_16_X00_Y00[9]),
+	.Y(FE_OFN85_io_in_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC84_io_in_10 (
+	.A(FE_OFN83_io_in_10),
+	.Y(FE_OFN84_io_in_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC83_io_in_10 (
+	.A(glb2io_16_X00_Y00[10]),
+	.Y(FE_OFN83_io_in_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC82_io_in_11 (
+	.A(FE_OFN81_io_in_11),
+	.Y(FE_OFN82_io_in_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC81_io_in_11 (
+	.A(glb2io_16_X00_Y00[11]),
+	.Y(FE_OFN81_io_in_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC80_io_in_12 (
+	.A(FE_OFN79_io_in_12),
+	.Y(FE_OFN80_io_in_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC79_io_in_12 (
+	.A(glb2io_16_X00_Y00[12]),
+	.Y(FE_OFN79_io_in_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC78_io_in_13 (
+	.A(FE_OFN77_io_in_13),
+	.X(FE_OFN78_io_in_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC77_io_in_13 (
+	.A(FE_OFN76_io_in_13),
+	.Y(FE_OFN77_io_in_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_OFC76_io_in_13 (
+	.A(glb2io_16_X00_Y00[13]),
+	.Y(FE_OFN76_io_in_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC75_io_in_14 (
+	.A(FE_OFN74_io_in_14),
+	.X(FE_OFN75_io_in_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC74_io_in_14 (
+	.A(FE_OFN73_io_in_14),
+	.Y(FE_OFN74_io_in_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_4 FE_OFC73_io_in_14 (
+	.A(glb2io_16_X00_Y00[14]),
+	.Y(FE_OFN73_io_in_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC72_io_in_15 (
+	.A(FE_OFN71_io_in_15),
+	.X(FE_OFN72_io_in_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC71_io_in_15 (
+	.A(FE_OFN70_io_in_15),
+	.Y(FE_OFN71_io_in_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC70_io_in_15 (
+	.A(glb2io_16_X00_Y00[15]),
+	.Y(FE_OFN70_io_in_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC69_io_in_16 (
+	.A(FE_OFN68_io_in_16),
+	.X(FE_OFN69_io_in_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC68_io_in_16 (
+	.A(FE_OFN67_io_in_16),
+	.Y(FE_OFN68_io_in_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC67_io_in_16 (
+	.A(glb2io_1_X00_Y00[0]),
+	.Y(FE_OFN67_io_in_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC66_io_in_17 (
+	.A(FE_OFN65_io_in_17),
+	.Y(FE_OFN66_io_in_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC65_io_in_17 (
+	.A(FE_OFN64_io_in_17),
+	.Y(FE_OFN65_io_in_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC64_io_in_17 (
+	.A(FE_OFN63_io_in_17),
+	.Y(FE_OFN64_io_in_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC63_io_in_17 (
+	.A(glb2io_16_X01_Y00[0]),
+	.Y(FE_OFN63_io_in_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC62_io_in_18 (
+	.A(FE_OFN61_io_in_18),
+	.X(FE_OFN62_io_in_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC61_io_in_18 (
+	.A(FE_OFN60_io_in_18),
+	.Y(FE_OFN61_io_in_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC60_io_in_18 (
+	.A(FE_OFN59_io_in_18),
+	.Y(FE_OFN60_io_in_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC59_io_in_18 (
+	.A(glb2io_16_X01_Y00[1]),
+	.X(FE_OFN59_io_in_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC58_io_in_19 (
+	.A(FE_OFN57_io_in_19),
+	.X(FE_OFN58_io_in_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC57_io_in_19 (
+	.A(FE_OFN56_io_in_19),
+	.Y(FE_OFN57_io_in_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC56_io_in_19 (
+	.A(FE_OFN55_io_in_19),
+	.Y(FE_OFN56_io_in_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC55_io_in_19 (
+	.A(glb2io_16_X01_Y00[2]),
+	.X(FE_OFN55_io_in_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC54_io_in_20 (
+	.A(FE_OFN53_io_in_20),
+	.X(FE_OFN54_io_in_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC53_io_in_20 (
+	.A(FE_OFN52_io_in_20),
+	.Y(FE_OFN53_io_in_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC52_io_in_20 (
+	.A(FE_OFN51_io_in_20),
+	.Y(FE_OFN52_io_in_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC51_io_in_20 (
+	.A(FE_OFN50_io_in_20),
+	.Y(FE_OFN51_io_in_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC50_io_in_20 (
+	.A(glb2io_16_X01_Y00[3]),
+	.Y(FE_OFN50_io_in_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC49_io_in_21 (
+	.A(FE_OFN48_io_in_21),
+	.Y(FE_OFN49_io_in_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC48_io_in_21 (
+	.A(FE_OFN47_io_in_21),
+	.Y(FE_OFN48_io_in_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC47_io_in_21 (
+	.A(FE_OFN46_io_in_21),
+	.Y(FE_OFN47_io_in_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC46_io_in_21 (
+	.A(glb2io_16_X01_Y00[4]),
+	.Y(FE_OFN46_io_in_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC45_io_in_22 (
+	.A(FE_OFN44_io_in_22),
+	.Y(FE_OFN45_io_in_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC44_io_in_22 (
+	.A(FE_OFN43_io_in_22),
+	.Y(FE_OFN44_io_in_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC43_io_in_22 (
+	.A(FE_OFN42_io_in_22),
+	.Y(FE_OFN43_io_in_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_OFC42_io_in_22 (
+	.A(glb2io_16_X01_Y00[5]),
+	.Y(FE_OFN42_io_in_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC41_io_in_23 (
+	.A(FE_OFN40_io_in_23),
+	.Y(FE_OFN41_io_in_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC40_io_in_23 (
+	.A(FE_OFN39_io_in_23),
+	.Y(FE_OFN40_io_in_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC39_io_in_23 (
+	.A(FE_OFN38_io_in_23),
+	.Y(FE_OFN39_io_in_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC38_io_in_23 (
+	.A(glb2io_16_X01_Y00[6]),
+	.Y(FE_OFN38_io_in_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC37_io_in_24 (
+	.A(FE_OFN36_io_in_24),
+	.X(FE_OFN37_io_in_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC36_io_in_24 (
+	.A(FE_OFN35_io_in_24),
+	.Y(FE_OFN36_io_in_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC35_io_in_24 (
+	.A(FE_OFN34_io_in_24),
+	.Y(FE_OFN35_io_in_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC34_io_in_24 (
+	.A(glb2io_16_X01_Y00[7]),
+	.X(FE_OFN34_io_in_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC33_io_in_25 (
+	.A(FE_OFN32_io_in_25),
+	.Y(FE_OFN33_io_in_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_OFC32_io_in_25 (
+	.A(FE_OFN31_io_in_25),
+	.Y(FE_OFN32_io_in_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC31_io_in_25 (
+	.A(FE_OFN30_io_in_25),
+	.Y(FE_OFN31_io_in_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC30_io_in_25 (
+	.A(glb2io_16_X01_Y00[8]),
+	.Y(FE_OFN30_io_in_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC29_io_in_26 (
+	.A(FE_OFN28_io_in_26),
+	.Y(FE_OFN29_io_in_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC28_io_in_26 (
+	.A(FE_OFN27_io_in_26),
+	.Y(FE_OFN28_io_in_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC27_io_in_26 (
+	.A(FE_OFN26_io_in_26),
+	.Y(FE_OFN27_io_in_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC26_io_in_26 (
+	.A(glb2io_16_X01_Y00[9]),
+	.Y(FE_OFN26_io_in_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC25_io_in_27 (
+	.A(FE_OFN24_io_in_27),
+	.X(FE_OFN25_io_in_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC24_io_in_27 (
+	.A(FE_OFN23_io_in_27),
+	.Y(FE_OFN24_io_in_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC23_io_in_27 (
+	.A(glb2io_16_X01_Y00[10]),
+	.Y(FE_OFN23_io_in_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC22_io_in_28 (
+	.A(FE_OFN21_io_in_28),
+	.X(FE_OFN22_io_in_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC21_io_in_28 (
+	.A(FE_OFN20_io_in_28),
+	.Y(FE_OFN21_io_in_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC20_io_in_28 (
+	.A(glb2io_16_X01_Y00[11]),
+	.Y(FE_OFN20_io_in_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC19_io_in_29 (
+	.A(FE_OFN18_io_in_29),
+	.X(FE_OFN19_io_in_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC18_io_in_29 (
+	.A(FE_OFN17_io_in_29),
+	.Y(FE_OFN18_io_in_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC17_io_in_29 (
+	.A(glb2io_16_X01_Y00[12]),
+	.Y(FE_OFN17_io_in_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC16_io_in_30 (
+	.A(FE_OFN15_io_in_30),
+	.X(FE_OFN16_io_in_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC15_io_in_30 (
+	.A(FE_OFN14_io_in_30),
+	.Y(FE_OFN15_io_in_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC14_io_in_30 (
+	.A(glb2io_16_X01_Y00[13]),
+	.Y(FE_OFN14_io_in_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC13_io_in_31 (
+	.A(FE_OFN12_io_in_31),
+	.X(FE_OFN13_io_in_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC12_io_in_31 (
+	.A(FE_OFN11_io_in_31),
+	.Y(FE_OFN12_io_in_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_OFC11_io_in_31 (
+	.A(glb2io_16_X01_Y00[14]),
+	.Y(FE_OFN11_io_in_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC10_io_in_32 (
+	.A(FE_OFN9_io_in_32),
+	.Y(FE_OFN10_io_in_32), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC9_io_in_32 (
+	.A(glb2io_16_X01_Y00[15]),
+	.Y(FE_OFN9_io_in_32), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC8_io_in_33 (
+	.A(FE_OFN7_io_in_33),
+	.Y(FE_OFN8_io_in_33), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC7_io_in_33 (
+	.A(glb2io_1_X01_Y00[0]),
+	.Y(FE_OFN7_io_in_33), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   user_proj_example_Tile_io_core Tile_X00_Y00 (
+	.tile_id({ Tile_X00_Y00_lo_7,
 		Tile_X00_Y00_lo_7,
 		Tile_X00_Y00_lo_6,
 		Tile_X00_Y00_lo_6,
@@ -11841,10 +14176,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y00_lo_1,
 		Tile_X00_Y00_lo_0,
 		Tile_X00_Y00_lo_0 }),
-	.glb2io_1(UNCONNECTED_HIER_Z),
+	.glb2io_1({ UNCONNECTED_HIER_Z }),
 	.f2io_1(io2glb_1_X00_Y00),
-	.io2glb_1(FE_RN_18),
-	.io2f_1(UNCONNECTED),
+	.io2glb_1({ FE_RN_18 }),
+	.io2f_1({ UNCONNECTED }),
 	.glb2io_16({ UNCONNECTED_HIER_Z15,
 		UNCONNECTED_HIER_Z14,
 		UNCONNECTED_HIER_Z13,
@@ -11926,7 +14261,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y00_lo_2,
 		Tile_X00_Y00_lo_1,
 		Tile_X00_Y00_lo_0 }));
-   user_proj_example_Tile_io_core_1 Tile_X01_Y00 (.tile_id({ Tile_X01_Y00_lo_7,
+   user_proj_example_Tile_io_core_1 Tile_X01_Y00 (
+	.tile_id({ Tile_X01_Y00_lo_7,
 		Tile_X01_Y00_lo_7,
 		Tile_X01_Y00_lo_6,
 		Tile_X01_Y00_lo_6,
@@ -11942,10 +14278,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y00_lo_1,
 		Tile_X01_Y00_lo_0,
 		Tile_X01_Y00_lo_0 }),
-	.glb2io_1(UNCONNECTED_HIER_Z16),
+	.glb2io_1({ UNCONNECTED_HIER_Z16 }),
 	.f2io_1(io2glb_1_X01_Y00),
-	.io2glb_1(FE_RN_1),
-	.io2f_1(UNCONNECTED16),
+	.io2glb_1({ FE_RN_1 }),
+	.io2f_1({ UNCONNECTED16 }),
 	.glb2io_16({ UNCONNECTED_HIER_Z32,
 		UNCONNECTED_HIER_Z31,
 		UNCONNECTED_HIER_Z30,
@@ -12012,7 +14348,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y00_lo_2,
 		Tile_X01_Y00_lo_1,
 		Tile_X01_Y00_lo_0 }));
-   Tile_MemCore Tile_X00_Y01 (.tile_id({ Tile_X00_Y01_lo_out_7,
+   Tile_MemCore Tile_X00_Y01 (
+	.tile_id({ Tile_X00_Y01_lo_out_7,
 		Tile_X00_Y01_lo_out_7,
 		Tile_X00_Y01_lo_out_6,
 		Tile_X00_Y01_lo_out_6,
@@ -12028,8 +14365,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_lo_out_1,
 		Tile_X00_Y01_tile_id_in_1,
 		Tile_X00_Y01_tile_id_in_0 }),
-	.stall_out(Tile_X00_Y01_stall_out_0),
-	.stall(stall[0]),
+	.stall_out({ Tile_X00_Y01_stall_out_0 }),
+	.stall({ stall[0] }),
 	.reset_out(Tile_X00_Y01_reset_out),
 	.reset(FE_OFN380_ckmux_rst),
 	.read_config_data_in({ LTIE_143_LONET,
@@ -12113,10 +14450,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_hi_2,
 		Tile_X00_Y01_hi_1,
 		Tile_X00_Y01_tile_id_in_0 }),
-	.config_write(FE_OFN251_CGRA_config_write),
-	.config_read(FE_OFN534_FE_OFN247_CGRA_config_read),
-	.config_out_write(Tile_X00_Y01_config_out_write_0),
-	.config_out_read(Tile_X00_Y01_config_out_read_0),
+	.config_write({ FE_OFN251_CGRA_config_write }),
+	.config_read({ FE_OFN534_FE_OFN247_CGRA_config_read }),
+	.config_out_write({ Tile_X00_Y01_config_out_write_0 }),
+	.config_out_read({ Tile_X00_Y01_config_out_read_0 }),
 	.config_out_config_data({ Tile_X00_Y01_config_out_config_data_31,
 		Tile_X00_Y01_config_out_config_data_30,
 		Tile_X00_Y01_config_out_config_data_29,
@@ -12234,7 +14571,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X00_Y01_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X00_Y01_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ LTIE_139_LONET,
 		LTIE_139_LONET,
 		LTIE_138_LONET,
@@ -12251,7 +14588,7 @@ module user_proj_example_Interconnect (
 		LTIE_137_LONET,
 		LTIE_137_LONET,
 		LTIE_137_LONET }),
-	.SB_T2_WEST_SB_IN_B1(LTIE_139_LONET),
+	.SB_T2_WEST_SB_IN_B1({ LTIE_139_LONET }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -12268,7 +14605,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_13,
@@ -12285,7 +14622,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X00_Y01_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T2_NORTH_SB_OUT_B16_13,
@@ -12302,7 +14639,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X00_Y01_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X00_Y01_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ FE_OFN72_io_in_15,
 		FE_OFN75_io_in_14,
 		FE_OFN78_io_in_13,
@@ -12319,7 +14656,7 @@ module user_proj_example_Interconnect (
 		FE_OFN99_io_in_2,
 		FE_OFN100_io_in_1,
 		FE_OFN101_io_in_0 }),
-	.SB_T2_NORTH_SB_IN_B1(FE_OFN69_io_in_16),
+	.SB_T2_NORTH_SB_IN_B1({ FE_OFN69_io_in_16 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_13,
@@ -12336,7 +14673,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X00_Y01_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X00_Y01_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_13,
@@ -12353,7 +14690,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X01_Y01_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X01_Y01_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X00_Y01_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T1_WEST_SB_OUT_B16_13,
@@ -12370,7 +14707,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X00_Y01_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X00_Y01_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ LTIE_137_LONET,
 		LTIE_136_LONET,
 		LTIE_136_LONET,
@@ -12387,7 +14724,7 @@ module user_proj_example_Interconnect (
 		LTIE_135_LONET,
 		LTIE_135_LONET,
 		LTIE_135_LONET }),
-	.SB_T1_WEST_SB_IN_B1(LTIE_137_LONET),
+	.SB_T1_WEST_SB_IN_B1({ LTIE_137_LONET }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -12404,7 +14741,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_13,
@@ -12421,7 +14758,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X00_Y01_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T1_NORTH_SB_OUT_B16_13,
@@ -12438,7 +14775,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X00_Y01_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X00_Y01_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ FE_OFN72_io_in_15,
 		FE_OFN75_io_in_14,
 		FE_OFN78_io_in_13,
@@ -12455,7 +14792,7 @@ module user_proj_example_Interconnect (
 		FE_OFN99_io_in_2,
 		FE_OFN100_io_in_1,
 		FE_OFN101_io_in_0 }),
-	.SB_T1_NORTH_SB_IN_B1(FE_OFN69_io_in_16),
+	.SB_T1_NORTH_SB_IN_B1({ FE_OFN69_io_in_16 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_13,
@@ -12472,7 +14809,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X00_Y01_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X00_Y01_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_13,
@@ -12489,7 +14826,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X01_Y01_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X01_Y01_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X00_Y01_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T0_WEST_SB_OUT_B16_13,
@@ -12506,7 +14843,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X00_Y01_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X00_Y01_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ LTIE_134_LONET,
 		LTIE_134_LONET,
 		LTIE_134_LONET,
@@ -12523,7 +14860,7 @@ module user_proj_example_Interconnect (
 		LTIE_133_LONET,
 		LTIE_133_LONET,
 		LTIE_133_LONET }),
-	.SB_T0_WEST_SB_IN_B1(LTIE_135_LONET),
+	.SB_T0_WEST_SB_IN_B1({ LTIE_135_LONET }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -12540,7 +14877,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_13,
@@ -12557,7 +14894,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ io2glb_16_X00_Y00[15],
 		io2glb_16_X00_Y00[14],
 		io2glb_16_X00_Y00[13],
@@ -12591,7 +14928,7 @@ module user_proj_example_Interconnect (
 		FE_OFN99_io_in_2,
 		FE_OFN100_io_in_1,
 		FE_OFN101_io_in_0 }),
-	.SB_T0_NORTH_SB_IN_B1(FE_OFN69_io_in_16),
+	.SB_T0_NORTH_SB_IN_B1({ FE_OFN69_io_in_16 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_13,
@@ -12608,7 +14945,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X00_Y01_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X00_Y01_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_13,
@@ -12625,8 +14962,11 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X01_Y01_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X00_Y02 (.tile_id({ Tile_X00_Y02_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X01_Y01_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X00_Y02 (
+	.tile_id({ Tile_X00_Y02_lo_out_7,
 		Tile_X00_Y02_lo_out_7,
 		Tile_X00_Y02_lo_out_6,
 		Tile_X00_Y02_lo_out_6,
@@ -12642,8 +14982,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_lo_out_1,
 		Tile_X00_Y02_tile_id_in_1,
 		Tile_X00_Y02_tile_id_in_0 }),
-	.stall_out(Tile_X00_Y02_stall_out_0),
-	.stall(Tile_X00_Y01_stall_out_0),
+	.stall_out({ Tile_X00_Y02_stall_out_0 }),
+	.stall({ Tile_X00_Y01_stall_out_0 }),
 	.reset_out(Tile_X00_Y02_reset_out),
 	.reset(Tile_X00_Y01_reset_out),
 	.read_config_data_in({ Tile_X00_Y01_read_config_data_31,
@@ -12727,10 +15067,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_hi_2,
 		Tile_X00_Y02_tile_id_in_1,
 		Tile_X00_Y02_hi_0 }),
-	.config_write(Tile_X00_Y01_config_out_write_0),
-	.config_read(Tile_X00_Y01_config_out_read_0),
-	.config_out_write(Tile_X00_Y02_config_out_write_0),
-	.config_out_read(Tile_X00_Y02_config_out_read_0),
+	.config_write({ Tile_X00_Y01_config_out_write_0 }),
+	.config_read({ Tile_X00_Y01_config_out_read_0 }),
+	.config_out_write({ Tile_X00_Y02_config_out_write_0 }),
+	.config_out_read({ Tile_X00_Y02_config_out_read_0 }),
 	.config_out_config_data({ Tile_X00_Y02_config_out_config_data_31,
 		Tile_X00_Y02_config_out_config_data_30,
 		Tile_X00_Y02_config_out_config_data_29,
@@ -12879,7 +15219,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X00_Y02_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X00_Y02_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ LTIE_125_LONET,
 		LTIE_125_LONET,
 		LTIE_124_LONET,
@@ -12896,7 +15236,7 @@ module user_proj_example_Interconnect (
 		LTIE_123_LONET,
 		LTIE_123_LONET,
 		LTIE_123_LONET }),
-	.SB_T2_WEST_SB_IN_B1(LTIE_125_LONET),
+	.SB_T2_WEST_SB_IN_B1({ LTIE_125_LONET }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -12913,7 +15253,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_13,
@@ -12930,7 +15270,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_13,
@@ -12947,7 +15287,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X00_Y02_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -12964,7 +15304,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X00_Y01_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_13,
@@ -12981,7 +15321,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X00_Y02_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X00_Y02_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_13,
@@ -12998,7 +15338,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X01_Y02_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X01_Y02_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X00_Y02_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T1_WEST_SB_OUT_B16_13,
@@ -13015,7 +15355,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X00_Y02_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X00_Y02_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ LTIE_123_LONET,
 		LTIE_122_LONET,
 		LTIE_122_LONET,
@@ -13032,7 +15372,7 @@ module user_proj_example_Interconnect (
 		LTIE_121_LONET,
 		LTIE_121_LONET,
 		LTIE_121_LONET }),
-	.SB_T1_WEST_SB_IN_B1(LTIE_123_LONET),
+	.SB_T1_WEST_SB_IN_B1({ LTIE_123_LONET }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -13049,7 +15389,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_13,
@@ -13066,7 +15406,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_13,
@@ -13083,7 +15423,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X00_Y02_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -13100,7 +15440,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X00_Y01_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_13,
@@ -13117,7 +15457,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X00_Y02_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X00_Y02_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_13,
@@ -13134,7 +15474,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X01_Y02_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X01_Y02_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X00_Y02_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T0_WEST_SB_OUT_B16_13,
@@ -13151,7 +15491,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X00_Y02_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X00_Y02_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ LTIE_120_LONET,
 		LTIE_120_LONET,
 		LTIE_120_LONET,
@@ -13168,7 +15508,7 @@ module user_proj_example_Interconnect (
 		LTIE_119_LONET,
 		LTIE_119_LONET,
 		LTIE_119_LONET }),
-	.SB_T0_WEST_SB_IN_B1(LTIE_121_LONET),
+	.SB_T0_WEST_SB_IN_B1({ LTIE_121_LONET }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -13185,7 +15525,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_13,
@@ -13202,7 +15542,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_13,
@@ -13219,7 +15559,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X00_Y02_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -13236,7 +15576,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X00_Y01_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_13,
@@ -13253,7 +15593,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X00_Y02_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X00_Y02_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_13,
@@ -13270,8 +15610,11 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X01_Y02_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X00_Y03 (.tile_id({ Tile_X00_Y03_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X01_Y02_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X00_Y03 (
+	.tile_id({ Tile_X00_Y03_lo_out_7,
 		Tile_X00_Y03_lo_out_7,
 		Tile_X00_Y03_lo_out_6,
 		Tile_X00_Y03_lo_out_6,
@@ -13287,8 +15630,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_lo_out_1,
 		Tile_X00_Y03_tile_id_in_1,
 		Tile_X00_Y03_tile_id_in_0 }),
-	.stall_out(Tile_X00_Y03_stall_out_0),
-	.stall(Tile_X00_Y02_stall_out_0),
+	.stall_out({ Tile_X00_Y03_stall_out_0 }),
+	.stall({ Tile_X00_Y02_stall_out_0 }),
 	.reset_out(Tile_X00_Y03_reset_out),
 	.reset(Tile_X00_Y02_reset_out),
 	.read_config_data_in({ Tile_X00_Y02_read_config_data_31,
@@ -13372,10 +15715,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_hi_unq1_2,
 		Tile_X00_Y03_tile_id_in_1,
 		Tile_X00_Y03_tile_id_in_0 }),
-	.config_write(Tile_X00_Y02_config_out_write_0),
-	.config_read(Tile_X00_Y02_config_out_read_0),
-	.config_out_write(Tile_X00_Y03_config_out_write_0),
-	.config_out_read(Tile_X00_Y03_config_out_read_0),
+	.config_write({ Tile_X00_Y02_config_out_write_0 }),
+	.config_read({ Tile_X00_Y02_config_out_read_0 }),
+	.config_out_write({ Tile_X00_Y03_config_out_write_0 }),
+	.config_out_read({ Tile_X00_Y03_config_out_read_0 }),
 	.config_out_config_data({ Tile_X00_Y03_config_out_config_data_31,
 		Tile_X00_Y03_config_out_config_data_30,
 		Tile_X00_Y03_config_out_config_data_29,
@@ -13524,7 +15867,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X00_Y03_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X00_Y03_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ LTIE_111_LONET,
 		LTIE_111_LONET,
 		LTIE_110_LONET,
@@ -13541,7 +15884,7 @@ module user_proj_example_Interconnect (
 		LTIE_109_LONET,
 		LTIE_109_LONET,
 		LTIE_109_LONET }),
-	.SB_T2_WEST_SB_IN_B1(LTIE_111_LONET),
+	.SB_T2_WEST_SB_IN_B1({ LTIE_111_LONET }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -13558,7 +15901,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_13,
@@ -13575,7 +15918,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_13,
@@ -13592,7 +15935,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X00_Y03_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -13609,7 +15952,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X00_Y02_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_13,
@@ -13626,7 +15969,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X00_Y03_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X00_Y03_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_13,
@@ -13643,7 +15986,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X01_Y03_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X01_Y03_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X00_Y03_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T1_WEST_SB_OUT_B16_13,
@@ -13660,7 +16003,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X00_Y03_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X00_Y03_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ LTIE_109_LONET,
 		LTIE_108_LONET,
 		LTIE_108_LONET,
@@ -13677,7 +16020,7 @@ module user_proj_example_Interconnect (
 		LTIE_107_LONET,
 		LTIE_107_LONET,
 		LTIE_107_LONET }),
-	.SB_T1_WEST_SB_IN_B1(LTIE_109_LONET),
+	.SB_T1_WEST_SB_IN_B1({ LTIE_109_LONET }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -13694,7 +16037,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_13,
@@ -13711,7 +16054,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_13,
@@ -13728,7 +16071,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X00_Y03_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -13745,7 +16088,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X00_Y02_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_13,
@@ -13762,7 +16105,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X00_Y03_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X00_Y03_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_13,
@@ -13779,7 +16122,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X01_Y03_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X01_Y03_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X00_Y03_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T0_WEST_SB_OUT_B16_13,
@@ -13796,7 +16139,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X00_Y03_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X00_Y03_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ LTIE_106_LONET,
 		LTIE_106_LONET,
 		LTIE_106_LONET,
@@ -13813,7 +16156,7 @@ module user_proj_example_Interconnect (
 		LTIE_105_LONET,
 		LTIE_105_LONET,
 		LTIE_105_LONET }),
-	.SB_T0_WEST_SB_IN_B1(LTIE_107_LONET),
+	.SB_T0_WEST_SB_IN_B1({ LTIE_107_LONET }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -13830,7 +16173,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_13,
@@ -13847,7 +16190,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_13,
@@ -13864,7 +16207,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X00_Y03_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -13881,7 +16224,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X00_Y02_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_13,
@@ -13898,7 +16241,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X00_Y03_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X00_Y03_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_13,
@@ -13915,8 +16258,11 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X01_Y03_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X00_Y04 (.tile_id({ Tile_X00_Y04_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X01_Y03_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X00_Y04 (
+	.tile_id({ Tile_X00_Y04_lo_out_7,
 		Tile_X00_Y04_lo_out_7,
 		Tile_X00_Y04_lo_out_6,
 		Tile_X00_Y04_lo_out_6,
@@ -13932,8 +16278,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_tile_id_in_2,
 		Tile_X00_Y04_lo_out_0,
 		Tile_X00_Y04_lo_out_0 }),
-	.stall_out(Tile_X00_Y04_stall_out_0),
-	.stall(Tile_X00_Y03_stall_out_0),
+	.stall_out({ Tile_X00_Y04_stall_out_0 }),
+	.stall({ Tile_X00_Y03_stall_out_0 }),
 	.reset_out(Tile_X00_Y04_reset_out),
 	.reset(Tile_X00_Y03_reset_out),
 	.read_config_data_in({ Tile_X00_Y03_read_config_data_31,
@@ -14017,10 +16363,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_hi_2,
 		Tile_X00_Y04_tile_id_in_2,
 		Tile_X00_Y04_hi_0 }),
-	.config_write(Tile_X00_Y03_config_out_write_0),
-	.config_read(Tile_X00_Y03_config_out_read_0),
-	.config_out_write(Tile_X00_Y04_config_out_write_0),
-	.config_out_read(Tile_X00_Y04_config_out_read_0),
+	.config_write({ Tile_X00_Y03_config_out_write_0 }),
+	.config_read({ Tile_X00_Y03_config_out_read_0 }),
+	.config_out_write({ Tile_X00_Y04_config_out_write_0 }),
+	.config_out_read({ Tile_X00_Y04_config_out_read_0 }),
 	.config_out_config_data({ Tile_X00_Y04_config_out_config_data_31,
 		Tile_X00_Y04_config_out_config_data_30,
 		Tile_X00_Y04_config_out_config_data_29,
@@ -14169,7 +16515,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X00_Y04_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X00_Y04_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ LTIE_97_LONET,
 		LTIE_97_LONET,
 		LTIE_96_LONET,
@@ -14186,7 +16532,7 @@ module user_proj_example_Interconnect (
 		LTIE_95_LONET,
 		LTIE_95_LONET,
 		LTIE_95_LONET }),
-	.SB_T2_WEST_SB_IN_B1(LTIE_97_LONET),
+	.SB_T2_WEST_SB_IN_B1({ LTIE_97_LONET }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -14203,7 +16549,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_13,
@@ -14220,7 +16566,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_13,
@@ -14237,7 +16583,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X00_Y04_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -14254,7 +16600,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X00_Y03_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_13,
@@ -14271,7 +16617,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X00_Y04_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X00_Y04_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_13,
@@ -14288,7 +16634,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X01_Y04_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X01_Y04_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X00_Y04_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T1_WEST_SB_OUT_B16_13,
@@ -14305,7 +16651,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X00_Y04_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X00_Y04_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ LTIE_95_LONET,
 		LTIE_94_LONET,
 		LTIE_94_LONET,
@@ -14322,7 +16668,7 @@ module user_proj_example_Interconnect (
 		LTIE_93_LONET,
 		LTIE_93_LONET,
 		LTIE_93_LONET }),
-	.SB_T1_WEST_SB_IN_B1(LTIE_95_LONET),
+	.SB_T1_WEST_SB_IN_B1({ LTIE_95_LONET }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -14339,7 +16685,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_13,
@@ -14356,7 +16702,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_13,
@@ -14373,7 +16719,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X00_Y04_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -14390,7 +16736,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X00_Y03_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_13,
@@ -14407,7 +16753,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X00_Y04_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X00_Y04_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_13,
@@ -14424,7 +16770,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X01_Y04_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X01_Y04_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X00_Y04_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T0_WEST_SB_OUT_B16_13,
@@ -14441,7 +16787,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X00_Y04_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X00_Y04_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ LTIE_92_LONET,
 		LTIE_92_LONET,
 		LTIE_92_LONET,
@@ -14458,7 +16804,7 @@ module user_proj_example_Interconnect (
 		LTIE_91_LONET,
 		LTIE_91_LONET,
 		LTIE_91_LONET }),
-	.SB_T0_WEST_SB_IN_B1(LTIE_93_LONET),
+	.SB_T0_WEST_SB_IN_B1({ LTIE_93_LONET }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -14475,7 +16821,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_13,
@@ -14492,7 +16838,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_13,
@@ -14509,7 +16855,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X00_Y04_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -14526,7 +16872,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X00_Y03_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_13,
@@ -14543,7 +16889,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X00_Y04_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X00_Y04_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_13,
@@ -14560,8 +16906,11 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X01_Y04_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_MemCore Tile_X00_Y05 (.tile_id({ Tile_X00_Y05_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X01_Y04_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_MemCore Tile_X00_Y05 (
+	.tile_id({ Tile_X00_Y05_lo_out_7,
 		Tile_X00_Y05_lo_out_7,
 		Tile_X00_Y05_lo_out_6,
 		Tile_X00_Y05_lo_out_6,
@@ -14577,8 +16926,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_tile_id_in_2,
 		Tile_X00_Y05_tile_id_in_1,
 		Tile_X00_Y05_tile_id_in_0 }),
-	.stall_out(Tile_X00_Y05_stall_out_0),
-	.stall(Tile_X00_Y04_stall_out_0),
+	.stall_out({ Tile_X00_Y05_stall_out_0 }),
+	.stall({ Tile_X00_Y04_stall_out_0 }),
 	.reset_out(Tile_X00_Y05_reset_out),
 	.reset(Tile_X00_Y04_reset_out),
 	.read_config_data_in({ Tile_X00_Y04_read_config_data_31,
@@ -14662,10 +17011,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_hi_2,
 		Tile_X00_Y05_tile_id_in_2,
 		Tile_X00_Y05_tile_id_in_0 }),
-	.config_write(Tile_X00_Y04_config_out_write_0),
-	.config_read(Tile_X00_Y04_config_out_read_0),
-	.config_out_write(Tile_X00_Y05_config_out_write_0),
-	.config_out_read(Tile_X00_Y05_config_out_read_0),
+	.config_write({ Tile_X00_Y04_config_out_write_0 }),
+	.config_read({ Tile_X00_Y04_config_out_read_0 }),
+	.config_out_write({ Tile_X00_Y05_config_out_write_0 }),
+	.config_out_read({ Tile_X00_Y05_config_out_read_0 }),
 	.config_out_config_data({ Tile_X00_Y05_config_out_config_data_31,
 		Tile_X00_Y05_config_out_config_data_30,
 		Tile_X00_Y05_config_out_config_data_29,
@@ -14814,7 +17163,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X00_Y05_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X00_Y05_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ LTIE_83_LONET,
 		LTIE_83_LONET,
 		LTIE_82_LONET,
@@ -14831,7 +17180,7 @@ module user_proj_example_Interconnect (
 		LTIE_81_LONET,
 		LTIE_81_LONET,
 		LTIE_81_LONET }),
-	.SB_T2_WEST_SB_IN_B1(LTIE_83_LONET),
+	.SB_T2_WEST_SB_IN_B1({ LTIE_83_LONET }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -14848,7 +17197,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_13,
@@ -14865,7 +17214,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_13,
@@ -14882,7 +17231,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X00_Y05_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -14899,7 +17248,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X00_Y04_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_13,
@@ -14916,7 +17265,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X00_Y05_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X00_Y05_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_13,
@@ -14933,7 +17282,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X01_Y05_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X01_Y05_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X00_Y05_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T1_WEST_SB_OUT_B16_13,
@@ -14950,7 +17299,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X00_Y05_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X00_Y05_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ LTIE_81_LONET,
 		LTIE_80_LONET,
 		LTIE_80_LONET,
@@ -14967,7 +17316,7 @@ module user_proj_example_Interconnect (
 		LTIE_79_LONET,
 		LTIE_79_LONET,
 		LTIE_79_LONET }),
-	.SB_T1_WEST_SB_IN_B1(LTIE_81_LONET),
+	.SB_T1_WEST_SB_IN_B1({ LTIE_81_LONET }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -14984,7 +17333,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_13,
@@ -15001,7 +17350,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_13,
@@ -15018,7 +17367,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X00_Y05_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -15035,7 +17384,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X00_Y04_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_13,
@@ -15052,7 +17401,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X00_Y05_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X00_Y05_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_13,
@@ -15069,7 +17418,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X01_Y05_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X01_Y05_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X00_Y05_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T0_WEST_SB_OUT_B16_13,
@@ -15086,7 +17435,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X00_Y05_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X00_Y05_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ LTIE_78_LONET,
 		LTIE_78_LONET,
 		LTIE_78_LONET,
@@ -15103,7 +17452,7 @@ module user_proj_example_Interconnect (
 		LTIE_77_LONET,
 		LTIE_77_LONET,
 		LTIE_77_LONET }),
-	.SB_T0_WEST_SB_IN_B1(LTIE_79_LONET),
+	.SB_T0_WEST_SB_IN_B1({ LTIE_79_LONET }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -15120,7 +17469,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_13,
@@ -15137,7 +17486,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_13,
@@ -15154,7 +17503,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X00_Y05_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -15171,7 +17520,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X00_Y04_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_13,
@@ -15188,7 +17537,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X00_Y05_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X00_Y05_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_13,
@@ -15205,8 +17554,11 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X01_Y05_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X00_Y06 (.tile_id({ Tile_X00_Y06_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X01_Y05_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X00_Y06 (
+	.tile_id({ Tile_X00_Y06_lo_out_7,
 		Tile_X00_Y06_lo_out_7,
 		Tile_X00_Y06_lo_out_6,
 		Tile_X00_Y06_lo_out_6,
@@ -15222,8 +17574,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_hi_1,
 		Tile_X00_Y06_hi_1,
 		Tile_X00_Y06_tile_id_in_0 }),
-	.stall_out(Tile_X00_Y06_stall_out_0),
-	.stall(Tile_X00_Y05_stall_out_0),
+	.stall_out({ Tile_X00_Y06_stall_out_0 }),
+	.stall({ Tile_X00_Y05_stall_out_0 }),
 	.reset_out(Tile_X00_Y06_reset_out),
 	.reset(Tile_X00_Y05_reset_out),
 	.read_config_data_in({ Tile_X00_Y05_read_config_data_31,
@@ -15307,10 +17659,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_hi_2,
 		Tile_X00_Y06_hi_1,
 		Tile_X00_Y06_hi_0 }),
-	.config_write(Tile_X00_Y05_config_out_write_0),
-	.config_read(Tile_X00_Y05_config_out_read_0),
-	.config_out_write(Tile_X00_Y06_config_out_write_0),
-	.config_out_read(Tile_X00_Y06_config_out_read_0),
+	.config_write({ Tile_X00_Y05_config_out_write_0 }),
+	.config_read({ Tile_X00_Y05_config_out_read_0 }),
+	.config_out_write({ Tile_X00_Y06_config_out_write_0 }),
+	.config_out_read({ Tile_X00_Y06_config_out_read_0 }),
 	.config_out_config_data({ Tile_X00_Y06_config_out_config_data_31,
 		Tile_X00_Y06_config_out_config_data_30,
 		Tile_X00_Y06_config_out_config_data_29,
@@ -15459,7 +17811,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X00_Y06_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X00_Y06_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ LTIE_69_LONET,
 		LTIE_69_LONET,
 		LTIE_68_LONET,
@@ -15476,7 +17828,7 @@ module user_proj_example_Interconnect (
 		LTIE_67_LONET,
 		LTIE_67_LONET,
 		LTIE_67_LONET }),
-	.SB_T2_WEST_SB_IN_B1(LTIE_69_LONET),
+	.SB_T2_WEST_SB_IN_B1({ LTIE_69_LONET }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -15493,7 +17845,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_13,
@@ -15510,7 +17862,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_13,
@@ -15527,7 +17879,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X00_Y06_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -15544,7 +17896,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X00_Y05_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_13,
@@ -15561,7 +17913,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X00_Y06_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X00_Y06_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_13,
@@ -15578,7 +17930,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X01_Y06_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X01_Y06_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X00_Y06_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T1_WEST_SB_OUT_B16_13,
@@ -15595,7 +17947,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X00_Y06_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X00_Y06_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ LTIE_67_LONET,
 		LTIE_66_LONET,
 		LTIE_66_LONET,
@@ -15612,7 +17964,7 @@ module user_proj_example_Interconnect (
 		LTIE_65_LONET,
 		LTIE_65_LONET,
 		LTIE_65_LONET }),
-	.SB_T1_WEST_SB_IN_B1(LTIE_67_LONET),
+	.SB_T1_WEST_SB_IN_B1({ LTIE_67_LONET }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -15629,7 +17981,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_13,
@@ -15646,7 +17998,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_13,
@@ -15663,7 +18015,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X00_Y06_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -15680,7 +18032,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X00_Y05_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_13,
@@ -15697,7 +18049,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X00_Y06_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X00_Y06_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_13,
@@ -15714,7 +18066,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X01_Y06_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X01_Y06_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X00_Y06_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T0_WEST_SB_OUT_B16_13,
@@ -15731,7 +18083,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X00_Y06_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X00_Y06_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ LTIE_64_LONET,
 		LTIE_64_LONET,
 		LTIE_64_LONET,
@@ -15748,7 +18100,7 @@ module user_proj_example_Interconnect (
 		LTIE_63_LONET,
 		LTIE_63_LONET,
 		LTIE_63_LONET }),
-	.SB_T0_WEST_SB_IN_B1(LTIE_65_LONET),
+	.SB_T0_WEST_SB_IN_B1({ LTIE_65_LONET }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -15765,7 +18117,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_13,
@@ -15782,7 +18134,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_13,
@@ -15799,7 +18151,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X00_Y06_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -15816,7 +18168,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X00_Y05_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_13,
@@ -15833,7 +18185,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X00_Y06_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X00_Y06_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_13,
@@ -15850,8 +18202,11 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X01_Y06_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X00_Y07 (.tile_id({ Tile_X00_Y07_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X01_Y06_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X00_Y07 (
+	.tile_id({ Tile_X00_Y07_lo_out_7,
 		Tile_X00_Y07_lo_out_7,
 		Tile_X00_Y07_lo_out_6,
 		Tile_X00_Y07_lo_out_6,
@@ -15867,8 +18222,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_hi_out_1,
 		Tile_X00_Y07_hi_out_1,
 		Tile_X00_Y07_tile_id_in_0 }),
-	.stall_out(Tile_X00_Y07_stall_out_0),
-	.stall(Tile_X00_Y06_stall_out_0),
+	.stall_out({ Tile_X00_Y07_stall_out_0 }),
+	.stall({ Tile_X00_Y06_stall_out_0 }),
 	.reset_out(Tile_X00_Y07_reset_out),
 	.reset(Tile_X00_Y06_reset_out),
 	.read_config_data_in({ Tile_X00_Y06_read_config_data_31,
@@ -15952,10 +18307,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_hi_unq1_2,
 		Tile_X00_Y07_hi_out_1,
 		Tile_X00_Y07_tile_id_in_0 }),
-	.config_write(Tile_X00_Y06_config_out_write_0),
-	.config_read(Tile_X00_Y06_config_out_read_0),
-	.config_out_write(Tile_X00_Y07_config_out_write_0),
-	.config_out_read(Tile_X00_Y07_config_out_read_0),
+	.config_write({ Tile_X00_Y06_config_out_write_0 }),
+	.config_read({ Tile_X00_Y06_config_out_read_0 }),
+	.config_out_write({ Tile_X00_Y07_config_out_write_0 }),
+	.config_out_read({ Tile_X00_Y07_config_out_read_0 }),
 	.config_out_config_data({ Tile_X00_Y07_config_out_config_data_31,
 		Tile_X00_Y07_config_out_config_data_30,
 		Tile_X00_Y07_config_out_config_data_29,
@@ -16104,7 +18459,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X00_Y07_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X00_Y07_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ LTIE_55_LONET,
 		LTIE_55_LONET,
 		LTIE_54_LONET,
@@ -16121,7 +18476,7 @@ module user_proj_example_Interconnect (
 		LTIE_53_LONET,
 		LTIE_53_LONET,
 		LTIE_53_LONET }),
-	.SB_T2_WEST_SB_IN_B1(LTIE_55_LONET),
+	.SB_T2_WEST_SB_IN_B1({ LTIE_55_LONET }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -16138,7 +18493,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_13,
@@ -16155,7 +18510,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_13,
@@ -16172,7 +18527,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X00_Y07_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -16189,7 +18544,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X00_Y06_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_13,
@@ -16206,7 +18561,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X00_Y07_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X00_Y07_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_13,
@@ -16223,7 +18578,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X01_Y07_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X01_Y07_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X00_Y07_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T1_WEST_SB_OUT_B16_13,
@@ -16240,7 +18595,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X00_Y07_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X00_Y07_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ LTIE_53_LONET,
 		LTIE_52_LONET,
 		LTIE_52_LONET,
@@ -16257,7 +18612,7 @@ module user_proj_example_Interconnect (
 		LTIE_51_LONET,
 		LTIE_51_LONET,
 		LTIE_51_LONET }),
-	.SB_T1_WEST_SB_IN_B1(LTIE_53_LONET),
+	.SB_T1_WEST_SB_IN_B1({ LTIE_53_LONET }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -16274,7 +18629,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_13,
@@ -16291,7 +18646,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_13,
@@ -16308,7 +18663,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X00_Y07_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -16325,7 +18680,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X00_Y06_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_13,
@@ -16342,7 +18697,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X00_Y07_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X00_Y07_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_13,
@@ -16359,7 +18714,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X01_Y07_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X01_Y07_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X00_Y07_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T0_WEST_SB_OUT_B16_13,
@@ -16376,7 +18731,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X00_Y07_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X00_Y07_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ LTIE_50_LONET,
 		LTIE_50_LONET,
 		LTIE_50_LONET,
@@ -16393,7 +18748,7 @@ module user_proj_example_Interconnect (
 		LTIE_49_LONET,
 		LTIE_49_LONET,
 		LTIE_49_LONET }),
-	.SB_T0_WEST_SB_IN_B1(LTIE_51_LONET),
+	.SB_T0_WEST_SB_IN_B1({ LTIE_51_LONET }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -16410,7 +18765,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_13,
@@ -16427,7 +18782,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_13,
@@ -16444,7 +18799,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X00_Y07_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -16461,7 +18816,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X00_Y06_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_13,
@@ -16478,7 +18833,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X00_Y07_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X00_Y07_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_13,
@@ -16495,8 +18850,11 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X01_Y07_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X00_Y08 (.tile_id({ Tile_X00_Y08_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X01_Y07_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X00_Y08 (
+	.tile_id({ Tile_X00_Y08_lo_out_7,
 		Tile_X00_Y08_lo_out_7,
 		Tile_X00_Y08_lo_out_6,
 		Tile_X00_Y08_lo_out_6,
@@ -16512,8 +18870,8 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_tile_id_in_2,
 		Tile_X00_Y08_lo_out_0,
 		Tile_X00_Y08_lo_out_0 }),
-	.stall_out(Tile_X00_Y08_stall_out_0),
-	.stall(Tile_X00_Y07_stall_out_0),
+	.stall_out({ Tile_X00_Y08_stall_out_0 }),
+	.stall({ Tile_X00_Y07_stall_out_0 }),
 	.reset_out(Tile_X00_Y08_reset_out),
 	.reset(Tile_X00_Y07_reset_out),
 	.read_config_data_in({ Tile_X00_Y07_read_config_data_31,
@@ -16597,10 +18955,10 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_tile_id_in_3,
 		Tile_X00_Y08_hi_1,
 		Tile_X00_Y08_hi_0 }),
-	.config_write(Tile_X00_Y07_config_out_write_0),
-	.config_read(Tile_X00_Y07_config_out_read_0),
-	.config_out_write(Tile_X00_Y08_config_out_write_0),
-	.config_out_read(Tile_X00_Y08_config_out_read_0),
+	.config_write({ Tile_X00_Y07_config_out_write_0 }),
+	.config_read({ Tile_X00_Y07_config_out_read_0 }),
+	.config_out_write({ Tile_X00_Y08_config_out_write_0 }),
+	.config_out_read({ Tile_X00_Y08_config_out_read_0 }),
 	.config_out_config_data({ Tile_X00_Y08_config_out_config_data_31,
 		Tile_X00_Y08_config_out_config_data_30,
 		Tile_X00_Y08_config_out_config_data_29,
@@ -16749,7 +19107,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X00_Y08_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X00_Y08_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ LTIE_41_LONET,
 		LTIE_41_LONET,
 		LTIE_40_LONET,
@@ -16766,7 +19124,7 @@ module user_proj_example_Interconnect (
 		LTIE_39_LONET,
 		LTIE_39_LONET,
 		LTIE_39_LONET }),
-	.SB_T2_WEST_SB_IN_B1(LTIE_41_LONET),
+	.SB_T2_WEST_SB_IN_B1({ LTIE_41_LONET }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X00_Y08_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -16783,7 +19141,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X00_Y08_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X00_Y08_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ LTIE_6_LONET,
 		LTIE_6_LONET,
 		LTIE_5_LONET,
@@ -16800,7 +19158,7 @@ module user_proj_example_Interconnect (
 		LTIE_4_LONET,
 		LTIE_4_LONET,
 		LTIE_4_LONET }),
-	.SB_T2_SOUTH_SB_IN_B1(LTIE_6_LONET),
+	.SB_T2_SOUTH_SB_IN_B1({ LTIE_6_LONET }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_13,
@@ -16817,7 +19175,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X00_Y08_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -16834,7 +19192,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X00_Y07_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_13,
@@ -16851,7 +19209,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X00_Y08_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X00_Y08_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_13,
@@ -16868,7 +19226,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X01_Y08_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X01_Y08_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X00_Y08_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T1_WEST_SB_OUT_B16_13,
@@ -16885,7 +19243,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X00_Y08_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X00_Y08_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ LTIE_39_LONET,
 		LTIE_38_LONET,
 		LTIE_38_LONET,
@@ -16902,7 +19260,7 @@ module user_proj_example_Interconnect (
 		LTIE_37_LONET,
 		LTIE_37_LONET,
 		LTIE_37_LONET }),
-	.SB_T1_WEST_SB_IN_B1(LTIE_39_LONET),
+	.SB_T1_WEST_SB_IN_B1({ LTIE_39_LONET }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X00_Y08_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -16919,7 +19277,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X00_Y08_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X00_Y08_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ LTIE_4_LONET,
 		LTIE_3_LONET,
 		LTIE_3_LONET,
@@ -16936,7 +19294,7 @@ module user_proj_example_Interconnect (
 		LTIE_2_LONET,
 		LTIE_2_LONET,
 		LTIE_2_LONET }),
-	.SB_T1_SOUTH_SB_IN_B1(LTIE_4_LONET),
+	.SB_T1_SOUTH_SB_IN_B1({ LTIE_4_LONET }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_13,
@@ -16953,7 +19311,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X00_Y08_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -16970,7 +19328,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X00_Y07_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_13,
@@ -16987,7 +19345,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X00_Y08_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X00_Y08_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_13,
@@ -17004,7 +19362,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X01_Y08_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X01_Y08_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X00_Y08_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T0_WEST_SB_OUT_B16_13,
@@ -17021,7 +19379,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X00_Y08_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X00_Y08_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ LTIE_36_LONET,
 		LTIE_36_LONET,
 		LTIE_36_LONET,
@@ -17038,7 +19396,7 @@ module user_proj_example_Interconnect (
 		LTIE_35_LONET,
 		LTIE_35_LONET,
 		LTIE_35_LONET }),
-	.SB_T0_WEST_SB_IN_B1(LTIE_37_LONET),
+	.SB_T0_WEST_SB_IN_B1({ LTIE_37_LONET }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X00_Y08_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -17055,7 +19413,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X00_Y08_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X00_Y08_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ LTIE_1_LONET,
 		LTIE_1_LONET,
 		LTIE_1_LONET,
@@ -17072,7 +19430,7 @@ module user_proj_example_Interconnect (
 		LTIE_LONET,
 		LTIE_LONET,
 		LTIE_LONET }),
-	.SB_T0_SOUTH_SB_IN_B1(LTIE_2_LONET),
+	.SB_T0_SOUTH_SB_IN_B1({ LTIE_2_LONET }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_13,
@@ -17089,7 +19447,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X00_Y08_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -17106,7 +19464,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X00_Y07_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_13,
@@ -17123,7 +19481,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X00_Y08_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X00_Y08_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_13,
@@ -17140,8 +19498,11 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X01_Y08_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_MemCore Tile_X01_Y01 (.tile_id({ Tile_X01_Y01_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X01_Y08_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_MemCore Tile_X01_Y01 (
+	.tile_id({ Tile_X01_Y01_lo_out_7,
 		Tile_X01_Y01_lo_out_7,
 		Tile_X01_Y01_lo_out_6,
 		Tile_X01_Y01_lo_out_6,
@@ -17157,8 +19518,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_lo_out_1,
 		Tile_X01_Y01_tile_id_in_1,
 		Tile_X01_Y01_tile_id_in_0 }),
-	.stall_out(Tile_X01_Y01_stall_out_0),
-	.stall(stall[1]),
+	.stall_out({ Tile_X01_Y01_stall_out_0 }),
+	.stall({ stall[1] }),
 	.reset_out(Tile_X01_Y01_reset_out),
 	.reset(FE_OFN379_ckmux_rst),
 	.read_config_data_in({ LTIE_147_LONET,
@@ -17242,10 +19603,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_hi_2,
 		Tile_X01_Y01_hi_1,
 		Tile_X01_Y01_tile_id_in_0 }),
-	.config_write(FE_OFN251_CGRA_config_write),
-	.config_read(FE_OFN247_CGRA_config_read),
-	.config_out_write(Tile_X01_Y01_config_out_write_0),
-	.config_out_read(Tile_X01_Y01_config_out_read_0),
+	.config_write({ FE_OFN251_CGRA_config_write }),
+	.config_read({ FE_OFN247_CGRA_config_read }),
+	.config_out_write({ Tile_X01_Y01_config_out_write_0 }),
+	.config_out_read({ Tile_X01_Y01_config_out_read_0 }),
 	.config_out_config_data({ Tile_X01_Y01_config_out_config_data_31,
 		Tile_X01_Y01_config_out_config_data_30,
 		Tile_X01_Y01_config_out_config_data_29,
@@ -17363,7 +19724,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X01_Y01_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X01_Y01_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_13,
@@ -17380,7 +19741,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X00_Y01_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X00_Y01_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -17397,7 +19758,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_13,
@@ -17414,7 +19775,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X01_Y01_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T2_NORTH_SB_OUT_B16_13,
@@ -17431,7 +19792,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X01_Y01_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X01_Y01_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ FE_OFN424_n,
 		FE_OFN13_io_in_31,
 		FE_OFN16_io_in_30,
@@ -17448,7 +19809,7 @@ module user_proj_example_Interconnect (
 		FE_OFN58_io_in_19,
 		FE_OFN62_io_in_18,
 		FE_OFN420_n }),
-	.SB_T2_NORTH_SB_IN_B1(FE_OFN425_n),
+	.SB_T2_NORTH_SB_IN_B1({ FE_OFN425_n }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_13,
@@ -17465,7 +19826,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X01_Y01_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X01_Y01_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_13,
@@ -17482,7 +19843,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X02_Y01_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X02_Y01_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_13,
@@ -17499,7 +19860,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X01_Y01_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X01_Y01_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_13,
@@ -17516,7 +19877,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X00_Y01_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X00_Y01_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -17533,7 +19894,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_13,
@@ -17550,7 +19911,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X01_Y01_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T1_NORTH_SB_OUT_B16_13,
@@ -17567,7 +19928,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X01_Y01_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X01_Y01_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ FE_OFN424_n,
 		FE_OFN13_io_in_31,
 		FE_OFN16_io_in_30,
@@ -17584,7 +19945,7 @@ module user_proj_example_Interconnect (
 		FE_OFN58_io_in_19,
 		FE_OFN62_io_in_18,
 		FE_OFN420_n }),
-	.SB_T1_NORTH_SB_IN_B1(FE_OFN425_n),
+	.SB_T1_NORTH_SB_IN_B1({ FE_OFN425_n }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_13,
@@ -17601,7 +19962,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X01_Y01_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X01_Y01_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_13,
@@ -17618,7 +19979,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X02_Y01_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X02_Y01_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_13,
@@ -17635,7 +19996,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X01_Y01_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X01_Y01_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_13,
@@ -17652,7 +20013,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y01_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X00_Y01_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X00_Y01_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -17669,7 +20030,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_13,
@@ -17686,7 +20047,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16(io2glb_16_X01_Y00),
 	.SB_T0_NORTH_SB_OUT_B1(io2glb_1_X01_Y00),
 	.SB_T0_NORTH_SB_IN_B16({ FE_OFN424_n,
@@ -17705,7 +20066,7 @@ module user_proj_example_Interconnect (
 		FE_OFN58_io_in_19,
 		FE_OFN62_io_in_18,
 		FE_OFN420_n }),
-	.SB_T0_NORTH_SB_IN_B1(FE_OFN425_n),
+	.SB_T0_NORTH_SB_IN_B1({ FE_OFN425_n }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_13,
@@ -17722,7 +20083,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X01_Y01_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X01_Y01_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_13,
@@ -17739,8 +20100,11 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X02_Y01_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X01_Y02 (.tile_id({ Tile_X01_Y02_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X02_Y01_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X01_Y02 (
+	.tile_id({ Tile_X01_Y02_lo_out_7,
 		Tile_X01_Y02_lo_out_7,
 		Tile_X01_Y02_lo_out_6,
 		Tile_X01_Y02_lo_out_6,
@@ -17756,8 +20120,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_lo_out_1,
 		Tile_X01_Y02_tile_id_in_1,
 		Tile_X01_Y02_tile_id_in_0 }),
-	.stall_out(Tile_X01_Y02_stall_out_0),
-	.stall(Tile_X01_Y01_stall_out_0),
+	.stall_out({ Tile_X01_Y02_stall_out_0 }),
+	.stall({ Tile_X01_Y01_stall_out_0 }),
 	.reset_out(Tile_X01_Y02_reset_out),
 	.reset(Tile_X01_Y01_reset_out),
 	.read_config_data_in({ Tile_X01_Y01_read_config_data_31,
@@ -17841,10 +20205,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_hi_2,
 		Tile_X01_Y02_tile_id_in_1,
 		Tile_X01_Y02_hi_0 }),
-	.config_write(Tile_X01_Y01_config_out_write_0),
-	.config_read(Tile_X01_Y01_config_out_read_0),
-	.config_out_write(Tile_X01_Y02_config_out_write_0),
-	.config_out_read(Tile_X01_Y02_config_out_read_0),
+	.config_write({ Tile_X01_Y01_config_out_write_0 }),
+	.config_read({ Tile_X01_Y01_config_out_read_0 }),
+	.config_out_write({ Tile_X01_Y02_config_out_write_0 }),
+	.config_out_read({ Tile_X01_Y02_config_out_read_0 }),
 	.config_out_config_data({ Tile_X01_Y02_config_out_config_data_31,
 		Tile_X01_Y02_config_out_config_data_30,
 		Tile_X01_Y02_config_out_config_data_29,
@@ -17993,7 +20357,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X01_Y02_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X01_Y02_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_13,
@@ -18010,7 +20374,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X00_Y02_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X00_Y02_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -18027,7 +20391,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_13,
@@ -18044,7 +20408,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_13,
@@ -18061,7 +20425,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X01_Y02_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -18078,7 +20442,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X01_Y01_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_13,
@@ -18095,7 +20459,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X01_Y02_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X01_Y02_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_13,
@@ -18112,7 +20476,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X02_Y02_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X02_Y02_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_13,
@@ -18129,7 +20493,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X01_Y02_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X01_Y02_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_13,
@@ -18146,7 +20510,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X00_Y02_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X00_Y02_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -18163,7 +20527,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_13,
@@ -18180,7 +20544,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_13,
@@ -18197,7 +20561,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X01_Y02_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -18214,7 +20578,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X01_Y01_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_13,
@@ -18231,7 +20595,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X01_Y02_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X01_Y02_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_13,
@@ -18248,7 +20612,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X02_Y02_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X02_Y02_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_13,
@@ -18265,7 +20629,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X01_Y02_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X01_Y02_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_13,
@@ -18282,7 +20646,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y02_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X00_Y02_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X00_Y02_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -18299,7 +20663,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_13,
@@ -18316,7 +20680,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_13,
@@ -18333,7 +20697,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X01_Y02_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -18350,7 +20714,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X01_Y01_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_13,
@@ -18367,7 +20731,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X01_Y02_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X01_Y02_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_13,
@@ -18384,8 +20748,11 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X02_Y02_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X01_Y03 (.tile_id({ Tile_X01_Y03_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X02_Y02_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X01_Y03 (
+	.tile_id({ Tile_X01_Y03_lo_out_7,
 		Tile_X01_Y03_lo_out_7,
 		Tile_X01_Y03_lo_out_6,
 		Tile_X01_Y03_lo_out_6,
@@ -18401,8 +20768,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_lo_out_1,
 		Tile_X01_Y03_tile_id_in_1,
 		Tile_X01_Y03_tile_id_in_0 }),
-	.stall_out(Tile_X01_Y03_stall_out_0),
-	.stall(Tile_X01_Y02_stall_out_0),
+	.stall_out({ Tile_X01_Y03_stall_out_0 }),
+	.stall({ Tile_X01_Y02_stall_out_0 }),
 	.reset_out(Tile_X01_Y03_reset_out),
 	.reset(Tile_X01_Y02_reset_out),
 	.read_config_data_in({ Tile_X01_Y02_read_config_data_31,
@@ -18486,10 +20853,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_hi_unq1_2,
 		Tile_X01_Y03_tile_id_in_1,
 		Tile_X01_Y03_tile_id_in_0 }),
-	.config_write(Tile_X01_Y02_config_out_write_0),
-	.config_read(Tile_X01_Y02_config_out_read_0),
-	.config_out_write(Tile_X01_Y03_config_out_write_0),
-	.config_out_read(Tile_X01_Y03_config_out_read_0),
+	.config_write({ Tile_X01_Y02_config_out_write_0 }),
+	.config_read({ Tile_X01_Y02_config_out_read_0 }),
+	.config_out_write({ Tile_X01_Y03_config_out_write_0 }),
+	.config_out_read({ Tile_X01_Y03_config_out_read_0 }),
 	.config_out_config_data({ Tile_X01_Y03_config_out_config_data_31,
 		Tile_X01_Y03_config_out_config_data_30,
 		Tile_X01_Y03_config_out_config_data_29,
@@ -18638,7 +21005,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X01_Y03_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X01_Y03_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_13,
@@ -18655,7 +21022,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X00_Y03_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X00_Y03_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -18672,7 +21039,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_13,
@@ -18689,7 +21056,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_13,
@@ -18706,7 +21073,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X01_Y03_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -18723,7 +21090,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X01_Y02_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_13,
@@ -18740,7 +21107,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X01_Y03_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X01_Y03_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_13,
@@ -18757,7 +21124,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X02_Y03_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X02_Y03_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_13,
@@ -18774,7 +21141,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X01_Y03_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X01_Y03_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_13,
@@ -18791,7 +21158,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X00_Y03_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X00_Y03_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -18808,7 +21175,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_13,
@@ -18825,7 +21192,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_13,
@@ -18842,7 +21209,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X01_Y03_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -18859,7 +21226,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X01_Y02_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_13,
@@ -18876,7 +21243,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X01_Y03_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X01_Y03_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_13,
@@ -18893,7 +21260,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X02_Y03_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X02_Y03_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_13,
@@ -18910,7 +21277,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X01_Y03_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X01_Y03_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_13,
@@ -18927,7 +21294,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y03_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X00_Y03_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X00_Y03_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -18944,7 +21311,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_13,
@@ -18961,7 +21328,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_13,
@@ -18978,7 +21345,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X01_Y03_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -18995,7 +21362,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X01_Y02_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_13,
@@ -19012,7 +21379,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X01_Y03_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X01_Y03_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_13,
@@ -19029,8 +21396,11 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X02_Y03_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X01_Y04 (.tile_id({ Tile_X01_Y04_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X02_Y03_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X01_Y04 (
+	.tile_id({ Tile_X01_Y04_lo_out_7,
 		Tile_X01_Y04_lo_out_7,
 		Tile_X01_Y04_lo_out_6,
 		Tile_X01_Y04_lo_out_6,
@@ -19046,8 +21416,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_tile_id_in_2,
 		Tile_X01_Y04_lo_out_0,
 		Tile_X01_Y04_lo_out_0 }),
-	.stall_out(Tile_X01_Y04_stall_out_0),
-	.stall(Tile_X01_Y03_stall_out_0),
+	.stall_out({ Tile_X01_Y04_stall_out_0 }),
+	.stall({ Tile_X01_Y03_stall_out_0 }),
 	.reset_out(Tile_X01_Y04_reset_out),
 	.reset(Tile_X01_Y03_reset_out),
 	.read_config_data_in({ Tile_X01_Y03_read_config_data_31,
@@ -19131,10 +21501,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_hi_2,
 		Tile_X01_Y04_tile_id_in_2,
 		Tile_X01_Y04_hi_0 }),
-	.config_write(Tile_X01_Y03_config_out_write_0),
-	.config_read(Tile_X01_Y03_config_out_read_0),
-	.config_out_write(Tile_X01_Y04_config_out_write_0),
-	.config_out_read(Tile_X01_Y04_config_out_read_0),
+	.config_write({ Tile_X01_Y03_config_out_write_0 }),
+	.config_read({ Tile_X01_Y03_config_out_read_0 }),
+	.config_out_write({ Tile_X01_Y04_config_out_write_0 }),
+	.config_out_read({ Tile_X01_Y04_config_out_read_0 }),
 	.config_out_config_data({ Tile_X01_Y04_config_out_config_data_31,
 		Tile_X01_Y04_config_out_config_data_30,
 		Tile_X01_Y04_config_out_config_data_29,
@@ -19283,7 +21653,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X01_Y04_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X01_Y04_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_13,
@@ -19300,7 +21670,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X00_Y04_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X00_Y04_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -19317,7 +21687,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_13,
@@ -19334,7 +21704,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_13,
@@ -19351,7 +21721,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X01_Y04_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -19368,7 +21738,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X01_Y03_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_13,
@@ -19385,7 +21755,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X01_Y04_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X01_Y04_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_13,
@@ -19402,7 +21772,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X02_Y04_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X02_Y04_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_13,
@@ -19419,7 +21789,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X01_Y04_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X01_Y04_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_13,
@@ -19436,7 +21806,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X00_Y04_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X00_Y04_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -19453,7 +21823,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_13,
@@ -19470,7 +21840,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_13,
@@ -19487,7 +21857,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X01_Y04_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -19504,7 +21874,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X01_Y03_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_13,
@@ -19521,7 +21891,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X01_Y04_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X01_Y04_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_13,
@@ -19538,7 +21908,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X02_Y04_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X02_Y04_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_13,
@@ -19555,7 +21925,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X01_Y04_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X01_Y04_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_13,
@@ -19572,7 +21942,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y04_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X00_Y04_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X00_Y04_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -19589,7 +21959,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_13,
@@ -19606,7 +21976,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_13,
@@ -19623,7 +21993,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X01_Y04_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -19640,7 +22010,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X01_Y03_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_13,
@@ -19657,7 +22027,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X01_Y04_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X01_Y04_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_13,
@@ -19674,8 +22044,11 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X02_Y04_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_MemCore Tile_X01_Y05 (.tile_id({ Tile_X01_Y05_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X02_Y04_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_MemCore Tile_X01_Y05 (
+	.tile_id({ Tile_X01_Y05_lo_out_7,
 		Tile_X01_Y05_lo_out_7,
 		Tile_X01_Y05_lo_out_6,
 		Tile_X01_Y05_lo_out_6,
@@ -19691,8 +22064,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_tile_id_in_2,
 		Tile_X01_Y05_tile_id_in_1,
 		Tile_X01_Y05_tile_id_in_0 }),
-	.stall_out(Tile_X01_Y05_stall_out_0),
-	.stall(Tile_X01_Y04_stall_out_0),
+	.stall_out({ Tile_X01_Y05_stall_out_0 }),
+	.stall({ Tile_X01_Y04_stall_out_0 }),
 	.reset_out(Tile_X01_Y05_reset_out),
 	.reset(Tile_X01_Y04_reset_out),
 	.read_config_data_in({ Tile_X01_Y04_read_config_data_31,
@@ -19776,10 +22149,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_hi_2,
 		Tile_X01_Y05_tile_id_in_2,
 		Tile_X01_Y05_tile_id_in_0 }),
-	.config_write(Tile_X01_Y04_config_out_write_0),
-	.config_read(Tile_X01_Y04_config_out_read_0),
-	.config_out_write(Tile_X01_Y05_config_out_write_0),
-	.config_out_read(Tile_X01_Y05_config_out_read_0),
+	.config_write({ Tile_X01_Y04_config_out_write_0 }),
+	.config_read({ Tile_X01_Y04_config_out_read_0 }),
+	.config_out_write({ Tile_X01_Y05_config_out_write_0 }),
+	.config_out_read({ Tile_X01_Y05_config_out_read_0 }),
 	.config_out_config_data({ Tile_X01_Y05_config_out_config_data_31,
 		Tile_X01_Y05_config_out_config_data_30,
 		Tile_X01_Y05_config_out_config_data_29,
@@ -19928,7 +22301,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X01_Y05_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X01_Y05_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_13,
@@ -19945,7 +22318,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X00_Y05_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X00_Y05_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -19962,7 +22335,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_13,
@@ -19979,7 +22352,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_13,
@@ -19996,7 +22369,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X01_Y05_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -20013,7 +22386,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X01_Y04_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_13,
@@ -20030,7 +22403,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X01_Y05_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X01_Y05_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_13,
@@ -20047,7 +22420,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X02_Y05_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X02_Y05_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_13,
@@ -20064,7 +22437,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X01_Y05_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X01_Y05_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_13,
@@ -20081,7 +22454,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X00_Y05_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X00_Y05_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -20098,7 +22471,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_13,
@@ -20115,7 +22488,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_13,
@@ -20132,7 +22505,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X01_Y05_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -20149,7 +22522,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X01_Y04_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_13,
@@ -20166,7 +22539,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X01_Y05_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X01_Y05_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_13,
@@ -20183,7 +22556,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X02_Y05_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X02_Y05_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_13,
@@ -20200,7 +22573,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X01_Y05_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X01_Y05_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_13,
@@ -20217,7 +22590,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y05_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X00_Y05_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X00_Y05_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -20234,7 +22607,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_13,
@@ -20251,7 +22624,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_13,
@@ -20268,7 +22641,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X01_Y05_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -20285,7 +22658,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X01_Y04_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_13,
@@ -20302,7 +22675,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X01_Y05_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X01_Y05_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_13,
@@ -20319,8 +22692,11 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X02_Y05_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X01_Y06 (.tile_id({ Tile_X01_Y06_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X02_Y05_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X01_Y06 (
+	.tile_id({ Tile_X01_Y06_lo_out_7,
 		Tile_X01_Y06_lo_out_7,
 		Tile_X01_Y06_lo_out_6,
 		Tile_X01_Y06_lo_out_6,
@@ -20336,8 +22712,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_hi_1,
 		Tile_X01_Y06_hi_1,
 		Tile_X01_Y06_tile_id_in_0 }),
-	.stall_out(Tile_X01_Y06_stall_out_0),
-	.stall(Tile_X01_Y05_stall_out_0),
+	.stall_out({ Tile_X01_Y06_stall_out_0 }),
+	.stall({ Tile_X01_Y05_stall_out_0 }),
 	.reset_out(Tile_X01_Y06_reset_out),
 	.reset(Tile_X01_Y05_reset_out),
 	.read_config_data_in({ Tile_X01_Y05_read_config_data_31,
@@ -20421,10 +22797,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_hi_2,
 		Tile_X01_Y06_hi_1,
 		Tile_X01_Y06_hi_0 }),
-	.config_write(Tile_X01_Y05_config_out_write_0),
-	.config_read(Tile_X01_Y05_config_out_read_0),
-	.config_out_write(Tile_X01_Y06_config_out_write_0),
-	.config_out_read(Tile_X01_Y06_config_out_read_0),
+	.config_write({ Tile_X01_Y05_config_out_write_0 }),
+	.config_read({ Tile_X01_Y05_config_out_read_0 }),
+	.config_out_write({ Tile_X01_Y06_config_out_write_0 }),
+	.config_out_read({ Tile_X01_Y06_config_out_read_0 }),
 	.config_out_config_data({ Tile_X01_Y06_config_out_config_data_31,
 		Tile_X01_Y06_config_out_config_data_30,
 		Tile_X01_Y06_config_out_config_data_29,
@@ -20573,7 +22949,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X01_Y06_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X01_Y06_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_13,
@@ -20590,7 +22966,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X00_Y06_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X00_Y06_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -20607,7 +22983,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_13,
@@ -20624,7 +23000,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_13,
@@ -20641,7 +23017,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X01_Y06_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -20658,7 +23034,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X01_Y05_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_13,
@@ -20675,7 +23051,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X01_Y06_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X01_Y06_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_13,
@@ -20692,7 +23068,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X02_Y06_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X02_Y06_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_13,
@@ -20709,7 +23085,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X01_Y06_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X01_Y06_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_13,
@@ -20726,7 +23102,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X00_Y06_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X00_Y06_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -20743,7 +23119,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_13,
@@ -20760,7 +23136,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_13,
@@ -20777,7 +23153,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X01_Y06_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -20794,7 +23170,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X01_Y05_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_13,
@@ -20811,7 +23187,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X01_Y06_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X01_Y06_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_13,
@@ -20828,7 +23204,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X02_Y06_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X02_Y06_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_13,
@@ -20845,7 +23221,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X01_Y06_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X01_Y06_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_13,
@@ -20862,7 +23238,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y06_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X00_Y06_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X00_Y06_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -20879,7 +23255,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_13,
@@ -20896,7 +23272,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_13,
@@ -20913,7 +23289,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X01_Y06_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -20930,7 +23306,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X01_Y05_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_13,
@@ -20947,7 +23323,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X01_Y06_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X01_Y06_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_13,
@@ -20964,8 +23340,11 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X02_Y06_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X01_Y07 (.tile_id({ Tile_X01_Y07_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X02_Y06_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X01_Y07 (
+	.tile_id({ Tile_X01_Y07_lo_out_7,
 		Tile_X01_Y07_lo_out_7,
 		Tile_X01_Y07_lo_out_6,
 		Tile_X01_Y07_lo_out_6,
@@ -20981,8 +23360,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_hi_out_1,
 		Tile_X01_Y07_hi_out_1,
 		Tile_X01_Y07_tile_id_in_0 }),
-	.stall_out(Tile_X01_Y07_stall_out_0),
-	.stall(Tile_X01_Y06_stall_out_0),
+	.stall_out({ Tile_X01_Y07_stall_out_0 }),
+	.stall({ Tile_X01_Y06_stall_out_0 }),
 	.reset_out(Tile_X01_Y07_reset_out),
 	.reset(Tile_X01_Y06_reset_out),
 	.read_config_data_in({ Tile_X01_Y06_read_config_data_31,
@@ -21066,10 +23445,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_hi_unq1_2,
 		Tile_X01_Y07_hi_out_1,
 		Tile_X01_Y07_tile_id_in_0 }),
-	.config_write(Tile_X01_Y06_config_out_write_0),
-	.config_read(Tile_X01_Y06_config_out_read_0),
-	.config_out_write(Tile_X01_Y07_config_out_write_0),
-	.config_out_read(Tile_X01_Y07_config_out_read_0),
+	.config_write({ Tile_X01_Y06_config_out_write_0 }),
+	.config_read({ Tile_X01_Y06_config_out_read_0 }),
+	.config_out_write({ Tile_X01_Y07_config_out_write_0 }),
+	.config_out_read({ Tile_X01_Y07_config_out_read_0 }),
 	.config_out_config_data({ Tile_X01_Y07_config_out_config_data_31,
 		Tile_X01_Y07_config_out_config_data_30,
 		Tile_X01_Y07_config_out_config_data_29,
@@ -21218,7 +23597,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X01_Y07_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X01_Y07_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_13,
@@ -21235,7 +23614,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X00_Y07_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X00_Y07_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -21252,7 +23631,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_13,
@@ -21269,7 +23648,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_13,
@@ -21286,7 +23665,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X01_Y07_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -21303,7 +23682,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X01_Y06_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_13,
@@ -21320,7 +23699,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X01_Y07_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X01_Y07_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_13,
@@ -21337,7 +23716,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X02_Y07_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X02_Y07_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_13,
@@ -21354,7 +23733,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X01_Y07_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X01_Y07_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_13,
@@ -21371,7 +23750,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X00_Y07_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X00_Y07_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -21388,7 +23767,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_13,
@@ -21405,7 +23784,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_13,
@@ -21422,7 +23801,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X01_Y07_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -21439,7 +23818,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X01_Y06_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_13,
@@ -21456,7 +23835,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X01_Y07_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X01_Y07_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_13,
@@ -21473,7 +23852,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X02_Y07_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X02_Y07_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_13,
@@ -21490,7 +23869,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X01_Y07_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X01_Y07_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_13,
@@ -21507,7 +23886,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y07_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X00_Y07_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X00_Y07_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -21524,7 +23903,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_13,
@@ -21541,7 +23920,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_13,
@@ -21558,7 +23937,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X01_Y07_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -21575,7 +23954,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X01_Y06_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_13,
@@ -21592,7 +23971,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X01_Y07_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X01_Y07_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_13,
@@ -21609,8 +23988,11 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X02_Y07_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X01_Y08 (.tile_id({ Tile_X01_Y08_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X02_Y07_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X01_Y08 (
+	.tile_id({ Tile_X01_Y08_lo_out_7,
 		Tile_X01_Y08_lo_out_7,
 		Tile_X01_Y08_lo_out_6,
 		Tile_X01_Y08_lo_out_6,
@@ -21626,8 +24008,8 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_tile_id_in_2,
 		Tile_X01_Y08_lo_out_0,
 		Tile_X01_Y08_lo_out_0 }),
-	.stall_out(Tile_X01_Y08_stall_out_0),
-	.stall(Tile_X01_Y07_stall_out_0),
+	.stall_out({ Tile_X01_Y08_stall_out_0 }),
+	.stall({ Tile_X01_Y07_stall_out_0 }),
 	.reset_out(Tile_X01_Y08_reset_out),
 	.reset(Tile_X01_Y07_reset_out),
 	.read_config_data_in({ Tile_X01_Y07_read_config_data_31,
@@ -21711,10 +24093,10 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_tile_id_in_3,
 		Tile_X01_Y08_hi_1,
 		Tile_X01_Y08_hi_0 }),
-	.config_write(Tile_X01_Y07_config_out_write_0),
-	.config_read(Tile_X01_Y07_config_out_read_0),
-	.config_out_write(Tile_X01_Y08_config_out_write_0),
-	.config_out_read(Tile_X01_Y08_config_out_read_0),
+	.config_write({ Tile_X01_Y07_config_out_write_0 }),
+	.config_read({ Tile_X01_Y07_config_out_read_0 }),
+	.config_out_write({ Tile_X01_Y08_config_out_write_0 }),
+	.config_out_read({ Tile_X01_Y08_config_out_read_0 }),
 	.config_out_config_data({ Tile_X01_Y08_config_out_config_data_31,
 		Tile_X01_Y08_config_out_config_data_30,
 		Tile_X01_Y08_config_out_config_data_29,
@@ -21863,7 +24245,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X01_Y08_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X01_Y08_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_13,
@@ -21880,7 +24262,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X00_Y08_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X00_Y08_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X01_Y08_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -21897,7 +24279,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X01_Y08_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X01_Y08_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ LTIE_13_LONET,
 		LTIE_13_LONET,
 		LTIE_12_LONET,
@@ -21914,7 +24296,7 @@ module user_proj_example_Interconnect (
 		LTIE_11_LONET,
 		LTIE_11_LONET,
 		LTIE_11_LONET }),
-	.SB_T2_SOUTH_SB_IN_B1(LTIE_13_LONET),
+	.SB_T2_SOUTH_SB_IN_B1({ LTIE_13_LONET }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_13,
@@ -21931,7 +24313,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X01_Y08_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -21948,7 +24330,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X01_Y07_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_13,
@@ -21965,7 +24347,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X01_Y08_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X01_Y08_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_13,
@@ -21982,7 +24364,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X02_Y08_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X02_Y08_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_13,
@@ -21999,7 +24381,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X01_Y08_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X01_Y08_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_13,
@@ -22016,7 +24398,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X00_Y08_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X00_Y08_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X01_Y08_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -22033,7 +24415,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X01_Y08_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X01_Y08_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ LTIE_11_LONET,
 		LTIE_10_LONET,
 		LTIE_10_LONET,
@@ -22050,7 +24432,7 @@ module user_proj_example_Interconnect (
 		LTIE_9_LONET,
 		LTIE_9_LONET,
 		LTIE_9_LONET }),
-	.SB_T1_SOUTH_SB_IN_B1(LTIE_11_LONET),
+	.SB_T1_SOUTH_SB_IN_B1({ LTIE_11_LONET }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_13,
@@ -22067,7 +24449,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X01_Y08_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -22084,7 +24466,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X01_Y07_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_13,
@@ -22101,7 +24483,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X01_Y08_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X01_Y08_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_13,
@@ -22118,7 +24500,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X02_Y08_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X02_Y08_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_13,
@@ -22135,7 +24517,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X01_Y08_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X01_Y08_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_13,
@@ -22152,7 +24534,7 @@ module user_proj_example_Interconnect (
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X00_Y08_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X00_Y08_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X00_Y08_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X01_Y08_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -22169,7 +24551,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X01_Y08_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X01_Y08_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ LTIE_8_LONET,
 		LTIE_8_LONET,
 		LTIE_8_LONET,
@@ -22186,7 +24568,7 @@ module user_proj_example_Interconnect (
 		LTIE_7_LONET,
 		LTIE_7_LONET,
 		LTIE_7_LONET }),
-	.SB_T0_SOUTH_SB_IN_B1(LTIE_9_LONET),
+	.SB_T0_SOUTH_SB_IN_B1({ LTIE_9_LONET }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_13,
@@ -22203,7 +24585,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X01_Y08_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -22220,7 +24602,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X01_Y07_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_13,
@@ -22237,7 +24619,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X01_Y08_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X01_Y08_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_13,
@@ -22254,8 +24636,11 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X02_Y08_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_MemCore Tile_X02_Y01 (.tile_id({ Tile_X02_Y01_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X02_Y08_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_MemCore Tile_X02_Y01 (
+	.tile_id({ Tile_X02_Y01_lo_out_7,
 		Tile_X02_Y01_lo_out_7,
 		Tile_X02_Y01_lo_out_6,
 		Tile_X02_Y01_lo_out_6,
@@ -22271,8 +24656,8 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_lo_out_1,
 		Tile_X02_Y01_tile_id_in_1,
 		Tile_X02_Y01_tile_id_in_0 }),
-	.stall_out(Tile_X02_Y01_stall_out_0),
-	.stall(stall[2]),
+	.stall_out({ Tile_X02_Y01_stall_out_0 }),
+	.stall({ stall[2] }),
 	.reset_out(Tile_X02_Y01_reset_out),
 	.reset(FE_OFN377_ckmux_rst),
 	.read_config_data_in({ LTIE_158_LONET,
@@ -22356,10 +24741,10 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_hi_2,
 		Tile_X02_Y01_hi_1,
 		Tile_X02_Y01_tile_id_in_0 }),
-	.config_write(FE_OFN249_CGRA_config_write),
-	.config_read(FE_OFN245_CGRA_config_read),
-	.config_out_write(Tile_X02_Y01_config_out_write_0),
-	.config_out_read(Tile_X02_Y01_config_out_read_0),
+	.config_write({ FE_OFN249_CGRA_config_write }),
+	.config_read({ FE_OFN245_CGRA_config_read }),
+	.config_out_write({ Tile_X02_Y01_config_out_write_0 }),
+	.config_out_read({ Tile_X02_Y01_config_out_read_0 }),
 	.config_out_config_data({ Tile_X02_Y01_config_out_config_data_31,
 		Tile_X02_Y01_config_out_config_data_30,
 		Tile_X02_Y01_config_out_config_data_29,
@@ -22477,7 +24862,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X02_Y01_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X02_Y01_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_13,
@@ -22494,7 +24879,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X01_Y01_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X01_Y01_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -22511,7 +24896,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_13,
@@ -22528,7 +24913,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X02_Y01_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T2_NORTH_SB_OUT_B16_13,
@@ -22545,7 +24930,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X02_Y01_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X02_Y01_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ LTIE_154_LONET,
 		LTIE_154_LONET,
 		LTIE_153_LONET,
@@ -22562,7 +24947,7 @@ module user_proj_example_Interconnect (
 		LTIE_152_LONET,
 		LTIE_152_LONET,
 		LTIE_152_LONET }),
-	.SB_T2_NORTH_SB_IN_B1(LTIE_154_LONET),
+	.SB_T2_NORTH_SB_IN_B1({ LTIE_154_LONET }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_13,
@@ -22579,7 +24964,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X02_Y01_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X02_Y01_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_13,
@@ -22596,7 +24981,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X03_Y01_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X03_Y01_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_13,
@@ -22613,7 +24998,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X02_Y01_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X02_Y01_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_13,
@@ -22630,7 +25015,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X01_Y01_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X01_Y01_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -22647,7 +25032,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_13,
@@ -22664,7 +25049,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X02_Y01_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T1_NORTH_SB_OUT_B16_13,
@@ -22681,7 +25066,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X02_Y01_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X02_Y01_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ LTIE_152_LONET,
 		LTIE_151_LONET,
 		LTIE_151_LONET,
@@ -22698,7 +25083,7 @@ module user_proj_example_Interconnect (
 		LTIE_150_LONET,
 		LTIE_150_LONET,
 		LTIE_150_LONET }),
-	.SB_T1_NORTH_SB_IN_B1(LTIE_152_LONET),
+	.SB_T1_NORTH_SB_IN_B1({ LTIE_152_LONET }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_13,
@@ -22715,7 +25100,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X02_Y01_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X02_Y01_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_13,
@@ -22732,7 +25117,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X03_Y01_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X03_Y01_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_13,
@@ -22749,7 +25134,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X02_Y01_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X02_Y01_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_13,
@@ -22766,7 +25151,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y01_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X01_Y01_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X01_Y01_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -22783,7 +25168,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_13,
@@ -22800,7 +25185,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X02_Y01_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T0_NORTH_SB_OUT_B16_13,
@@ -22817,7 +25202,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X02_Y01_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X02_Y01_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ LTIE_149_LONET,
 		LTIE_149_LONET,
 		LTIE_149_LONET,
@@ -22834,7 +25219,7 @@ module user_proj_example_Interconnect (
 		LTIE_148_LONET,
 		LTIE_148_LONET,
 		LTIE_148_LONET }),
-	.SB_T0_NORTH_SB_IN_B1(LTIE_150_LONET),
+	.SB_T0_NORTH_SB_IN_B1({ LTIE_150_LONET }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_13,
@@ -22851,7 +25236,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X02_Y01_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X02_Y01_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_13,
@@ -22868,8 +25253,11 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X03_Y01_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X02_Y02 (.tile_id({ Tile_X02_Y02_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X03_Y01_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X02_Y02 (
+	.tile_id({ Tile_X02_Y02_lo_out_7,
 		Tile_X02_Y02_lo_out_7,
 		Tile_X02_Y02_lo_out_6,
 		Tile_X02_Y02_lo_out_6,
@@ -22885,8 +25273,8 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_lo_out_1,
 		Tile_X02_Y02_tile_id_in_1,
 		Tile_X02_Y02_tile_id_in_0 }),
-	.stall_out(Tile_X02_Y02_stall_out_0),
-	.stall(Tile_X02_Y01_stall_out_0),
+	.stall_out({ Tile_X02_Y02_stall_out_0 }),
+	.stall({ Tile_X02_Y01_stall_out_0 }),
 	.reset_out(Tile_X02_Y02_reset_out),
 	.reset(Tile_X02_Y01_reset_out),
 	.read_config_data_in({ Tile_X02_Y01_read_config_data_31,
@@ -22970,10 +25358,10 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_hi_2,
 		Tile_X02_Y02_tile_id_in_1,
 		Tile_X02_Y02_hi_0 }),
-	.config_write(Tile_X02_Y01_config_out_write_0),
-	.config_read(Tile_X02_Y01_config_out_read_0),
-	.config_out_write(Tile_X02_Y02_config_out_write_0),
-	.config_out_read(Tile_X02_Y02_config_out_read_0),
+	.config_write({ Tile_X02_Y01_config_out_write_0 }),
+	.config_read({ Tile_X02_Y01_config_out_read_0 }),
+	.config_out_write({ Tile_X02_Y02_config_out_write_0 }),
+	.config_out_read({ Tile_X02_Y02_config_out_read_0 }),
 	.config_out_config_data({ Tile_X02_Y02_config_out_config_data_31,
 		Tile_X02_Y02_config_out_config_data_30,
 		Tile_X02_Y02_config_out_config_data_29,
@@ -23122,7 +25510,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X02_Y02_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X02_Y02_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_13,
@@ -23139,7 +25527,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X01_Y02_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X01_Y02_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -23156,7 +25544,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_13,
@@ -23173,7 +25561,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_13,
@@ -23190,7 +25578,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X02_Y02_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -23207,7 +25595,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X02_Y01_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_13,
@@ -23224,7 +25612,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X02_Y02_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X02_Y02_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_13,
@@ -23241,7 +25629,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X03_Y02_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X03_Y02_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_13,
@@ -23258,7 +25646,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X02_Y02_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X02_Y02_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_13,
@@ -23275,7 +25663,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X01_Y02_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X01_Y02_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -23292,7 +25680,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_13,
@@ -23309,7 +25697,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_13,
@@ -23326,7 +25714,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X02_Y02_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -23343,7 +25731,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X02_Y01_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_13,
@@ -23360,7 +25748,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X02_Y02_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X02_Y02_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_13,
@@ -23377,7 +25765,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X03_Y02_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X03_Y02_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_13,
@@ -23394,7 +25782,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X02_Y02_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X02_Y02_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_13,
@@ -23411,7 +25799,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y02_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X01_Y02_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X01_Y02_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -23428,7 +25816,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_13,
@@ -23445,7 +25833,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_13,
@@ -23462,7 +25850,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X02_Y02_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -23479,7 +25867,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X02_Y01_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_13,
@@ -23496,7 +25884,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X02_Y02_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X02_Y02_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_13,
@@ -23513,8 +25901,11 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X03_Y02_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X02_Y03 (.tile_id({ Tile_X02_Y03_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X03_Y02_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X02_Y03 (
+	.tile_id({ Tile_X02_Y03_lo_out_7,
 		Tile_X02_Y03_lo_out_7,
 		Tile_X02_Y03_lo_out_6,
 		Tile_X02_Y03_lo_out_6,
@@ -23530,8 +25921,8 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_lo_out_1,
 		Tile_X02_Y03_tile_id_in_1,
 		Tile_X02_Y03_tile_id_in_0 }),
-	.stall_out(Tile_X02_Y03_stall_out_0),
-	.stall(Tile_X02_Y02_stall_out_0),
+	.stall_out({ Tile_X02_Y03_stall_out_0 }),
+	.stall({ Tile_X02_Y02_stall_out_0 }),
 	.reset_out(Tile_X02_Y03_reset_out),
 	.reset(Tile_X02_Y02_reset_out),
 	.read_config_data_in({ Tile_X02_Y02_read_config_data_31,
@@ -23615,10 +26006,10 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_hi_unq1_2,
 		Tile_X02_Y03_tile_id_in_1,
 		Tile_X02_Y03_tile_id_in_0 }),
-	.config_write(Tile_X02_Y02_config_out_write_0),
-	.config_read(Tile_X02_Y02_config_out_read_0),
-	.config_out_write(Tile_X02_Y03_config_out_write_0),
-	.config_out_read(Tile_X02_Y03_config_out_read_0),
+	.config_write({ Tile_X02_Y02_config_out_write_0 }),
+	.config_read({ Tile_X02_Y02_config_out_read_0 }),
+	.config_out_write({ Tile_X02_Y03_config_out_write_0 }),
+	.config_out_read({ Tile_X02_Y03_config_out_read_0 }),
 	.config_out_config_data({ Tile_X02_Y03_config_out_config_data_31,
 		Tile_X02_Y03_config_out_config_data_30,
 		Tile_X02_Y03_config_out_config_data_29,
@@ -23767,7 +26158,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X02_Y03_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X02_Y03_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_13,
@@ -23784,7 +26175,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X01_Y03_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X01_Y03_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -23801,7 +26192,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_13,
@@ -23818,7 +26209,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_13,
@@ -23835,7 +26226,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X02_Y03_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -23852,7 +26243,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X02_Y02_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_13,
@@ -23869,7 +26260,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X02_Y03_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X02_Y03_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_13,
@@ -23886,7 +26277,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X03_Y03_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X03_Y03_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_13,
@@ -23903,7 +26294,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X02_Y03_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X02_Y03_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_13,
@@ -23920,7 +26311,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X01_Y03_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X01_Y03_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -23937,7 +26328,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_13,
@@ -23954,7 +26345,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_13,
@@ -23971,7 +26362,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X02_Y03_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -23988,7 +26379,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X02_Y02_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_13,
@@ -24005,7 +26396,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X02_Y03_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X02_Y03_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_13,
@@ -24022,7 +26413,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X03_Y03_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X03_Y03_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_13,
@@ -24039,7 +26430,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X02_Y03_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X02_Y03_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_13,
@@ -24056,7 +26447,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y03_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X01_Y03_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X01_Y03_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -24073,7 +26464,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_13,
@@ -24090,7 +26481,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_13,
@@ -24107,7 +26498,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X02_Y03_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -24124,7 +26515,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X02_Y02_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_13,
@@ -24141,7 +26532,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X02_Y03_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X02_Y03_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_13,
@@ -24158,8 +26549,11 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X03_Y03_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X02_Y04 (.tile_id({ Tile_X02_Y04_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X03_Y03_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X02_Y04 (
+	.tile_id({ Tile_X02_Y04_lo_out_7,
 		Tile_X02_Y04_lo_out_7,
 		Tile_X02_Y04_lo_out_6,
 		Tile_X02_Y04_lo_out_6,
@@ -24175,8 +26569,8 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_tile_id_in_2,
 		Tile_X02_Y04_lo_out_0,
 		Tile_X02_Y04_lo_out_0 }),
-	.stall_out(Tile_X02_Y04_stall_out_0),
-	.stall(Tile_X02_Y03_stall_out_0),
+	.stall_out({ Tile_X02_Y04_stall_out_0 }),
+	.stall({ Tile_X02_Y03_stall_out_0 }),
 	.reset_out(Tile_X02_Y04_reset_out),
 	.reset(Tile_X02_Y03_reset_out),
 	.read_config_data_in({ Tile_X02_Y03_read_config_data_31,
@@ -24260,10 +26654,10 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_hi_2,
 		Tile_X02_Y04_tile_id_in_2,
 		Tile_X02_Y04_hi_0 }),
-	.config_write(Tile_X02_Y03_config_out_write_0),
-	.config_read(Tile_X02_Y03_config_out_read_0),
-	.config_out_write(Tile_X02_Y04_config_out_write_0),
-	.config_out_read(Tile_X02_Y04_config_out_read_0),
+	.config_write({ Tile_X02_Y03_config_out_write_0 }),
+	.config_read({ Tile_X02_Y03_config_out_read_0 }),
+	.config_out_write({ Tile_X02_Y04_config_out_write_0 }),
+	.config_out_read({ Tile_X02_Y04_config_out_read_0 }),
 	.config_out_config_data({ Tile_X02_Y04_config_out_config_data_31,
 		Tile_X02_Y04_config_out_config_data_30,
 		Tile_X02_Y04_config_out_config_data_29,
@@ -24412,7 +26806,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X02_Y04_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X02_Y04_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_13,
@@ -24429,7 +26823,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X01_Y04_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X01_Y04_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -24446,7 +26840,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_13,
@@ -24463,7 +26857,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_13,
@@ -24480,7 +26874,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X02_Y04_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -24497,7 +26891,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X02_Y03_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_13,
@@ -24514,7 +26908,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X02_Y04_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X02_Y04_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_13,
@@ -24531,7 +26925,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X03_Y04_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X03_Y04_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_13,
@@ -24548,7 +26942,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X02_Y04_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X02_Y04_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_13,
@@ -24565,7 +26959,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X01_Y04_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X01_Y04_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -24582,7 +26976,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_13,
@@ -24599,7 +26993,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_13,
@@ -24616,7 +27010,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X02_Y04_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -24633,7 +27027,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X02_Y03_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_13,
@@ -24650,7 +27044,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X02_Y04_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X02_Y04_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_13,
@@ -24667,7 +27061,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X03_Y04_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X03_Y04_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_13,
@@ -24684,7 +27078,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X02_Y04_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X02_Y04_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_13,
@@ -24701,7 +27095,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y04_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X01_Y04_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X01_Y04_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -24718,7 +27112,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_13,
@@ -24735,7 +27129,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_13,
@@ -24752,7 +27146,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X02_Y04_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -24769,7 +27163,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X02_Y03_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_13,
@@ -24786,7 +27180,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X02_Y04_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X02_Y04_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_13,
@@ -24803,8 +27197,11 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X03_Y04_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_MemCore Tile_X02_Y05 (.tile_id({ Tile_X02_Y05_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X03_Y04_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_MemCore Tile_X02_Y05 (
+	.tile_id({ Tile_X02_Y05_lo_out_7,
 		Tile_X02_Y05_lo_out_7,
 		Tile_X02_Y05_lo_out_6,
 		Tile_X02_Y05_lo_out_6,
@@ -24820,8 +27217,8 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_tile_id_in_2,
 		Tile_X02_Y05_tile_id_in_1,
 		Tile_X02_Y05_tile_id_in_0 }),
-	.stall_out(Tile_X02_Y05_stall_out_0),
-	.stall(Tile_X02_Y04_stall_out_0),
+	.stall_out({ Tile_X02_Y05_stall_out_0 }),
+	.stall({ Tile_X02_Y04_stall_out_0 }),
 	.reset_out(Tile_X02_Y05_reset_out),
 	.reset(Tile_X02_Y04_reset_out),
 	.read_config_data_in({ Tile_X02_Y04_read_config_data_31,
@@ -24905,10 +27302,10 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_hi_2,
 		Tile_X02_Y05_tile_id_in_2,
 		Tile_X02_Y05_tile_id_in_0 }),
-	.config_write(Tile_X02_Y04_config_out_write_0),
-	.config_read(Tile_X02_Y04_config_out_read_0),
-	.config_out_write(Tile_X02_Y05_config_out_write_0),
-	.config_out_read(Tile_X02_Y05_config_out_read_0),
+	.config_write({ Tile_X02_Y04_config_out_write_0 }),
+	.config_read({ Tile_X02_Y04_config_out_read_0 }),
+	.config_out_write({ Tile_X02_Y05_config_out_write_0 }),
+	.config_out_read({ Tile_X02_Y05_config_out_read_0 }),
 	.config_out_config_data({ Tile_X02_Y05_config_out_config_data_31,
 		Tile_X02_Y05_config_out_config_data_30,
 		Tile_X02_Y05_config_out_config_data_29,
@@ -25057,7 +27454,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X02_Y05_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X02_Y05_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_13,
@@ -25074,7 +27471,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X01_Y05_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X01_Y05_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -25091,7 +27488,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_13,
@@ -25108,7 +27505,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_13,
@@ -25125,7 +27522,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X02_Y05_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -25142,7 +27539,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X02_Y04_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_13,
@@ -25159,7 +27556,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X02_Y05_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X02_Y05_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_13,
@@ -25176,7 +27573,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X03_Y05_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X03_Y05_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_13,
@@ -25193,7 +27590,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X02_Y05_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X02_Y05_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_13,
@@ -25210,7 +27607,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X01_Y05_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X01_Y05_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -25227,7 +27624,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_13,
@@ -25244,7 +27641,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_13,
@@ -25261,7 +27658,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X02_Y05_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -25278,7 +27675,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X02_Y04_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_13,
@@ -25295,7 +27692,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X02_Y05_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X02_Y05_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_13,
@@ -25312,7 +27709,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X03_Y05_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X03_Y05_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_13,
@@ -25329,7 +27726,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X02_Y05_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X02_Y05_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_13,
@@ -25346,7 +27743,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y05_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X01_Y05_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X01_Y05_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -25363,7 +27760,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_13,
@@ -25380,7 +27777,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_13,
@@ -25397,7 +27794,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X02_Y05_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -25414,7 +27811,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X02_Y04_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_13,
@@ -25431,7 +27828,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X02_Y05_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X02_Y05_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_13,
@@ -25448,8 +27845,11 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X03_Y05_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X02_Y06 (.tile_id({ Tile_X02_Y06_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X03_Y05_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X02_Y06 (
+	.tile_id({ Tile_X02_Y06_lo_out_7,
 		Tile_X02_Y06_lo_out_7,
 		Tile_X02_Y06_lo_out_6,
 		Tile_X02_Y06_lo_out_6,
@@ -25465,8 +27865,8 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_hi_1,
 		Tile_X02_Y06_hi_1,
 		Tile_X02_Y06_tile_id_in_0 }),
-	.stall_out(Tile_X02_Y06_stall_out_0),
-	.stall(Tile_X02_Y05_stall_out_0),
+	.stall_out({ Tile_X02_Y06_stall_out_0 }),
+	.stall({ Tile_X02_Y05_stall_out_0 }),
 	.reset_out(Tile_X02_Y06_reset_out),
 	.reset(Tile_X02_Y05_reset_out),
 	.read_config_data_in({ Tile_X02_Y05_read_config_data_31,
@@ -25550,10 +27950,10 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_hi_2,
 		Tile_X02_Y06_hi_1,
 		Tile_X02_Y06_hi_0 }),
-	.config_write(Tile_X02_Y05_config_out_write_0),
-	.config_read(Tile_X02_Y05_config_out_read_0),
-	.config_out_write(Tile_X02_Y06_config_out_write_0),
-	.config_out_read(Tile_X02_Y06_config_out_read_0),
+	.config_write({ Tile_X02_Y05_config_out_write_0 }),
+	.config_read({ Tile_X02_Y05_config_out_read_0 }),
+	.config_out_write({ Tile_X02_Y06_config_out_write_0 }),
+	.config_out_read({ Tile_X02_Y06_config_out_read_0 }),
 	.config_out_config_data({ Tile_X02_Y06_config_out_config_data_31,
 		Tile_X02_Y06_config_out_config_data_30,
 		Tile_X02_Y06_config_out_config_data_29,
@@ -25702,7 +28102,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X02_Y06_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X02_Y06_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_13,
@@ -25719,7 +28119,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X01_Y06_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X01_Y06_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -25736,7 +28136,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_13,
@@ -25753,7 +28153,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_13,
@@ -25770,7 +28170,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X02_Y06_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -25787,7 +28187,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X02_Y05_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_13,
@@ -25804,7 +28204,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X02_Y06_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X02_Y06_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_13,
@@ -25821,7 +28221,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X03_Y06_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X03_Y06_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_13,
@@ -25838,7 +28238,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X02_Y06_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X02_Y06_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_13,
@@ -25855,7 +28255,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X01_Y06_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X01_Y06_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -25872,7 +28272,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_13,
@@ -25889,7 +28289,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_13,
@@ -25906,7 +28306,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X02_Y06_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -25923,7 +28323,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X02_Y05_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_13,
@@ -25940,7 +28340,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X02_Y06_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X02_Y06_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_13,
@@ -25957,7 +28357,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X03_Y06_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X03_Y06_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_13,
@@ -25974,7 +28374,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X02_Y06_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X02_Y06_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_13,
@@ -25991,7 +28391,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y06_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X01_Y06_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X01_Y06_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -26008,7 +28408,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_13,
@@ -26025,7 +28425,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_13,
@@ -26042,7 +28442,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X02_Y06_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -26059,7 +28459,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X02_Y05_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_13,
@@ -26076,7 +28476,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X02_Y06_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X02_Y06_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_13,
@@ -26093,8 +28493,11 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X03_Y06_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X02_Y07 (.tile_id({ Tile_X02_Y07_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X03_Y06_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X02_Y07 (
+	.tile_id({ Tile_X02_Y07_lo_out_7,
 		Tile_X02_Y07_lo_out_7,
 		Tile_X02_Y07_lo_out_6,
 		Tile_X02_Y07_lo_out_6,
@@ -26110,8 +28513,8 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_hi_out_1,
 		Tile_X02_Y07_hi_out_1,
 		Tile_X02_Y07_tile_id_in_0 }),
-	.stall_out(Tile_X02_Y07_stall_out_0),
-	.stall(Tile_X02_Y06_stall_out_0),
+	.stall_out({ Tile_X02_Y07_stall_out_0 }),
+	.stall({ Tile_X02_Y06_stall_out_0 }),
 	.reset_out(Tile_X02_Y07_reset_out),
 	.reset(Tile_X02_Y06_reset_out),
 	.read_config_data_in({ Tile_X02_Y06_read_config_data_31,
@@ -26195,10 +28598,10 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_hi_unq1_2,
 		Tile_X02_Y07_hi_out_1,
 		Tile_X02_Y07_tile_id_in_0 }),
-	.config_write(Tile_X02_Y06_config_out_write_0),
-	.config_read(Tile_X02_Y06_config_out_read_0),
-	.config_out_write(Tile_X02_Y07_config_out_write_0),
-	.config_out_read(Tile_X02_Y07_config_out_read_0),
+	.config_write({ Tile_X02_Y06_config_out_write_0 }),
+	.config_read({ Tile_X02_Y06_config_out_read_0 }),
+	.config_out_write({ Tile_X02_Y07_config_out_write_0 }),
+	.config_out_read({ Tile_X02_Y07_config_out_read_0 }),
 	.config_out_config_data({ Tile_X02_Y07_config_out_config_data_31,
 		Tile_X02_Y07_config_out_config_data_30,
 		Tile_X02_Y07_config_out_config_data_29,
@@ -26347,7 +28750,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X02_Y07_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X02_Y07_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_13,
@@ -26364,7 +28767,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X01_Y07_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X01_Y07_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -26381,7 +28784,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_13,
@@ -26398,7 +28801,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_13,
@@ -26415,7 +28818,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X02_Y07_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -26432,7 +28835,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X02_Y06_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_13,
@@ -26449,7 +28852,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X02_Y07_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X02_Y07_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_13,
@@ -26466,7 +28869,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X03_Y07_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X03_Y07_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_13,
@@ -26483,7 +28886,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X02_Y07_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X02_Y07_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_13,
@@ -26500,7 +28903,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X01_Y07_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X01_Y07_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -26517,7 +28920,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_13,
@@ -26534,7 +28937,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_13,
@@ -26551,7 +28954,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X02_Y07_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -26568,7 +28971,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X02_Y06_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_13,
@@ -26585,7 +28988,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X02_Y07_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X02_Y07_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_13,
@@ -26602,7 +29005,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X03_Y07_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X03_Y07_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_13,
@@ -26619,7 +29022,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X02_Y07_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X02_Y07_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_13,
@@ -26636,7 +29039,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y07_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X01_Y07_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X01_Y07_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -26653,7 +29056,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_13,
@@ -26670,7 +29073,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_13,
@@ -26687,7 +29090,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X02_Y07_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -26704,7 +29107,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X02_Y06_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_13,
@@ -26721,7 +29124,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X02_Y07_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X02_Y07_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_13,
@@ -26738,8 +29141,11 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X03_Y07_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_PE Tile_X02_Y08 (.tile_id({ Tile_X02_Y08_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X03_Y07_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X02_Y08 (
+	.tile_id({ Tile_X02_Y08_lo_out_7,
 		Tile_X02_Y08_lo_out_7,
 		Tile_X02_Y08_lo_out_6,
 		Tile_X02_Y08_lo_out_6,
@@ -26755,8 +29161,8 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_tile_id_in_2,
 		Tile_X02_Y08_lo_out_0,
 		Tile_X02_Y08_lo_out_0 }),
-	.stall_out(Tile_X02_Y08_stall_out_0),
-	.stall(Tile_X02_Y07_stall_out_0),
+	.stall_out({ Tile_X02_Y08_stall_out_0 }),
+	.stall({ Tile_X02_Y07_stall_out_0 }),
 	.reset_out(Tile_X02_Y08_reset_out),
 	.reset(Tile_X02_Y07_reset_out),
 	.read_config_data_in({ Tile_X02_Y07_read_config_data_31,
@@ -26840,10 +29246,10 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_tile_id_in_3,
 		Tile_X02_Y08_hi_1,
 		Tile_X02_Y08_hi_0 }),
-	.config_write(Tile_X02_Y07_config_out_write_0),
-	.config_read(Tile_X02_Y07_config_out_read_0),
-	.config_out_write(Tile_X02_Y08_config_out_write_0),
-	.config_out_read(Tile_X02_Y08_config_out_read_0),
+	.config_write({ Tile_X02_Y07_config_out_write_0 }),
+	.config_read({ Tile_X02_Y07_config_out_read_0 }),
+	.config_out_write({ Tile_X02_Y08_config_out_write_0 }),
+	.config_out_read({ Tile_X02_Y08_config_out_read_0 }),
 	.config_out_config_data({ Tile_X02_Y08_config_out_config_data_31,
 		Tile_X02_Y08_config_out_config_data_30,
 		Tile_X02_Y08_config_out_config_data_29,
@@ -26992,7 +29398,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X02_Y08_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X02_Y08_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_13,
@@ -27009,7 +29415,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X01_Y08_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X01_Y08_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X02_Y08_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -27026,7 +29432,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X02_Y08_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X02_Y08_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ LTIE_20_LONET,
 		LTIE_20_LONET,
 		LTIE_19_LONET,
@@ -27043,7 +29449,7 @@ module user_proj_example_Interconnect (
 		LTIE_18_LONET,
 		LTIE_18_LONET,
 		LTIE_18_LONET }),
-	.SB_T2_SOUTH_SB_IN_B1(LTIE_20_LONET),
+	.SB_T2_SOUTH_SB_IN_B1({ LTIE_20_LONET }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_13,
@@ -27060,7 +29466,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X02_Y08_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -27077,7 +29483,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X02_Y07_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_13,
@@ -27094,7 +29500,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X02_Y08_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X02_Y08_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_13,
@@ -27111,7 +29517,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_IN_B1(Tile_X03_Y08_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_IN_B1({ Tile_X03_Y08_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_13,
@@ -27128,7 +29534,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X02_Y08_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X02_Y08_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_13,
@@ -27145,7 +29551,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X01_Y08_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X01_Y08_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X02_Y08_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -27162,7 +29568,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X02_Y08_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X02_Y08_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ LTIE_18_LONET,
 		LTIE_17_LONET,
 		LTIE_17_LONET,
@@ -27179,7 +29585,7 @@ module user_proj_example_Interconnect (
 		LTIE_16_LONET,
 		LTIE_16_LONET,
 		LTIE_16_LONET }),
-	.SB_T1_SOUTH_SB_IN_B1(LTIE_18_LONET),
+	.SB_T1_SOUTH_SB_IN_B1({ LTIE_18_LONET }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_13,
@@ -27196,7 +29602,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X02_Y08_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -27213,7 +29619,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X02_Y07_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_13,
@@ -27230,7 +29636,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X02_Y08_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X02_Y08_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_13,
@@ -27247,7 +29653,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_IN_B1(Tile_X03_Y08_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_IN_B1({ Tile_X03_Y08_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_13,
@@ -27264,7 +29670,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X02_Y08_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X02_Y08_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_13,
@@ -27281,7 +29687,7 @@ module user_proj_example_Interconnect (
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X01_Y08_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X01_Y08_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X01_Y08_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X02_Y08_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -27298,7 +29704,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X02_Y08_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X02_Y08_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ LTIE_15_LONET,
 		LTIE_15_LONET,
 		LTIE_15_LONET,
@@ -27315,7 +29721,7 @@ module user_proj_example_Interconnect (
 		LTIE_14_LONET,
 		LTIE_14_LONET,
 		LTIE_14_LONET }),
-	.SB_T0_SOUTH_SB_IN_B1(LTIE_16_LONET),
+	.SB_T0_SOUTH_SB_IN_B1({ LTIE_16_LONET }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_13,
@@ -27332,7 +29738,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X02_Y08_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -27349,7 +29755,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X02_Y07_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_13,
@@ -27366,7 +29772,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X02_Y08_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X02_Y08_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_13,
@@ -27383,8 +29789,11 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_IN_B1(Tile_X03_Y08_SB_T0_WEST_SB_OUT_B1_0));
-   Tile_MemCore Tile_X03_Y01 (.tile_id({ Tile_X03_Y01_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ Tile_X03_Y08_SB_T0_WEST_SB_OUT_B1_0 }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_MemCore Tile_X03_Y01 (
+	.tile_id({ Tile_X03_Y01_lo_out_7,
 		Tile_X03_Y01_lo_out_7,
 		Tile_X03_Y01_lo_out_6,
 		Tile_X03_Y01_lo_out_6,
@@ -27400,8 +29809,8 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_lo_out_1,
 		Tile_X03_Y01_tile_id_in_1,
 		Tile_X03_Y01_tile_id_in_0 }),
-	.stall_out(Tile_X03_Y01_stall_out_0),
-	.stall(stall[3]),
+	.stall_out({ Tile_X03_Y01_stall_out_0 }),
+	.stall({ stall[3] }),
 	.reset_out(Tile_X03_Y01_reset_out),
 	.reset(reset),
 	.read_config_data_in({ LTIE_169_LONET,
@@ -27485,10 +29894,10 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_hi_unq1_2,
 		Tile_X03_Y01_hi_unq1_1,
 		Tile_X03_Y01_tile_id_in_0 }),
-	.config_write(FE_PHN0_CGRA_config_write),
-	.config_read(FE_OFN244_CGRA_config_read),
-	.config_out_write(Tile_X03_Y01_config_out_write_0),
-	.config_out_read(Tile_X03_Y01_config_out_read_0),
+	.config_write({ FE_PHN0_CGRA_config_write }),
+	.config_read({ FE_OFN244_CGRA_config_read }),
+	.config_out_write({ Tile_X03_Y01_config_out_write_0 }),
+	.config_out_read({ Tile_X03_Y01_config_out_read_0 }),
 	.config_out_config_data({ Tile_X03_Y01_config_out_config_data_31,
 		Tile_X03_Y01_config_out_config_data_30,
 		Tile_X03_Y01_config_out_config_data_29,
@@ -27575,7 +29984,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X03_Y01_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X03_Y01_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_13,
@@ -27592,7 +30001,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X02_Y01_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X02_Y01_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -27609,7 +30018,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_13,
@@ -27626,7 +30035,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X03_Y01_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T2_NORTH_SB_OUT_B16_13,
@@ -27643,7 +30052,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X03_Y01_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X03_Y01_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ LTIE_165_LONET,
 		LTIE_165_LONET,
 		LTIE_164_LONET,
@@ -27660,7 +30069,7 @@ module user_proj_example_Interconnect (
 		LTIE_163_LONET,
 		LTIE_163_LONET,
 		LTIE_163_LONET }),
-	.SB_T2_NORTH_SB_IN_B1(LTIE_165_LONET),
+	.SB_T2_NORTH_SB_IN_B1({ LTIE_165_LONET }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X03_Y01_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T2_EAST_SB_OUT_B16_13,
@@ -27677,7 +30086,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X03_Y01_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X03_Y01_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ LTIE_132_LONET,
 		LTIE_132_LONET,
 		LTIE_131_LONET,
@@ -27694,7 +30103,7 @@ module user_proj_example_Interconnect (
 		LTIE_130_LONET,
 		LTIE_130_LONET,
 		LTIE_130_LONET }),
-	.SB_T2_EAST_SB_IN_B1(LTIE_132_LONET),
+	.SB_T2_EAST_SB_IN_B1({ LTIE_132_LONET }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_13,
@@ -27711,7 +30120,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X03_Y01_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X03_Y01_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_13,
@@ -27728,7 +30137,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X02_Y01_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X02_Y01_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -27745,7 +30154,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_13,
@@ -27762,7 +30171,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X03_Y01_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T1_NORTH_SB_OUT_B16_13,
@@ -27779,7 +30188,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X03_Y01_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X03_Y01_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ LTIE_163_LONET,
 		LTIE_162_LONET,
 		LTIE_162_LONET,
@@ -27796,7 +30205,7 @@ module user_proj_example_Interconnect (
 		LTIE_161_LONET,
 		LTIE_161_LONET,
 		LTIE_161_LONET }),
-	.SB_T1_NORTH_SB_IN_B1(LTIE_163_LONET),
+	.SB_T1_NORTH_SB_IN_B1({ LTIE_163_LONET }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X03_Y01_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T1_EAST_SB_OUT_B16_13,
@@ -27813,7 +30222,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X03_Y01_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X03_Y01_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ LTIE_130_LONET,
 		LTIE_129_LONET,
 		LTIE_129_LONET,
@@ -27830,7 +30239,7 @@ module user_proj_example_Interconnect (
 		LTIE_128_LONET,
 		LTIE_128_LONET,
 		LTIE_128_LONET }),
-	.SB_T1_EAST_SB_IN_B1(LTIE_130_LONET),
+	.SB_T1_EAST_SB_IN_B1({ LTIE_130_LONET }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_13,
@@ -27847,7 +30256,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X03_Y01_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X03_Y01_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_13,
@@ -27864,7 +30273,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y01_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X02_Y01_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X02_Y01_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -27881,7 +30290,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_13,
@@ -27898,7 +30307,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X03_Y01_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T0_NORTH_SB_OUT_B16_13,
@@ -27915,7 +30324,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X03_Y01_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X03_Y01_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ LTIE_160_LONET,
 		LTIE_160_LONET,
 		LTIE_160_LONET,
@@ -27932,7 +30341,7 @@ module user_proj_example_Interconnect (
 		LTIE_159_LONET,
 		LTIE_159_LONET,
 		LTIE_159_LONET }),
-	.SB_T0_NORTH_SB_IN_B1(LTIE_161_LONET),
+	.SB_T0_NORTH_SB_IN_B1({ LTIE_161_LONET }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X03_Y01_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T0_EAST_SB_OUT_B16_13,
@@ -27949,7 +30358,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X03_Y01_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X03_Y01_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ LTIE_127_LONET,
 		LTIE_127_LONET,
 		LTIE_127_LONET,
@@ -27966,8 +30375,11 @@ module user_proj_example_Interconnect (
 		LTIE_126_LONET,
 		LTIE_126_LONET,
 		LTIE_126_LONET }),
-	.SB_T0_EAST_SB_IN_B1(LTIE_128_LONET));
-   Tile_PE Tile_X03_Y02 (.tile_id({ Tile_X03_Y02_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ LTIE_128_LONET }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X03_Y02 (
+	.tile_id({ Tile_X03_Y02_lo_out_7,
 		Tile_X03_Y02_lo_out_7,
 		Tile_X03_Y02_lo_out_6,
 		Tile_X03_Y02_lo_out_6,
@@ -27983,8 +30395,8 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_lo_out_1,
 		Tile_X03_Y02_tile_id_in_1,
 		Tile_X03_Y02_tile_id_in_0 }),
-	.stall_out(Tile_X03_Y02_stall_out_0),
-	.stall(Tile_X03_Y01_stall_out_0),
+	.stall_out({ Tile_X03_Y02_stall_out_0 }),
+	.stall({ Tile_X03_Y01_stall_out_0 }),
 	.reset_out(Tile_X03_Y02_reset_out),
 	.reset(Tile_X03_Y01_reset_out),
 	.read_config_data_in({ Tile_X03_Y01_read_config_data_31,
@@ -28068,10 +30480,10 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_hi_unq1_2,
 		Tile_X03_Y02_tile_id_in_1,
 		Tile_X03_Y02_hi_unq1_0 }),
-	.config_write(Tile_X03_Y01_config_out_write_0),
-	.config_read(Tile_X03_Y01_config_out_read_0),
-	.config_out_write(Tile_X03_Y02_config_out_write_0),
-	.config_out_read(Tile_X03_Y02_config_out_read_0),
+	.config_write({ Tile_X03_Y01_config_out_write_0 }),
+	.config_read({ Tile_X03_Y01_config_out_read_0 }),
+	.config_out_write({ Tile_X03_Y02_config_out_write_0 }),
+	.config_out_read({ Tile_X03_Y02_config_out_read_0 }),
 	.config_out_config_data({ Tile_X03_Y02_config_out_config_data_31,
 		Tile_X03_Y02_config_out_config_data_30,
 		Tile_X03_Y02_config_out_config_data_29,
@@ -28220,7 +30632,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X03_Y02_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X03_Y02_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_13,
@@ -28237,7 +30649,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X02_Y02_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X02_Y02_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -28254,7 +30666,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_13,
@@ -28271,7 +30683,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_13,
@@ -28288,7 +30700,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X03_Y02_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -28305,7 +30717,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X03_Y01_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X03_Y02_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T2_EAST_SB_OUT_B16_13,
@@ -28322,7 +30734,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X03_Y02_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X03_Y02_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ LTIE_118_LONET,
 		LTIE_118_LONET,
 		LTIE_117_LONET,
@@ -28339,7 +30751,7 @@ module user_proj_example_Interconnect (
 		LTIE_116_LONET,
 		LTIE_116_LONET,
 		LTIE_116_LONET }),
-	.SB_T2_EAST_SB_IN_B1(LTIE_118_LONET),
+	.SB_T2_EAST_SB_IN_B1({ LTIE_118_LONET }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_13,
@@ -28356,7 +30768,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X03_Y02_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X03_Y02_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_13,
@@ -28373,7 +30785,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X02_Y02_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X02_Y02_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -28390,7 +30802,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_13,
@@ -28407,7 +30819,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_13,
@@ -28424,7 +30836,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X03_Y02_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -28441,7 +30853,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X03_Y01_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X03_Y02_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T1_EAST_SB_OUT_B16_13,
@@ -28458,7 +30870,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X03_Y02_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X03_Y02_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ LTIE_116_LONET,
 		LTIE_115_LONET,
 		LTIE_115_LONET,
@@ -28475,7 +30887,7 @@ module user_proj_example_Interconnect (
 		LTIE_114_LONET,
 		LTIE_114_LONET,
 		LTIE_114_LONET }),
-	.SB_T1_EAST_SB_IN_B1(LTIE_116_LONET),
+	.SB_T1_EAST_SB_IN_B1({ LTIE_116_LONET }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_13,
@@ -28492,7 +30904,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X03_Y02_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X03_Y02_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_13,
@@ -28509,7 +30921,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y02_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X02_Y02_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X02_Y02_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -28526,7 +30938,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_13,
@@ -28543,7 +30955,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_13,
@@ -28560,7 +30972,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X03_Y02_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -28577,7 +30989,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X03_Y01_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X03_Y02_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T0_EAST_SB_OUT_B16_13,
@@ -28594,7 +31006,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X03_Y02_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X03_Y02_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ LTIE_113_LONET,
 		LTIE_113_LONET,
 		LTIE_113_LONET,
@@ -28611,8 +31023,11 @@ module user_proj_example_Interconnect (
 		LTIE_112_LONET,
 		LTIE_112_LONET,
 		LTIE_112_LONET }),
-	.SB_T0_EAST_SB_IN_B1(LTIE_114_LONET));
-   Tile_PE Tile_X03_Y03 (.tile_id({ Tile_X03_Y03_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ LTIE_114_LONET }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X03_Y03 (
+	.tile_id({ Tile_X03_Y03_lo_out_7,
 		Tile_X03_Y03_lo_out_7,
 		Tile_X03_Y03_lo_out_6,
 		Tile_X03_Y03_lo_out_6,
@@ -28628,8 +31043,8 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_lo_out_1,
 		Tile_X03_Y03_tile_id_in_1,
 		Tile_X03_Y03_tile_id_in_0 }),
-	.stall_out(Tile_X03_Y03_stall_out_0),
-	.stall(Tile_X03_Y02_stall_out_0),
+	.stall_out({ Tile_X03_Y03_stall_out_0 }),
+	.stall({ Tile_X03_Y02_stall_out_0 }),
 	.reset_out(Tile_X03_Y03_reset_out),
 	.reset(Tile_X03_Y02_reset_out),
 	.read_config_data_in({ Tile_X03_Y02_read_config_data_31,
@@ -28713,10 +31128,10 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_hi_unq1_2,
 		Tile_X03_Y03_tile_id_in_1,
 		Tile_X03_Y03_tile_id_in_0 }),
-	.config_write(Tile_X03_Y02_config_out_write_0),
-	.config_read(Tile_X03_Y02_config_out_read_0),
-	.config_out_write(Tile_X03_Y03_config_out_write_0),
-	.config_out_read(Tile_X03_Y03_config_out_read_0),
+	.config_write({ Tile_X03_Y02_config_out_write_0 }),
+	.config_read({ Tile_X03_Y02_config_out_read_0 }),
+	.config_out_write({ Tile_X03_Y03_config_out_write_0 }),
+	.config_out_read({ Tile_X03_Y03_config_out_read_0 }),
 	.config_out_config_data({ Tile_X03_Y03_config_out_config_data_31,
 		Tile_X03_Y03_config_out_config_data_30,
 		Tile_X03_Y03_config_out_config_data_29,
@@ -28865,7 +31280,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X03_Y03_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X03_Y03_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_13,
@@ -28882,7 +31297,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X02_Y03_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X02_Y03_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -28899,7 +31314,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_13,
@@ -28916,7 +31331,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_13,
@@ -28933,7 +31348,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X03_Y03_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -28950,7 +31365,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X03_Y02_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X03_Y03_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T2_EAST_SB_OUT_B16_13,
@@ -28967,7 +31382,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X03_Y03_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X03_Y03_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ LTIE_104_LONET,
 		LTIE_104_LONET,
 		LTIE_103_LONET,
@@ -28984,7 +31399,7 @@ module user_proj_example_Interconnect (
 		LTIE_102_LONET,
 		LTIE_102_LONET,
 		LTIE_102_LONET }),
-	.SB_T2_EAST_SB_IN_B1(LTIE_104_LONET),
+	.SB_T2_EAST_SB_IN_B1({ LTIE_104_LONET }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_13,
@@ -29001,7 +31416,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X03_Y03_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X03_Y03_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_13,
@@ -29018,7 +31433,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X02_Y03_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X02_Y03_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -29035,7 +31450,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_13,
@@ -29052,7 +31467,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_13,
@@ -29069,7 +31484,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X03_Y03_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -29086,7 +31501,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X03_Y02_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X03_Y03_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T1_EAST_SB_OUT_B16_13,
@@ -29103,7 +31518,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X03_Y03_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X03_Y03_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ LTIE_102_LONET,
 		LTIE_101_LONET,
 		LTIE_101_LONET,
@@ -29120,7 +31535,7 @@ module user_proj_example_Interconnect (
 		LTIE_100_LONET,
 		LTIE_100_LONET,
 		LTIE_100_LONET }),
-	.SB_T1_EAST_SB_IN_B1(LTIE_102_LONET),
+	.SB_T1_EAST_SB_IN_B1({ LTIE_102_LONET }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_13,
@@ -29137,7 +31552,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X03_Y03_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X03_Y03_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_13,
@@ -29154,7 +31569,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y03_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X02_Y03_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X02_Y03_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -29171,7 +31586,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_13,
@@ -29188,7 +31603,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_13,
@@ -29205,7 +31620,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X03_Y03_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -29222,7 +31637,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X03_Y02_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X03_Y03_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T0_EAST_SB_OUT_B16_13,
@@ -29239,7 +31654,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X03_Y03_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X03_Y03_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ LTIE_99_LONET,
 		LTIE_99_LONET,
 		LTIE_99_LONET,
@@ -29256,8 +31671,11 @@ module user_proj_example_Interconnect (
 		LTIE_98_LONET,
 		LTIE_98_LONET,
 		LTIE_98_LONET }),
-	.SB_T0_EAST_SB_IN_B1(LTIE_100_LONET));
-   Tile_PE Tile_X03_Y04 (.tile_id({ Tile_X03_Y04_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ LTIE_100_LONET }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X03_Y04 (
+	.tile_id({ Tile_X03_Y04_lo_out_7,
 		Tile_X03_Y04_lo_out_7,
 		Tile_X03_Y04_lo_out_6,
 		Tile_X03_Y04_lo_out_6,
@@ -29273,8 +31691,8 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_tile_id_in_2,
 		Tile_X03_Y04_lo_out_0,
 		Tile_X03_Y04_lo_out_0 }),
-	.stall_out(Tile_X03_Y04_stall_out_0),
-	.stall(Tile_X03_Y03_stall_out_0),
+	.stall_out({ Tile_X03_Y04_stall_out_0 }),
+	.stall({ Tile_X03_Y03_stall_out_0 }),
 	.reset_out(Tile_X03_Y04_reset_out),
 	.reset(Tile_X03_Y03_reset_out),
 	.read_config_data_in({ Tile_X03_Y03_read_config_data_31,
@@ -29358,10 +31776,10 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_hi_unq1_2,
 		Tile_X03_Y04_tile_id_in_2,
 		Tile_X03_Y04_hi_unq1_0 }),
-	.config_write(Tile_X03_Y03_config_out_write_0),
-	.config_read(Tile_X03_Y03_config_out_read_0),
-	.config_out_write(Tile_X03_Y04_config_out_write_0),
-	.config_out_read(Tile_X03_Y04_config_out_read_0),
+	.config_write({ Tile_X03_Y03_config_out_write_0 }),
+	.config_read({ Tile_X03_Y03_config_out_read_0 }),
+	.config_out_write({ Tile_X03_Y04_config_out_write_0 }),
+	.config_out_read({ Tile_X03_Y04_config_out_read_0 }),
 	.config_out_config_data({ Tile_X03_Y04_config_out_config_data_31,
 		Tile_X03_Y04_config_out_config_data_30,
 		Tile_X03_Y04_config_out_config_data_29,
@@ -29510,7 +31928,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X03_Y04_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X03_Y04_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_13,
@@ -29527,7 +31945,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X02_Y04_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X02_Y04_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -29544,7 +31962,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_13,
@@ -29561,7 +31979,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_13,
@@ -29578,7 +31996,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X03_Y04_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -29595,7 +32013,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X03_Y03_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X03_Y04_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T2_EAST_SB_OUT_B16_13,
@@ -29612,7 +32030,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X03_Y04_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X03_Y04_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ LTIE_90_LONET,
 		LTIE_90_LONET,
 		LTIE_89_LONET,
@@ -29629,7 +32047,7 @@ module user_proj_example_Interconnect (
 		LTIE_88_LONET,
 		LTIE_88_LONET,
 		LTIE_88_LONET }),
-	.SB_T2_EAST_SB_IN_B1(LTIE_90_LONET),
+	.SB_T2_EAST_SB_IN_B1({ LTIE_90_LONET }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_13,
@@ -29646,7 +32064,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X03_Y04_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X03_Y04_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_13,
@@ -29663,7 +32081,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X02_Y04_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X02_Y04_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -29680,7 +32098,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_13,
@@ -29697,7 +32115,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_13,
@@ -29714,7 +32132,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X03_Y04_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -29731,7 +32149,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X03_Y03_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X03_Y04_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T1_EAST_SB_OUT_B16_13,
@@ -29748,7 +32166,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X03_Y04_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X03_Y04_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ LTIE_88_LONET,
 		LTIE_87_LONET,
 		LTIE_87_LONET,
@@ -29765,7 +32183,7 @@ module user_proj_example_Interconnect (
 		LTIE_86_LONET,
 		LTIE_86_LONET,
 		LTIE_86_LONET }),
-	.SB_T1_EAST_SB_IN_B1(LTIE_88_LONET),
+	.SB_T1_EAST_SB_IN_B1({ LTIE_88_LONET }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_13,
@@ -29782,7 +32200,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X03_Y04_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X03_Y04_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_13,
@@ -29799,7 +32217,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y04_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X02_Y04_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X02_Y04_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -29816,7 +32234,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_13,
@@ -29833,7 +32251,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_13,
@@ -29850,7 +32268,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X03_Y04_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -29867,7 +32285,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X03_Y03_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X03_Y04_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T0_EAST_SB_OUT_B16_13,
@@ -29884,7 +32302,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X03_Y04_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X03_Y04_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ LTIE_85_LONET,
 		LTIE_85_LONET,
 		LTIE_85_LONET,
@@ -29901,8 +32319,11 @@ module user_proj_example_Interconnect (
 		LTIE_84_LONET,
 		LTIE_84_LONET,
 		LTIE_84_LONET }),
-	.SB_T0_EAST_SB_IN_B1(LTIE_86_LONET));
-   Tile_MemCore Tile_X03_Y05 (.tile_id({ Tile_X03_Y05_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ LTIE_86_LONET }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_MemCore Tile_X03_Y05 (
+	.tile_id({ Tile_X03_Y05_lo_out_7,
 		Tile_X03_Y05_lo_out_7,
 		Tile_X03_Y05_lo_out_6,
 		Tile_X03_Y05_lo_out_6,
@@ -29918,8 +32339,8 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_tile_id_in_2,
 		Tile_X03_Y05_tile_id_in_1,
 		Tile_X03_Y05_tile_id_in_0 }),
-	.stall_out(Tile_X03_Y05_stall_out_0),
-	.stall(Tile_X03_Y04_stall_out_0),
+	.stall_out({ Tile_X03_Y05_stall_out_0 }),
+	.stall({ Tile_X03_Y04_stall_out_0 }),
 	.reset_out(Tile_X03_Y05_reset_out),
 	.reset(Tile_X03_Y04_reset_out),
 	.read_config_data_in({ Tile_X03_Y04_read_config_data_31,
@@ -30003,10 +32424,10 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_hi_unq1_2,
 		Tile_X03_Y05_tile_id_in_2,
 		Tile_X03_Y05_tile_id_in_0 }),
-	.config_write(Tile_X03_Y04_config_out_write_0),
-	.config_read(Tile_X03_Y04_config_out_read_0),
-	.config_out_write(Tile_X03_Y05_config_out_write_0),
-	.config_out_read(Tile_X03_Y05_config_out_read_0),
+	.config_write({ Tile_X03_Y04_config_out_write_0 }),
+	.config_read({ Tile_X03_Y04_config_out_read_0 }),
+	.config_out_write({ Tile_X03_Y05_config_out_write_0 }),
+	.config_out_read({ Tile_X03_Y05_config_out_read_0 }),
 	.config_out_config_data({ Tile_X03_Y05_config_out_config_data_31,
 		Tile_X03_Y05_config_out_config_data_30,
 		Tile_X03_Y05_config_out_config_data_29,
@@ -30155,7 +32576,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X03_Y05_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X03_Y05_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_13,
@@ -30172,7 +32593,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X02_Y05_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X02_Y05_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -30189,7 +32610,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_13,
@@ -30206,7 +32627,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_13,
@@ -30223,7 +32644,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X03_Y05_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -30240,7 +32661,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X03_Y04_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X03_Y05_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T2_EAST_SB_OUT_B16_13,
@@ -30257,7 +32678,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X03_Y05_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X03_Y05_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ LTIE_76_LONET,
 		LTIE_76_LONET,
 		LTIE_75_LONET,
@@ -30274,7 +32695,7 @@ module user_proj_example_Interconnect (
 		LTIE_74_LONET,
 		LTIE_74_LONET,
 		LTIE_74_LONET }),
-	.SB_T2_EAST_SB_IN_B1(LTIE_76_LONET),
+	.SB_T2_EAST_SB_IN_B1({ LTIE_76_LONET }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_13,
@@ -30291,7 +32712,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X03_Y05_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X03_Y05_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_13,
@@ -30308,7 +32729,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X02_Y05_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X02_Y05_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -30325,7 +32746,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_13,
@@ -30342,7 +32763,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_13,
@@ -30359,7 +32780,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X03_Y05_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -30376,7 +32797,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X03_Y04_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X03_Y05_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T1_EAST_SB_OUT_B16_13,
@@ -30393,7 +32814,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X03_Y05_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X03_Y05_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ LTIE_74_LONET,
 		LTIE_73_LONET,
 		LTIE_73_LONET,
@@ -30410,7 +32831,7 @@ module user_proj_example_Interconnect (
 		LTIE_72_LONET,
 		LTIE_72_LONET,
 		LTIE_72_LONET }),
-	.SB_T1_EAST_SB_IN_B1(LTIE_74_LONET),
+	.SB_T1_EAST_SB_IN_B1({ LTIE_74_LONET }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_13,
@@ -30427,7 +32848,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X03_Y05_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X03_Y05_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_13,
@@ -30444,7 +32865,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y05_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X02_Y05_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X02_Y05_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -30461,7 +32882,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_13,
@@ -30478,7 +32899,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_13,
@@ -30495,7 +32916,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X03_Y05_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -30512,7 +32933,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X03_Y04_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X03_Y05_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T0_EAST_SB_OUT_B16_13,
@@ -30529,7 +32950,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X03_Y05_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X03_Y05_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ LTIE_71_LONET,
 		LTIE_71_LONET,
 		LTIE_71_LONET,
@@ -30546,8 +32967,11 @@ module user_proj_example_Interconnect (
 		LTIE_70_LONET,
 		LTIE_70_LONET,
 		LTIE_70_LONET }),
-	.SB_T0_EAST_SB_IN_B1(LTIE_72_LONET));
-   Tile_PE Tile_X03_Y06 (.tile_id({ Tile_X03_Y06_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ LTIE_72_LONET }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X03_Y06 (
+	.tile_id({ Tile_X03_Y06_lo_out_7,
 		Tile_X03_Y06_lo_out_7,
 		Tile_X03_Y06_lo_out_6,
 		Tile_X03_Y06_lo_out_6,
@@ -30563,8 +32987,8 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_hi_out_1,
 		Tile_X03_Y06_hi_out_1,
 		Tile_X03_Y06_tile_id_in_0 }),
-	.stall_out(Tile_X03_Y06_stall_out_0),
-	.stall(Tile_X03_Y05_stall_out_0),
+	.stall_out({ Tile_X03_Y06_stall_out_0 }),
+	.stall({ Tile_X03_Y05_stall_out_0 }),
 	.reset_out(Tile_X03_Y06_reset_out),
 	.reset(Tile_X03_Y05_reset_out),
 	.read_config_data_in({ Tile_X03_Y05_read_config_data_31,
@@ -30648,10 +33072,10 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_hi_unq1_2,
 		Tile_X03_Y06_hi_out_1,
 		Tile_X03_Y06_hi_unq1_0 }),
-	.config_write(Tile_X03_Y05_config_out_write_0),
-	.config_read(Tile_X03_Y05_config_out_read_0),
-	.config_out_write(Tile_X03_Y06_config_out_write_0),
-	.config_out_read(Tile_X03_Y06_config_out_read_0),
+	.config_write({ Tile_X03_Y05_config_out_write_0 }),
+	.config_read({ Tile_X03_Y05_config_out_read_0 }),
+	.config_out_write({ Tile_X03_Y06_config_out_write_0 }),
+	.config_out_read({ Tile_X03_Y06_config_out_read_0 }),
 	.config_out_config_data({ Tile_X03_Y06_config_out_config_data_31,
 		Tile_X03_Y06_config_out_config_data_30,
 		Tile_X03_Y06_config_out_config_data_29,
@@ -30800,7 +33224,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X03_Y06_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X03_Y06_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_13,
@@ -30817,7 +33241,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X02_Y06_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X02_Y06_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -30834,7 +33258,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_13,
@@ -30851,7 +33275,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_13,
@@ -30868,7 +33292,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X03_Y06_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -30885,7 +33309,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X03_Y05_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X03_Y06_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T2_EAST_SB_OUT_B16_13,
@@ -30902,7 +33326,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X03_Y06_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X03_Y06_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ LTIE_62_LONET,
 		LTIE_62_LONET,
 		LTIE_61_LONET,
@@ -30919,7 +33343,7 @@ module user_proj_example_Interconnect (
 		LTIE_60_LONET,
 		LTIE_60_LONET,
 		LTIE_60_LONET }),
-	.SB_T2_EAST_SB_IN_B1(LTIE_62_LONET),
+	.SB_T2_EAST_SB_IN_B1({ LTIE_62_LONET }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_13,
@@ -30936,7 +33360,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X03_Y06_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X03_Y06_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_13,
@@ -30953,7 +33377,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X02_Y06_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X02_Y06_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -30970,7 +33394,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_13,
@@ -30987,7 +33411,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_13,
@@ -31004,7 +33428,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X03_Y06_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -31021,7 +33445,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X03_Y05_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X03_Y06_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T1_EAST_SB_OUT_B16_13,
@@ -31038,7 +33462,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X03_Y06_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X03_Y06_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ LTIE_60_LONET,
 		LTIE_59_LONET,
 		LTIE_59_LONET,
@@ -31055,7 +33479,7 @@ module user_proj_example_Interconnect (
 		LTIE_58_LONET,
 		LTIE_58_LONET,
 		LTIE_58_LONET }),
-	.SB_T1_EAST_SB_IN_B1(LTIE_60_LONET),
+	.SB_T1_EAST_SB_IN_B1({ LTIE_60_LONET }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_13,
@@ -31072,7 +33496,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X03_Y06_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X03_Y06_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_13,
@@ -31089,7 +33513,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y06_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X02_Y06_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X02_Y06_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -31106,7 +33530,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_13,
@@ -31123,7 +33547,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_13,
@@ -31140,7 +33564,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X03_Y06_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -31157,7 +33581,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X03_Y05_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X03_Y06_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T0_EAST_SB_OUT_B16_13,
@@ -31174,7 +33598,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X03_Y06_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X03_Y06_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ LTIE_57_LONET,
 		LTIE_57_LONET,
 		LTIE_57_LONET,
@@ -31191,8 +33615,11 @@ module user_proj_example_Interconnect (
 		LTIE_56_LONET,
 		LTIE_56_LONET,
 		LTIE_56_LONET }),
-	.SB_T0_EAST_SB_IN_B1(LTIE_58_LONET));
-   Tile_PE Tile_X03_Y07 (.tile_id({ Tile_X03_Y07_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ LTIE_58_LONET }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X03_Y07 (
+	.tile_id({ Tile_X03_Y07_lo_out_7,
 		Tile_X03_Y07_lo_out_7,
 		Tile_X03_Y07_lo_out_6,
 		Tile_X03_Y07_lo_out_6,
@@ -31208,8 +33635,8 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_hi_out_1,
 		Tile_X03_Y07_hi_out_1,
 		Tile_X03_Y07_tile_id_in_0 }),
-	.stall_out(Tile_X03_Y07_stall_out_0),
-	.stall(Tile_X03_Y06_stall_out_0),
+	.stall_out({ Tile_X03_Y07_stall_out_0 }),
+	.stall({ Tile_X03_Y06_stall_out_0 }),
 	.reset_out(Tile_X03_Y07_reset_out),
 	.reset(Tile_X03_Y06_reset_out),
 	.read_config_data_in({ Tile_X03_Y06_read_config_data_31,
@@ -31293,10 +33720,10 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_hi_unq1_2,
 		Tile_X03_Y07_hi_out_1,
 		Tile_X03_Y07_tile_id_in_0 }),
-	.config_write(Tile_X03_Y06_config_out_write_0),
-	.config_read(Tile_X03_Y06_config_out_read_0),
-	.config_out_write(Tile_X03_Y07_config_out_write_0),
-	.config_out_read(Tile_X03_Y07_config_out_read_0),
+	.config_write({ Tile_X03_Y06_config_out_write_0 }),
+	.config_read({ Tile_X03_Y06_config_out_read_0 }),
+	.config_out_write({ Tile_X03_Y07_config_out_write_0 }),
+	.config_out_read({ Tile_X03_Y07_config_out_read_0 }),
 	.config_out_config_data({ Tile_X03_Y07_config_out_config_data_31,
 		Tile_X03_Y07_config_out_config_data_30,
 		Tile_X03_Y07_config_out_config_data_29,
@@ -31445,7 +33872,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X03_Y07_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X03_Y07_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_13,
@@ -31462,7 +33889,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X02_Y07_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X02_Y07_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -31479,7 +33906,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_13,
@@ -31496,7 +33923,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_IN_B1(Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_IN_B1({ Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_13,
@@ -31513,7 +33940,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X03_Y07_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -31530,7 +33957,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X03_Y06_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X03_Y07_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T2_EAST_SB_OUT_B16_13,
@@ -31547,7 +33974,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X03_Y07_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X03_Y07_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ LTIE_48_LONET,
 		LTIE_48_LONET,
 		LTIE_47_LONET,
@@ -31564,7 +33991,7 @@ module user_proj_example_Interconnect (
 		LTIE_46_LONET,
 		LTIE_46_LONET,
 		LTIE_46_LONET }),
-	.SB_T2_EAST_SB_IN_B1(LTIE_48_LONET),
+	.SB_T2_EAST_SB_IN_B1({ LTIE_48_LONET }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_13,
@@ -31581,7 +34008,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X03_Y07_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X03_Y07_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_13,
@@ -31598,7 +34025,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X02_Y07_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X02_Y07_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -31615,7 +34042,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_13,
@@ -31632,7 +34059,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_IN_B1(Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_IN_B1({ Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_13,
@@ -31649,7 +34076,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X03_Y07_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -31666,7 +34093,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X03_Y06_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X03_Y07_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T1_EAST_SB_OUT_B16_13,
@@ -31683,7 +34110,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X03_Y07_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X03_Y07_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ LTIE_46_LONET,
 		LTIE_45_LONET,
 		LTIE_45_LONET,
@@ -31700,7 +34127,7 @@ module user_proj_example_Interconnect (
 		LTIE_44_LONET,
 		LTIE_44_LONET,
 		LTIE_44_LONET }),
-	.SB_T1_EAST_SB_IN_B1(LTIE_46_LONET),
+	.SB_T1_EAST_SB_IN_B1({ LTIE_46_LONET }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_13,
@@ -31717,7 +34144,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X03_Y07_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X03_Y07_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_13,
@@ -31734,7 +34161,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y07_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X02_Y07_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X02_Y07_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -31751,7 +34178,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_13,
@@ -31768,7 +34195,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_IN_B1(Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_IN_B1({ Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_13,
@@ -31785,7 +34212,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X03_Y07_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -31802,7 +34229,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X03_Y06_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X03_Y07_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T0_EAST_SB_OUT_B16_13,
@@ -31819,7 +34246,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X03_Y07_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X03_Y07_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ LTIE_43_LONET,
 		LTIE_43_LONET,
 		LTIE_43_LONET,
@@ -31836,8 +34263,11 @@ module user_proj_example_Interconnect (
 		LTIE_42_LONET,
 		LTIE_42_LONET,
 		LTIE_42_LONET }),
-	.SB_T0_EAST_SB_IN_B1(LTIE_44_LONET));
-   Tile_PE Tile_X03_Y08 (.tile_id({ Tile_X03_Y08_lo_out_7,
+	.SB_T0_EAST_SB_IN_B1({ LTIE_44_LONET }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   Tile_PE Tile_X03_Y08 (
+	.tile_id({ Tile_X03_Y08_lo_out_7,
 		Tile_X03_Y08_lo_out_7,
 		Tile_X03_Y08_lo_out_6,
 		Tile_X03_Y08_lo_out_6,
@@ -31853,8 +34283,8 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_tile_id_in_2,
 		Tile_X03_Y08_lo_out_0,
 		Tile_X03_Y08_lo_out_0 }),
-	.stall_out(Tile_X03_Y08_stall_out_0),
-	.stall(Tile_X03_Y07_stall_out_0),
+	.stall_out({ Tile_X03_Y08_stall_out_0 }),
+	.stall({ Tile_X03_Y07_stall_out_0 }),
 	.reset_out(Tile_X03_Y08_reset_out),
 	.reset(Tile_X03_Y07_reset_out),
 	.read_config_data_in({ Tile_X03_Y07_read_config_data_31,
@@ -31938,10 +34368,10 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_tile_id_in_3,
 		Tile_X03_Y08_hi_unq1_1,
 		Tile_X03_Y08_hi_unq1_0 }),
-	.config_write(Tile_X03_Y07_config_out_write_0),
-	.config_read(Tile_X03_Y07_config_out_read_0),
-	.config_out_write(Tile_X03_Y08_config_out_write_0),
-	.config_out_read(Tile_X03_Y08_config_out_read_0),
+	.config_write({ Tile_X03_Y07_config_out_write_0 }),
+	.config_read({ Tile_X03_Y07_config_out_read_0 }),
+	.config_out_write({ Tile_X03_Y08_config_out_write_0 }),
+	.config_out_read({ Tile_X03_Y08_config_out_read_0 }),
 	.config_out_config_data({ Tile_X03_Y08_config_out_config_data_31,
 		Tile_X03_Y08_config_out_config_data_30,
 		Tile_X03_Y08_config_out_config_data_29,
@@ -32090,7 +34520,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T2_WEST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_OUT_B1(Tile_X03_Y08_SB_T2_WEST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_OUT_B1({ Tile_X03_Y08_SB_T2_WEST_SB_OUT_B1_0 }),
 	.SB_T2_WEST_SB_IN_B16({ Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_13,
@@ -32107,7 +34537,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_WEST_SB_IN_B1(Tile_X02_Y08_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_WEST_SB_IN_B1({ Tile_X02_Y08_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_OUT_B16({ Tile_X03_Y08_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -32124,7 +34554,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_SOUTH_SB_OUT_B1(Tile_X03_Y08_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_SOUTH_SB_OUT_B1({ Tile_X03_Y08_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_SOUTH_SB_IN_B16({ LTIE_27_LONET,
 		LTIE_27_LONET,
 		LTIE_26_LONET,
@@ -32141,7 +34571,7 @@ module user_proj_example_Interconnect (
 		LTIE_25_LONET,
 		LTIE_25_LONET,
 		LTIE_25_LONET }),
-	.SB_T2_SOUTH_SB_IN_B1(LTIE_27_LONET),
+	.SB_T2_SOUTH_SB_IN_B1({ LTIE_27_LONET }),
 	.SB_T2_NORTH_SB_OUT_B16({ Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_13,
@@ -32158,7 +34588,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_OUT_B1(Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_OUT_B1({ Tile_X03_Y08_SB_T2_NORTH_SB_OUT_B1_0 }),
 	.SB_T2_NORTH_SB_IN_B16({ Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_13,
@@ -32175,7 +34605,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B16_0 }),
-	.SB_T2_NORTH_SB_IN_B1(Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B1_0),
+	.SB_T2_NORTH_SB_IN_B1({ Tile_X03_Y07_SB_T2_SOUTH_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_OUT_B16({ Tile_X03_Y08_SB_T2_EAST_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T2_EAST_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T2_EAST_SB_OUT_B16_13,
@@ -32192,7 +34622,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T2_EAST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T2_EAST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T2_EAST_SB_OUT_B16_0 }),
-	.SB_T2_EAST_SB_OUT_B1(Tile_X03_Y08_SB_T2_EAST_SB_OUT_B1_0),
+	.SB_T2_EAST_SB_OUT_B1({ Tile_X03_Y08_SB_T2_EAST_SB_OUT_B1_0 }),
 	.SB_T2_EAST_SB_IN_B16({ LTIE_34_LONET,
 		LTIE_34_LONET,
 		LTIE_33_LONET,
@@ -32209,7 +34639,7 @@ module user_proj_example_Interconnect (
 		LTIE_32_LONET,
 		LTIE_32_LONET,
 		LTIE_32_LONET }),
-	.SB_T2_EAST_SB_IN_B1(LTIE_34_LONET),
+	.SB_T2_EAST_SB_IN_B1({ LTIE_34_LONET }),
 	.SB_T1_WEST_SB_OUT_B16({ Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_13,
@@ -32226,7 +34656,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T1_WEST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_OUT_B1(Tile_X03_Y08_SB_T1_WEST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_OUT_B1({ Tile_X03_Y08_SB_T1_WEST_SB_OUT_B1_0 }),
 	.SB_T1_WEST_SB_IN_B16({ Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_13,
@@ -32243,7 +34673,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_WEST_SB_IN_B1(Tile_X02_Y08_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_WEST_SB_IN_B1({ Tile_X02_Y08_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_OUT_B16({ Tile_X03_Y08_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -32260,7 +34690,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_SOUTH_SB_OUT_B1(Tile_X03_Y08_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_SOUTH_SB_OUT_B1({ Tile_X03_Y08_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_SOUTH_SB_IN_B16({ LTIE_25_LONET,
 		LTIE_24_LONET,
 		LTIE_24_LONET,
@@ -32277,7 +34707,7 @@ module user_proj_example_Interconnect (
 		LTIE_23_LONET,
 		LTIE_23_LONET,
 		LTIE_23_LONET }),
-	.SB_T1_SOUTH_SB_IN_B1(LTIE_25_LONET),
+	.SB_T1_SOUTH_SB_IN_B1({ LTIE_25_LONET }),
 	.SB_T1_NORTH_SB_OUT_B16({ Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_13,
@@ -32294,7 +34724,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_OUT_B1(Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_OUT_B1({ Tile_X03_Y08_SB_T1_NORTH_SB_OUT_B1_0 }),
 	.SB_T1_NORTH_SB_IN_B16({ Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_13,
@@ -32311,7 +34741,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B16_0 }),
-	.SB_T1_NORTH_SB_IN_B1(Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B1_0),
+	.SB_T1_NORTH_SB_IN_B1({ Tile_X03_Y07_SB_T1_SOUTH_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_OUT_B16({ Tile_X03_Y08_SB_T1_EAST_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T1_EAST_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T1_EAST_SB_OUT_B16_13,
@@ -32328,7 +34758,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T1_EAST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T1_EAST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T1_EAST_SB_OUT_B16_0 }),
-	.SB_T1_EAST_SB_OUT_B1(Tile_X03_Y08_SB_T1_EAST_SB_OUT_B1_0),
+	.SB_T1_EAST_SB_OUT_B1({ Tile_X03_Y08_SB_T1_EAST_SB_OUT_B1_0 }),
 	.SB_T1_EAST_SB_IN_B16({ LTIE_32_LONET,
 		LTIE_31_LONET,
 		LTIE_31_LONET,
@@ -32345,7 +34775,7 @@ module user_proj_example_Interconnect (
 		LTIE_30_LONET,
 		LTIE_30_LONET,
 		LTIE_30_LONET }),
-	.SB_T1_EAST_SB_IN_B1(LTIE_32_LONET),
+	.SB_T1_EAST_SB_IN_B1({ LTIE_32_LONET }),
 	.SB_T0_WEST_SB_OUT_B16({ Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_13,
@@ -32362,7 +34792,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T0_WEST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_OUT_B1(Tile_X03_Y08_SB_T0_WEST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_OUT_B1({ Tile_X03_Y08_SB_T0_WEST_SB_OUT_B1_0 }),
 	.SB_T0_WEST_SB_IN_B16({ Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_13,
@@ -32379,7 +34809,7 @@ module user_proj_example_Interconnect (
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X02_Y08_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_WEST_SB_IN_B1(Tile_X02_Y08_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_WEST_SB_IN_B1({ Tile_X02_Y08_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_OUT_B16({ Tile_X03_Y08_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -32396,7 +34826,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_SOUTH_SB_OUT_B1(Tile_X03_Y08_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_SOUTH_SB_OUT_B1({ Tile_X03_Y08_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_SOUTH_SB_IN_B16({ LTIE_22_LONET,
 		LTIE_22_LONET,
 		LTIE_22_LONET,
@@ -32413,7 +34843,7 @@ module user_proj_example_Interconnect (
 		LTIE_21_LONET,
 		LTIE_21_LONET,
 		LTIE_21_LONET }),
-	.SB_T0_SOUTH_SB_IN_B1(LTIE_23_LONET),
+	.SB_T0_SOUTH_SB_IN_B1({ LTIE_23_LONET }),
 	.SB_T0_NORTH_SB_OUT_B16({ Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_13,
@@ -32430,7 +34860,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_OUT_B1(Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_OUT_B1({ Tile_X03_Y08_SB_T0_NORTH_SB_OUT_B1_0 }),
 	.SB_T0_NORTH_SB_IN_B16({ Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_15,
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_14,
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_13,
@@ -32447,7 +34877,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_2,
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_1,
 		Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B16_0 }),
-	.SB_T0_NORTH_SB_IN_B1(Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B1_0),
+	.SB_T0_NORTH_SB_IN_B1({ Tile_X03_Y07_SB_T0_SOUTH_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_OUT_B16({ Tile_X03_Y08_SB_T0_EAST_SB_OUT_B16_15,
 		Tile_X03_Y08_SB_T0_EAST_SB_OUT_B16_14,
 		Tile_X03_Y08_SB_T0_EAST_SB_OUT_B16_13,
@@ -32464,7 +34894,7 @@ module user_proj_example_Interconnect (
 		Tile_X03_Y08_SB_T0_EAST_SB_OUT_B16_2,
 		Tile_X03_Y08_SB_T0_EAST_SB_OUT_B16_1,
 		Tile_X03_Y08_SB_T0_EAST_SB_OUT_B16_0 }),
-	.SB_T0_EAST_SB_OUT_B1(Tile_X03_Y08_SB_T0_EAST_SB_OUT_B1_0),
+	.SB_T0_EAST_SB_OUT_B1({ Tile_X03_Y08_SB_T0_EAST_SB_OUT_B1_0 }),
 	.SB_T0_EAST_SB_IN_B16({ LTIE_29_LONET,
 		LTIE_29_LONET,
 		LTIE_29_LONET,
@@ -32481,184 +34911,365 @@ module user_proj_example_Interconnect (
 		LTIE_28_LONET,
 		LTIE_28_LONET,
 		LTIE_28_LONET }),
-	.SB_T0_EAST_SB_IN_B1(LTIE_30_LONET));
-   sky130_fd_sc_hd__or4_1 g196__2398 (.A(FE_OFN461_Tile_X01_Y08_read_config_data_3),
+	.SB_T0_EAST_SB_IN_B1({ LTIE_30_LONET }), 
+	.VSS(VSS), 
+	.VDD(VDD));
+   sky130_fd_sc_hd__or4_1 g196__2398 (
+	.A(FE_OFN461_Tile_X01_Y08_read_config_data_3),
 	.B(FE_OFN429_Tile_X00_Y08_read_config_data_3),
 	.C(FE_OFN503_Tile_X03_Y08_read_config_data_3),
 	.D(Tile_X02_Y08_read_config_data_3),
-	.X(read_config_data[3]));
-   sky130_fd_sc_hd__or4_2 g197__5107 (.A(FE_OFN458_Tile_X01_Y08_read_config_data_0),
+	.X(read_config_data[3]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g197__5107 (
+	.A(FE_OFN458_Tile_X01_Y08_read_config_data_0),
 	.B(FE_OFN263_Tile_X00_Y08_read_config_data_0),
 	.C(FE_OFN500_Tile_X03_Y08_read_config_data_0),
 	.D(Tile_X02_Y08_read_config_data_0),
-	.X(read_config_data[0]));
-   sky130_fd_sc_hd__or4_2 g198__6260 (.A(FE_OFN459_Tile_X01_Y08_read_config_data_1),
+	.X(read_config_data[0]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g198__6260 (
+	.A(FE_OFN459_Tile_X01_Y08_read_config_data_1),
 	.B(FE_OFN264_Tile_X00_Y08_read_config_data_1),
 	.C(FE_OFN501_Tile_X03_Y08_read_config_data_1),
 	.D(Tile_X02_Y08_read_config_data_1),
-	.X(read_config_data[1]));
-   sky130_fd_sc_hd__or4_2 g199__4319 (.A(FE_OFN460_Tile_X01_Y08_read_config_data_2),
+	.X(read_config_data[1]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g199__4319 (
+	.A(FE_OFN460_Tile_X01_Y08_read_config_data_2),
 	.B(FE_OFN265_Tile_X00_Y08_read_config_data_2),
 	.C(FE_OFN502_Tile_X03_Y08_read_config_data_2),
 	.D(Tile_X02_Y08_read_config_data_2),
-	.X(read_config_data[2]));
-   sky130_fd_sc_hd__or4_2 g200__8428 (.A(FE_OFN489_Tile_X01_Y08_read_config_data_31),
+	.X(read_config_data[2]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g200__8428 (
+	.A(FE_OFN489_Tile_X01_Y08_read_config_data_31),
 	.B(FE_OFN315_Tile_X03_Y08_read_config_data_31),
 	.C(FE_OFN37_FE_OFN289_Tile_X00_Y08_read_config_data_31),
 	.D(FE_OFN499_Tile_X02_Y08_read_config_data_31),
-	.X(read_config_data[31]));
-   sky130_fd_sc_hd__or4_4 g201__5526 (.A(FE_OFN488_Tile_X01_Y08_read_config_data_30),
+	.X(read_config_data[31]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_4 g201__5526 (
+	.A(FE_OFN488_Tile_X01_Y08_read_config_data_30),
 	.B(FE_OFN288_Tile_X00_Y08_read_config_data_30),
 	.C(FE_OFN530_Tile_X03_Y08_read_config_data_30),
 	.D(Tile_X02_Y08_read_config_data_30),
-	.X(read_config_data[30]));
-   sky130_fd_sc_hd__or4_2 g202__6783 (.A(FE_OFN301_Tile_X01_Y08_read_config_data_29),
+	.X(read_config_data[30]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g202__6783 (
+	.A(FE_OFN301_Tile_X01_Y08_read_config_data_29),
 	.B(FE_OFN314_Tile_X03_Y08_read_config_data_29),
 	.C(FE_OFN287_Tile_X00_Y08_read_config_data_29),
 	.D(FE_OFN498_Tile_X02_Y08_read_config_data_29),
-	.X(read_config_data[29]));
-   sky130_fd_sc_hd__or4_1 g203__3680 (.A(FE_OFN486_Tile_X01_Y08_read_config_data_28),
+	.X(read_config_data[29]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g203__3680 (
+	.A(FE_OFN486_Tile_X01_Y08_read_config_data_28),
 	.B(FE_OFN313_Tile_X03_Y08_read_config_data_28),
 	.C(FE_OFN286_Tile_X00_Y08_read_config_data_28),
 	.D(FE_OFN497_Tile_X02_Y08_read_config_data_28),
-	.X(read_config_data[28]));
-   sky130_fd_sc_hd__or4_4 g204__1617 (.A(FE_OFN485_Tile_X01_Y08_read_config_data_27),
+	.X(read_config_data[28]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_4 g204__1617 (
+	.A(FE_OFN485_Tile_X01_Y08_read_config_data_27),
 	.B(FE_OFN312_Tile_X03_Y08_read_config_data_27),
 	.C(FE_OFN285_Tile_X00_Y08_read_config_data_27),
 	.D(FE_OFN496_Tile_X02_Y08_read_config_data_27),
-	.X(read_config_data[27]));
-   sky130_fd_sc_hd__or4_2 g205__2802 (.A(FE_OFN484_Tile_X01_Y08_read_config_data_26),
+	.X(read_config_data[27]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g205__2802 (
+	.A(FE_OFN484_Tile_X01_Y08_read_config_data_26),
 	.B(FE_OFN526_Tile_X03_Y08_read_config_data_26),
 	.C(FE_OFN284_Tile_X00_Y08_read_config_data_26),
 	.D(Tile_X02_Y08_read_config_data_26),
-	.X(read_config_data[26]));
-   sky130_fd_sc_hd__or4_4 g206__1705 (.A(FE_OFN297_Tile_X01_Y08_read_config_data_25),
+	.X(read_config_data[26]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_4 g206__1705 (
+	.A(FE_OFN297_Tile_X01_Y08_read_config_data_25),
 	.B(FE_OFN310_Tile_X03_Y08_read_config_data_25),
 	.C(FE_OFN283_Tile_X00_Y08_read_config_data_25),
 	.D(Tile_X02_Y08_read_config_data_25),
-	.X(read_config_data[25]));
-   sky130_fd_sc_hd__or4_1 g207__5122 (.A(FE_OFN296_Tile_X01_Y08_read_config_data_24),
+	.X(read_config_data[25]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g207__5122 (
+	.A(FE_OFN296_Tile_X01_Y08_read_config_data_24),
 	.B(FE_OFN309_Tile_X03_Y08_read_config_data_24),
 	.C(FE_OFN282_Tile_X00_Y08_read_config_data_24),
 	.D(FE_OFN493_Tile_X02_Y08_read_config_data_24),
-	.X(read_config_data[24]));
-   sky130_fd_sc_hd__or4_1 g208__8246 (.A(FE_OFN481_Tile_X01_Y08_read_config_data_23),
+	.X(read_config_data[24]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g208__8246 (
+	.A(FE_OFN481_Tile_X01_Y08_read_config_data_23),
 	.B(FE_OFN449_Tile_X00_Y08_read_config_data_23),
 	.C(FE_OFN523_Tile_X03_Y08_read_config_data_23),
 	.D(Tile_X02_Y08_read_config_data_23),
-	.X(read_config_data[23]));
-   sky130_fd_sc_hd__or4_4 g209__7098 (.A(FE_OFN480_Tile_X01_Y08_read_config_data_22),
+	.X(read_config_data[23]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_4 g209__7098 (
+	.A(FE_OFN480_Tile_X01_Y08_read_config_data_22),
 	.B(FE_OFN281_Tile_X00_Y08_read_config_data_22),
 	.C(FE_OFN522_Tile_X03_Y08_read_config_data_22),
 	.D(Tile_X02_Y08_read_config_data_22),
-	.X(read_config_data[22]));
-   sky130_fd_sc_hd__or4_2 g210__6131 (.A(FE_OFN479_Tile_X01_Y08_read_config_data_21),
+	.X(read_config_data[22]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g210__6131 (
+	.A(FE_OFN479_Tile_X01_Y08_read_config_data_21),
 	.B(FE_OFN280_Tile_X00_Y08_read_config_data_21),
 	.C(FE_OFN521_Tile_X03_Y08_read_config_data_21),
 	.D(Tile_X02_Y08_read_config_data_21),
-	.X(read_config_data[21]));
-   sky130_fd_sc_hd__or4_4 g211__1881 (.A(FE_OFN295_Tile_X01_Y08_read_config_data_20),
+	.X(read_config_data[21]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_4 g211__1881 (
+	.A(FE_OFN295_Tile_X01_Y08_read_config_data_20),
 	.B(FE_OFN308_Tile_X03_Y08_read_config_data_20),
 	.C(FE_OFN279_Tile_X00_Y08_read_config_data_20),
 	.D(Tile_X02_Y08_read_config_data_20),
-	.X(read_config_data[20]));
-   sky130_fd_sc_hd__or4_2 g212__5115 (.A(FE_OFN477_Tile_X01_Y08_read_config_data_19),
+	.X(read_config_data[20]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g212__5115 (
+	.A(FE_OFN477_Tile_X01_Y08_read_config_data_19),
 	.B(FE_OFN445_Tile_X00_Y08_read_config_data_19),
 	.C(FE_OFN519_Tile_X03_Y08_read_config_data_19),
 	.D(Tile_X02_Y08_read_config_data_19),
-	.X(read_config_data[19]));
-   sky130_fd_sc_hd__or4_1 g213__7482 (.A(FE_OFN476_Tile_X01_Y08_read_config_data_18),
+	.X(read_config_data[19]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g213__7482 (
+	.A(FE_OFN476_Tile_X01_Y08_read_config_data_18),
 	.B(FE_OFN444_Tile_X00_Y08_read_config_data_18),
 	.C(FE_OFN518_Tile_X03_Y08_read_config_data_18),
 	.D(Tile_X02_Y08_read_config_data_18),
-	.X(read_config_data[18]));
-   sky130_fd_sc_hd__or4_2 g214__4733 (.A(FE_OFN475_Tile_X01_Y08_read_config_data_17),
+	.X(read_config_data[18]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g214__4733 (
+	.A(FE_OFN475_Tile_X01_Y08_read_config_data_17),
 	.B(FE_OFN278_Tile_X00_Y08_read_config_data_17),
 	.C(FE_OFN517_Tile_X03_Y08_read_config_data_17),
 	.D(Tile_X02_Y08_read_config_data_17),
-	.X(read_config_data[17]));
-   sky130_fd_sc_hd__or4_2 g215__6161 (.A(FE_OFN474_Tile_X01_Y08_read_config_data_16),
+	.X(read_config_data[17]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g215__6161 (
+	.A(FE_OFN474_Tile_X01_Y08_read_config_data_16),
 	.B(FE_OFN277_Tile_X00_Y08_read_config_data_16),
 	.C(FE_OFN516_Tile_X03_Y08_read_config_data_16),
 	.D(Tile_X02_Y08_read_config_data_16),
-	.X(read_config_data[16]));
-   sky130_fd_sc_hd__or4_2 g216__9315 (.A(FE_OFN294_Tile_X01_Y08_read_config_data_15),
+	.X(read_config_data[16]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g216__9315 (
+	.A(FE_OFN294_Tile_X01_Y08_read_config_data_15),
 	.B(FE_OFN307_Tile_X03_Y08_read_config_data_15),
 	.C(FE_OFN276_Tile_X00_Y08_read_config_data_15),
 	.D(Tile_X02_Y08_read_config_data_15),
-	.X(read_config_data[15]));
-   sky130_fd_sc_hd__or4_1 g217__9945 (.A(FE_OFN472_Tile_X01_Y08_read_config_data_14),
+	.X(read_config_data[15]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g217__9945 (
+	.A(FE_OFN472_Tile_X01_Y08_read_config_data_14),
 	.B(FE_OFN275_Tile_X00_Y08_read_config_data_14),
 	.C(FE_OFN514_Tile_X03_Y08_read_config_data_14),
 	.D(Tile_X02_Y08_read_config_data_14),
-	.X(read_config_data[14]));
-   sky130_fd_sc_hd__or4_2 g218__2883 (.A(FE_OFN471_Tile_X01_Y08_read_config_data_13),
+	.X(read_config_data[14]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g218__2883 (
+	.A(FE_OFN471_Tile_X01_Y08_read_config_data_13),
 	.B(FE_OFN274_Tile_X00_Y08_read_config_data_13),
 	.C(FE_OFN513_Tile_X03_Y08_read_config_data_13),
 	.D(Tile_X02_Y08_read_config_data_13),
-	.X(read_config_data[13]));
-   sky130_fd_sc_hd__or4_1 g219__2346 (.A(FE_OFN293_Tile_X01_Y08_read_config_data_12),
+	.X(read_config_data[13]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g219__2346 (
+	.A(FE_OFN293_Tile_X01_Y08_read_config_data_12),
 	.B(FE_OFN306_Tile_X03_Y08_read_config_data_12),
 	.C(FE_OFN273_Tile_X00_Y08_read_config_data_12),
 	.D(Tile_X02_Y08_read_config_data_12),
-	.X(read_config_data[12]));
-   sky130_fd_sc_hd__or4_1 g220__1666 (.A(FE_OFN469_Tile_X01_Y08_read_config_data_11),
+	.X(read_config_data[12]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g220__1666 (
+	.A(FE_OFN469_Tile_X01_Y08_read_config_data_11),
 	.B(FE_OFN272_Tile_X00_Y08_read_config_data_11),
 	.C(FE_OFN511_Tile_X03_Y08_read_config_data_11),
 	.D(Tile_X02_Y08_read_config_data_11),
-	.X(read_config_data[11]));
-   sky130_fd_sc_hd__or4_4 g221__7410 (.A(Tile_X02_Y08_read_config_data_10),
+	.X(read_config_data[11]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_4 g221__7410 (
+	.A(Tile_X02_Y08_read_config_data_10),
 	.B(FE_OFN510_Tile_X03_Y08_read_config_data_10),
 	.C(FE_OFN468_Tile_X01_Y08_read_config_data_10),
 	.D(FE_OFN271_Tile_X00_Y08_read_config_data_10),
-	.X(read_config_data[10]));
-   sky130_fd_sc_hd__or4_4 g222__6417 (.A(FE_OFN292_Tile_X01_Y08_read_config_data_9),
+	.X(read_config_data[10]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_4 g222__6417 (
+	.A(FE_OFN292_Tile_X01_Y08_read_config_data_9),
 	.B(FE_OFN305_Tile_X03_Y08_read_config_data_9),
 	.C(FE_OFN270_Tile_X00_Y08_read_config_data_9),
 	.D(FE_OFN492_Tile_X02_Y08_read_config_data_9),
-	.X(read_config_data[9]));
-   sky130_fd_sc_hd__or4_4 g223__5477 (.A(FE_OFN291_Tile_X01_Y08_read_config_data_8),
+	.X(read_config_data[9]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_4 g223__5477 (
+	.A(FE_OFN291_Tile_X01_Y08_read_config_data_8),
 	.B(FE_OFN304_Tile_X03_Y08_read_config_data_8),
 	.C(FE_OFN269_Tile_X00_Y08_read_config_data_8),
 	.D(FE_OFN491_Tile_X02_Y08_read_config_data_8),
-	.X(read_config_data[8]));
-   sky130_fd_sc_hd__or4_1 g224__2398 (.A(FE_OFN465_Tile_X01_Y08_read_config_data_7),
+	.X(read_config_data[8]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g224__2398 (
+	.A(FE_OFN465_Tile_X01_Y08_read_config_data_7),
 	.B(FE_OFN433_Tile_X00_Y08_read_config_data_7),
 	.C(FE_OFN507_Tile_X03_Y08_read_config_data_7),
 	.D(Tile_X02_Y08_read_config_data_7),
-	.X(read_config_data[7]));
-   sky130_fd_sc_hd__or4_2 g225__5107 (.A(FE_OFN464_Tile_X01_Y08_read_config_data_6),
+	.X(read_config_data[7]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g225__5107 (
+	.A(FE_OFN464_Tile_X01_Y08_read_config_data_6),
 	.B(FE_OFN267_Tile_X00_Y08_read_config_data_6),
 	.C(FE_OFN506_Tile_X03_Y08_read_config_data_6),
 	.D(Tile_X02_Y08_read_config_data_6),
-	.X(read_config_data[6]));
-   sky130_fd_sc_hd__or4_2 g226__6260 (.A(FE_OFN463_Tile_X01_Y08_read_config_data_5),
+	.X(read_config_data[6]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g226__6260 (
+	.A(FE_OFN463_Tile_X01_Y08_read_config_data_5),
 	.B(FE_OFN431_Tile_X00_Y08_read_config_data_5),
 	.C(FE_OFN505_Tile_X03_Y08_read_config_data_5),
 	.D(Tile_X02_Y08_read_config_data_5),
-	.X(read_config_data[5]));
-   sky130_fd_sc_hd__or4_2 g227__4319 (.A(FE_OFN290_Tile_X01_Y08_read_config_data_4),
+	.X(read_config_data[5]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_2 g227__4319 (
+	.A(FE_OFN290_Tile_X01_Y08_read_config_data_4),
 	.B(FE_OFN303_Tile_X03_Y08_read_config_data_4),
 	.C(FE_OFN266_Tile_X00_Y08_read_config_data_4),
 	.D(Tile_X02_Y08_read_config_data_4),
-	.X(read_config_data[4]));
-   sky130_fd_sc_hd__clkbuf_4 drc_bufs242 (.A(config_1_config_data[0]),
-	.X(n_110));
-   sky130_fd_sc_hd__clkbuf_4 drc_bufs245 (.A(config_2_config_data[0]),
-	.X(n_113));
-   sky130_fd_sc_hd__buf_2 drc_bufs248 (.A(config_0_config_data[0]),
-	.X(n_116));
+	.X(read_config_data[4]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 drc_bufs242 (
+	.A(config_1_config_data[0]),
+	.X(n_110), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 drc_bufs245 (
+	.A(config_2_config_data[0]),
+	.X(n_113), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 drc_bufs248 (
+	.A(config_0_config_data[0]),
+	.X(n_116), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
 endmodule
 
 module user_proj_example_ckmux (
 	select, 
 	clk0, 
 	clk1, 
-	out_clk);
+	out_clk, 
+	VDD, 
+	VSS);
    input select;
    input clk0;
    input clk1;
    output out_clk;
+   inout VDD;
+   inout VSS;
 
    // Internal wires
    wire CTS_24;
@@ -32695,84 +35306,255 @@ module user_proj_example_ckmux (
    wire q_t0;
    wire q_t1;
 
-   sky130_fd_sc_hd__clkinv_8 CTS_cpc_drv_inv_00220 (.A(CTS_24),
-	.Y(CTS_23));
-   sky130_fd_sc_hd__clkinv_2 CTS_cpc_drv_inv_00219 (.A(CTS_19),
-	.Y(CTS_24));
-   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00019 (.A(CTS_14),
-	.Y(CTS_13));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00021 (.A(CTS_15),
-	.Y(CTS_14));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00023 (.A(CTS_16),
-	.Y(CTS_15));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00026 (.A(CTS_17),
-	.Y(CTS_16));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00028 (.A(CTS_18),
-	.Y(CTS_17));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00031 (.A(CTS_23),
-	.Y(CTS_18));
-   sky130_fd_sc_hd__clkinv_2 CTS_ccl_inv_00038 (.A(CTS_20),
-	.Y(CTS_19));
-   sky130_fd_sc_hd__clkinv_2 CTS_ccl_inv_00041 (.A(CTS_21),
-	.Y(CTS_20));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00003 (.A(CTS_12),
-	.Y(CTS_10));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00016 (.A(CTS_21),
-	.Y(CTS_12));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00044 (.A(CTS_22),
-	.Y(CTS_21));
-   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00048 (.A(clk1),
-	.Y(CTS_22));
-   sky130_fd_sc_hd__clkinv_4 CTS_csf_inv_00179 (.A(CTS_9),
-	.Y(out_clk));
-   sky130_fd_sc_hd__clkinv_2 CTS_csf_inv_00181 (.A(CTS_11),
-	.Y(CTS_9));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00159 (.A(CTS_4),
-	.Y(CTS_3));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_inv_00161 (.A(CTS_5),
-	.Y(CTS_4));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00163 (.A(CTS_6),
-	.Y(CTS_5));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00171 (.A(CTS_7),
-	.Y(CTS_6));
-   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00153 (.A(CTS_2),
-	.Y(CTS_1));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00156 (.A(CTS_7),
-	.Y(CTS_2));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00174 (.A(CTS_8),
-	.Y(CTS_7));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00178 (.A(clk0),
-	.Y(CTS_8));
-   sky130_fd_sc_hd__conb_1 LTIE (.HI(LTIE_HINET));
-   sky130_fd_sc_hd__buf_2 FE_OFC317_q_t1 (.A(q_t1),
-	.X(FE_OFN317_q_t1));
-   sky130_fd_sc_hd__buf_2 FE_OFC316_q_b1 (.A(q_b1),
-	.X(FE_OFN316_q_b1));
-   sky130_fd_sc_hd__dfxtp_1 t0_Q_reg_0 (.CLK(CTS_10),
+   // Module instantiations
+   sky130_fd_sc_hd__clkinv_8 CTS_cpc_drv_inv_00220 (
+	.A(CTS_24),
+	.Y(CTS_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_cpc_drv_inv_00219 (
+	.A(CTS_19),
+	.Y(CTS_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00019 (
+	.A(CTS_14),
+	.Y(CTS_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00021 (
+	.A(CTS_15),
+	.Y(CTS_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00023 (
+	.A(CTS_16),
+	.Y(CTS_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00026 (
+	.A(CTS_17),
+	.Y(CTS_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00028 (
+	.A(CTS_18),
+	.Y(CTS_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00031 (
+	.A(CTS_23),
+	.Y(CTS_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_ccl_inv_00038 (
+	.A(CTS_20),
+	.Y(CTS_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_ccl_inv_00041 (
+	.A(CTS_21),
+	.Y(CTS_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00003 (
+	.A(CTS_12),
+	.Y(CTS_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00016 (
+	.A(CTS_21),
+	.Y(CTS_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00044 (
+	.A(CTS_22),
+	.Y(CTS_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00048 (
+	.A(clk1),
+	.Y(CTS_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_csf_inv_00179 (
+	.A(CTS_9),
+	.Y(out_clk), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_csf_inv_00181 (
+	.A(CTS_11),
+	.Y(CTS_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00159 (
+	.A(CTS_4),
+	.Y(CTS_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_inv_00161 (
+	.A(CTS_5),
+	.Y(CTS_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00163 (
+	.A(CTS_6),
+	.Y(CTS_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00171 (
+	.A(CTS_7),
+	.Y(CTS_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00153 (
+	.A(CTS_2),
+	.Y(CTS_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00156 (
+	.A(CTS_7),
+	.Y(CTS_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00174 (
+	.A(CTS_8),
+	.Y(CTS_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00178 (
+	.A(clk0),
+	.Y(CTS_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE (
+	.HI(LTIE_HINET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC317_q_t1 (
+	.A(q_t1),
+	.X(FE_OFN317_q_t1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC316_q_b1 (
+	.A(q_b1),
+	.X(FE_OFN316_q_b1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 t0_Q_reg_0 (
+	.CLK(CTS_10),
 	.D(n_2),
-	.Q(q_t0));
-   sky130_fd_sc_hd__a22o_1 g60__8428 (.A1(FE_OFN317_q_t1),
+	.Q(q_t0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__a22o_1 g60__8428 (
+	.A1(FE_OFN317_q_t1),
 	.A2(CTS_13),
 	.B1(FE_OFN316_q_b1),
 	.B2(CTS_3),
-	.X(CTS_11));
-   sky130_fd_sc_hd__nor2b_1 g61__5526 (.A(q_b1),
+	.X(CTS_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g61__5526 (
+	.A(q_b1),
 	.B_N(select),
-	.Y(n_2));
-   sky130_fd_sc_hd__dfxtp_1 b0_Q_reg_0 (.CLK(CTS_1),
+	.Y(n_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 b0_Q_reg_0 (
+	.CLK(CTS_1),
 	.D(n_1),
-	.Q(q_b0));
-   sky130_fd_sc_hd__nor2_1 g41__6783 (.A(q_t1),
+	.Q(q_b0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2_1 g41__6783 (
+	.A(q_t1),
 	.B(select),
-	.Y(n_1));
-   sky130_fd_sc_hd__dfrtn_1 b1_Q_reg_0 (.CLK_N(CTS_1),
+	.Y(n_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfrtn_1 b1_Q_reg_0 (
+	.CLK_N(CTS_1),
 	.D(q_b0),
 	.Q(q_b1),
-	.RESET_B(LTIE_HINET));
-   sky130_fd_sc_hd__dfrtn_1 t1_Q_reg_0 (.CLK_N(CTS_10),
+	.RESET_B(LTIE_HINET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfrtn_1 t1_Q_reg_0 (
+	.CLK_N(CTS_10),
 	.D(q_t0),
 	.Q(q_t1),
-	.RESET_B(LTIE_HINET));
+	.RESET_B(LTIE_HINET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
 endmodule
 
 module user_proj_example_RC_CG_MOD (
@@ -32785,7 +35567,9 @@ module user_proj_example_RC_CG_MOD (
 	ck_out_clone4, 
 	ck_out_clone5, 
 	ck_in_clone1, 
-	ck_in);
+	ck_in, 
+	VDD, 
+	VSS);
    input enable;
    input test;
    output ck_out;
@@ -32796,38 +35580,81 @@ module user_proj_example_RC_CG_MOD (
    output ck_out_clone5;
    input ck_in_clone1;
    input ck_in;
+   inout VDD;
+   inout VSS;
 
    // Internal wires
    wire FE_OFN0_wbs_ctl_u0_n_1066;
    wire LTIE_LONET;
 
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC0_wbs_ctl_u0_n_1066 (.A(enable),
-	.X(FE_OFN0_wbs_ctl_u0_n_1066));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_15 (.CLK(ck_in),
+   // Module instantiations
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC0_wbs_ctl_u0_n_1066 (
+	.A(enable),
+	.X(FE_OFN0_wbs_ctl_u0_n_1066), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_15 (
+	.CLK(ck_in),
 	.GATE(enable),
 	.GCLK(ck_out_clone5),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_2 RC_CGIC_INST_clone_14 (.CLK(ck_in),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_2 RC_CGIC_INST_clone_14 (
+	.CLK(ck_in),
 	.GATE(FE_OFN0_wbs_ctl_u0_n_1066),
 	.GCLK(ck_out_clone4),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_13 (.CLK(ck_in),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_13 (
+	.CLK(ck_in),
 	.GATE(FE_OFN0_wbs_ctl_u0_n_1066),
 	.GCLK(ck_out_clone3),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_12 (.CLK(ck_in_clone1),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_12 (
+	.CLK(ck_in_clone1),
 	.GATE(FE_OFN0_wbs_ctl_u0_n_1066),
 	.GCLK(ck_out_clone2),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_11 (.CLK(ck_in_clone1),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_11 (
+	.CLK(ck_in_clone1),
 	.GATE(FE_OFN0_wbs_ctl_u0_n_1066),
 	.GCLK(ck_out_clone1),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone (.CLK(ck_in_clone1),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone (
+	.CLK(ck_in_clone1),
 	.GATE(FE_OFN0_wbs_ctl_u0_n_1066),
 	.GCLK(ck_out),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE (.LO(LTIE_LONET));
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE (
+	.LO(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
 endmodule
 
 module user_proj_example_RC_CG_MOD_1 (
@@ -32839,7 +35666,9 @@ module user_proj_example_RC_CG_MOD_1 (
 	ck_out_clone3, 
 	ck_out_clone4, 
 	ck_in_clone1, 
-	ck_in);
+	ck_in, 
+	VDD, 
+	VSS);
    input enable;
    input test;
    output ck_out;
@@ -32849,71 +35678,134 @@ module user_proj_example_RC_CG_MOD_1 (
    output ck_out_clone4;
    input ck_in_clone1;
    input ck_in;
+   inout VDD;
+   inout VSS;
 
    // Internal wires
    wire LTIE_LONET;
 
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_12 (.CLK(ck_in),
+   // Module instantiations
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_12 (
+	.CLK(ck_in),
 	.GATE(enable),
 	.GCLK(ck_out_clone4),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_11 (.CLK(ck_in),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_11 (
+	.CLK(ck_in),
 	.GATE(enable),
 	.GCLK(ck_out_clone3),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_10 (.CLK(ck_in_clone1),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_10 (
+	.CLK(ck_in_clone1),
 	.GATE(enable),
 	.GCLK(ck_out_clone2),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_9 (.CLK(ck_in_clone1),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_9 (
+	.CLK(ck_in_clone1),
 	.GATE(enable),
 	.GCLK(ck_out_clone1),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone (.CLK(ck_in_clone1),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone (
+	.CLK(ck_in_clone1),
 	.GATE(enable),
 	.GCLK(ck_out),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE (.LO(LTIE_LONET));
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE (
+	.LO(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
 endmodule
 
 module user_proj_example_RC_CG_MOD_2 (
 	enable, 
 	ck_in, 
 	ck_out, 
-	test);
+	test, 
+	VDD, 
+	VSS);
    input enable;
    input ck_in;
    output ck_out;
    input test;
+   inout VDD;
+   inout VSS;
 
    // Internal wires
    wire LTIE_LONET;
 
-   sky130_fd_sc_hd__conb_1 LTIE (.LO(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_2 RC_CGIC_INST (.CLK(ck_in),
+   // Module instantiations
+   sky130_fd_sc_hd__conb_1 LTIE (
+	.LO(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_2 RC_CGIC_INST (
+	.CLK(ck_in),
 	.GATE(enable),
 	.GCLK(ck_out),
-	.SCE(LTIE_LONET));
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
 endmodule
 
 module user_proj_example_RC_CG_MOD_3 (
 	enable, 
 	ck_in, 
 	ck_out, 
-	test);
+	test, 
+	VDD, 
+	VSS);
    input enable;
    input ck_in;
    output ck_out;
    input test;
+   inout VDD;
+   inout VSS;
 
    // Internal wires
    wire LTIE_LONET;
 
-   sky130_fd_sc_hd__conb_1 LTIE (.LO(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_1 RC_CGIC_INST (.CLK(ck_in),
+   // Module instantiations
+   sky130_fd_sc_hd__conb_1 LTIE (
+	.LO(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_1 RC_CGIC_INST (
+	.CLK(ck_in),
 	.GATE(enable),
 	.GCLK(ck_out),
-	.SCE(LTIE_LONET));
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
 endmodule
 
 module user_proj_example_RC_CG_MOD_4 (
@@ -32923,7 +35815,9 @@ module user_proj_example_RC_CG_MOD_4 (
 	ck_out_clone1, 
 	ck_out_clone2, 
 	ck_out_clone3, 
-	ck_in);
+	ck_in, 
+	VDD, 
+	VSS);
    input enable;
    input test;
    output ck_out;
@@ -32931,30 +35825,63 @@ module user_proj_example_RC_CG_MOD_4 (
    output ck_out_clone2;
    output ck_out_clone3;
    input ck_in;
+   inout VDD;
+   inout VSS;
 
    // Internal wires
    wire LTIE_LONET;
    wire FE_OFN382_wbs_ctl_u0_n_1077;
 
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_9 (.CLK(ck_in),
+   // Module instantiations
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_9 (
+	.CLK(ck_in),
 	.GATE(FE_OFN382_wbs_ctl_u0_n_1077),
 	.GCLK(ck_out_clone3),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_8 (.CLK(ck_in),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_8 (
+	.CLK(ck_in),
 	.GATE(FE_OFN382_wbs_ctl_u0_n_1077),
 	.GCLK(ck_out_clone2),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_7 (.CLK(ck_in),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone_7 (
+	.CLK(ck_in),
 	.GATE(FE_OFN382_wbs_ctl_u0_n_1077),
 	.GCLK(ck_out_clone1),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone (.CLK(ck_in),
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__sdlclkp_4 RC_CGIC_INST_clone (
+	.CLK(ck_in),
 	.GATE(FE_OFN382_wbs_ctl_u0_n_1077),
 	.GCLK(ck_out),
-	.SCE(LTIE_LONET));
-   sky130_fd_sc_hd__conb_1 LTIE (.LO(LTIE_LONET));
-   sky130_fd_sc_hd__buf_2 FE_OFC382_wbs_ctl_u0_n_1077 (.A(enable),
-	.X(FE_OFN382_wbs_ctl_u0_n_1077));
+	.SCE(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIE (
+	.LO(LTIE_LONET), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC382_wbs_ctl_u0_n_1077 (
+	.A(enable),
+	.X(FE_OFN382_wbs_ctl_u0_n_1077), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
 endmodule
 
 module user_proj_example (
@@ -32974,7 +35901,9 @@ module user_proj_example (
 	io_in, 
 	io_out, 
 	io_oeb, 
-	irq);
+	irq, 
+	VSS, 
+	VDD);
    input wb_clk_i;
    input wb_rst_i;
    input wbs_stb_i;
@@ -32992,8 +35921,18 @@ module user_proj_example (
    output [37:0] io_out;
    output [37:0] io_oeb;
    output [2:0] irq;
+   inout VSS;
+   inout VDD;
 
    // Internal wires
+   wire VSSE;
+   wire VSSPST;
+   wire VPW;
+   wire VDDPE;
+   wire VDDCE;
+   wire POC;
+   wire VDDPST;
+   wire VNW;
    wire FE_PHN90_CGRA_config_config_data_30;
    wire FE_PHN88_CGRA_config_config_data_15;
    wire FE_PHN87_CGRA_config_config_data_17;
@@ -34397,965 +37336,3767 @@ module user_proj_example (
    assign FE_RN_2 = la_data_in[36] ;
    assign FE_RN_1 = la_data_in[37] ;
 
-   sky130_fd_sc_hd__diode_2 DIODE_37 (.DIODE(FE_PDN30_FE_OFN357_CGRA_read_config_data_21));
-   sky130_fd_sc_hd__diode_2 DIODE_36 (.DIODE(FE_PDN7_FE_OFN369_CGRA_read_config_data_28));
-   sky130_fd_sc_hd__diode_2 DIODE_35 (.DIODE(FE_OFN335_CGRA_read_config_data_9));
-   sky130_fd_sc_hd__clkbuf_2 FE_PHC90_CGRA_config_config_data_30 (.A(FE_PHN81_CGRA_config_config_data_30),
-	.X(FE_PHN90_CGRA_config_config_data_30));
-   sky130_fd_sc_hd__buf_1 FE_PHC88_CGRA_config_config_data_15 (.A(FE_PHN41_CGRA_config_config_data_15),
-	.X(FE_PHN88_CGRA_config_config_data_15));
-   sky130_fd_sc_hd__buf_1 FE_PHC87_CGRA_config_config_data_17 (.A(FE_PHN87_CGRA_config_config_data_17),
-	.X(FE_PHN69_CGRA_config_config_data_17));
-   sky130_fd_sc_hd__buf_1 FE_PHC86_CGRA_config_config_data_25 (.A(FE_PHN60_CGRA_config_config_data_25),
-	.X(FE_PHN86_CGRA_config_config_data_25));
-   sky130_fd_sc_hd__buf_1 FE_PHC85_CGRA_config_config_data_23 (.A(FE_PHN70_CGRA_config_config_data_23),
-	.X(FE_PHN85_CGRA_config_config_data_23));
-   sky130_fd_sc_hd__buf_1 FE_PHC84_CGRA_config_config_data_26 (.A(FE_PHN63_CGRA_config_config_data_26),
-	.X(FE_PHN84_CGRA_config_config_data_26));
-   sky130_fd_sc_hd__buf_1 FE_PHC83_CGRA_config_config_data_22 (.A(FE_PHN83_CGRA_config_config_data_22),
-	.X(CGRA_config_config_data_22));
-   sky130_fd_sc_hd__clkbuf_1 FE_PHC82_CGRA_config_config_data_31 (.A(FE_PHN57_CGRA_config_config_data_31),
-	.X(FE_PHN82_CGRA_config_config_data_31));
-   sky130_fd_sc_hd__buf_1 FE_PHC81_CGRA_config_config_data_30 (.A(CGRA_config_config_data_30),
-	.X(FE_PHN81_CGRA_config_config_data_30));
-   sky130_fd_sc_hd__buf_1 FE_PHC80_CGRA_config_config_data_13 (.A(FE_PHN80_CGRA_config_config_data_13),
-	.X(FE_PHN47_CGRA_config_config_data_13));
-   sky130_fd_sc_hd__buf_1 FE_PHC79_CGRA_config_config_data_20 (.A(FE_PHN45_CGRA_config_config_data_20),
-	.X(FE_PHN79_CGRA_config_config_data_20));
-   sky130_fd_sc_hd__buf_1 FE_PHC78_CGRA_config_config_data_19 (.A(FE_PHN50_CGRA_config_config_data_19),
-	.X(FE_PHN78_CGRA_config_config_data_19));
-   sky130_fd_sc_hd__buf_1 FE_PHC77_CGRA_config_config_data_29 (.A(CGRA_config_config_data_29),
-	.X(FE_PHN77_CGRA_config_config_data_29));
-   sky130_fd_sc_hd__buf_1 FE_PHC76_CGRA_config_config_data_11 (.A(FE_PHN43_CGRA_config_config_data_11),
-	.X(FE_PHN76_CGRA_config_config_data_11));
-   sky130_fd_sc_hd__buf_1 FE_PHC75_CGRA_config_config_data_21 (.A(CGRA_config_config_data_21),
-	.X(FE_PHN75_CGRA_config_config_data_21));
-   sky130_fd_sc_hd__buf_1 FE_PHC74_CGRA_config_config_data_16 (.A(FE_PHN74_CGRA_config_config_data_16),
-	.X(FE_PHN46_CGRA_config_config_data_16));
-   sky130_fd_sc_hd__buf_1 FE_PHC73_CGRA_config_config_data_14 (.A(FE_PHN32_CGRA_config_config_data_14),
-	.X(FE_PHN73_CGRA_config_config_data_14));
-   sky130_fd_sc_hd__buf_1 FE_PHC72_CGRA_config_config_data_5 (.A(FE_PHN26_CGRA_config_config_data_5),
-	.X(FE_PHN72_CGRA_config_config_data_5));
-   sky130_fd_sc_hd__buf_1 FE_PHC71_CGRA_config_config_data_0 (.A(CGRA_config_config_data_0),
-	.X(FE_PHN71_CGRA_config_config_data_0));
-   sky130_fd_sc_hd__buf_1 FE_PHC70_CGRA_config_config_data_23 (.A(FE_PHN48_CGRA_config_config_data_23),
-	.X(FE_PHN70_CGRA_config_config_data_23));
-   sky130_fd_sc_hd__buf_1 FE_PHC69_CGRA_config_config_data_17 (.A(FE_PHN69_CGRA_config_config_data_17),
-	.X(CGRA_config_config_data_17));
-   sky130_fd_sc_hd__buf_1 FE_PHC68_CGRA_config_config_data_15 (.A(FE_PHN88_CGRA_config_config_data_15),
-	.X(FE_PHN68_CGRA_config_config_data_15));
-   sky130_fd_sc_hd__buf_1 FE_PHC67_CGRA_stall_3 (.A(CGRA_stall_3),
-	.X(FE_PHN67_CGRA_stall_3));
-   sky130_fd_sc_hd__buf_1 FE_PHC66_CGRA_config_config_data_24 (.A(FE_PHN66_CGRA_config_config_data_24),
-	.X(FE_PHN51_CGRA_config_config_data_24));
-   sky130_fd_sc_hd__buf_1 FE_PHC65_CGRA_config_config_data_18 (.A(FE_PHN49_CGRA_config_config_data_18),
-	.X(FE_PHN65_CGRA_config_config_data_18));
-   sky130_fd_sc_hd__clkdlybuf4s18_2 FE_PHC64_CGRA_config_config_data_27 (.A(FE_PHN64_CGRA_config_config_data_27),
-	.X(CGRA_config_config_data_27));
-   sky130_fd_sc_hd__buf_1 FE_PHC63_CGRA_config_config_data_26 (.A(CGRA_config_config_data_26),
-	.X(FE_PHN63_CGRA_config_config_data_26));
-   sky130_fd_sc_hd__buf_1 FE_PHC62_CGRA_config_config_data_22 (.A(CGRA_config_config_data_22),
-	.X(FE_PHN62_CGRA_config_config_data_22));
-   sky130_fd_sc_hd__buf_1 FE_PHC61_CGRA_config_config_data_28 (.A(CGRA_config_config_data_28),
-	.X(FE_PHN61_CGRA_config_config_data_28));
-   sky130_fd_sc_hd__buf_1 FE_PHC60_CGRA_config_config_data_25 (.A(CGRA_config_config_data_25),
-	.X(FE_PHN60_CGRA_config_config_data_25));
-   sky130_fd_sc_hd__buf_1 FE_PHC59_CGRA_config_config_data_30 (.A(FE_PHN90_CGRA_config_config_data_30),
-	.X(FE_PHN59_CGRA_config_config_data_30));
-   sky130_fd_sc_hd__clkdlybuf4s25_1 FE_PHC58_CGRA_config_read (.A(CGRA_config_read),
-	.X(FE_PHN58_CGRA_config_read));
-   sky130_fd_sc_hd__clkbuf_1 FE_PHC57_CGRA_config_config_data_31 (.A(CGRA_config_config_data_31),
-	.X(FE_PHN57_CGRA_config_config_data_31));
-   sky130_fd_sc_hd__buf_2 FE_PDC40_FE_OFN369_CGRA_read_config_data_28 (.A(FE_OFN369_CGRA_read_config_data_28),
-	.X(FE_PDN54_FE_OFN369_CGRA_read_config_data_28));
-   sky130_fd_sc_hd__buf_2 FE_PDC39_FE_OFN257_CGRA_read_config_data_18 (.A(FE_OFN257_CGRA_read_config_data_18),
-	.X(FE_PDN53_FE_OFN257_CGRA_read_config_data_18));
-   sky130_fd_sc_hd__buf_2 FE_PDC38_FE_OFN253_CGRA_read_config_data_3 (.A(FE_OFN253_CGRA_read_config_data_3),
-	.X(FE_PDN52_FE_OFN253_CGRA_read_config_data_3));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC37_FE_OFN253_CGRA_read_config_data_3 (.A(FE_PDN52_FE_OFN253_CGRA_read_config_data_3),
-	.Y(FE_PDN51_FE_OFN253_CGRA_read_config_data_3));
-   sky130_fd_sc_hd__buf_4 FE_PDC36_FE_OFN253_CGRA_read_config_data_3 (.A(FE_PDN51_FE_OFN253_CGRA_read_config_data_3),
-	.X(FE_PDN50_FE_OFN253_CGRA_read_config_data_3));
-   sky130_fd_sc_hd__clkinv_8 FE_PDC35_FE_OFN253_CGRA_read_config_data_3 (.A(FE_PDN50_FE_OFN253_CGRA_read_config_data_3),
-	.Y(FE_PDN49_FE_OFN253_CGRA_read_config_data_3));
-   sky130_fd_sc_hd__buf_8 FE_PDC34_FE_OFN253_CGRA_read_config_data_3 (.A(FE_PDN49_FE_OFN253_CGRA_read_config_data_3),
-	.X(FE_PDN48_FE_OFN253_CGRA_read_config_data_3));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC33_FE_OFN336_CGRA_read_config_data_10 (.A(FE_OFN336_CGRA_read_config_data_10),
-	.Y(FE_PDN47_FE_OFN336_CGRA_read_config_data_10));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC32_FE_OFN336_CGRA_read_config_data_10 (.A(FE_PDN47_FE_OFN336_CGRA_read_config_data_10),
-	.Y(FE_PDN46_FE_OFN336_CGRA_read_config_data_10));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC31_FE_OFN336_CGRA_read_config_data_10 (.A(FE_PDN46_FE_OFN336_CGRA_read_config_data_10),
-	.Y(FE_PDN45_FE_OFN336_CGRA_read_config_data_10));
-   sky130_fd_sc_hd__buf_12 FE_PDC30_FE_OFN336_CGRA_read_config_data_10 (.A(FE_PDN45_FE_OFN336_CGRA_read_config_data_10),
-	.X(FE_PDN44_FE_OFN336_CGRA_read_config_data_10));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC29_FE_OFN336_CGRA_read_config_data_10 (.A(FE_PDN44_FE_OFN336_CGRA_read_config_data_10),
-	.Y(FE_PDN43_FE_OFN336_CGRA_read_config_data_10));
-   sky130_fd_sc_hd__clkbuf_4 FE_PDC28_FE_OFN254_CGRA_read_config_data_5 (.A(FE_OFN254_CGRA_read_config_data_5),
-	.X(FE_PDN42_FE_OFN254_CGRA_read_config_data_5));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC27_FE_OFN254_CGRA_read_config_data_5 (.A(FE_PDN42_FE_OFN254_CGRA_read_config_data_5),
-	.Y(FE_PDN41_FE_OFN254_CGRA_read_config_data_5));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC26_FE_OFN254_CGRA_read_config_data_5 (.A(FE_PDN41_FE_OFN254_CGRA_read_config_data_5),
-	.Y(FE_PDN40_FE_OFN254_CGRA_read_config_data_5));
-   sky130_fd_sc_hd__inv_12 FE_PDC25_FE_OFN254_CGRA_read_config_data_5 (.A(FE_PDN40_FE_OFN254_CGRA_read_config_data_5),
-	.Y(FE_PDN39_FE_OFN254_CGRA_read_config_data_5));
-   sky130_fd_sc_hd__inv_2 FE_PDC24_FE_OFN254_CGRA_read_config_data_5 (.A(FE_PDN39_FE_OFN254_CGRA_read_config_data_5),
-	.Y(FE_PDN38_FE_OFN254_CGRA_read_config_data_5));
-   sky130_fd_sc_hd__clkbuf_1 FE_PDC23_FE_OFN254_CGRA_read_config_data_5 (.A(FE_PDN38_FE_OFN254_CGRA_read_config_data_5),
-	.X(FE_PDN37_FE_OFN254_CGRA_read_config_data_5));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC22_FE_OFN370_CGRA_read_config_data_29 (.A(FE_OFN370_CGRA_read_config_data_29),
-	.Y(FE_PDN36_FE_OFN370_CGRA_read_config_data_29));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC21_FE_OFN370_CGRA_read_config_data_29 (.A(FE_PDN36_FE_OFN370_CGRA_read_config_data_29),
-	.Y(FE_PDN35_FE_OFN370_CGRA_read_config_data_29));
-   sky130_fd_sc_hd__clkinv_1 FE_PDC20_FE_OFN370_CGRA_read_config_data_29 (.A(FE_PDN35_FE_OFN370_CGRA_read_config_data_29),
-	.Y(FE_PDN34_FE_OFN370_CGRA_read_config_data_29));
-   sky130_fd_sc_hd__clkinv_1 FE_PDC19_FE_OFN370_CGRA_read_config_data_29 (.A(FE_PDN34_FE_OFN370_CGRA_read_config_data_29),
-	.Y(FE_PDN33_FE_OFN370_CGRA_read_config_data_29));
-   sky130_fd_sc_hd__buf_2 FE_PDC18_FE_OFN370_CGRA_read_config_data_29 (.A(FE_PDN33_FE_OFN370_CGRA_read_config_data_29),
-	.X(FE_PDN32_FE_OFN370_CGRA_read_config_data_29));
-   sky130_fd_sc_hd__clkinv_1 FE_PDC17_FE_OFN357_CGRA_read_config_data_21 (.A(FE_OFN357_CGRA_read_config_data_21),
-	.Y(FE_PDN31_FE_OFN357_CGRA_read_config_data_21));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC16_FE_OFN357_CGRA_read_config_data_21 (.A(FE_PDN31_FE_OFN357_CGRA_read_config_data_21),
-	.Y(FE_PDN30_FE_OFN357_CGRA_read_config_data_21));
-   sky130_fd_sc_hd__buf_4 FE_PDC15_FE_OFN357_CGRA_read_config_data_21 (.A(FE_PDN30_FE_OFN357_CGRA_read_config_data_21),
-	.X(FE_PDN29_FE_OFN357_CGRA_read_config_data_21));
-   sky130_fd_sc_hd__clkbuf_4 FE_PDC14_FE_OFN329_CGRA_read_config_data_7 (.A(FE_OFN329_CGRA_read_config_data_7),
-	.X(FE_PDN28_FE_OFN329_CGRA_read_config_data_7));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC13_FE_OFN329_CGRA_read_config_data_7 (.A(FE_PDN28_FE_OFN329_CGRA_read_config_data_7),
-	.Y(FE_PDN27_FE_OFN329_CGRA_read_config_data_7));
-   sky130_fd_sc_hd__clkinv_2 FE_PDC12_FE_OFN329_CGRA_read_config_data_7 (.A(FE_PDN27_FE_OFN329_CGRA_read_config_data_7),
-	.Y(FE_PDN26_FE_OFN329_CGRA_read_config_data_7));
-   sky130_fd_sc_hd__clkinv_1 FE_PDC11_io_out_23 (.A(FE_PDN9_io_out_23),
-	.Y(FE_PDN25_n));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC10_io_out_23 (.A(FE_PDN25_n),
-	.Y(FE_PDN24_n));
-   sky130_fd_sc_hd__buf_4 FE_PDC9_io_out_23 (.A(FE_PDN24_n),
-	.X(io_out[23]));
-   sky130_fd_sc_hd__clkinv_1 FE_PDC8_FE_OFN369_CGRA_read_config_data_28 (.A(FE_PDN54_FE_OFN369_CGRA_read_config_data_28),
-	.Y(FE_PDN8_FE_OFN369_CGRA_read_config_data_28));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC7_FE_OFN369_CGRA_read_config_data_28 (.A(FE_PDN8_FE_OFN369_CGRA_read_config_data_28),
-	.Y(FE_PDN7_FE_OFN369_CGRA_read_config_data_28));
-   sky130_fd_sc_hd__clkbuf_4 FE_PDC6_FE_OFN369_CGRA_read_config_data_28 (.A(FE_PDN7_FE_OFN369_CGRA_read_config_data_28),
-	.X(FE_PDN6_FE_OFN369_CGRA_read_config_data_28));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC5_FE_OFN257_CGRA_read_config_data_18 (.A(FE_PDN53_FE_OFN257_CGRA_read_config_data_18),
-	.Y(FE_PDN5_FE_OFN257_CGRA_read_config_data_18));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC4_FE_OFN257_CGRA_read_config_data_18 (.A(FE_PDN5_FE_OFN257_CGRA_read_config_data_18),
-	.Y(FE_PDN4_FE_OFN257_CGRA_read_config_data_18));
-   sky130_fd_sc_hd__clkbuf_1 FE_PDC3_FE_OFN257_CGRA_read_config_data_18 (.A(FE_PDN4_FE_OFN257_CGRA_read_config_data_18),
-	.X(FE_PDN3_FE_OFN257_CGRA_read_config_data_18));
-   sky130_fd_sc_hd__clkbuf_1 FE_PDC2_FE_OFN361_CGRA_read_config_data_24 (.A(FE_OFN361_CGRA_read_config_data_24),
-	.X(FE_PDN2_FE_OFN361_CGRA_read_config_data_24));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC1_FE_OFN361_CGRA_read_config_data_24 (.A(FE_PDN2_FE_OFN361_CGRA_read_config_data_24),
-	.Y(FE_PDN1_FE_OFN361_CGRA_read_config_data_24));
-   sky130_fd_sc_hd__clkinv_4 FE_PDC0_FE_OFN361_CGRA_read_config_data_24 (.A(FE_PDN1_FE_OFN361_CGRA_read_config_data_24),
-	.Y(FE_PDN0_FE_OFN361_CGRA_read_config_data_24));
-   sky130_fd_sc_hd__diode_2 DIODE_34 (.DIODE(FE_OFN341_CGRA_read_config_data_12));
-   sky130_fd_sc_hd__diode_2 DIODE_33 (.DIODE(FE_OFN261_CGRA_read_config_data_23));
-   sky130_fd_sc_hd__diode_2 DIODE_32 (.DIODE(FE_OFN339_CGRA_read_config_data_11));
-   sky130_fd_sc_hd__diode_2 DIODE_31 (.DIODE(FE_PDN0_FE_OFN361_CGRA_read_config_data_24));
-   sky130_fd_sc_hd__diode_2 DIODE_30 (.DIODE(FE_PDN6_FE_OFN369_CGRA_read_config_data_28));
-   sky130_fd_sc_hd__diode_2 DIODE_29 (.DIODE(FE_PDN3_FE_OFN257_CGRA_read_config_data_18));
-   sky130_fd_sc_hd__diode_2 DIODE_28 (.DIODE(FE_OFN134_io_out_19));
-   sky130_fd_sc_hd__diode_2 DIODE_27 (.DIODE(FE_OFN134_io_out_19));
-   sky130_fd_sc_hd__diode_2 DIODE_26 (.DIODE(FE_OFN134_io_out_19));
-   sky130_fd_sc_hd__diode_2 DIODE_25 (.DIODE(FE_OFN131_io_out_20));
-   sky130_fd_sc_hd__diode_2 DIODE_24 (.DIODE(FE_OFN349_CGRA_read_config_data_16));
-   sky130_fd_sc_hd__diode_2 DIODE_23 (.DIODE(FE_OFN323_CGRA_read_config_data_2));
-   sky130_fd_sc_hd__diode_2 DIODE_22 (.DIODE(FE_OFN321_CGRA_read_config_data_1));
-   sky130_fd_sc_hd__diode_2 DIODE_21 (.DIODE(FE_OFN343_CGRA_read_config_data_13));
-   sky130_fd_sc_hd__diode_2 DIODE_20 (.DIODE(FE_OFN343_CGRA_read_config_data_13));
-   sky130_fd_sc_hd__diode_2 DIODE_19 (.DIODE(FE_OFN150_io_out_12));
-   sky130_fd_sc_hd__diode_2 DIODE_16 (.DIODE(FE_OFN367_CGRA_read_config_data_27));
-   sky130_fd_sc_hd__diode_2 DIODE_15 (.DIODE(FE_OFN365_CGRA_read_config_data_26));
-   sky130_fd_sc_hd__diode_2 DIODE_14 (.DIODE(FE_OFN373_CGRA_read_config_data_30));
-   sky130_fd_sc_hd__diode_2 DIODE_13 (.DIODE(FE_OFN373_CGRA_read_config_data_30));
-   sky130_fd_sc_hd__diode_2 DIODE_12 (.DIODE(FE_OFN373_CGRA_read_config_data_30));
-   sky130_fd_sc_hd__diode_2 DIODE_11 (.DIODE(FE_OFN373_CGRA_read_config_data_30));
-   sky130_fd_sc_hd__diode_2 DIODE_7 (.DIODE(FE_OFN337_CGRA_read_config_data_10));
-   sky130_fd_sc_hd__diode_2 DIODE_6 (.DIODE(FE_OFN371_CGRA_read_config_data_29));
-   sky130_fd_sc_hd__diode_2 DIODE_5 (.DIODE(FE_OFN141_io_out_16));
-   sky130_fd_sc_hd__diode_2 DIODE_4 (.DIODE(FE_OFN102_io_out_33));
-   sky130_fd_sc_hd__buf_1 FE_PHC56_CGRA_config_config_data_14 (.A(FE_PHN73_CGRA_config_config_data_14),
-	.X(FE_PHN56_CGRA_config_config_data_14));
-   sky130_fd_sc_hd__buf_1 FE_PHC55_CGRA_config_config_data_8 (.A(FE_PHN33_CGRA_config_config_data_8),
-	.X(FE_PHN55_CGRA_config_config_data_8));
-   sky130_fd_sc_hd__buf_1 FE_PHC54_CGRA_config_config_data_6 (.A(FE_PHN36_CGRA_config_config_data_6),
-	.X(FE_PHN54_CGRA_config_config_data_6));
-   sky130_fd_sc_hd__buf_1 FE_PHC53_CGRA_config_config_data_4 (.A(FE_PHN35_CGRA_config_config_data_4),
-	.X(FE_PHN53_CGRA_config_config_data_4));
-   sky130_fd_sc_hd__buf_1 FE_PHC52_CGRA_config_config_data_7 (.A(FE_PHN34_CGRA_config_config_data_7),
-	.X(FE_PHN52_CGRA_config_config_data_7));
-   sky130_fd_sc_hd__buf_1 FE_PHC51_CGRA_config_config_data_24 (.A(CGRA_config_config_data_24),
-	.X(FE_PHN66_CGRA_config_config_data_24));
-   sky130_fd_sc_hd__buf_1 FE_PHC50_CGRA_config_config_data_19 (.A(CGRA_config_config_data_19),
-	.X(FE_PHN50_CGRA_config_config_data_19));
-   sky130_fd_sc_hd__buf_1 FE_PHC49_CGRA_config_config_data_18 (.A(CGRA_config_config_data_18),
-	.X(FE_PHN49_CGRA_config_config_data_18));
-   sky130_fd_sc_hd__buf_1 FE_PHC48_CGRA_config_config_data_23 (.A(CGRA_config_config_data_23),
-	.X(FE_PHN48_CGRA_config_config_data_23));
-   sky130_fd_sc_hd__buf_1 FE_PHC47_CGRA_config_config_data_13 (.A(CGRA_config_config_data_13),
-	.X(FE_PHN80_CGRA_config_config_data_13));
-   sky130_fd_sc_hd__buf_1 FE_PHC46_CGRA_config_config_data_16 (.A(CGRA_config_config_data_16),
-	.X(FE_PHN74_CGRA_config_config_data_16));
-   sky130_fd_sc_hd__buf_1 FE_PHC45_CGRA_config_config_data_20 (.A(CGRA_config_config_data_20),
-	.X(FE_PHN45_CGRA_config_config_data_20));
-   sky130_fd_sc_hd__buf_1 FE_PHC44_CGRA_config_config_data_12 (.A(CGRA_config_config_data_12),
-	.X(FE_PHN44_CGRA_config_config_data_12));
-   sky130_fd_sc_hd__buf_1 FE_PHC43_CGRA_config_config_data_11 (.A(CGRA_config_config_data_11),
-	.X(FE_PHN43_CGRA_config_config_data_11));
-   sky130_fd_sc_hd__buf_1 FE_PHC42_CGRA_config_config_data_3 (.A(CGRA_config_config_data_3),
-	.X(FE_PHN42_CGRA_config_config_data_3));
-   sky130_fd_sc_hd__buf_1 FE_PHC41_CGRA_config_config_data_15 (.A(CGRA_config_config_data_15),
-	.X(FE_PHN41_CGRA_config_config_data_15));
-   sky130_fd_sc_hd__buf_1 FE_PHC40_CGRA_config_config_data_1 (.A(CGRA_config_config_data_1),
-	.X(FE_PHN40_CGRA_config_config_data_1));
-   sky130_fd_sc_hd__buf_1 FE_PHC39_CGRA_config_config_data_10 (.A(CGRA_config_config_data_10),
-	.X(FE_PHN39_CGRA_config_config_data_10));
-   sky130_fd_sc_hd__buf_1 FE_PHC38_CGRA_config_config_data_9 (.A(CGRA_config_config_data_9),
-	.X(FE_PHN38_CGRA_config_config_data_9));
-   sky130_fd_sc_hd__buf_1 FE_PHC37_CGRA_config_config_data_17 (.A(CGRA_config_config_data_17),
-	.X(FE_PHN37_CGRA_config_config_data_17));
-   sky130_fd_sc_hd__buf_1 FE_PHC36_CGRA_config_config_data_6 (.A(CGRA_config_config_data_6),
-	.X(FE_PHN36_CGRA_config_config_data_6));
-   sky130_fd_sc_hd__buf_1 FE_PHC35_CGRA_config_config_data_4 (.A(CGRA_config_config_data_4),
-	.X(FE_PHN35_CGRA_config_config_data_4));
-   sky130_fd_sc_hd__buf_1 FE_PHC34_CGRA_config_config_data_7 (.A(CGRA_config_config_data_7),
-	.X(FE_PHN34_CGRA_config_config_data_7));
-   sky130_fd_sc_hd__buf_1 FE_PHC33_CGRA_config_config_data_8 (.A(CGRA_config_config_data_8),
-	.X(FE_PHN33_CGRA_config_config_data_8));
-   sky130_fd_sc_hd__buf_1 FE_PHC32_CGRA_config_config_data_14 (.A(CGRA_config_config_data_14),
-	.X(FE_PHN32_CGRA_config_config_data_14));
-   sky130_fd_sc_hd__buf_1 FE_PHC31_CGRA_config_config_data_27 (.A(CGRA_config_config_data_27),
-	.X(FE_PHN31_CGRA_config_config_data_27));
-   sky130_fd_sc_hd__buf_1 FE_PHC30_CGRA_config_config_data_29 (.A(FE_PHN77_CGRA_config_config_data_29),
-	.X(FE_PHN30_CGRA_config_config_data_29));
-   sky130_fd_sc_hd__buf_1 FE_PHC29_CGRA_config_config_data_28 (.A(FE_PHN61_CGRA_config_config_data_28),
-	.X(FE_PHN29_CGRA_config_config_data_28));
-   sky130_fd_sc_hd__buf_1 FE_PHC28_CGRA_config_config_data_26 (.A(FE_PHN84_CGRA_config_config_data_26),
-	.X(FE_PHN28_CGRA_config_config_data_26));
-   sky130_fd_sc_hd__buf_1 FE_PHC27_CGRA_config_config_data_30 (.A(FE_PHN59_CGRA_config_config_data_30),
-	.X(FE_PHN27_CGRA_config_config_data_30));
-   sky130_fd_sc_hd__buf_1 FE_PHC26_CGRA_config_config_data_5 (.A(CGRA_config_config_data_5),
-	.X(FE_PHN26_CGRA_config_config_data_5));
-   sky130_fd_sc_hd__buf_1 FE_PHC25_CGRA_config_config_data_22 (.A(FE_PHN62_CGRA_config_config_data_22),
-	.X(FE_PHN25_CGRA_config_config_data_22));
-   sky130_fd_sc_hd__buf_1 FE_PHC24_CGRA_config_config_data_23 (.A(FE_PHN85_CGRA_config_config_data_23),
-	.X(FE_PHN24_CGRA_config_config_data_23));
-   sky130_fd_sc_hd__buf_1 FE_PHC23_CGRA_config_config_data_4 (.A(FE_PHN53_CGRA_config_config_data_4),
-	.X(FE_PHN23_CGRA_config_config_data_4));
-   sky130_fd_sc_hd__buf_1 FE_PHC22_CGRA_config_config_data_1 (.A(FE_PHN40_CGRA_config_config_data_1),
-	.X(FE_PHN22_CGRA_config_config_data_1));
-   sky130_fd_sc_hd__buf_1 FE_PHC21_CGRA_config_config_data_3 (.A(FE_PHN42_CGRA_config_config_data_3),
-	.X(FE_PHN21_CGRA_config_config_data_3));
-   sky130_fd_sc_hd__buf_1 FE_PHC20_CGRA_config_config_data_6 (.A(FE_PHN54_CGRA_config_config_data_6),
-	.X(FE_PHN20_CGRA_config_config_data_6));
-   sky130_fd_sc_hd__buf_1 FE_PHC19_CGRA_config_config_data_19 (.A(FE_PHN78_CGRA_config_config_data_19),
-	.X(FE_PHN19_CGRA_config_config_data_19));
-   sky130_fd_sc_hd__buf_1 FE_PHC18_CGRA_config_config_data_11 (.A(FE_PHN76_CGRA_config_config_data_11),
-	.X(FE_PHN18_CGRA_config_config_data_11));
-   sky130_fd_sc_hd__buf_1 FE_PHC17_CGRA_config_config_data_17 (.A(FE_PHN37_CGRA_config_config_data_17),
-	.X(FE_PHN17_CGRA_config_config_data_17));
-   sky130_fd_sc_hd__clkdlybuf4s25_1 FE_PHC16_CGRA_config_config_data_2 (.A(CGRA_config_config_data_2),
-	.X(FE_PHN16_CGRA_config_config_data_2));
-   sky130_fd_sc_hd__buf_1 FE_PHC15_CGRA_config_config_data_13 (.A(FE_PHN47_CGRA_config_config_data_13),
-	.X(FE_PHN15_CGRA_config_config_data_13));
-   sky130_fd_sc_hd__buf_1 FE_PHC14_CGRA_config_config_data_14 (.A(FE_PHN56_CGRA_config_config_data_14),
-	.X(FE_PHN14_CGRA_config_config_data_14));
-   sky130_fd_sc_hd__buf_1 FE_PHC13_CGRA_config_config_data_10 (.A(FE_PHN39_CGRA_config_config_data_10),
-	.X(FE_PHN13_CGRA_config_config_data_10));
-   sky130_fd_sc_hd__buf_1 FE_PHC12_CGRA_config_config_data_16 (.A(FE_PHN46_CGRA_config_config_data_16),
-	.X(FE_PHN12_CGRA_config_config_data_16));
-   sky130_fd_sc_hd__buf_1 FE_PHC11_CGRA_config_config_data_12 (.A(FE_PHN44_CGRA_config_config_data_12),
-	.X(FE_PHN11_CGRA_config_config_data_12));
-   sky130_fd_sc_hd__buf_1 FE_PHC10_CGRA_config_config_data_8 (.A(FE_PHN55_CGRA_config_config_data_8),
-	.X(FE_PHN10_CGRA_config_config_data_8));
-   sky130_fd_sc_hd__buf_1 FE_PHC9_CGRA_config_config_data_20 (.A(FE_PHN79_CGRA_config_config_data_20),
-	.X(FE_PHN9_CGRA_config_config_data_20));
-   sky130_fd_sc_hd__buf_1 FE_PHC8_CGRA_config_config_data_7 (.A(FE_PHN52_CGRA_config_config_data_7),
-	.X(FE_PHN8_CGRA_config_config_data_7));
-   sky130_fd_sc_hd__buf_1 FE_PHC7_CGRA_config_config_data_9 (.A(FE_PHN38_CGRA_config_config_data_9),
-	.X(FE_PHN7_CGRA_config_config_data_9));
-   sky130_fd_sc_hd__buf_1 FE_PHC6_CGRA_config_config_data_15 (.A(FE_PHN68_CGRA_config_config_data_15),
-	.X(FE_PHN6_CGRA_config_config_data_15));
-   sky130_fd_sc_hd__buf_1 FE_PHC5_CGRA_config_config_data_18 (.A(FE_PHN65_CGRA_config_config_data_18),
-	.X(FE_PHN5_CGRA_config_config_data_18));
-   sky130_fd_sc_hd__clkdlybuf4s25_1 FE_PHC4_CGRA_config_config_data_0 (.A(FE_PHN71_CGRA_config_config_data_0),
-	.X(FE_PHN4_CGRA_config_config_data_0));
-   sky130_fd_sc_hd__buf_1 FE_PHC3_CGRA_config_config_data_25 (.A(FE_PHN86_CGRA_config_config_data_25),
-	.X(FE_PHN3_CGRA_config_config_data_25));
-   sky130_fd_sc_hd__buf_1 FE_PHC2_CGRA_config_config_data_24 (.A(FE_PHN51_CGRA_config_config_data_24),
-	.X(FE_PHN2_CGRA_config_config_data_24));
-   sky130_fd_sc_hd__clkdlybuf4s25_1 FE_PHC1_CGRA_config_config_data_21 (.A(FE_PHN75_CGRA_config_config_data_21),
-	.X(FE_PHN1_CGRA_config_config_data_21));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC6_wbs_dat_o_7 (.A(FE_OFN38_wbs_dat_o_7),
-	.X(wbs_dat_o[7]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC4_la_data_in_33 (.A(FE_OFN35_la_data_in_33),
-	.X(FE_OFN36_la_data_in_33));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC3_la_data_in_33 (.A(la_data_in[33]),
-	.X(FE_OFN35_la_data_in_33));
-   sky130_fd_sc_hd__buf_2 FE_OFC2_io_out_33 (.A(FE_OFN102_io_out_33),
-	.X(FE_OFN34_n));
-   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00066 (.A(CTS_13),
-	.Y(CTS_20));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00083 (.A(CTS_21),
-	.Y(CTS_13));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00103 (.A(CTS_22),
-	.Y(CTS_21));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00101 (.A(CTS_22),
-	.Y(CTS_19));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00118 (.A(CTS_23),
-	.Y(CTS_22));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00099 (.A(CTS_6),
-	.Y(CTS_5));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_inv_00117 (.A(CTS_23),
-	.Y(CTS_6));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00123 (.A(CTS_24),
-	.Y(CTS_23));
-   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00132 (.A(CTS_25),
-	.Y(CTS_24));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00139 (.A(CTS_26),
-	.Y(CTS_25));
-   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00144 (.A(ckmux_clk),
-	.Y(CTS_26));
-   sky130_fd_sc_hd__conb_1 LTIELO_132 (.LO(irq[0]));
-   sky130_fd_sc_hd__conb_1 LTIELO_131 (.LO(irq[1]));
-   sky130_fd_sc_hd__conb_1 LTIELO_130 (.LO(irq[2]));
-   sky130_fd_sc_hd__conb_1 LTIELO_129 (.LO(io_out[34]));
-   sky130_fd_sc_hd__conb_1 LTIELO_128 (.LO(io_out[35]));
-   sky130_fd_sc_hd__conb_1 LTIELO_127 (.LO(la_data_out[0]));
-   sky130_fd_sc_hd__conb_1 LTIELO_126 (.LO(la_data_out[1]));
-   sky130_fd_sc_hd__conb_1 LTIELO_125 (.LO(la_data_out[2]));
-   sky130_fd_sc_hd__conb_1 LTIELO_124 (.LO(la_data_out[3]));
-   sky130_fd_sc_hd__conb_1 LTIELO_123 (.LO(la_data_out[4]));
-   sky130_fd_sc_hd__conb_1 LTIELO_122 (.LO(la_data_out[5]));
-   sky130_fd_sc_hd__conb_1 LTIELO_121 (.LO(la_data_out[6]));
-   sky130_fd_sc_hd__conb_1 LTIELO_120 (.LO(la_data_out[7]));
-   sky130_fd_sc_hd__conb_1 LTIELO_119 (.LO(la_data_out[8]));
-   sky130_fd_sc_hd__conb_1 LTIELO_118 (.LO(la_data_out[9]));
-   sky130_fd_sc_hd__conb_1 LTIELO_117 (.LO(la_data_out[10]));
-   sky130_fd_sc_hd__conb_1 LTIELO_116 (.LO(la_data_out[11]));
-   sky130_fd_sc_hd__conb_1 LTIELO_115 (.LO(la_data_out[12]));
-   sky130_fd_sc_hd__conb_1 LTIELO_114 (.LO(la_data_out[13]));
-   sky130_fd_sc_hd__conb_1 LTIELO_113 (.LO(la_data_out[14]));
-   sky130_fd_sc_hd__conb_1 LTIELO_112 (.LO(la_data_out[15]));
-   sky130_fd_sc_hd__conb_1 LTIELO_111 (.LO(la_data_out[16]));
-   sky130_fd_sc_hd__conb_1 LTIELO_110 (.LO(la_data_out[17]));
-   sky130_fd_sc_hd__conb_1 LTIELO_109 (.LO(la_data_out[18]));
-   sky130_fd_sc_hd__conb_1 LTIELO_108 (.LO(la_data_out[19]));
-   sky130_fd_sc_hd__conb_1 LTIELO_107 (.LO(la_data_out[20]));
-   sky130_fd_sc_hd__conb_1 LTIELO_106 (.LO(la_data_out[21]));
-   sky130_fd_sc_hd__conb_1 LTIELO_105 (.LO(la_data_out[22]));
-   sky130_fd_sc_hd__conb_1 LTIELO_104 (.LO(la_data_out[23]));
-   sky130_fd_sc_hd__conb_1 LTIELO_103 (.LO(la_data_out[24]));
-   sky130_fd_sc_hd__conb_1 LTIELO_102 (.LO(la_data_out[25]));
-   sky130_fd_sc_hd__conb_1 LTIELO_101 (.LO(la_data_out[26]));
-   sky130_fd_sc_hd__conb_1 LTIELO_100 (.LO(la_data_out[27]));
-   sky130_fd_sc_hd__conb_1 LTIELO_99 (.LO(la_data_out[28]));
-   sky130_fd_sc_hd__conb_1 LTIELO_98 (.LO(la_data_out[29]));
-   sky130_fd_sc_hd__conb_1 LTIELO_97 (.LO(la_data_out[30]));
-   sky130_fd_sc_hd__conb_1 LTIELO_96 (.LO(la_data_out[31]));
-   sky130_fd_sc_hd__conb_1 LTIELO_95 (.LO(la_data_out[32]));
-   sky130_fd_sc_hd__conb_1 LTIELO_94 (.LO(la_data_out[33]));
-   sky130_fd_sc_hd__conb_1 LTIELO_93 (.LO(la_data_out[34]));
-   sky130_fd_sc_hd__conb_1 LTIELO_92 (.LO(la_data_out[35]));
-   sky130_fd_sc_hd__conb_1 LTIELO_91 (.LO(la_data_out[36]));
-   sky130_fd_sc_hd__conb_1 LTIELO_90 (.LO(la_data_out[37]));
-   sky130_fd_sc_hd__conb_1 LTIELO_89 (.LO(la_data_out[38]));
-   sky130_fd_sc_hd__conb_1 LTIELO_88 (.LO(la_data_out[39]));
-   sky130_fd_sc_hd__conb_1 LTIELO_87 (.LO(la_data_out[40]));
-   sky130_fd_sc_hd__conb_1 LTIELO_86 (.LO(la_data_out[41]));
-   sky130_fd_sc_hd__conb_1 LTIELO_85 (.LO(la_data_out[42]));
-   sky130_fd_sc_hd__conb_1 LTIELO_84 (.LO(la_data_out[43]));
-   sky130_fd_sc_hd__conb_1 LTIELO_83 (.LO(la_data_out[44]));
-   sky130_fd_sc_hd__conb_1 LTIELO_82 (.LO(la_data_out[45]));
-   sky130_fd_sc_hd__conb_1 LTIELO_81 (.LO(la_data_out[46]));
-   sky130_fd_sc_hd__conb_1 LTIELO_80 (.LO(la_data_out[47]));
-   sky130_fd_sc_hd__conb_1 LTIELO_79 (.LO(la_data_out[48]));
-   sky130_fd_sc_hd__conb_1 LTIELO_78 (.LO(la_data_out[49]));
-   sky130_fd_sc_hd__conb_1 LTIELO_77 (.LO(la_data_out[50]));
-   sky130_fd_sc_hd__conb_1 LTIELO_76 (.LO(la_data_out[51]));
-   sky130_fd_sc_hd__conb_1 LTIELO_75 (.LO(la_data_out[52]));
-   sky130_fd_sc_hd__conb_1 LTIELO_74 (.LO(la_data_out[53]));
-   sky130_fd_sc_hd__conb_1 LTIELO_73 (.LO(la_data_out[54]));
-   sky130_fd_sc_hd__conb_1 LTIELO_72 (.LO(la_data_out[55]));
-   sky130_fd_sc_hd__conb_1 LTIELO_71 (.LO(la_data_out[56]));
-   sky130_fd_sc_hd__conb_1 LTIELO_70 (.LO(la_data_out[57]));
-   sky130_fd_sc_hd__conb_1 LTIELO_69 (.LO(la_data_out[58]));
-   sky130_fd_sc_hd__conb_1 LTIELO_68 (.LO(la_data_out[59]));
-   sky130_fd_sc_hd__conb_1 LTIELO_67 (.LO(la_data_out[60]));
-   sky130_fd_sc_hd__conb_1 LTIELO_66 (.LO(la_data_out[61]));
-   sky130_fd_sc_hd__conb_1 LTIELO_65 (.LO(la_data_out[62]));
-   sky130_fd_sc_hd__conb_1 LTIELO_64 (.LO(la_data_out[63]));
-   sky130_fd_sc_hd__conb_1 LTIELO_63 (.LO(la_data_out[64]));
-   sky130_fd_sc_hd__conb_1 LTIELO_62 (.LO(la_data_out[65]));
-   sky130_fd_sc_hd__conb_1 LTIELO_61 (.LO(la_data_out[66]));
-   sky130_fd_sc_hd__conb_1 LTIELO_60 (.LO(la_data_out[67]));
-   sky130_fd_sc_hd__conb_1 LTIELO_59 (.LO(la_data_out[68]));
-   sky130_fd_sc_hd__conb_1 LTIELO_58 (.LO(la_data_out[69]));
-   sky130_fd_sc_hd__conb_1 LTIELO_57 (.LO(la_data_out[70]));
-   sky130_fd_sc_hd__conb_1 LTIELO_56 (.LO(la_data_out[71]));
-   sky130_fd_sc_hd__conb_1 LTIELO_55 (.LO(la_data_out[72]));
-   sky130_fd_sc_hd__conb_1 LTIELO_54 (.LO(la_data_out[73]));
-   sky130_fd_sc_hd__conb_1 LTIELO_53 (.LO(la_data_out[74]));
-   sky130_fd_sc_hd__conb_1 LTIELO_52 (.LO(la_data_out[75]));
-   sky130_fd_sc_hd__conb_1 LTIELO_51 (.LO(la_data_out[76]));
-   sky130_fd_sc_hd__conb_1 LTIELO_50 (.LO(la_data_out[77]));
-   sky130_fd_sc_hd__conb_1 LTIELO_49 (.LO(la_data_out[78]));
-   sky130_fd_sc_hd__conb_1 LTIELO_48 (.LO(la_data_out[79]));
-   sky130_fd_sc_hd__conb_1 LTIELO_47 (.LO(la_data_out[80]));
-   sky130_fd_sc_hd__conb_1 LTIELO_46 (.LO(la_data_out[81]));
-   sky130_fd_sc_hd__conb_1 LTIELO_45 (.LO(la_data_out[82]));
-   sky130_fd_sc_hd__conb_1 LTIELO_44 (.LO(la_data_out[83]));
-   sky130_fd_sc_hd__conb_1 LTIELO_43 (.LO(la_data_out[84]));
-   sky130_fd_sc_hd__conb_1 LTIELO_42 (.LO(la_data_out[85]));
-   sky130_fd_sc_hd__conb_1 LTIELO_41 (.LO(la_data_out[86]));
-   sky130_fd_sc_hd__conb_1 LTIELO_40 (.LO(la_data_out[87]));
-   sky130_fd_sc_hd__conb_1 LTIELO_39 (.LO(la_data_out[88]));
-   sky130_fd_sc_hd__conb_1 LTIELO_38 (.LO(la_data_out[89]));
-   sky130_fd_sc_hd__conb_1 LTIELO_37 (.LO(la_data_out[90]));
-   sky130_fd_sc_hd__conb_1 LTIELO_36 (.LO(la_data_out[91]));
-   sky130_fd_sc_hd__conb_1 LTIELO_35 (.LO(la_data_out[92]));
-   sky130_fd_sc_hd__conb_1 LTIELO_34 (.LO(la_data_out[93]));
-   sky130_fd_sc_hd__conb_1 LTIELO_33 (.LO(la_data_out[94]));
-   sky130_fd_sc_hd__conb_1 LTIELO_32 (.LO(la_data_out[95]));
-   sky130_fd_sc_hd__conb_1 LTIELO_31 (.LO(la_data_out[96]));
-   sky130_fd_sc_hd__conb_1 LTIELO_30 (.LO(la_data_out[97]));
-   sky130_fd_sc_hd__conb_1 LTIELO_29 (.LO(la_data_out[98]));
-   sky130_fd_sc_hd__conb_1 LTIELO_28 (.LO(la_data_out[99]));
-   sky130_fd_sc_hd__conb_1 LTIELO_27 (.LO(la_data_out[100]));
-   sky130_fd_sc_hd__conb_1 LTIELO_26 (.LO(la_data_out[101]));
-   sky130_fd_sc_hd__conb_1 LTIELO_25 (.LO(la_data_out[102]));
-   sky130_fd_sc_hd__conb_1 LTIELO_24 (.LO(la_data_out[103]));
-   sky130_fd_sc_hd__conb_1 LTIELO_23 (.LO(la_data_out[104]));
-   sky130_fd_sc_hd__conb_1 LTIELO_22 (.LO(la_data_out[105]));
-   sky130_fd_sc_hd__conb_1 LTIELO_21 (.LO(la_data_out[106]));
-   sky130_fd_sc_hd__conb_1 LTIELO_20 (.LO(la_data_out[107]));
-   sky130_fd_sc_hd__conb_1 LTIELO_19 (.LO(la_data_out[108]));
-   sky130_fd_sc_hd__conb_1 LTIELO_18 (.LO(la_data_out[109]));
-   sky130_fd_sc_hd__conb_1 LTIELO_17 (.LO(la_data_out[110]));
-   sky130_fd_sc_hd__conb_1 LTIELO_16 (.LO(la_data_out[111]));
-   sky130_fd_sc_hd__conb_1 LTIELO_15 (.LO(la_data_out[112]));
-   sky130_fd_sc_hd__conb_1 LTIELO_14 (.LO(la_data_out[113]));
-   sky130_fd_sc_hd__conb_1 LTIELO_13 (.LO(la_data_out[114]));
-   sky130_fd_sc_hd__conb_1 LTIELO_12 (.LO(la_data_out[115]));
-   sky130_fd_sc_hd__conb_1 LTIELO_11 (.LO(la_data_out[116]));
-   sky130_fd_sc_hd__conb_1 LTIELO_10 (.LO(la_data_out[117]));
-   sky130_fd_sc_hd__conb_1 LTIELO_9 (.LO(la_data_out[118]));
-   sky130_fd_sc_hd__conb_1 LTIELO_8 (.LO(la_data_out[119]));
-   sky130_fd_sc_hd__conb_1 LTIELO_7 (.LO(la_data_out[120]));
-   sky130_fd_sc_hd__conb_1 LTIELO_6 (.LO(la_data_out[121]));
-   sky130_fd_sc_hd__conb_1 LTIELO_5 (.LO(la_data_out[122]));
-   sky130_fd_sc_hd__conb_1 LTIELO_4 (.LO(la_data_out[123]));
-   sky130_fd_sc_hd__conb_1 LTIELO_3 (.LO(la_data_out[124]));
-   sky130_fd_sc_hd__conb_1 LTIELO_2 (.LO(la_data_out[125]));
-   sky130_fd_sc_hd__conb_1 LTIELO_1 (.LO(la_data_out[126]));
-   sky130_fd_sc_hd__conb_1 LTIELO (.LO(la_data_out[127]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC551_la_data_in_12 (.A(la_data_in[12]),
-	.X(FE_OFN551_la_data_in_12));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC543_CGRA_stall_1 (.A(CGRA_stall_1),
-	.X(FE_OFN543_CGRA_stall_1));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC542_FE_OFN230_io_oeb_6 (.A(FE_OFN230_io_oeb_6),
-	.X(FE_OFN542_FE_OFN230_io_oeb_6));
-   sky130_fd_sc_hd__buf_2 FE_OFC541_FE_OFN240_io_oeb_1 (.A(FE_OFN240_io_oeb_1),
-	.X(FE_OFN541_FE_OFN240_io_oeb_1));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC538_la_data_in_7 (.A(la_data_in[7]),
-	.X(FE_OFN538_la_data_in_7));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC536_la_data_in_11 (.A(la_data_in[11]),
-	.X(FE_OFN536_la_data_in_11));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC533_la_data_in_17 (.A(la_data_in[17]),
-	.X(FE_OFN533_la_data_in_17));
-   sky130_fd_sc_hd__buf_2 FE_OFC415_io_out_32 (.A(FE_OFN103_io_out_32),
-	.X(FE_OFN415_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC414_io_out_31 (.A(FE_OFN105_io_out_31),
-	.X(FE_OFN414_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC413_io_out_30 (.A(FE_OFN107_io_out_30),
-	.X(FE_OFN413_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC412_io_out_29 (.A(FE_OFN109_io_out_29),
-	.X(FE_OFN412_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC411_io_out_28 (.A(FE_OFN111_io_out_28),
-	.X(FE_OFN411_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC410_io_out_27 (.A(FE_OFN113_io_out_27),
-	.X(FE_OFN410_n));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC409_io_out_26 (.A(FE_OFN115_io_out_26),
-	.X(FE_OFN409_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC408_io_out_25 (.A(FE_OFN117_io_out_25),
-	.X(FE_OFN408_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC407_io_out_24 (.A(FE_OFN119_io_out_24),
-	.X(FE_OFN407_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC406_io_out_23 (.A(FE_OFN121_io_out_23),
-	.X(FE_OFN406_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC405_io_out_22 (.A(FE_OFN123_io_out_22),
-	.X(FE_OFN405_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC404_io_out_21 (.A(FE_OFN126_io_out_21),
-	.X(FE_OFN404_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC403_io_out_20 (.A(FE_OFN129_io_out_20),
-	.X(FE_OFN403_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC402_io_out_19 (.A(FE_OFN132_io_out_19),
-	.X(FE_OFN402_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC401_io_out_18 (.A(FE_OFN135_io_out_18),
-	.X(FE_OFN401_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC400_io_out_17 (.A(FE_OFN138_io_out_17),
-	.X(FE_OFN400_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC399_io_out_16 (.A(FE_OFN141_io_out_16),
-	.X(FE_OFN399_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC398_io_out_15 (.A(FE_OFN143_io_out_15),
-	.X(FE_OFN398_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC397_io_out_14 (.A(FE_OFN145_io_out_14),
-	.X(FE_OFN397_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC396_io_out_13 (.A(FE_OFN147_io_out_13),
-	.X(FE_OFN396_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC395_io_out_12 (.A(FE_OFN149_io_out_12),
-	.X(FE_OFN395_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC394_io_out_11 (.A(FE_OFN151_io_out_11),
-	.X(FE_OFN394_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC393_io_out_10 (.A(FE_OFN153_io_out_10),
-	.X(FE_OFN393_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC392_io_out_9 (.A(FE_OFN155_io_out_9),
-	.X(FE_OFN392_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC391_io_out_8 (.A(FE_OFN157_io_out_8),
-	.X(FE_OFN391_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC390_io_out_7 (.A(FE_OFN159_io_out_7),
-	.X(FE_OFN390_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC389_io_out_6 (.A(FE_OFN160_io_out_6),
-	.X(FE_OFN389_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC388_io_out_5 (.A(FE_OFN161_io_out_5),
-	.X(FE_OFN388_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC387_io_out_4 (.A(FE_OFN162_io_out_4),
-	.X(FE_OFN387_n));
-   sky130_fd_sc_hd__buf_2 FE_OFC385_io_out_2 (.A(FE_OFN164_io_out_2),
-	.X(FE_OFN385_n));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC376_ckmux_rst (.A(ckmux_rst),
-	.X(FE_OFN376_ckmux_rst));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC375_CGRA_read_config_data_31 (.A(FE_OFN374_CGRA_read_config_data_31),
-	.Y(FE_OFN375_CGRA_read_config_data_31));
-   sky130_fd_sc_hd__inv_8 FE_OFC374_CGRA_read_config_data_31 (.A(CGRA_read_config_data_31),
-	.Y(FE_OFN374_CGRA_read_config_data_31));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC373_CGRA_read_config_data_30 (.A(FE_OFN372_CGRA_read_config_data_30),
-	.Y(FE_OFN373_CGRA_read_config_data_30));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC372_CGRA_read_config_data_30 (.A(CGRA_read_config_data_30),
-	.Y(FE_OFN372_CGRA_read_config_data_30));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC371_CGRA_read_config_data_29 (.A(FE_PDN32_FE_OFN370_CGRA_read_config_data_29),
-	.Y(FE_OFN371_CGRA_read_config_data_29));
-   sky130_fd_sc_hd__clkinv_8 FE_OFC370_CGRA_read_config_data_29 (.A(CGRA_read_config_data_29),
-	.Y(FE_OFN370_CGRA_read_config_data_29));
-   sky130_fd_sc_hd__inv_8 FE_OFC369_CGRA_read_config_data_28 (.A(FE_OFN368_CGRA_read_config_data_28),
-	.Y(FE_OFN369_CGRA_read_config_data_28));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC368_CGRA_read_config_data_28 (.A(CGRA_read_config_data_28),
-	.Y(FE_OFN368_CGRA_read_config_data_28));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC367_CGRA_read_config_data_27 (.A(FE_OFN366_CGRA_read_config_data_27),
-	.Y(FE_OFN367_CGRA_read_config_data_27));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC366_CGRA_read_config_data_27 (.A(CGRA_read_config_data_27),
-	.Y(FE_OFN366_CGRA_read_config_data_27));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC365_CGRA_read_config_data_26 (.A(FE_OFN364_CGRA_read_config_data_26),
-	.Y(FE_OFN365_CGRA_read_config_data_26));
-   sky130_fd_sc_hd__inv_8 FE_OFC364_CGRA_read_config_data_26 (.A(CGRA_read_config_data_26),
-	.Y(FE_OFN364_CGRA_read_config_data_26));
-   sky130_fd_sc_hd__inv_6 FE_OFC363_CGRA_read_config_data_25 (.A(FE_OFN362_CGRA_read_config_data_25),
-	.Y(FE_OFN363_CGRA_read_config_data_25));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC362_CGRA_read_config_data_25 (.A(CGRA_read_config_data_25),
-	.Y(FE_OFN362_CGRA_read_config_data_25));
-   sky130_fd_sc_hd__clkinv_8 FE_OFC361_CGRA_read_config_data_24 (.A(FE_OFN360_CGRA_read_config_data_24),
-	.Y(FE_OFN361_CGRA_read_config_data_24));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC360_CGRA_read_config_data_24 (.A(CGRA_read_config_data_24),
-	.Y(FE_OFN360_CGRA_read_config_data_24));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC359_CGRA_read_config_data_22 (.A(FE_OFN358_CGRA_read_config_data_22),
-	.Y(FE_OFN359_CGRA_read_config_data_22));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC358_CGRA_read_config_data_22 (.A(CGRA_read_config_data_22),
-	.Y(FE_OFN358_CGRA_read_config_data_22));
-   sky130_fd_sc_hd__inv_12 FE_OFC357_CGRA_read_config_data_21 (.A(FE_OFN356_CGRA_read_config_data_21),
-	.Y(FE_OFN357_CGRA_read_config_data_21));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC356_CGRA_read_config_data_21 (.A(CGRA_read_config_data_21),
-	.Y(FE_OFN356_CGRA_read_config_data_21));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC355_CGRA_read_config_data_20 (.A(FE_OFN354_CGRA_read_config_data_20),
-	.Y(FE_OFN355_CGRA_read_config_data_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC354_CGRA_read_config_data_20 (.A(FE_OFN353_CGRA_read_config_data_20),
-	.Y(FE_OFN354_CGRA_read_config_data_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC353_CGRA_read_config_data_20 (.A(FE_OFN352_CGRA_read_config_data_20),
-	.Y(FE_OFN353_CGRA_read_config_data_20));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC352_CGRA_read_config_data_20 (.A(CGRA_read_config_data_20),
-	.Y(FE_OFN352_CGRA_read_config_data_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC351_CGRA_read_config_data_17 (.A(FE_OFN350_CGRA_read_config_data_17),
-	.Y(FE_OFN351_CGRA_read_config_data_17));
-   sky130_fd_sc_hd__inv_8 FE_OFC350_CGRA_read_config_data_17 (.A(CGRA_read_config_data_17),
-	.Y(FE_OFN350_CGRA_read_config_data_17));
-   sky130_fd_sc_hd__inv_8 FE_OFC349_CGRA_read_config_data_16 (.A(FE_OFN348_CGRA_read_config_data_16),
-	.Y(FE_OFN349_CGRA_read_config_data_16));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC348_CGRA_read_config_data_16 (.A(CGRA_read_config_data_16),
-	.Y(FE_OFN348_CGRA_read_config_data_16));
-   sky130_fd_sc_hd__inv_8 FE_OFC347_CGRA_read_config_data_15 (.A(FE_OFN346_CGRA_read_config_data_15),
-	.Y(FE_OFN347_CGRA_read_config_data_15));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC346_CGRA_read_config_data_15 (.A(CGRA_read_config_data_15),
-	.Y(FE_OFN346_CGRA_read_config_data_15));
-   sky130_fd_sc_hd__clkinv_8 FE_OFC345_CGRA_read_config_data_14 (.A(FE_OFN344_CGRA_read_config_data_14),
-	.Y(FE_OFN345_CGRA_read_config_data_14));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC344_CGRA_read_config_data_14 (.A(CGRA_read_config_data_14),
-	.Y(FE_OFN344_CGRA_read_config_data_14));
-   sky130_fd_sc_hd__inv_6 FE_OFC343_CGRA_read_config_data_13 (.A(FE_OFN342_CGRA_read_config_data_13),
-	.Y(FE_OFN343_CGRA_read_config_data_13));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC342_CGRA_read_config_data_13 (.A(CGRA_read_config_data_13),
-	.Y(FE_OFN342_CGRA_read_config_data_13));
-   sky130_fd_sc_hd__clkinv_8 FE_OFC341_CGRA_read_config_data_12 (.A(FE_OFN340_CGRA_read_config_data_12),
-	.Y(FE_OFN341_CGRA_read_config_data_12));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC340_CGRA_read_config_data_12 (.A(CGRA_read_config_data_12),
-	.Y(FE_OFN340_CGRA_read_config_data_12));
-   sky130_fd_sc_hd__clkinv_8 FE_OFC339_CGRA_read_config_data_11 (.A(FE_OFN338_CGRA_read_config_data_11),
-	.Y(FE_OFN339_CGRA_read_config_data_11));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC338_CGRA_read_config_data_11 (.A(CGRA_read_config_data_11),
-	.Y(FE_OFN338_CGRA_read_config_data_11));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC337_CGRA_read_config_data_10 (.A(FE_PDN43_FE_OFN336_CGRA_read_config_data_10),
-	.Y(FE_OFN337_CGRA_read_config_data_10));
-   sky130_fd_sc_hd__inv_6 FE_OFC336_CGRA_read_config_data_10 (.A(CGRA_read_config_data_10),
-	.Y(FE_OFN336_CGRA_read_config_data_10));
-   sky130_fd_sc_hd__inv_8 FE_OFC335_CGRA_read_config_data_9 (.A(FE_OFN334_CGRA_read_config_data_9),
-	.Y(FE_OFN335_CGRA_read_config_data_9));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC334_CGRA_read_config_data_9 (.A(CGRA_read_config_data_9),
-	.Y(FE_OFN334_CGRA_read_config_data_9));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC333_CGRA_read_config_data_8 (.A(FE_OFN332_CGRA_read_config_data_8),
-	.Y(FE_OFN333_CGRA_read_config_data_8));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC332_CGRA_read_config_data_8 (.A(FE_OFN331_CGRA_read_config_data_8),
-	.Y(FE_OFN332_CGRA_read_config_data_8));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC331_CGRA_read_config_data_8 (.A(FE_OFN330_CGRA_read_config_data_8),
-	.Y(FE_OFN331_CGRA_read_config_data_8));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC330_CGRA_read_config_data_8 (.A(CGRA_read_config_data_8),
-	.Y(FE_OFN330_CGRA_read_config_data_8));
-   sky130_fd_sc_hd__inv_8 FE_OFC329_CGRA_read_config_data_7 (.A(FE_OFN328_CGRA_read_config_data_7),
-	.Y(FE_OFN329_CGRA_read_config_data_7));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC328_CGRA_read_config_data_7 (.A(CGRA_read_config_data_7),
-	.Y(FE_OFN328_CGRA_read_config_data_7));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC327_CGRA_read_config_data_6 (.A(FE_OFN326_CGRA_read_config_data_6),
-	.Y(FE_OFN327_CGRA_read_config_data_6));
-   sky130_fd_sc_hd__inv_8 FE_OFC326_CGRA_read_config_data_6 (.A(CGRA_read_config_data_6),
-	.Y(FE_OFN326_CGRA_read_config_data_6));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC325_CGRA_read_config_data_4 (.A(FE_OFN324_CGRA_read_config_data_4),
-	.Y(FE_OFN325_CGRA_read_config_data_4));
-   sky130_fd_sc_hd__inv_8 FE_OFC324_CGRA_read_config_data_4 (.A(CGRA_read_config_data_4),
-	.Y(FE_OFN324_CGRA_read_config_data_4));
-   sky130_fd_sc_hd__inv_8 FE_OFC323_CGRA_read_config_data_2 (.A(FE_OFN322_CGRA_read_config_data_2),
-	.Y(FE_OFN323_CGRA_read_config_data_2));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC322_CGRA_read_config_data_2 (.A(CGRA_read_config_data_2),
-	.Y(FE_OFN322_CGRA_read_config_data_2));
-   sky130_fd_sc_hd__inv_8 FE_OFC321_CGRA_read_config_data_1 (.A(FE_OFN320_CGRA_read_config_data_1),
-	.Y(FE_OFN321_CGRA_read_config_data_1));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC320_CGRA_read_config_data_1 (.A(CGRA_read_config_data_1),
-	.Y(FE_OFN320_CGRA_read_config_data_1));
-   sky130_fd_sc_hd__inv_6 FE_OFC319_CGRA_read_config_data_0 (.A(FE_OFN318_CGRA_read_config_data_0),
-	.Y(FE_OFN319_CGRA_read_config_data_0));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC318_CGRA_read_config_data_0 (.A(CGRA_read_config_data_0),
-	.Y(FE_OFN318_CGRA_read_config_data_0));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC262_CGRA_stall_0 (.A(CGRA_stall_0),
-	.X(FE_OFN262_CGRA_stall_0));
-   sky130_fd_sc_hd__clkinv_8 FE_OFC261_CGRA_read_config_data_23 (.A(FE_OFN260_CGRA_read_config_data_23),
-	.Y(FE_OFN261_CGRA_read_config_data_23));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC260_CGRA_read_config_data_23 (.A(CGRA_read_config_data_23),
-	.Y(FE_OFN260_CGRA_read_config_data_23));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC259_CGRA_read_config_data_19 (.A(FE_OFN258_CGRA_read_config_data_19),
-	.Y(FE_OFN259_CGRA_read_config_data_19));
-   sky130_fd_sc_hd__inv_8 FE_OFC258_CGRA_read_config_data_19 (.A(CGRA_read_config_data_19),
-	.Y(FE_OFN258_CGRA_read_config_data_19));
-   sky130_fd_sc_hd__inv_8 FE_OFC257_CGRA_read_config_data_18 (.A(FE_OFN256_CGRA_read_config_data_18),
-	.Y(FE_OFN257_CGRA_read_config_data_18));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC256_CGRA_read_config_data_18 (.A(CGRA_read_config_data_18),
-	.Y(FE_OFN256_CGRA_read_config_data_18));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC255_CGRA_read_config_data_5 (.A(FE_PDN37_FE_OFN254_CGRA_read_config_data_5),
-	.Y(FE_OFN255_CGRA_read_config_data_5));
-   sky130_fd_sc_hd__inv_6 FE_OFC254_CGRA_read_config_data_5 (.A(CGRA_read_config_data_5),
-	.Y(FE_OFN254_CGRA_read_config_data_5));
-   sky130_fd_sc_hd__inv_6 FE_OFC253_CGRA_read_config_data_3 (.A(FE_OFN252_CGRA_read_config_data_3),
-	.Y(FE_OFN253_CGRA_read_config_data_3));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC252_CGRA_read_config_data_3 (.A(CGRA_read_config_data_3),
-	.Y(FE_OFN252_CGRA_read_config_data_3));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC242_io_oeb_0 (.A(FE_RN_38),
-	.X(io_oeb[0]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC241_io_oeb_1 (.A(FE_OFN541_FE_OFN240_io_oeb_1),
-	.Y(io_oeb[1]));
-   sky130_fd_sc_hd__inv_2 FE_OFC240_io_oeb_1 (.A(FE_RN_37),
-	.Y(FE_OFN240_io_oeb_1));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC239_io_oeb_2 (.A(FE_OFN238_io_oeb_2),
-	.Y(io_oeb[2]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC238_io_oeb_2 (.A(FE_RN_36),
-	.Y(FE_OFN238_io_oeb_2));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC237_io_oeb_3 (.A(FE_OFN236_io_oeb_3),
-	.Y(io_oeb[3]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC236_io_oeb_3 (.A(FE_RN_35),
-	.Y(FE_OFN236_io_oeb_3));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC235_io_oeb_4 (.A(FE_OFN234_io_oeb_4),
-	.Y(io_oeb[4]));
-   sky130_fd_sc_hd__inv_2 FE_OFC234_io_oeb_4 (.A(FE_RN_34),
-	.Y(FE_OFN234_io_oeb_4));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC233_io_oeb_5 (.A(FE_OFN232_io_oeb_5),
-	.Y(io_oeb[5]));
-   sky130_fd_sc_hd__inv_2 FE_OFC232_io_oeb_5 (.A(FE_RN_33),
-	.Y(FE_OFN232_io_oeb_5));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC231_io_oeb_6 (.A(FE_OFN542_FE_OFN230_io_oeb_6),
-	.Y(io_oeb[6]));
-   sky130_fd_sc_hd__inv_2 FE_OFC230_io_oeb_6 (.A(FE_RN_32),
-	.Y(FE_OFN230_io_oeb_6));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC229_io_oeb_7 (.A(FE_OFN228_io_oeb_7),
-	.Y(io_oeb[7]));
-   sky130_fd_sc_hd__inv_2 FE_OFC228_io_oeb_7 (.A(FE_OFN538_la_data_in_7),
-	.Y(FE_OFN228_io_oeb_7));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC227_io_oeb_8 (.A(FE_OFN226_io_oeb_8),
-	.Y(io_oeb[8]));
-   sky130_fd_sc_hd__inv_2 FE_OFC226_io_oeb_8 (.A(FE_RN_30),
-	.Y(FE_OFN226_io_oeb_8));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC225_io_oeb_9 (.A(FE_OFN224_io_oeb_9),
-	.Y(io_oeb[9]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC224_io_oeb_9 (.A(FE_RN_29),
-	.Y(FE_OFN224_io_oeb_9));
-   sky130_fd_sc_hd__inv_8 FE_OFC223_io_oeb_10 (.A(FE_OFN222_io_oeb_10),
-	.Y(io_oeb[10]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC222_io_oeb_10 (.A(FE_RN_28),
-	.Y(FE_OFN222_io_oeb_10));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC221_io_oeb_11 (.A(FE_OFN220_io_oeb_11),
-	.Y(io_oeb[11]));
-   sky130_fd_sc_hd__inv_4 FE_OFC220_io_oeb_11 (.A(FE_OFN536_la_data_in_11),
-	.Y(FE_OFN220_io_oeb_11));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC219_io_oeb_12 (.A(FE_OFN218_io_oeb_12),
-	.Y(io_oeb[12]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC218_io_oeb_12 (.A(FE_OFN551_la_data_in_12),
-	.Y(FE_OFN218_io_oeb_12));
-   sky130_fd_sc_hd__inv_8 FE_OFC217_io_oeb_13 (.A(FE_OFN216_io_oeb_13),
-	.Y(io_oeb[13]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC216_io_oeb_13 (.A(FE_RN_25),
-	.Y(FE_OFN216_io_oeb_13));
-   sky130_fd_sc_hd__inv_8 FE_OFC215_io_oeb_14 (.A(FE_OFN214_io_oeb_14),
-	.Y(io_oeb[14]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC214_io_oeb_14 (.A(FE_RN_24),
-	.Y(FE_OFN214_io_oeb_14));
-   sky130_fd_sc_hd__inv_8 FE_OFC213_io_oeb_15 (.A(FE_OFN212_io_oeb_15),
-	.Y(io_oeb[15]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC212_io_oeb_15 (.A(FE_RN_23),
-	.Y(FE_OFN212_io_oeb_15));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC211_io_oeb_16 (.A(FE_OFN210_io_oeb_16),
-	.Y(io_oeb[16]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC210_io_oeb_16 (.A(FE_OFN209_io_oeb_16),
-	.Y(FE_OFN210_io_oeb_16));
-   sky130_fd_sc_hd__buf_2 FE_OFC209_io_oeb_16 (.A(FE_RN_22),
-	.X(FE_OFN209_io_oeb_16));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC208_io_oeb_17 (.A(FE_OFN207_io_oeb_17),
-	.Y(io_oeb[17]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC207_io_oeb_17 (.A(FE_OFN206_io_oeb_17),
-	.Y(FE_OFN207_io_oeb_17));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC206_io_oeb_17 (.A(FE_OFN533_la_data_in_17),
-	.X(FE_OFN206_io_oeb_17));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC205_io_oeb_18 (.A(FE_OFN204_io_oeb_18),
-	.Y(io_oeb[18]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC204_io_oeb_18 (.A(FE_OFN203_io_oeb_18),
-	.Y(FE_OFN204_io_oeb_18));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC203_io_oeb_18 (.A(FE_RN_20),
-	.X(FE_OFN203_io_oeb_18));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC202_io_oeb_19 (.A(FE_OFN201_io_oeb_19),
-	.Y(io_oeb[19]));
-   sky130_fd_sc_hd__inv_8 FE_OFC201_io_oeb_19 (.A(FE_OFN200_io_oeb_19),
-	.Y(FE_OFN201_io_oeb_19));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC200_io_oeb_19 (.A(FE_RN_19),
-	.X(FE_OFN200_io_oeb_19));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC199_io_oeb_20 (.A(FE_OFN198_io_oeb_20),
-	.Y(io_oeb[20]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC198_io_oeb_20 (.A(FE_OFN197_io_oeb_20),
-	.Y(FE_OFN198_io_oeb_20));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC197_io_oeb_20 (.A(FE_RN_18),
-	.X(FE_OFN197_io_oeb_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC196_io_oeb_21 (.A(FE_OFN195_io_oeb_21),
-	.Y(io_oeb[21]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC195_io_oeb_21 (.A(FE_OFN194_io_oeb_21),
-	.Y(FE_OFN195_io_oeb_21));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC194_io_oeb_21 (.A(FE_OFN193_io_oeb_21),
-	.Y(FE_OFN194_io_oeb_21));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC193_io_oeb_21 (.A(FE_RN_17),
-	.Y(FE_OFN193_io_oeb_21));
-   sky130_fd_sc_hd__inv_8 FE_OFC192_io_oeb_22 (.A(FE_OFN191_io_oeb_22),
-	.Y(io_oeb[22]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC191_io_oeb_22 (.A(FE_RN_16),
-	.Y(FE_OFN191_io_oeb_22));
-   sky130_fd_sc_hd__inv_8 FE_OFC190_io_oeb_23 (.A(FE_OFN189_io_oeb_23),
-	.Y(io_oeb[23]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC189_io_oeb_23 (.A(FE_RN_15),
-	.Y(FE_OFN189_io_oeb_23));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC188_io_oeb_24 (.A(FE_OFN187_io_oeb_24),
-	.Y(io_oeb[24]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC187_io_oeb_24 (.A(FE_RN_14),
-	.Y(FE_OFN187_io_oeb_24));
-   sky130_fd_sc_hd__inv_8 FE_OFC186_io_oeb_25 (.A(FE_OFN185_io_oeb_25),
-	.Y(io_oeb[25]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC185_io_oeb_25 (.A(FE_RN_13),
-	.Y(FE_OFN185_io_oeb_25));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC184_io_oeb_26 (.A(FE_OFN183_io_oeb_26),
-	.Y(io_oeb[26]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC183_io_oeb_26 (.A(FE_RN_12),
-	.Y(FE_OFN183_io_oeb_26));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC182_io_oeb_27 (.A(FE_OFN181_io_oeb_27),
-	.Y(io_oeb[27]));
-   sky130_fd_sc_hd__clkinv_2 FE_OFC181_io_oeb_27 (.A(FE_RN_11),
-	.Y(FE_OFN181_io_oeb_27));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC180_io_oeb_28 (.A(FE_OFN179_io_oeb_28),
-	.Y(io_oeb[28]));
-   sky130_fd_sc_hd__inv_2 FE_OFC179_io_oeb_28 (.A(FE_RN_10),
-	.Y(FE_OFN179_io_oeb_28));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC178_io_oeb_29 (.A(FE_OFN177_io_oeb_29),
-	.Y(io_oeb[29]));
-   sky130_fd_sc_hd__inv_2 FE_OFC177_io_oeb_29 (.A(FE_RN_9),
-	.Y(FE_OFN177_io_oeb_29));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC176_io_oeb_30 (.A(FE_OFN175_io_oeb_30),
-	.Y(io_oeb[30]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC175_io_oeb_30 (.A(FE_RN_8),
-	.Y(FE_OFN175_io_oeb_30));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC174_io_oeb_31 (.A(FE_OFN173_io_oeb_31),
-	.Y(io_oeb[31]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC173_io_oeb_31 (.A(FE_RN_7),
-	.Y(FE_OFN173_io_oeb_31));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC172_io_oeb_32 (.A(FE_OFN171_io_oeb_32),
-	.Y(io_oeb[32]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC171_io_oeb_32 (.A(FE_RN_6),
-	.Y(FE_OFN171_io_oeb_32));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC170_io_oeb_33 (.A(FE_OFN36_la_data_in_33),
-	.X(io_oeb[33]));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC168_io_oeb_34 (.A(FE_RN_4),
-	.X(io_oeb[34]));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC167_io_oeb_35 (.A(FE_RN_3),
-	.X(io_oeb[35]));
-   sky130_fd_sc_hd__buf_2 FE_OFC166_io_oeb_36 (.A(FE_RN_2),
-	.X(io_oeb[36]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC165_io_oeb_37 (.A(FE_RN_1),
-	.X(io_oeb[37]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC164_io_out_2 (.A(FE_OFN385_n),
-	.X(io_out[2]));
-   sky130_fd_sc_hd__buf_2 FE_OFC163_io_out_3 (.A(FE_OFN163_io_out_3),
-	.X(io_out[3]));
-   sky130_fd_sc_hd__buf_2 FE_OFC162_io_out_4 (.A(FE_OFN387_n),
-	.X(io_out[4]));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC161_io_out_5 (.A(FE_OFN388_n),
-	.X(io_out[5]));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC160_io_out_6 (.A(FE_OFN389_n),
-	.X(io_out[6]));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC159_io_out_7 (.A(FE_OFN390_n),
-	.X(io_out[7]));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC158_io_out_8 (.A(FE_OFN391_n),
-	.X(io_out[8]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC156_io_out_9 (.A(FE_OFN156_io_out_9),
-	.Y(io_out[9]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC155_io_out_9 (.A(FE_OFN392_n),
-	.Y(FE_OFN156_io_out_9));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC154_io_out_10 (.A(FE_OFN154_io_out_10),
-	.Y(io_out[10]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC153_io_out_10 (.A(FE_OFN393_n),
-	.Y(FE_OFN154_io_out_10));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC152_io_out_11 (.A(FE_OFN152_io_out_11),
-	.Y(io_out[11]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC151_io_out_11 (.A(FE_OFN394_n),
-	.Y(FE_OFN152_io_out_11));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC150_io_out_12 (.A(FE_OFN150_io_out_12),
-	.Y(io_out[12]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC149_io_out_12 (.A(FE_OFN395_n),
-	.Y(FE_OFN150_io_out_12));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC148_io_out_13 (.A(FE_OFN148_io_out_13),
-	.Y(io_out[13]));
-   sky130_fd_sc_hd__clkinv_2 FE_OFC147_io_out_13 (.A(FE_OFN396_n),
-	.Y(FE_OFN148_io_out_13));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC146_io_out_14 (.A(FE_OFN146_io_out_14),
-	.Y(io_out[14]));
-   sky130_fd_sc_hd__inv_2 FE_OFC145_io_out_14 (.A(FE_OFN397_n),
-	.Y(FE_OFN146_io_out_14));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC144_io_out_15 (.A(FE_OFN144_io_out_15),
-	.Y(io_out[15]));
-   sky130_fd_sc_hd__inv_4 FE_OFC143_io_out_15 (.A(FE_OFN398_n),
-	.Y(FE_OFN144_io_out_15));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC142_io_out_16 (.A(FE_OFN142_io_out_16),
-	.Y(io_out[16]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC141_io_out_16 (.A(FE_OFN399_n),
-	.Y(FE_OFN142_io_out_16));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC140_io_out_17 (.A(FE_OFN140_io_out_17),
-	.Y(io_out[17]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC139_io_out_17 (.A(FE_OFN139_io_out_17),
-	.Y(FE_OFN140_io_out_17));
-   sky130_fd_sc_hd__buf_2 FE_OFC138_io_out_17 (.A(FE_OFN400_n),
-	.X(FE_OFN139_io_out_17));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC137_io_out_18 (.A(FE_OFN137_io_out_18),
-	.Y(io_out[18]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC136_io_out_18 (.A(FE_OFN136_io_out_18),
-	.Y(FE_OFN137_io_out_18));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC135_io_out_18 (.A(FE_OFN401_n),
-	.X(FE_OFN136_io_out_18));
-   sky130_fd_sc_hd__buf_2 FE_OFC134_io_out_19 (.A(FE_OFN134_io_out_19),
-	.X(io_out[19]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC133_io_out_19 (.A(FE_OFN133_io_out_19),
-	.Y(FE_OFN134_io_out_19));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC132_io_out_19 (.A(FE_OFN402_n),
-	.Y(FE_OFN133_io_out_19));
-   sky130_fd_sc_hd__buf_2 FE_OFC131_io_out_20 (.A(FE_OFN131_io_out_20),
-	.X(io_out[20]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC130_io_out_20 (.A(FE_OFN130_io_out_20),
-	.Y(FE_OFN131_io_out_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC129_io_out_20 (.A(FE_OFN403_n),
-	.Y(FE_OFN130_io_out_20));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC128_io_out_21 (.A(FE_OFN128_io_out_21),
-	.Y(io_out[21]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC127_io_out_21 (.A(FE_OFN127_io_out_21),
-	.Y(FE_OFN128_io_out_21));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC126_io_out_21 (.A(FE_OFN404_n),
-	.X(FE_OFN127_io_out_21));
-   sky130_fd_sc_hd__clkbuf_4 FE_OFC125_io_out_22 (.A(FE_OFN125_io_out_22),
-	.X(io_out[22]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC124_io_out_22 (.A(FE_OFN124_io_out_22),
-	.Y(FE_OFN125_io_out_22));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC123_io_out_22 (.A(FE_OFN405_n),
-	.Y(FE_OFN124_io_out_22));
-   sky130_fd_sc_hd__inv_8 FE_OFC122_io_out_23 (.A(FE_OFN122_io_out_23),
-	.Y(FE_PDN9_io_out_23));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC121_io_out_23 (.A(FE_OFN406_n),
-	.Y(FE_OFN122_io_out_23));
-   sky130_fd_sc_hd__inv_6 FE_OFC120_io_out_24 (.A(FE_OFN120_io_out_24),
-	.Y(io_out[24]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC119_io_out_24 (.A(FE_OFN407_n),
-	.Y(FE_OFN120_io_out_24));
-   sky130_fd_sc_hd__inv_8 FE_OFC118_io_out_25 (.A(FE_OFN118_io_out_25),
-	.Y(io_out[25]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC117_io_out_25 (.A(FE_OFN408_n),
-	.Y(FE_OFN118_io_out_25));
-   sky130_fd_sc_hd__inv_8 FE_OFC116_io_out_26 (.A(FE_OFN116_io_out_26),
-	.Y(io_out[26]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC115_io_out_26 (.A(FE_OFN409_n),
-	.Y(FE_OFN116_io_out_26));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC114_io_out_27 (.A(FE_OFN114_io_out_27),
-	.Y(io_out[27]));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC113_io_out_27 (.A(FE_OFN410_n),
-	.Y(FE_OFN114_io_out_27));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC112_io_out_28 (.A(FE_OFN112_io_out_28),
-	.Y(io_out[28]));
-   sky130_fd_sc_hd__inv_4 FE_OFC111_io_out_28 (.A(FE_OFN411_n),
-	.Y(FE_OFN112_io_out_28));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC110_io_out_29 (.A(FE_OFN110_io_out_29),
-	.Y(io_out[29]));
-   sky130_fd_sc_hd__inv_4 FE_OFC109_io_out_29 (.A(FE_OFN412_n),
-	.Y(FE_OFN110_io_out_29));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC108_io_out_30 (.A(FE_OFN108_io_out_30),
-	.Y(io_out[30]));
-   sky130_fd_sc_hd__inv_2 FE_OFC107_io_out_30 (.A(FE_OFN413_n),
-	.Y(FE_OFN108_io_out_30));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC106_io_out_31 (.A(FE_OFN106_io_out_31),
-	.Y(io_out[31]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC105_io_out_31 (.A(FE_OFN414_n),
-	.Y(FE_OFN106_io_out_31));
-   sky130_fd_sc_hd__clkinv_4 FE_OFC104_io_out_32 (.A(FE_OFN104_io_out_32),
-	.Y(io_out[32]));
-   sky130_fd_sc_hd__clkinv_1 FE_OFC103_io_out_32 (.A(FE_OFN415_n),
-	.Y(FE_OFN104_io_out_32));
-   sky130_fd_sc_hd__buf_4 FE_OFC102_io_out_33 (.A(FE_OFN34_n),
-	.X(io_out[33]));
-   sky130_fd_sc_hd__buf_2 FE_OFC6_la_data_in_96 (.A(la_data_in[96]),
-	.X(FE_OFN6_la_data_in_96));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC5_wbs_dat_o_0 (.A(FE_OFN5_wbs_dat_o_0),
-	.X(wbs_dat_o[0]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC4_wbs_dat_o_1 (.A(FE_OFN4_wbs_dat_o_1),
-	.X(wbs_dat_o[1]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC3_wbs_dat_o_2 (.A(FE_OFN3_wbs_dat_o_2),
-	.X(wbs_dat_o[2]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC2_wbs_dat_o_3 (.A(FE_OFN2_wbs_dat_o_3),
-	.X(wbs_dat_o[3]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC1_wbs_dat_o_4 (.A(FE_OFN1_wbs_dat_o_4),
-	.X(wbs_dat_o[4]));
-   sky130_fd_sc_hd__clkbuf_1 FE_OFC0_wbs_dat_o_5 (.A(FE_OFN0_wbs_dat_o_5),
-	.X(wbs_dat_o[5]));
-   user_proj_example_Interconnect Interconnect_inst0 (.config_0_config_addr({ POHAN_BUF_CGRA_config_config_addr_7_31,
+   // Module instantiations
+   sky130_fd_sc_hd__diode_2 DIODE_37 (
+	.DIODE(FE_PDN30_FE_OFN357_CGRA_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_36 (
+	.DIODE(FE_PDN7_FE_OFN369_CGRA_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_35 (
+	.DIODE(FE_OFN335_CGRA_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_2 FE_PHC90_CGRA_config_config_data_30 (
+	.A(FE_PHN81_CGRA_config_config_data_30),
+	.X(FE_PHN90_CGRA_config_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC88_CGRA_config_config_data_15 (
+	.A(FE_PHN41_CGRA_config_config_data_15),
+	.X(FE_PHN88_CGRA_config_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC87_CGRA_config_config_data_17 (
+	.A(FE_PHN87_CGRA_config_config_data_17),
+	.X(FE_PHN69_CGRA_config_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC86_CGRA_config_config_data_25 (
+	.A(FE_PHN60_CGRA_config_config_data_25),
+	.X(FE_PHN86_CGRA_config_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC85_CGRA_config_config_data_23 (
+	.A(FE_PHN70_CGRA_config_config_data_23),
+	.X(FE_PHN85_CGRA_config_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC84_CGRA_config_config_data_26 (
+	.A(FE_PHN63_CGRA_config_config_data_26),
+	.X(FE_PHN84_CGRA_config_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC83_CGRA_config_config_data_22 (
+	.A(FE_PHN83_CGRA_config_config_data_22),
+	.X(CGRA_config_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_PHC82_CGRA_config_config_data_31 (
+	.A(FE_PHN57_CGRA_config_config_data_31),
+	.X(FE_PHN82_CGRA_config_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC81_CGRA_config_config_data_30 (
+	.A(CGRA_config_config_data_30),
+	.X(FE_PHN81_CGRA_config_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC80_CGRA_config_config_data_13 (
+	.A(FE_PHN80_CGRA_config_config_data_13),
+	.X(FE_PHN47_CGRA_config_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC79_CGRA_config_config_data_20 (
+	.A(FE_PHN45_CGRA_config_config_data_20),
+	.X(FE_PHN79_CGRA_config_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC78_CGRA_config_config_data_19 (
+	.A(FE_PHN50_CGRA_config_config_data_19),
+	.X(FE_PHN78_CGRA_config_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC77_CGRA_config_config_data_29 (
+	.A(CGRA_config_config_data_29),
+	.X(FE_PHN77_CGRA_config_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC76_CGRA_config_config_data_11 (
+	.A(FE_PHN43_CGRA_config_config_data_11),
+	.X(FE_PHN76_CGRA_config_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC75_CGRA_config_config_data_21 (
+	.A(CGRA_config_config_data_21),
+	.X(FE_PHN75_CGRA_config_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC74_CGRA_config_config_data_16 (
+	.A(FE_PHN74_CGRA_config_config_data_16),
+	.X(FE_PHN46_CGRA_config_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC73_CGRA_config_config_data_14 (
+	.A(FE_PHN32_CGRA_config_config_data_14),
+	.X(FE_PHN73_CGRA_config_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC72_CGRA_config_config_data_5 (
+	.A(FE_PHN26_CGRA_config_config_data_5),
+	.X(FE_PHN72_CGRA_config_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC71_CGRA_config_config_data_0 (
+	.A(CGRA_config_config_data_0),
+	.X(FE_PHN71_CGRA_config_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC70_CGRA_config_config_data_23 (
+	.A(FE_PHN48_CGRA_config_config_data_23),
+	.X(FE_PHN70_CGRA_config_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC69_CGRA_config_config_data_17 (
+	.A(FE_PHN69_CGRA_config_config_data_17),
+	.X(CGRA_config_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC68_CGRA_config_config_data_15 (
+	.A(FE_PHN88_CGRA_config_config_data_15),
+	.X(FE_PHN68_CGRA_config_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC67_CGRA_stall_3 (
+	.A(CGRA_stall_3),
+	.X(FE_PHN67_CGRA_stall_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC66_CGRA_config_config_data_24 (
+	.A(FE_PHN66_CGRA_config_config_data_24),
+	.X(FE_PHN51_CGRA_config_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC65_CGRA_config_config_data_18 (
+	.A(FE_PHN49_CGRA_config_config_data_18),
+	.X(FE_PHN65_CGRA_config_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkdlybuf4s18_2 FE_PHC64_CGRA_config_config_data_27 (
+	.A(FE_PHN64_CGRA_config_config_data_27),
+	.X(CGRA_config_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC63_CGRA_config_config_data_26 (
+	.A(CGRA_config_config_data_26),
+	.X(FE_PHN63_CGRA_config_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC62_CGRA_config_config_data_22 (
+	.A(CGRA_config_config_data_22),
+	.X(FE_PHN62_CGRA_config_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC61_CGRA_config_config_data_28 (
+	.A(CGRA_config_config_data_28),
+	.X(FE_PHN61_CGRA_config_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC60_CGRA_config_config_data_25 (
+	.A(CGRA_config_config_data_25),
+	.X(FE_PHN60_CGRA_config_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC59_CGRA_config_config_data_30 (
+	.A(FE_PHN90_CGRA_config_config_data_30),
+	.X(FE_PHN59_CGRA_config_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkdlybuf4s25_1 FE_PHC58_CGRA_config_read (
+	.A(CGRA_config_read),
+	.X(FE_PHN58_CGRA_config_read), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_PHC57_CGRA_config_config_data_31 (
+	.A(CGRA_config_config_data_31),
+	.X(FE_PHN57_CGRA_config_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_PDC40_FE_OFN369_CGRA_read_config_data_28 (
+	.A(FE_OFN369_CGRA_read_config_data_28),
+	.X(FE_PDN54_FE_OFN369_CGRA_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_PDC39_FE_OFN257_CGRA_read_config_data_18 (
+	.A(FE_OFN257_CGRA_read_config_data_18),
+	.X(FE_PDN53_FE_OFN257_CGRA_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_PDC38_FE_OFN253_CGRA_read_config_data_3 (
+	.A(FE_OFN253_CGRA_read_config_data_3),
+	.X(FE_PDN52_FE_OFN253_CGRA_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC37_FE_OFN253_CGRA_read_config_data_3 (
+	.A(FE_PDN52_FE_OFN253_CGRA_read_config_data_3),
+	.Y(FE_PDN51_FE_OFN253_CGRA_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_4 FE_PDC36_FE_OFN253_CGRA_read_config_data_3 (
+	.A(FE_PDN51_FE_OFN253_CGRA_read_config_data_3),
+	.X(FE_PDN50_FE_OFN253_CGRA_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 FE_PDC35_FE_OFN253_CGRA_read_config_data_3 (
+	.A(FE_PDN50_FE_OFN253_CGRA_read_config_data_3),
+	.Y(FE_PDN49_FE_OFN253_CGRA_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_8 FE_PDC34_FE_OFN253_CGRA_read_config_data_3 (
+	.A(FE_PDN49_FE_OFN253_CGRA_read_config_data_3),
+	.X(FE_PDN48_FE_OFN253_CGRA_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC33_FE_OFN336_CGRA_read_config_data_10 (
+	.A(FE_OFN336_CGRA_read_config_data_10),
+	.Y(FE_PDN47_FE_OFN336_CGRA_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC32_FE_OFN336_CGRA_read_config_data_10 (
+	.A(FE_PDN47_FE_OFN336_CGRA_read_config_data_10),
+	.Y(FE_PDN46_FE_OFN336_CGRA_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC31_FE_OFN336_CGRA_read_config_data_10 (
+	.A(FE_PDN46_FE_OFN336_CGRA_read_config_data_10),
+	.Y(FE_PDN45_FE_OFN336_CGRA_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 FE_PDC30_FE_OFN336_CGRA_read_config_data_10 (
+	.A(FE_PDN45_FE_OFN336_CGRA_read_config_data_10),
+	.X(FE_PDN44_FE_OFN336_CGRA_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC29_FE_OFN336_CGRA_read_config_data_10 (
+	.A(FE_PDN44_FE_OFN336_CGRA_read_config_data_10),
+	.Y(FE_PDN43_FE_OFN336_CGRA_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_PDC28_FE_OFN254_CGRA_read_config_data_5 (
+	.A(FE_OFN254_CGRA_read_config_data_5),
+	.X(FE_PDN42_FE_OFN254_CGRA_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC27_FE_OFN254_CGRA_read_config_data_5 (
+	.A(FE_PDN42_FE_OFN254_CGRA_read_config_data_5),
+	.Y(FE_PDN41_FE_OFN254_CGRA_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC26_FE_OFN254_CGRA_read_config_data_5 (
+	.A(FE_PDN41_FE_OFN254_CGRA_read_config_data_5),
+	.Y(FE_PDN40_FE_OFN254_CGRA_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_12 FE_PDC25_FE_OFN254_CGRA_read_config_data_5 (
+	.A(FE_PDN40_FE_OFN254_CGRA_read_config_data_5),
+	.Y(FE_PDN39_FE_OFN254_CGRA_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_PDC24_FE_OFN254_CGRA_read_config_data_5 (
+	.A(FE_PDN39_FE_OFN254_CGRA_read_config_data_5),
+	.Y(FE_PDN38_FE_OFN254_CGRA_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_PDC23_FE_OFN254_CGRA_read_config_data_5 (
+	.A(FE_PDN38_FE_OFN254_CGRA_read_config_data_5),
+	.X(FE_PDN37_FE_OFN254_CGRA_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC22_FE_OFN370_CGRA_read_config_data_29 (
+	.A(FE_OFN370_CGRA_read_config_data_29),
+	.Y(FE_PDN36_FE_OFN370_CGRA_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC21_FE_OFN370_CGRA_read_config_data_29 (
+	.A(FE_PDN36_FE_OFN370_CGRA_read_config_data_29),
+	.Y(FE_PDN35_FE_OFN370_CGRA_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_PDC20_FE_OFN370_CGRA_read_config_data_29 (
+	.A(FE_PDN35_FE_OFN370_CGRA_read_config_data_29),
+	.Y(FE_PDN34_FE_OFN370_CGRA_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_PDC19_FE_OFN370_CGRA_read_config_data_29 (
+	.A(FE_PDN34_FE_OFN370_CGRA_read_config_data_29),
+	.Y(FE_PDN33_FE_OFN370_CGRA_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_PDC18_FE_OFN370_CGRA_read_config_data_29 (
+	.A(FE_PDN33_FE_OFN370_CGRA_read_config_data_29),
+	.X(FE_PDN32_FE_OFN370_CGRA_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_PDC17_FE_OFN357_CGRA_read_config_data_21 (
+	.A(FE_OFN357_CGRA_read_config_data_21),
+	.Y(FE_PDN31_FE_OFN357_CGRA_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC16_FE_OFN357_CGRA_read_config_data_21 (
+	.A(FE_PDN31_FE_OFN357_CGRA_read_config_data_21),
+	.Y(FE_PDN30_FE_OFN357_CGRA_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_4 FE_PDC15_FE_OFN357_CGRA_read_config_data_21 (
+	.A(FE_PDN30_FE_OFN357_CGRA_read_config_data_21),
+	.X(FE_PDN29_FE_OFN357_CGRA_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_PDC14_FE_OFN329_CGRA_read_config_data_7 (
+	.A(FE_OFN329_CGRA_read_config_data_7),
+	.X(FE_PDN28_FE_OFN329_CGRA_read_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC13_FE_OFN329_CGRA_read_config_data_7 (
+	.A(FE_PDN28_FE_OFN329_CGRA_read_config_data_7),
+	.Y(FE_PDN27_FE_OFN329_CGRA_read_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_PDC12_FE_OFN329_CGRA_read_config_data_7 (
+	.A(FE_PDN27_FE_OFN329_CGRA_read_config_data_7),
+	.Y(FE_PDN26_FE_OFN329_CGRA_read_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_PDC11_io_out_23 (
+	.A(FE_PDN9_io_out_23),
+	.Y(FE_PDN25_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC10_io_out_23 (
+	.A(FE_PDN25_n),
+	.Y(FE_PDN24_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_4 FE_PDC9_io_out_23 (
+	.A(FE_PDN24_n),
+	.X(io_out[23]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_PDC8_FE_OFN369_CGRA_read_config_data_28 (
+	.A(FE_PDN54_FE_OFN369_CGRA_read_config_data_28),
+	.Y(FE_PDN8_FE_OFN369_CGRA_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC7_FE_OFN369_CGRA_read_config_data_28 (
+	.A(FE_PDN8_FE_OFN369_CGRA_read_config_data_28),
+	.Y(FE_PDN7_FE_OFN369_CGRA_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_PDC6_FE_OFN369_CGRA_read_config_data_28 (
+	.A(FE_PDN7_FE_OFN369_CGRA_read_config_data_28),
+	.X(FE_PDN6_FE_OFN369_CGRA_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC5_FE_OFN257_CGRA_read_config_data_18 (
+	.A(FE_PDN53_FE_OFN257_CGRA_read_config_data_18),
+	.Y(FE_PDN5_FE_OFN257_CGRA_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC4_FE_OFN257_CGRA_read_config_data_18 (
+	.A(FE_PDN5_FE_OFN257_CGRA_read_config_data_18),
+	.Y(FE_PDN4_FE_OFN257_CGRA_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_PDC3_FE_OFN257_CGRA_read_config_data_18 (
+	.A(FE_PDN4_FE_OFN257_CGRA_read_config_data_18),
+	.X(FE_PDN3_FE_OFN257_CGRA_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_PDC2_FE_OFN361_CGRA_read_config_data_24 (
+	.A(FE_OFN361_CGRA_read_config_data_24),
+	.X(FE_PDN2_FE_OFN361_CGRA_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC1_FE_OFN361_CGRA_read_config_data_24 (
+	.A(FE_PDN2_FE_OFN361_CGRA_read_config_data_24),
+	.Y(FE_PDN1_FE_OFN361_CGRA_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_PDC0_FE_OFN361_CGRA_read_config_data_24 (
+	.A(FE_PDN1_FE_OFN361_CGRA_read_config_data_24),
+	.Y(FE_PDN0_FE_OFN361_CGRA_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_34 (
+	.DIODE(FE_OFN341_CGRA_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_33 (
+	.DIODE(FE_OFN261_CGRA_read_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_32 (
+	.DIODE(FE_OFN339_CGRA_read_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_31 (
+	.DIODE(FE_PDN0_FE_OFN361_CGRA_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_30 (
+	.DIODE(FE_PDN6_FE_OFN369_CGRA_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_29 (
+	.DIODE(FE_PDN3_FE_OFN257_CGRA_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_28 (
+	.DIODE(FE_OFN134_io_out_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_27 (
+	.DIODE(FE_OFN134_io_out_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_26 (
+	.DIODE(FE_OFN134_io_out_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_25 (
+	.DIODE(FE_OFN131_io_out_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_24 (
+	.DIODE(FE_OFN349_CGRA_read_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_23 (
+	.DIODE(FE_OFN323_CGRA_read_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_22 (
+	.DIODE(FE_OFN321_CGRA_read_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_21 (
+	.DIODE(FE_OFN343_CGRA_read_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_20 (
+	.DIODE(FE_OFN343_CGRA_read_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_19 (
+	.DIODE(FE_OFN150_io_out_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_16 (
+	.DIODE(FE_OFN367_CGRA_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_15 (
+	.DIODE(FE_OFN365_CGRA_read_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_14 (
+	.DIODE(FE_OFN373_CGRA_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_13 (
+	.DIODE(FE_OFN373_CGRA_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_12 (
+	.DIODE(FE_OFN373_CGRA_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_11 (
+	.DIODE(FE_OFN373_CGRA_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_7 (
+	.DIODE(FE_OFN337_CGRA_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_6 (
+	.DIODE(FE_OFN371_CGRA_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_5 (
+	.DIODE(FE_OFN141_io_out_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__diode_2 DIODE_4 (
+	.DIODE(FE_OFN102_io_out_33), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC56_CGRA_config_config_data_14 (
+	.A(FE_PHN73_CGRA_config_config_data_14),
+	.X(FE_PHN56_CGRA_config_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC55_CGRA_config_config_data_8 (
+	.A(FE_PHN33_CGRA_config_config_data_8),
+	.X(FE_PHN55_CGRA_config_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC54_CGRA_config_config_data_6 (
+	.A(FE_PHN36_CGRA_config_config_data_6),
+	.X(FE_PHN54_CGRA_config_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC53_CGRA_config_config_data_4 (
+	.A(FE_PHN35_CGRA_config_config_data_4),
+	.X(FE_PHN53_CGRA_config_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC52_CGRA_config_config_data_7 (
+	.A(FE_PHN34_CGRA_config_config_data_7),
+	.X(FE_PHN52_CGRA_config_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC51_CGRA_config_config_data_24 (
+	.A(CGRA_config_config_data_24),
+	.X(FE_PHN66_CGRA_config_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC50_CGRA_config_config_data_19 (
+	.A(CGRA_config_config_data_19),
+	.X(FE_PHN50_CGRA_config_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC49_CGRA_config_config_data_18 (
+	.A(CGRA_config_config_data_18),
+	.X(FE_PHN49_CGRA_config_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC48_CGRA_config_config_data_23 (
+	.A(CGRA_config_config_data_23),
+	.X(FE_PHN48_CGRA_config_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC47_CGRA_config_config_data_13 (
+	.A(CGRA_config_config_data_13),
+	.X(FE_PHN80_CGRA_config_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC46_CGRA_config_config_data_16 (
+	.A(CGRA_config_config_data_16),
+	.X(FE_PHN74_CGRA_config_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC45_CGRA_config_config_data_20 (
+	.A(CGRA_config_config_data_20),
+	.X(FE_PHN45_CGRA_config_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC44_CGRA_config_config_data_12 (
+	.A(CGRA_config_config_data_12),
+	.X(FE_PHN44_CGRA_config_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC43_CGRA_config_config_data_11 (
+	.A(CGRA_config_config_data_11),
+	.X(FE_PHN43_CGRA_config_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC42_CGRA_config_config_data_3 (
+	.A(CGRA_config_config_data_3),
+	.X(FE_PHN42_CGRA_config_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC41_CGRA_config_config_data_15 (
+	.A(CGRA_config_config_data_15),
+	.X(FE_PHN41_CGRA_config_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC40_CGRA_config_config_data_1 (
+	.A(CGRA_config_config_data_1),
+	.X(FE_PHN40_CGRA_config_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC39_CGRA_config_config_data_10 (
+	.A(CGRA_config_config_data_10),
+	.X(FE_PHN39_CGRA_config_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC38_CGRA_config_config_data_9 (
+	.A(CGRA_config_config_data_9),
+	.X(FE_PHN38_CGRA_config_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC37_CGRA_config_config_data_17 (
+	.A(CGRA_config_config_data_17),
+	.X(FE_PHN37_CGRA_config_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC36_CGRA_config_config_data_6 (
+	.A(CGRA_config_config_data_6),
+	.X(FE_PHN36_CGRA_config_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC35_CGRA_config_config_data_4 (
+	.A(CGRA_config_config_data_4),
+	.X(FE_PHN35_CGRA_config_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC34_CGRA_config_config_data_7 (
+	.A(CGRA_config_config_data_7),
+	.X(FE_PHN34_CGRA_config_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC33_CGRA_config_config_data_8 (
+	.A(CGRA_config_config_data_8),
+	.X(FE_PHN33_CGRA_config_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC32_CGRA_config_config_data_14 (
+	.A(CGRA_config_config_data_14),
+	.X(FE_PHN32_CGRA_config_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC31_CGRA_config_config_data_27 (
+	.A(CGRA_config_config_data_27),
+	.X(FE_PHN31_CGRA_config_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC30_CGRA_config_config_data_29 (
+	.A(FE_PHN77_CGRA_config_config_data_29),
+	.X(FE_PHN30_CGRA_config_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC29_CGRA_config_config_data_28 (
+	.A(FE_PHN61_CGRA_config_config_data_28),
+	.X(FE_PHN29_CGRA_config_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC28_CGRA_config_config_data_26 (
+	.A(FE_PHN84_CGRA_config_config_data_26),
+	.X(FE_PHN28_CGRA_config_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC27_CGRA_config_config_data_30 (
+	.A(FE_PHN59_CGRA_config_config_data_30),
+	.X(FE_PHN27_CGRA_config_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC26_CGRA_config_config_data_5 (
+	.A(CGRA_config_config_data_5),
+	.X(FE_PHN26_CGRA_config_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC25_CGRA_config_config_data_22 (
+	.A(FE_PHN62_CGRA_config_config_data_22),
+	.X(FE_PHN25_CGRA_config_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC24_CGRA_config_config_data_23 (
+	.A(FE_PHN85_CGRA_config_config_data_23),
+	.X(FE_PHN24_CGRA_config_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC23_CGRA_config_config_data_4 (
+	.A(FE_PHN53_CGRA_config_config_data_4),
+	.X(FE_PHN23_CGRA_config_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC22_CGRA_config_config_data_1 (
+	.A(FE_PHN40_CGRA_config_config_data_1),
+	.X(FE_PHN22_CGRA_config_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC21_CGRA_config_config_data_3 (
+	.A(FE_PHN42_CGRA_config_config_data_3),
+	.X(FE_PHN21_CGRA_config_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC20_CGRA_config_config_data_6 (
+	.A(FE_PHN54_CGRA_config_config_data_6),
+	.X(FE_PHN20_CGRA_config_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC19_CGRA_config_config_data_19 (
+	.A(FE_PHN78_CGRA_config_config_data_19),
+	.X(FE_PHN19_CGRA_config_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC18_CGRA_config_config_data_11 (
+	.A(FE_PHN76_CGRA_config_config_data_11),
+	.X(FE_PHN18_CGRA_config_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC17_CGRA_config_config_data_17 (
+	.A(FE_PHN37_CGRA_config_config_data_17),
+	.X(FE_PHN17_CGRA_config_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkdlybuf4s25_1 FE_PHC16_CGRA_config_config_data_2 (
+	.A(CGRA_config_config_data_2),
+	.X(FE_PHN16_CGRA_config_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC15_CGRA_config_config_data_13 (
+	.A(FE_PHN47_CGRA_config_config_data_13),
+	.X(FE_PHN15_CGRA_config_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC14_CGRA_config_config_data_14 (
+	.A(FE_PHN56_CGRA_config_config_data_14),
+	.X(FE_PHN14_CGRA_config_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC13_CGRA_config_config_data_10 (
+	.A(FE_PHN39_CGRA_config_config_data_10),
+	.X(FE_PHN13_CGRA_config_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC12_CGRA_config_config_data_16 (
+	.A(FE_PHN46_CGRA_config_config_data_16),
+	.X(FE_PHN12_CGRA_config_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC11_CGRA_config_config_data_12 (
+	.A(FE_PHN44_CGRA_config_config_data_12),
+	.X(FE_PHN11_CGRA_config_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC10_CGRA_config_config_data_8 (
+	.A(FE_PHN55_CGRA_config_config_data_8),
+	.X(FE_PHN10_CGRA_config_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC9_CGRA_config_config_data_20 (
+	.A(FE_PHN79_CGRA_config_config_data_20),
+	.X(FE_PHN9_CGRA_config_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC8_CGRA_config_config_data_7 (
+	.A(FE_PHN52_CGRA_config_config_data_7),
+	.X(FE_PHN8_CGRA_config_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC7_CGRA_config_config_data_9 (
+	.A(FE_PHN38_CGRA_config_config_data_9),
+	.X(FE_PHN7_CGRA_config_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC6_CGRA_config_config_data_15 (
+	.A(FE_PHN68_CGRA_config_config_data_15),
+	.X(FE_PHN6_CGRA_config_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC5_CGRA_config_config_data_18 (
+	.A(FE_PHN65_CGRA_config_config_data_18),
+	.X(FE_PHN5_CGRA_config_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkdlybuf4s25_1 FE_PHC4_CGRA_config_config_data_0 (
+	.A(FE_PHN71_CGRA_config_config_data_0),
+	.X(FE_PHN4_CGRA_config_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC3_CGRA_config_config_data_25 (
+	.A(FE_PHN86_CGRA_config_config_data_25),
+	.X(FE_PHN3_CGRA_config_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_1 FE_PHC2_CGRA_config_config_data_24 (
+	.A(FE_PHN51_CGRA_config_config_data_24),
+	.X(FE_PHN2_CGRA_config_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkdlybuf4s25_1 FE_PHC1_CGRA_config_config_data_21 (
+	.A(FE_PHN75_CGRA_config_config_data_21),
+	.X(FE_PHN1_CGRA_config_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC6_wbs_dat_o_7 (
+	.A(FE_OFN38_wbs_dat_o_7),
+	.X(wbs_dat_o[7]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC4_la_data_in_33 (
+	.A(FE_OFN35_la_data_in_33),
+	.X(FE_OFN36_la_data_in_33), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC3_la_data_in_33 (
+	.A(la_data_in[33]),
+	.X(FE_OFN35_la_data_in_33), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC2_io_out_33 (
+	.A(FE_OFN102_io_out_33),
+	.X(FE_OFN34_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 CTS_ccl_a_inv_00066 (
+	.A(CTS_13),
+	.Y(CTS_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00083 (
+	.A(CTS_21),
+	.Y(CTS_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00103 (
+	.A(CTS_22),
+	.Y(CTS_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00101 (
+	.A(CTS_22),
+	.Y(CTS_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00118 (
+	.A(CTS_23),
+	.Y(CTS_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00099 (
+	.A(CTS_6),
+	.Y(CTS_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_inv_00117 (
+	.A(CTS_23),
+	.Y(CTS_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_inv_00123 (
+	.A(CTS_24),
+	.Y(CTS_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 CTS_ccl_a_inv_00132 (
+	.A(CTS_25),
+	.Y(CTS_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00139 (
+	.A(CTS_26),
+	.Y(CTS_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 CTS_ccl_a_inv_00144 (
+	.A(ckmux_clk),
+	.Y(CTS_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_132 (
+	.LO(irq[0]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_131 (
+	.LO(irq[1]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_130 (
+	.LO(irq[2]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_129 (
+	.LO(io_out[34]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_128 (
+	.LO(io_out[35]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_127 (
+	.LO(la_data_out[0]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_126 (
+	.LO(la_data_out[1]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_125 (
+	.LO(la_data_out[2]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_124 (
+	.LO(la_data_out[3]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_123 (
+	.LO(la_data_out[4]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_122 (
+	.LO(la_data_out[5]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_121 (
+	.LO(la_data_out[6]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_120 (
+	.LO(la_data_out[7]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_119 (
+	.LO(la_data_out[8]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_118 (
+	.LO(la_data_out[9]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_117 (
+	.LO(la_data_out[10]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_116 (
+	.LO(la_data_out[11]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_115 (
+	.LO(la_data_out[12]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_114 (
+	.LO(la_data_out[13]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_113 (
+	.LO(la_data_out[14]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_112 (
+	.LO(la_data_out[15]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_111 (
+	.LO(la_data_out[16]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_110 (
+	.LO(la_data_out[17]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_109 (
+	.LO(la_data_out[18]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_108 (
+	.LO(la_data_out[19]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_107 (
+	.LO(la_data_out[20]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_106 (
+	.LO(la_data_out[21]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_105 (
+	.LO(la_data_out[22]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_104 (
+	.LO(la_data_out[23]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_103 (
+	.LO(la_data_out[24]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_102 (
+	.LO(la_data_out[25]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_101 (
+	.LO(la_data_out[26]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_100 (
+	.LO(la_data_out[27]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_99 (
+	.LO(la_data_out[28]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_98 (
+	.LO(la_data_out[29]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_97 (
+	.LO(la_data_out[30]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_96 (
+	.LO(la_data_out[31]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_95 (
+	.LO(la_data_out[32]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_94 (
+	.LO(la_data_out[33]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_93 (
+	.LO(la_data_out[34]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_92 (
+	.LO(la_data_out[35]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_91 (
+	.LO(la_data_out[36]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_90 (
+	.LO(la_data_out[37]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_89 (
+	.LO(la_data_out[38]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_88 (
+	.LO(la_data_out[39]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_87 (
+	.LO(la_data_out[40]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_86 (
+	.LO(la_data_out[41]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_85 (
+	.LO(la_data_out[42]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_84 (
+	.LO(la_data_out[43]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_83 (
+	.LO(la_data_out[44]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_82 (
+	.LO(la_data_out[45]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_81 (
+	.LO(la_data_out[46]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_80 (
+	.LO(la_data_out[47]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_79 (
+	.LO(la_data_out[48]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_78 (
+	.LO(la_data_out[49]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_77 (
+	.LO(la_data_out[50]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_76 (
+	.LO(la_data_out[51]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_75 (
+	.LO(la_data_out[52]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_74 (
+	.LO(la_data_out[53]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_73 (
+	.LO(la_data_out[54]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_72 (
+	.LO(la_data_out[55]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_71 (
+	.LO(la_data_out[56]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_70 (
+	.LO(la_data_out[57]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_69 (
+	.LO(la_data_out[58]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_68 (
+	.LO(la_data_out[59]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_67 (
+	.LO(la_data_out[60]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_66 (
+	.LO(la_data_out[61]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_65 (
+	.LO(la_data_out[62]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_64 (
+	.LO(la_data_out[63]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_63 (
+	.LO(la_data_out[64]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_62 (
+	.LO(la_data_out[65]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_61 (
+	.LO(la_data_out[66]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_60 (
+	.LO(la_data_out[67]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_59 (
+	.LO(la_data_out[68]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_58 (
+	.LO(la_data_out[69]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_57 (
+	.LO(la_data_out[70]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_56 (
+	.LO(la_data_out[71]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_55 (
+	.LO(la_data_out[72]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_54 (
+	.LO(la_data_out[73]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_53 (
+	.LO(la_data_out[74]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_52 (
+	.LO(la_data_out[75]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_51 (
+	.LO(la_data_out[76]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_50 (
+	.LO(la_data_out[77]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_49 (
+	.LO(la_data_out[78]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_48 (
+	.LO(la_data_out[79]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_47 (
+	.LO(la_data_out[80]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_46 (
+	.LO(la_data_out[81]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_45 (
+	.LO(la_data_out[82]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_44 (
+	.LO(la_data_out[83]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_43 (
+	.LO(la_data_out[84]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_42 (
+	.LO(la_data_out[85]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_41 (
+	.LO(la_data_out[86]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_40 (
+	.LO(la_data_out[87]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_39 (
+	.LO(la_data_out[88]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_38 (
+	.LO(la_data_out[89]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_37 (
+	.LO(la_data_out[90]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_36 (
+	.LO(la_data_out[91]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_35 (
+	.LO(la_data_out[92]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_34 (
+	.LO(la_data_out[93]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_33 (
+	.LO(la_data_out[94]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_32 (
+	.LO(la_data_out[95]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_31 (
+	.LO(la_data_out[96]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_30 (
+	.LO(la_data_out[97]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_29 (
+	.LO(la_data_out[98]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_28 (
+	.LO(la_data_out[99]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_27 (
+	.LO(la_data_out[100]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_26 (
+	.LO(la_data_out[101]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_25 (
+	.LO(la_data_out[102]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_24 (
+	.LO(la_data_out[103]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_23 (
+	.LO(la_data_out[104]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_22 (
+	.LO(la_data_out[105]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_21 (
+	.LO(la_data_out[106]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_20 (
+	.LO(la_data_out[107]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_19 (
+	.LO(la_data_out[108]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_18 (
+	.LO(la_data_out[109]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_17 (
+	.LO(la_data_out[110]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_16 (
+	.LO(la_data_out[111]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_15 (
+	.LO(la_data_out[112]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_14 (
+	.LO(la_data_out[113]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_13 (
+	.LO(la_data_out[114]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_12 (
+	.LO(la_data_out[115]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_11 (
+	.LO(la_data_out[116]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_10 (
+	.LO(la_data_out[117]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_9 (
+	.LO(la_data_out[118]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_8 (
+	.LO(la_data_out[119]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_7 (
+	.LO(la_data_out[120]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_6 (
+	.LO(la_data_out[121]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_5 (
+	.LO(la_data_out[122]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_4 (
+	.LO(la_data_out[123]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_3 (
+	.LO(la_data_out[124]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_2 (
+	.LO(la_data_out[125]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO_1 (
+	.LO(la_data_out[126]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__conb_1 LTIELO (
+	.LO(la_data_out[127]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC551_la_data_in_12 (
+	.A(la_data_in[12]),
+	.X(FE_OFN551_la_data_in_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC543_CGRA_stall_1 (
+	.A(CGRA_stall_1),
+	.X(FE_OFN543_CGRA_stall_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC542_FE_OFN230_io_oeb_6 (
+	.A(FE_OFN230_io_oeb_6),
+	.X(FE_OFN542_FE_OFN230_io_oeb_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC541_FE_OFN240_io_oeb_1 (
+	.A(FE_OFN240_io_oeb_1),
+	.X(FE_OFN541_FE_OFN240_io_oeb_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC538_la_data_in_7 (
+	.A(la_data_in[7]),
+	.X(FE_OFN538_la_data_in_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC536_la_data_in_11 (
+	.A(la_data_in[11]),
+	.X(FE_OFN536_la_data_in_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC533_la_data_in_17 (
+	.A(la_data_in[17]),
+	.X(FE_OFN533_la_data_in_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC415_io_out_32 (
+	.A(FE_OFN103_io_out_32),
+	.X(FE_OFN415_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC414_io_out_31 (
+	.A(FE_OFN105_io_out_31),
+	.X(FE_OFN414_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC413_io_out_30 (
+	.A(FE_OFN107_io_out_30),
+	.X(FE_OFN413_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC412_io_out_29 (
+	.A(FE_OFN109_io_out_29),
+	.X(FE_OFN412_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC411_io_out_28 (
+	.A(FE_OFN111_io_out_28),
+	.X(FE_OFN411_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC410_io_out_27 (
+	.A(FE_OFN113_io_out_27),
+	.X(FE_OFN410_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC409_io_out_26 (
+	.A(FE_OFN115_io_out_26),
+	.X(FE_OFN409_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC408_io_out_25 (
+	.A(FE_OFN117_io_out_25),
+	.X(FE_OFN408_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC407_io_out_24 (
+	.A(FE_OFN119_io_out_24),
+	.X(FE_OFN407_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC406_io_out_23 (
+	.A(FE_OFN121_io_out_23),
+	.X(FE_OFN406_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC405_io_out_22 (
+	.A(FE_OFN123_io_out_22),
+	.X(FE_OFN405_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC404_io_out_21 (
+	.A(FE_OFN126_io_out_21),
+	.X(FE_OFN404_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC403_io_out_20 (
+	.A(FE_OFN129_io_out_20),
+	.X(FE_OFN403_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC402_io_out_19 (
+	.A(FE_OFN132_io_out_19),
+	.X(FE_OFN402_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC401_io_out_18 (
+	.A(FE_OFN135_io_out_18),
+	.X(FE_OFN401_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC400_io_out_17 (
+	.A(FE_OFN138_io_out_17),
+	.X(FE_OFN400_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC399_io_out_16 (
+	.A(FE_OFN141_io_out_16),
+	.X(FE_OFN399_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC398_io_out_15 (
+	.A(FE_OFN143_io_out_15),
+	.X(FE_OFN398_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC397_io_out_14 (
+	.A(FE_OFN145_io_out_14),
+	.X(FE_OFN397_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC396_io_out_13 (
+	.A(FE_OFN147_io_out_13),
+	.X(FE_OFN396_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC395_io_out_12 (
+	.A(FE_OFN149_io_out_12),
+	.X(FE_OFN395_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC394_io_out_11 (
+	.A(FE_OFN151_io_out_11),
+	.X(FE_OFN394_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC393_io_out_10 (
+	.A(FE_OFN153_io_out_10),
+	.X(FE_OFN393_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC392_io_out_9 (
+	.A(FE_OFN155_io_out_9),
+	.X(FE_OFN392_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC391_io_out_8 (
+	.A(FE_OFN157_io_out_8),
+	.X(FE_OFN391_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC390_io_out_7 (
+	.A(FE_OFN159_io_out_7),
+	.X(FE_OFN390_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC389_io_out_6 (
+	.A(FE_OFN160_io_out_6),
+	.X(FE_OFN389_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC388_io_out_5 (
+	.A(FE_OFN161_io_out_5),
+	.X(FE_OFN388_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC387_io_out_4 (
+	.A(FE_OFN162_io_out_4),
+	.X(FE_OFN387_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC385_io_out_2 (
+	.A(FE_OFN164_io_out_2),
+	.X(FE_OFN385_n), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC376_ckmux_rst (
+	.A(ckmux_rst),
+	.X(FE_OFN376_ckmux_rst), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC375_CGRA_read_config_data_31 (
+	.A(FE_OFN374_CGRA_read_config_data_31),
+	.Y(FE_OFN375_CGRA_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC374_CGRA_read_config_data_31 (
+	.A(CGRA_read_config_data_31),
+	.Y(FE_OFN374_CGRA_read_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC373_CGRA_read_config_data_30 (
+	.A(FE_OFN372_CGRA_read_config_data_30),
+	.Y(FE_OFN373_CGRA_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC372_CGRA_read_config_data_30 (
+	.A(CGRA_read_config_data_30),
+	.Y(FE_OFN372_CGRA_read_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC371_CGRA_read_config_data_29 (
+	.A(FE_PDN32_FE_OFN370_CGRA_read_config_data_29),
+	.Y(FE_OFN371_CGRA_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 FE_OFC370_CGRA_read_config_data_29 (
+	.A(CGRA_read_config_data_29),
+	.Y(FE_OFN370_CGRA_read_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC369_CGRA_read_config_data_28 (
+	.A(FE_OFN368_CGRA_read_config_data_28),
+	.Y(FE_OFN369_CGRA_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC368_CGRA_read_config_data_28 (
+	.A(CGRA_read_config_data_28),
+	.Y(FE_OFN368_CGRA_read_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC367_CGRA_read_config_data_27 (
+	.A(FE_OFN366_CGRA_read_config_data_27),
+	.Y(FE_OFN367_CGRA_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC366_CGRA_read_config_data_27 (
+	.A(CGRA_read_config_data_27),
+	.Y(FE_OFN366_CGRA_read_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC365_CGRA_read_config_data_26 (
+	.A(FE_OFN364_CGRA_read_config_data_26),
+	.Y(FE_OFN365_CGRA_read_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC364_CGRA_read_config_data_26 (
+	.A(CGRA_read_config_data_26),
+	.Y(FE_OFN364_CGRA_read_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_6 FE_OFC363_CGRA_read_config_data_25 (
+	.A(FE_OFN362_CGRA_read_config_data_25),
+	.Y(FE_OFN363_CGRA_read_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC362_CGRA_read_config_data_25 (
+	.A(CGRA_read_config_data_25),
+	.Y(FE_OFN362_CGRA_read_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 FE_OFC361_CGRA_read_config_data_24 (
+	.A(FE_OFN360_CGRA_read_config_data_24),
+	.Y(FE_OFN361_CGRA_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC360_CGRA_read_config_data_24 (
+	.A(CGRA_read_config_data_24),
+	.Y(FE_OFN360_CGRA_read_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC359_CGRA_read_config_data_22 (
+	.A(FE_OFN358_CGRA_read_config_data_22),
+	.Y(FE_OFN359_CGRA_read_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC358_CGRA_read_config_data_22 (
+	.A(CGRA_read_config_data_22),
+	.Y(FE_OFN358_CGRA_read_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_12 FE_OFC357_CGRA_read_config_data_21 (
+	.A(FE_OFN356_CGRA_read_config_data_21),
+	.Y(FE_OFN357_CGRA_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC356_CGRA_read_config_data_21 (
+	.A(CGRA_read_config_data_21),
+	.Y(FE_OFN356_CGRA_read_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC355_CGRA_read_config_data_20 (
+	.A(FE_OFN354_CGRA_read_config_data_20),
+	.Y(FE_OFN355_CGRA_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC354_CGRA_read_config_data_20 (
+	.A(FE_OFN353_CGRA_read_config_data_20),
+	.Y(FE_OFN354_CGRA_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC353_CGRA_read_config_data_20 (
+	.A(FE_OFN352_CGRA_read_config_data_20),
+	.Y(FE_OFN353_CGRA_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC352_CGRA_read_config_data_20 (
+	.A(CGRA_read_config_data_20),
+	.Y(FE_OFN352_CGRA_read_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC351_CGRA_read_config_data_17 (
+	.A(FE_OFN350_CGRA_read_config_data_17),
+	.Y(FE_OFN351_CGRA_read_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC350_CGRA_read_config_data_17 (
+	.A(CGRA_read_config_data_17),
+	.Y(FE_OFN350_CGRA_read_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC349_CGRA_read_config_data_16 (
+	.A(FE_OFN348_CGRA_read_config_data_16),
+	.Y(FE_OFN349_CGRA_read_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC348_CGRA_read_config_data_16 (
+	.A(CGRA_read_config_data_16),
+	.Y(FE_OFN348_CGRA_read_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC347_CGRA_read_config_data_15 (
+	.A(FE_OFN346_CGRA_read_config_data_15),
+	.Y(FE_OFN347_CGRA_read_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC346_CGRA_read_config_data_15 (
+	.A(CGRA_read_config_data_15),
+	.Y(FE_OFN346_CGRA_read_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 FE_OFC345_CGRA_read_config_data_14 (
+	.A(FE_OFN344_CGRA_read_config_data_14),
+	.Y(FE_OFN345_CGRA_read_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC344_CGRA_read_config_data_14 (
+	.A(CGRA_read_config_data_14),
+	.Y(FE_OFN344_CGRA_read_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_6 FE_OFC343_CGRA_read_config_data_13 (
+	.A(FE_OFN342_CGRA_read_config_data_13),
+	.Y(FE_OFN343_CGRA_read_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC342_CGRA_read_config_data_13 (
+	.A(CGRA_read_config_data_13),
+	.Y(FE_OFN342_CGRA_read_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 FE_OFC341_CGRA_read_config_data_12 (
+	.A(FE_OFN340_CGRA_read_config_data_12),
+	.Y(FE_OFN341_CGRA_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC340_CGRA_read_config_data_12 (
+	.A(CGRA_read_config_data_12),
+	.Y(FE_OFN340_CGRA_read_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 FE_OFC339_CGRA_read_config_data_11 (
+	.A(FE_OFN338_CGRA_read_config_data_11),
+	.Y(FE_OFN339_CGRA_read_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC338_CGRA_read_config_data_11 (
+	.A(CGRA_read_config_data_11),
+	.Y(FE_OFN338_CGRA_read_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC337_CGRA_read_config_data_10 (
+	.A(FE_PDN43_FE_OFN336_CGRA_read_config_data_10),
+	.Y(FE_OFN337_CGRA_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_6 FE_OFC336_CGRA_read_config_data_10 (
+	.A(CGRA_read_config_data_10),
+	.Y(FE_OFN336_CGRA_read_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC335_CGRA_read_config_data_9 (
+	.A(FE_OFN334_CGRA_read_config_data_9),
+	.Y(FE_OFN335_CGRA_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC334_CGRA_read_config_data_9 (
+	.A(CGRA_read_config_data_9),
+	.Y(FE_OFN334_CGRA_read_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC333_CGRA_read_config_data_8 (
+	.A(FE_OFN332_CGRA_read_config_data_8),
+	.Y(FE_OFN333_CGRA_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC332_CGRA_read_config_data_8 (
+	.A(FE_OFN331_CGRA_read_config_data_8),
+	.Y(FE_OFN332_CGRA_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC331_CGRA_read_config_data_8 (
+	.A(FE_OFN330_CGRA_read_config_data_8),
+	.Y(FE_OFN331_CGRA_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC330_CGRA_read_config_data_8 (
+	.A(CGRA_read_config_data_8),
+	.Y(FE_OFN330_CGRA_read_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC329_CGRA_read_config_data_7 (
+	.A(FE_OFN328_CGRA_read_config_data_7),
+	.Y(FE_OFN329_CGRA_read_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC328_CGRA_read_config_data_7 (
+	.A(CGRA_read_config_data_7),
+	.Y(FE_OFN328_CGRA_read_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC327_CGRA_read_config_data_6 (
+	.A(FE_OFN326_CGRA_read_config_data_6),
+	.Y(FE_OFN327_CGRA_read_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC326_CGRA_read_config_data_6 (
+	.A(CGRA_read_config_data_6),
+	.Y(FE_OFN326_CGRA_read_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC325_CGRA_read_config_data_4 (
+	.A(FE_OFN324_CGRA_read_config_data_4),
+	.Y(FE_OFN325_CGRA_read_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC324_CGRA_read_config_data_4 (
+	.A(CGRA_read_config_data_4),
+	.Y(FE_OFN324_CGRA_read_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC323_CGRA_read_config_data_2 (
+	.A(FE_OFN322_CGRA_read_config_data_2),
+	.Y(FE_OFN323_CGRA_read_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC322_CGRA_read_config_data_2 (
+	.A(CGRA_read_config_data_2),
+	.Y(FE_OFN322_CGRA_read_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC321_CGRA_read_config_data_1 (
+	.A(FE_OFN320_CGRA_read_config_data_1),
+	.Y(FE_OFN321_CGRA_read_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC320_CGRA_read_config_data_1 (
+	.A(CGRA_read_config_data_1),
+	.Y(FE_OFN320_CGRA_read_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_6 FE_OFC319_CGRA_read_config_data_0 (
+	.A(FE_OFN318_CGRA_read_config_data_0),
+	.Y(FE_OFN319_CGRA_read_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC318_CGRA_read_config_data_0 (
+	.A(CGRA_read_config_data_0),
+	.Y(FE_OFN318_CGRA_read_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC262_CGRA_stall_0 (
+	.A(CGRA_stall_0),
+	.X(FE_OFN262_CGRA_stall_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_8 FE_OFC261_CGRA_read_config_data_23 (
+	.A(FE_OFN260_CGRA_read_config_data_23),
+	.Y(FE_OFN261_CGRA_read_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC260_CGRA_read_config_data_23 (
+	.A(CGRA_read_config_data_23),
+	.Y(FE_OFN260_CGRA_read_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC259_CGRA_read_config_data_19 (
+	.A(FE_OFN258_CGRA_read_config_data_19),
+	.Y(FE_OFN259_CGRA_read_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC258_CGRA_read_config_data_19 (
+	.A(CGRA_read_config_data_19),
+	.Y(FE_OFN258_CGRA_read_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC257_CGRA_read_config_data_18 (
+	.A(FE_OFN256_CGRA_read_config_data_18),
+	.Y(FE_OFN257_CGRA_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC256_CGRA_read_config_data_18 (
+	.A(CGRA_read_config_data_18),
+	.Y(FE_OFN256_CGRA_read_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC255_CGRA_read_config_data_5 (
+	.A(FE_PDN37_FE_OFN254_CGRA_read_config_data_5),
+	.Y(FE_OFN255_CGRA_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_6 FE_OFC254_CGRA_read_config_data_5 (
+	.A(CGRA_read_config_data_5),
+	.Y(FE_OFN254_CGRA_read_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_6 FE_OFC253_CGRA_read_config_data_3 (
+	.A(FE_OFN252_CGRA_read_config_data_3),
+	.Y(FE_OFN253_CGRA_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC252_CGRA_read_config_data_3 (
+	.A(CGRA_read_config_data_3),
+	.Y(FE_OFN252_CGRA_read_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC242_io_oeb_0 (
+	.A(FE_RN_38),
+	.X(io_oeb[0]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC241_io_oeb_1 (
+	.A(FE_OFN541_FE_OFN240_io_oeb_1),
+	.Y(io_oeb[1]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC240_io_oeb_1 (
+	.A(FE_RN_37),
+	.Y(FE_OFN240_io_oeb_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC239_io_oeb_2 (
+	.A(FE_OFN238_io_oeb_2),
+	.Y(io_oeb[2]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC238_io_oeb_2 (
+	.A(FE_RN_36),
+	.Y(FE_OFN238_io_oeb_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC237_io_oeb_3 (
+	.A(FE_OFN236_io_oeb_3),
+	.Y(io_oeb[3]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC236_io_oeb_3 (
+	.A(FE_RN_35),
+	.Y(FE_OFN236_io_oeb_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC235_io_oeb_4 (
+	.A(FE_OFN234_io_oeb_4),
+	.Y(io_oeb[4]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC234_io_oeb_4 (
+	.A(FE_RN_34),
+	.Y(FE_OFN234_io_oeb_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC233_io_oeb_5 (
+	.A(FE_OFN232_io_oeb_5),
+	.Y(io_oeb[5]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC232_io_oeb_5 (
+	.A(FE_RN_33),
+	.Y(FE_OFN232_io_oeb_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC231_io_oeb_6 (
+	.A(FE_OFN542_FE_OFN230_io_oeb_6),
+	.Y(io_oeb[6]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC230_io_oeb_6 (
+	.A(FE_RN_32),
+	.Y(FE_OFN230_io_oeb_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC229_io_oeb_7 (
+	.A(FE_OFN228_io_oeb_7),
+	.Y(io_oeb[7]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC228_io_oeb_7 (
+	.A(FE_OFN538_la_data_in_7),
+	.Y(FE_OFN228_io_oeb_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC227_io_oeb_8 (
+	.A(FE_OFN226_io_oeb_8),
+	.Y(io_oeb[8]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC226_io_oeb_8 (
+	.A(FE_RN_30),
+	.Y(FE_OFN226_io_oeb_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC225_io_oeb_9 (
+	.A(FE_OFN224_io_oeb_9),
+	.Y(io_oeb[9]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC224_io_oeb_9 (
+	.A(FE_RN_29),
+	.Y(FE_OFN224_io_oeb_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC223_io_oeb_10 (
+	.A(FE_OFN222_io_oeb_10),
+	.Y(io_oeb[10]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC222_io_oeb_10 (
+	.A(FE_RN_28),
+	.Y(FE_OFN222_io_oeb_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC221_io_oeb_11 (
+	.A(FE_OFN220_io_oeb_11),
+	.Y(io_oeb[11]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_4 FE_OFC220_io_oeb_11 (
+	.A(FE_OFN536_la_data_in_11),
+	.Y(FE_OFN220_io_oeb_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC219_io_oeb_12 (
+	.A(FE_OFN218_io_oeb_12),
+	.Y(io_oeb[12]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC218_io_oeb_12 (
+	.A(FE_OFN551_la_data_in_12),
+	.Y(FE_OFN218_io_oeb_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC217_io_oeb_13 (
+	.A(FE_OFN216_io_oeb_13),
+	.Y(io_oeb[13]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC216_io_oeb_13 (
+	.A(FE_RN_25),
+	.Y(FE_OFN216_io_oeb_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC215_io_oeb_14 (
+	.A(FE_OFN214_io_oeb_14),
+	.Y(io_oeb[14]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC214_io_oeb_14 (
+	.A(FE_RN_24),
+	.Y(FE_OFN214_io_oeb_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC213_io_oeb_15 (
+	.A(FE_OFN212_io_oeb_15),
+	.Y(io_oeb[15]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC212_io_oeb_15 (
+	.A(FE_RN_23),
+	.Y(FE_OFN212_io_oeb_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC211_io_oeb_16 (
+	.A(FE_OFN210_io_oeb_16),
+	.Y(io_oeb[16]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC210_io_oeb_16 (
+	.A(FE_OFN209_io_oeb_16),
+	.Y(FE_OFN210_io_oeb_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC209_io_oeb_16 (
+	.A(FE_RN_22),
+	.X(FE_OFN209_io_oeb_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC208_io_oeb_17 (
+	.A(FE_OFN207_io_oeb_17),
+	.Y(io_oeb[17]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC207_io_oeb_17 (
+	.A(FE_OFN206_io_oeb_17),
+	.Y(FE_OFN207_io_oeb_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC206_io_oeb_17 (
+	.A(FE_OFN533_la_data_in_17),
+	.X(FE_OFN206_io_oeb_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC205_io_oeb_18 (
+	.A(FE_OFN204_io_oeb_18),
+	.Y(io_oeb[18]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC204_io_oeb_18 (
+	.A(FE_OFN203_io_oeb_18),
+	.Y(FE_OFN204_io_oeb_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC203_io_oeb_18 (
+	.A(FE_RN_20),
+	.X(FE_OFN203_io_oeb_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC202_io_oeb_19 (
+	.A(FE_OFN201_io_oeb_19),
+	.Y(io_oeb[19]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC201_io_oeb_19 (
+	.A(FE_OFN200_io_oeb_19),
+	.Y(FE_OFN201_io_oeb_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC200_io_oeb_19 (
+	.A(FE_RN_19),
+	.X(FE_OFN200_io_oeb_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC199_io_oeb_20 (
+	.A(FE_OFN198_io_oeb_20),
+	.Y(io_oeb[20]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC198_io_oeb_20 (
+	.A(FE_OFN197_io_oeb_20),
+	.Y(FE_OFN198_io_oeb_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC197_io_oeb_20 (
+	.A(FE_RN_18),
+	.X(FE_OFN197_io_oeb_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC196_io_oeb_21 (
+	.A(FE_OFN195_io_oeb_21),
+	.Y(io_oeb[21]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC195_io_oeb_21 (
+	.A(FE_OFN194_io_oeb_21),
+	.Y(FE_OFN195_io_oeb_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC194_io_oeb_21 (
+	.A(FE_OFN193_io_oeb_21),
+	.Y(FE_OFN194_io_oeb_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC193_io_oeb_21 (
+	.A(FE_RN_17),
+	.Y(FE_OFN193_io_oeb_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC192_io_oeb_22 (
+	.A(FE_OFN191_io_oeb_22),
+	.Y(io_oeb[22]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC191_io_oeb_22 (
+	.A(FE_RN_16),
+	.Y(FE_OFN191_io_oeb_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC190_io_oeb_23 (
+	.A(FE_OFN189_io_oeb_23),
+	.Y(io_oeb[23]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC189_io_oeb_23 (
+	.A(FE_RN_15),
+	.Y(FE_OFN189_io_oeb_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC188_io_oeb_24 (
+	.A(FE_OFN187_io_oeb_24),
+	.Y(io_oeb[24]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC187_io_oeb_24 (
+	.A(FE_RN_14),
+	.Y(FE_OFN187_io_oeb_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC186_io_oeb_25 (
+	.A(FE_OFN185_io_oeb_25),
+	.Y(io_oeb[25]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC185_io_oeb_25 (
+	.A(FE_RN_13),
+	.Y(FE_OFN185_io_oeb_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC184_io_oeb_26 (
+	.A(FE_OFN183_io_oeb_26),
+	.Y(io_oeb[26]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC183_io_oeb_26 (
+	.A(FE_RN_12),
+	.Y(FE_OFN183_io_oeb_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC182_io_oeb_27 (
+	.A(FE_OFN181_io_oeb_27),
+	.Y(io_oeb[27]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_OFC181_io_oeb_27 (
+	.A(FE_RN_11),
+	.Y(FE_OFN181_io_oeb_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC180_io_oeb_28 (
+	.A(FE_OFN179_io_oeb_28),
+	.Y(io_oeb[28]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC179_io_oeb_28 (
+	.A(FE_RN_10),
+	.Y(FE_OFN179_io_oeb_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC178_io_oeb_29 (
+	.A(FE_OFN177_io_oeb_29),
+	.Y(io_oeb[29]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC177_io_oeb_29 (
+	.A(FE_RN_9),
+	.Y(FE_OFN177_io_oeb_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC176_io_oeb_30 (
+	.A(FE_OFN175_io_oeb_30),
+	.Y(io_oeb[30]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC175_io_oeb_30 (
+	.A(FE_RN_8),
+	.Y(FE_OFN175_io_oeb_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC174_io_oeb_31 (
+	.A(FE_OFN173_io_oeb_31),
+	.Y(io_oeb[31]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC173_io_oeb_31 (
+	.A(FE_RN_7),
+	.Y(FE_OFN173_io_oeb_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC172_io_oeb_32 (
+	.A(FE_OFN171_io_oeb_32),
+	.Y(io_oeb[32]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC171_io_oeb_32 (
+	.A(FE_RN_6),
+	.Y(FE_OFN171_io_oeb_32), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC170_io_oeb_33 (
+	.A(FE_OFN36_la_data_in_33),
+	.X(io_oeb[33]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC168_io_oeb_34 (
+	.A(FE_RN_4),
+	.X(io_oeb[34]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC167_io_oeb_35 (
+	.A(FE_RN_3),
+	.X(io_oeb[35]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC166_io_oeb_36 (
+	.A(FE_RN_2),
+	.X(io_oeb[36]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC165_io_oeb_37 (
+	.A(FE_RN_1),
+	.X(io_oeb[37]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC164_io_out_2 (
+	.A(FE_OFN385_n),
+	.X(io_out[2]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC163_io_out_3 (
+	.A(FE_OFN163_io_out_3),
+	.X(io_out[3]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC162_io_out_4 (
+	.A(FE_OFN387_n),
+	.X(io_out[4]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC161_io_out_5 (
+	.A(FE_OFN388_n),
+	.X(io_out[5]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC160_io_out_6 (
+	.A(FE_OFN389_n),
+	.X(io_out[6]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC159_io_out_7 (
+	.A(FE_OFN390_n),
+	.X(io_out[7]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC158_io_out_8 (
+	.A(FE_OFN391_n),
+	.X(io_out[8]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC156_io_out_9 (
+	.A(FE_OFN156_io_out_9),
+	.Y(io_out[9]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC155_io_out_9 (
+	.A(FE_OFN392_n),
+	.Y(FE_OFN156_io_out_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC154_io_out_10 (
+	.A(FE_OFN154_io_out_10),
+	.Y(io_out[10]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC153_io_out_10 (
+	.A(FE_OFN393_n),
+	.Y(FE_OFN154_io_out_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC152_io_out_11 (
+	.A(FE_OFN152_io_out_11),
+	.Y(io_out[11]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC151_io_out_11 (
+	.A(FE_OFN394_n),
+	.Y(FE_OFN152_io_out_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC150_io_out_12 (
+	.A(FE_OFN150_io_out_12),
+	.Y(io_out[12]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC149_io_out_12 (
+	.A(FE_OFN395_n),
+	.Y(FE_OFN150_io_out_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC148_io_out_13 (
+	.A(FE_OFN148_io_out_13),
+	.Y(io_out[13]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_2 FE_OFC147_io_out_13 (
+	.A(FE_OFN396_n),
+	.Y(FE_OFN148_io_out_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC146_io_out_14 (
+	.A(FE_OFN146_io_out_14),
+	.Y(io_out[14]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC145_io_out_14 (
+	.A(FE_OFN397_n),
+	.Y(FE_OFN146_io_out_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC144_io_out_15 (
+	.A(FE_OFN144_io_out_15),
+	.Y(io_out[15]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_4 FE_OFC143_io_out_15 (
+	.A(FE_OFN398_n),
+	.Y(FE_OFN144_io_out_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC142_io_out_16 (
+	.A(FE_OFN142_io_out_16),
+	.Y(io_out[16]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC141_io_out_16 (
+	.A(FE_OFN399_n),
+	.Y(FE_OFN142_io_out_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC140_io_out_17 (
+	.A(FE_OFN140_io_out_17),
+	.Y(io_out[17]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC139_io_out_17 (
+	.A(FE_OFN139_io_out_17),
+	.Y(FE_OFN140_io_out_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC138_io_out_17 (
+	.A(FE_OFN400_n),
+	.X(FE_OFN139_io_out_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC137_io_out_18 (
+	.A(FE_OFN137_io_out_18),
+	.Y(io_out[18]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC136_io_out_18 (
+	.A(FE_OFN136_io_out_18),
+	.Y(FE_OFN137_io_out_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC135_io_out_18 (
+	.A(FE_OFN401_n),
+	.X(FE_OFN136_io_out_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC134_io_out_19 (
+	.A(FE_OFN134_io_out_19),
+	.X(io_out[19]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC133_io_out_19 (
+	.A(FE_OFN133_io_out_19),
+	.Y(FE_OFN134_io_out_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC132_io_out_19 (
+	.A(FE_OFN402_n),
+	.Y(FE_OFN133_io_out_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC131_io_out_20 (
+	.A(FE_OFN131_io_out_20),
+	.X(io_out[20]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC130_io_out_20 (
+	.A(FE_OFN130_io_out_20),
+	.Y(FE_OFN131_io_out_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC129_io_out_20 (
+	.A(FE_OFN403_n),
+	.Y(FE_OFN130_io_out_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC128_io_out_21 (
+	.A(FE_OFN128_io_out_21),
+	.Y(io_out[21]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC127_io_out_21 (
+	.A(FE_OFN127_io_out_21),
+	.Y(FE_OFN128_io_out_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC126_io_out_21 (
+	.A(FE_OFN404_n),
+	.X(FE_OFN127_io_out_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_4 FE_OFC125_io_out_22 (
+	.A(FE_OFN125_io_out_22),
+	.X(io_out[22]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC124_io_out_22 (
+	.A(FE_OFN124_io_out_22),
+	.Y(FE_OFN125_io_out_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC123_io_out_22 (
+	.A(FE_OFN405_n),
+	.Y(FE_OFN124_io_out_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC122_io_out_23 (
+	.A(FE_OFN122_io_out_23),
+	.Y(FE_PDN9_io_out_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC121_io_out_23 (
+	.A(FE_OFN406_n),
+	.Y(FE_OFN122_io_out_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_6 FE_OFC120_io_out_24 (
+	.A(FE_OFN120_io_out_24),
+	.Y(io_out[24]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC119_io_out_24 (
+	.A(FE_OFN407_n),
+	.Y(FE_OFN120_io_out_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC118_io_out_25 (
+	.A(FE_OFN118_io_out_25),
+	.Y(io_out[25]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC117_io_out_25 (
+	.A(FE_OFN408_n),
+	.Y(FE_OFN118_io_out_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_8 FE_OFC116_io_out_26 (
+	.A(FE_OFN116_io_out_26),
+	.Y(io_out[26]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC115_io_out_26 (
+	.A(FE_OFN409_n),
+	.Y(FE_OFN116_io_out_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC114_io_out_27 (
+	.A(FE_OFN114_io_out_27),
+	.Y(io_out[27]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC113_io_out_27 (
+	.A(FE_OFN410_n),
+	.Y(FE_OFN114_io_out_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC112_io_out_28 (
+	.A(FE_OFN112_io_out_28),
+	.Y(io_out[28]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_4 FE_OFC111_io_out_28 (
+	.A(FE_OFN411_n),
+	.Y(FE_OFN112_io_out_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC110_io_out_29 (
+	.A(FE_OFN110_io_out_29),
+	.Y(io_out[29]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_4 FE_OFC109_io_out_29 (
+	.A(FE_OFN412_n),
+	.Y(FE_OFN110_io_out_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC108_io_out_30 (
+	.A(FE_OFN108_io_out_30),
+	.Y(io_out[30]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 FE_OFC107_io_out_30 (
+	.A(FE_OFN413_n),
+	.Y(FE_OFN108_io_out_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC106_io_out_31 (
+	.A(FE_OFN106_io_out_31),
+	.Y(io_out[31]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC105_io_out_31 (
+	.A(FE_OFN414_n),
+	.Y(FE_OFN106_io_out_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_4 FE_OFC104_io_out_32 (
+	.A(FE_OFN104_io_out_32),
+	.Y(io_out[32]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 FE_OFC103_io_out_32 (
+	.A(FE_OFN415_n),
+	.Y(FE_OFN104_io_out_32), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_4 FE_OFC102_io_out_33 (
+	.A(FE_OFN34_n),
+	.X(io_out[33]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_2 FE_OFC6_la_data_in_96 (
+	.A(la_data_in[96]),
+	.X(FE_OFN6_la_data_in_96), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC5_wbs_dat_o_0 (
+	.A(FE_OFN5_wbs_dat_o_0),
+	.X(wbs_dat_o[0]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC4_wbs_dat_o_1 (
+	.A(FE_OFN4_wbs_dat_o_1),
+	.X(wbs_dat_o[1]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC3_wbs_dat_o_2 (
+	.A(FE_OFN3_wbs_dat_o_2),
+	.X(wbs_dat_o[2]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC2_wbs_dat_o_3 (
+	.A(FE_OFN2_wbs_dat_o_3),
+	.X(wbs_dat_o[3]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC1_wbs_dat_o_4 (
+	.A(FE_OFN1_wbs_dat_o_4),
+	.X(wbs_dat_o[4]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkbuf_1 FE_OFC0_wbs_dat_o_5 (
+	.A(FE_OFN0_wbs_dat_o_5),
+	.X(wbs_dat_o[5]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   user_proj_example_Interconnect Interconnect_inst0 (
+	.config_0_config_addr({ POHAN_BUF_CGRA_config_config_addr_7_31,
 		POHAN_BUF_CGRA_config_config_addr_7_30,
 		POHAN_BUF_CGRA_config_config_addr_7_29,
 		POHAN_BUF_CGRA_config_config_addr_7_28,
@@ -35419,8 +41160,8 @@ module user_proj_example (
 		POHAN_BUF_CGRA_config_config_data_7_2,
 		POHAN_BUF_CGRA_config_config_data_7_1,
 		POHAN_BUF_CGRA_config_config_data_7_0 }),
-	.config_0_read(UNCONNECTED_HIER_Z33),
-	.config_0_write(UNCONNECTED_HIER_Z34),
+	.config_0_read({ UNCONNECTED_HIER_Z33 }),
+	.config_0_write({ UNCONNECTED_HIER_Z34 }),
 	.config_1_config_addr({ POHAN_BUF_CGRA_config_config_addr_7_31,
 		POHAN_BUF_CGRA_config_config_addr_7_30,
 		POHAN_BUF_CGRA_config_config_addr_7_29,
@@ -35485,8 +41226,8 @@ module user_proj_example (
 		POHAN_BUF_CGRA_config_config_data_7_2,
 		POHAN_BUF_CGRA_config_config_data_7_1,
 		POHAN_BUF_CGRA_config_config_data_7_0 }),
-	.config_1_read(UNCONNECTED_HIER_Z35),
-	.config_1_write(UNCONNECTED_HIER_Z36),
+	.config_1_read({ UNCONNECTED_HIER_Z35 }),
+	.config_1_write({ UNCONNECTED_HIER_Z36 }),
 	.config_2_config_addr({ POHAN_BUF_CGRA_config_config_addr_7_31,
 		POHAN_BUF_CGRA_config_config_addr_7_30,
 		POHAN_BUF_CGRA_config_config_addr_7_29,
@@ -35551,8 +41292,8 @@ module user_proj_example (
 		POHAN_BUF_CGRA_config_config_data_7_2,
 		POHAN_BUF_CGRA_config_config_data_7_1,
 		POHAN_BUF_CGRA_config_config_data_7_0 }),
-	.config_2_read(UNCONNECTED_HIER_Z37),
-	.config_2_write(UNCONNECTED_HIER_Z38),
+	.config_2_read({ UNCONNECTED_HIER_Z37 }),
+	.config_2_write({ UNCONNECTED_HIER_Z38 }),
 	.config_3_config_addr({ POHAN_BUF_CGRA_config_config_addr_7_31,
 		POHAN_BUF_CGRA_config_config_addr_7_30,
 		POHAN_BUF_CGRA_config_config_addr_7_29,
@@ -35617,8 +41358,8 @@ module user_proj_example (
 		POHAN_BUF_CGRA_config_config_data_7_2,
 		POHAN_BUF_CGRA_config_config_data_7_1,
 		POHAN_BUF_CGRA_config_config_data_7_0 }),
-	.config_3_read(FE_PHN58_CGRA_config_read),
-	.config_3_write(CGRA_config_write),
+	.config_3_read({ FE_PHN58_CGRA_config_read }),
+	.config_3_write({ CGRA_config_write }),
 	.glb2io_16_X00_Y00({ io_in[15],
 		io_in[14],
 		io_in[13],
@@ -35683,10 +41424,10 @@ module user_proj_example (
 		UNCONNECTED_HIER_Z57,
 		UNCONNECTED_HIER_Z56,
 		UNCONNECTED_HIER_Z55 }),
-	.glb2io_1_X00_Y00(io_in[16]),
-	.glb2io_1_X01_Y00(io_in[33]),
-	.glb2io_1_X02_Y00(UNCONNECTED_HIER_Z71),
-	.glb2io_1_X03_Y00(UNCONNECTED_HIER_Z72),
+	.glb2io_1_X00_Y00({ io_in[16] }),
+	.glb2io_1_X01_Y00({ io_in[33] }),
+	.glb2io_1_X02_Y00({ UNCONNECTED_HIER_Z71 }),
+	.glb2io_1_X03_Y00({ UNCONNECTED_HIER_Z72 }),
 	.io2glb_16_X00_Y00({ FE_OFN143_io_out_15,
 		FE_OFN145_io_out_14,
 		FE_OFN147_io_out_13,
@@ -35751,10 +41492,10 @@ module user_proj_example (
 		UNCONNECTED51,
 		UNCONNECTED50,
 		UNCONNECTED49 }),
-	.io2glb_1_X00_Y00(FE_OFN141_io_out_16),
-	.io2glb_1_X01_Y00(FE_OFN102_io_out_33),
-	.io2glb_1_X02_Y00(UNCONNECTED65),
-	.io2glb_1_X03_Y00(UNCONNECTED66),
+	.io2glb_1_X00_Y00({ FE_OFN141_io_out_16 }),
+	.io2glb_1_X01_Y00({ FE_OFN102_io_out_33 }),
+	.io2glb_1_X02_Y00({ UNCONNECTED65 }),
+	.io2glb_1_X03_Y00({ UNCONNECTED66 }),
 	.read_config_data({ CGRA_read_config_data_31,
 		CGRA_read_config_data_30,
 		CGRA_read_config_data_29,
@@ -35795,12 +41536,18 @@ module user_proj_example (
 	.FE_OFN0_ckmux_rst(FE_OFN376_ckmux_rst),
 	.clk_clone1(CTS_5),
 	.clk(CTS_13),
-	.clk_clone2(CTS_26));
-   user_proj_example_ckmux ckmux_u0 (.select(FE_OFN6_la_data_in_96),
+	.clk_clone2(CTS_26), 
+	.VDD(VDD), 
+	.VSS(VSS));
+   user_proj_example_ckmux ckmux_u0 (
+	.select(FE_OFN6_la_data_in_96),
 	.clk0(wb_clk_i),
 	.clk1(io_in[34]),
-	.out_clk(ckmux_clk));
-   user_proj_example_RC_CG_MOD wbs_ctl_u0_RC_CG_HIER_INST0 (.enable(wbs_ctl_u0_n_1066),
+	.out_clk(ckmux_clk), 
+	.VDD(VDD), 
+	.VSS(VSS));
+   user_proj_example_RC_CG_MOD wbs_ctl_u0_RC_CG_HIER_INST0 (
+	.enable(wbs_ctl_u0_n_1066),
 	.ck_out(CTS_10),
 	.ck_out_clone1(CTS_11),
 	.ck_out_clone2(CTS_12),
@@ -35808,1776 +41555,5555 @@ module user_proj_example (
 	.ck_out_clone4(CTS_17),
 	.ck_out_clone5(CTS_18),
 	.ck_in_clone1(CTS_19),
-	.ck_in(CTS_21));
-   user_proj_example_RC_CG_MOD_1 wbs_ctl_u0_RC_CG_HIER_INST1 (.enable(wbs_ctl_u0_n_1068),
+	.ck_in(CTS_21), 
+	.VDD(VDD), 
+	.VSS(VSS));
+   user_proj_example_RC_CG_MOD_1 wbs_ctl_u0_RC_CG_HIER_INST1 (
+	.enable(wbs_ctl_u0_n_1068),
 	.ck_out(CTS_7),
 	.ck_out_clone1(CTS_8),
 	.ck_out_clone2(CTS_9),
 	.ck_out_clone3(CTS_14),
 	.ck_out_clone4(CTS_15),
 	.ck_in_clone1(CTS_19),
-	.ck_in(CTS_21));
-   user_proj_example_RC_CG_MOD_2 wbs_ctl_u0_RC_CG_HIER_INST2 (.enable(wbs_ctl_u0_n_1071),
+	.ck_in(CTS_21), 
+	.VDD(VDD), 
+	.VSS(VSS));
+   user_proj_example_RC_CG_MOD_2 wbs_ctl_u0_RC_CG_HIER_INST2 (
+	.enable(wbs_ctl_u0_n_1071),
 	.ck_in(CTS_21),
-	.ck_out(wbs_ctl_u0_rc_gclk_1073));
-   user_proj_example_RC_CG_MOD_3 wbs_ctl_u0_RC_CG_HIER_INST3 (.enable(wbs_ctl_u0_n_1074),
+	.ck_out(wbs_ctl_u0_rc_gclk_1073), 
+	.VDD(VDD), 
+	.VSS(VSS));
+   user_proj_example_RC_CG_MOD_3 wbs_ctl_u0_RC_CG_HIER_INST3 (
+	.enable(wbs_ctl_u0_n_1074),
 	.ck_in(CTS_21),
-	.ck_out(wbs_ctl_u0_rc_gclk_1076));
-   user_proj_example_RC_CG_MOD_4 wbs_ctl_u0_RC_CG_HIER_INST4 (.enable(wbs_ctl_u0_n_1077),
+	.ck_out(wbs_ctl_u0_rc_gclk_1076), 
+	.VDD(VDD), 
+	.VSS(VSS));
+   user_proj_example_RC_CG_MOD_4 wbs_ctl_u0_RC_CG_HIER_INST4 (
+	.enable(wbs_ctl_u0_n_1077),
 	.ck_out(CTS_1),
 	.ck_out_clone1(CTS_2),
 	.ck_out_clone2(CTS_3),
 	.ck_out_clone3(CTS_4),
-	.ck_in(CTS_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_0),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_0),
-	.X(POHAN_BUF_CGRA_config_config_data_1_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_1),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_1),
-	.X(POHAN_BUF_CGRA_config_config_data_1_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_2),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_2),
-	.X(POHAN_BUF_CGRA_config_config_data_1_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_3),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_3),
-	.X(POHAN_BUF_CGRA_config_config_data_1_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_4),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_4),
-	.X(POHAN_BUF_CGRA_config_config_data_1_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_5),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_5),
-	.X(POHAN_BUF_CGRA_config_config_data_1_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_6),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_6),
-	.X(POHAN_BUF_CGRA_config_config_data_1_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_7),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_7),
-	.X(POHAN_BUF_CGRA_config_config_data_1_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_8),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_8),
-	.X(POHAN_BUF_CGRA_config_config_data_1_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_9),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_9),
-	.X(POHAN_BUF_CGRA_config_config_data_1_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_10),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_10),
-	.X(POHAN_BUF_CGRA_config_config_data_1_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_11),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_11),
-	.X(POHAN_BUF_CGRA_config_config_data_1_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_12),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_12),
-	.X(POHAN_BUF_CGRA_config_config_data_1_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_13),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_13),
-	.X(POHAN_BUF_CGRA_config_config_data_1_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_14),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_14),
-	.X(POHAN_BUF_CGRA_config_config_data_1_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_15),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_15),
-	.X(POHAN_BUF_CGRA_config_config_data_1_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_16),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_16),
-	.X(POHAN_BUF_CGRA_config_config_data_1_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_17),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_17),
-	.X(POHAN_BUF_CGRA_config_config_data_1_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_18),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_18),
-	.X(POHAN_BUF_CGRA_config_config_data_1_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_19),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_19),
-	.X(POHAN_BUF_CGRA_config_config_data_1_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_20),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_20),
-	.X(POHAN_BUF_CGRA_config_config_data_1_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_21),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_21),
-	.X(POHAN_BUF_CGRA_config_config_data_1_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_22),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_22),
-	.X(POHAN_BUF_CGRA_config_config_data_1_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_23),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_23),
-	.X(POHAN_BUF_CGRA_config_config_data_1_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_24),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_24),
-	.X(POHAN_BUF_CGRA_config_config_data_1_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_25),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_25),
-	.X(POHAN_BUF_CGRA_config_config_data_1_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_26),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_26),
-	.X(POHAN_BUF_CGRA_config_config_data_1_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_27),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_27),
-	.X(POHAN_BUF_CGRA_config_config_data_1_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_28),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_28),
-	.X(POHAN_BUF_CGRA_config_config_data_1_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_29),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_29),
-	.X(POHAN_BUF_CGRA_config_config_data_1_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_30),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_30),
-	.X(POHAN_BUF_CGRA_config_config_data_1_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_0_31),
-	.X(POHAN_BUF_CGRA_config_config_addr_1_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_0_31),
-	.X(POHAN_BUF_CGRA_config_config_data_1_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].STALL_BIT[0].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_0_0),
-	.X(POHAN_BUF_CGRA_stall_1_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].STALL_BIT[1].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_0_1),
-	.X(POHAN_BUF_CGRA_stall_1_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].STALL_BIT[2].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_0_2),
-	.X(POHAN_BUF_CGRA_stall_1_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].STALL_BIT[3].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_0_3),
-	.X(POHAN_BUF_CGRA_stall_1_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_0),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_0),
-	.X(POHAN_BUF_CGRA_config_config_data_2_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_1),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_1),
-	.X(POHAN_BUF_CGRA_config_config_data_2_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_2),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_2),
-	.X(POHAN_BUF_CGRA_config_config_data_2_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_3),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_3),
-	.X(POHAN_BUF_CGRA_config_config_data_2_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_4),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_4),
-	.X(POHAN_BUF_CGRA_config_config_data_2_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_5),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_5),
-	.X(POHAN_BUF_CGRA_config_config_data_2_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_6),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_6),
-	.X(POHAN_BUF_CGRA_config_config_data_2_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_7),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_7),
-	.X(POHAN_BUF_CGRA_config_config_data_2_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_8),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_8),
-	.X(POHAN_BUF_CGRA_config_config_data_2_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_9),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_9),
-	.X(POHAN_BUF_CGRA_config_config_data_2_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_10),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_10),
-	.X(POHAN_BUF_CGRA_config_config_data_2_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_11),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_11),
-	.X(POHAN_BUF_CGRA_config_config_data_2_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_12),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_12),
-	.X(POHAN_BUF_CGRA_config_config_data_2_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_13),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_13),
-	.X(POHAN_BUF_CGRA_config_config_data_2_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_14),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_14),
-	.X(POHAN_BUF_CGRA_config_config_data_2_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_15),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_15),
-	.X(POHAN_BUF_CGRA_config_config_data_2_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_16),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_16),
-	.X(POHAN_BUF_CGRA_config_config_data_2_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_17),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_17),
-	.X(POHAN_BUF_CGRA_config_config_data_2_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_18),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_18),
-	.X(POHAN_BUF_CGRA_config_config_data_2_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_19),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_19),
-	.X(POHAN_BUF_CGRA_config_config_data_2_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_20),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_20),
-	.X(POHAN_BUF_CGRA_config_config_data_2_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_21),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_21),
-	.X(POHAN_BUF_CGRA_config_config_data_2_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_22),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_22),
-	.X(POHAN_BUF_CGRA_config_config_data_2_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_23),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_23),
-	.X(POHAN_BUF_CGRA_config_config_data_2_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_24),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_24),
-	.X(POHAN_BUF_CGRA_config_config_data_2_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_25),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_25),
-	.X(POHAN_BUF_CGRA_config_config_data_2_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_26),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_26),
-	.X(POHAN_BUF_CGRA_config_config_data_2_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_27),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_27),
-	.X(POHAN_BUF_CGRA_config_config_data_2_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_28),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_28),
-	.X(POHAN_BUF_CGRA_config_config_data_2_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_29),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_29),
-	.X(POHAN_BUF_CGRA_config_config_data_2_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_30),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_30),
-	.X(POHAN_BUF_CGRA_config_config_data_2_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_1_31),
-	.X(POHAN_BUF_CGRA_config_config_addr_2_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_1_31),
-	.X(POHAN_BUF_CGRA_config_config_data_2_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].STALL_BIT[0].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_1_0),
-	.X(POHAN_BUF_CGRA_stall_2_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].STALL_BIT[1].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_1_1),
-	.X(POHAN_BUF_CGRA_stall_2_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].STALL_BIT[2].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_1_2),
-	.X(POHAN_BUF_CGRA_stall_2_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].STALL_BIT[3].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_1_3),
-	.X(POHAN_BUF_CGRA_stall_2_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_0),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_0),
-	.X(POHAN_BUF_CGRA_config_config_data_3_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_1),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_1),
-	.X(POHAN_BUF_CGRA_config_config_data_3_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_2),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_2),
-	.X(POHAN_BUF_CGRA_config_config_data_3_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_3),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_3),
-	.X(POHAN_BUF_CGRA_config_config_data_3_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_4),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_4),
-	.X(POHAN_BUF_CGRA_config_config_data_3_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_5),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_5),
-	.X(POHAN_BUF_CGRA_config_config_data_3_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_6),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_6),
-	.X(POHAN_BUF_CGRA_config_config_data_3_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_7),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_7),
-	.X(POHAN_BUF_CGRA_config_config_data_3_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_8),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_8),
-	.X(POHAN_BUF_CGRA_config_config_data_3_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_9),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_9),
-	.X(POHAN_BUF_CGRA_config_config_data_3_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_10),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_10),
-	.X(POHAN_BUF_CGRA_config_config_data_3_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_11),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_11),
-	.X(POHAN_BUF_CGRA_config_config_data_3_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_12),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_12),
-	.X(POHAN_BUF_CGRA_config_config_data_3_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_13),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_13),
-	.X(POHAN_BUF_CGRA_config_config_data_3_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_14),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_14),
-	.X(POHAN_BUF_CGRA_config_config_data_3_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_15),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_15),
-	.X(POHAN_BUF_CGRA_config_config_data_3_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_16),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_16),
-	.X(POHAN_BUF_CGRA_config_config_data_3_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_17),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_17),
-	.X(POHAN_BUF_CGRA_config_config_data_3_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_18),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_18),
-	.X(POHAN_BUF_CGRA_config_config_data_3_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_19),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_19),
-	.X(POHAN_BUF_CGRA_config_config_data_3_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_20),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_20),
-	.X(POHAN_BUF_CGRA_config_config_data_3_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_21),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_21),
-	.X(POHAN_BUF_CGRA_config_config_data_3_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_22),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_22),
-	.X(POHAN_BUF_CGRA_config_config_data_3_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_23),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_23),
-	.X(POHAN_BUF_CGRA_config_config_data_3_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_24),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_24),
-	.X(POHAN_BUF_CGRA_config_config_data_3_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_25),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_25),
-	.X(POHAN_BUF_CGRA_config_config_data_3_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_26),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_26),
-	.X(POHAN_BUF_CGRA_config_config_data_3_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_27),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_27),
-	.X(POHAN_BUF_CGRA_config_config_data_3_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_28),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_28),
-	.X(POHAN_BUF_CGRA_config_config_data_3_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_29),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_29),
-	.X(POHAN_BUF_CGRA_config_config_data_3_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_30),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_30),
-	.X(POHAN_BUF_CGRA_config_config_data_3_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_2_31),
-	.X(POHAN_BUF_CGRA_config_config_addr_3_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_2_31),
-	.X(POHAN_BUF_CGRA_config_config_data_3_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].STALL_BIT[0].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_2_0),
-	.X(POHAN_BUF_CGRA_stall_3_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].STALL_BIT[1].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_2_1),
-	.X(POHAN_BUF_CGRA_stall_3_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].STALL_BIT[2].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_2_2),
-	.X(POHAN_BUF_CGRA_stall_3_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].STALL_BIT[3].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_2_3),
-	.X(POHAN_BUF_CGRA_stall_3_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_0),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_0),
-	.X(POHAN_BUF_CGRA_config_config_data_4_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_1),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_1),
-	.X(POHAN_BUF_CGRA_config_config_data_4_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_2),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_2),
-	.X(POHAN_BUF_CGRA_config_config_data_4_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_3),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_3),
-	.X(POHAN_BUF_CGRA_config_config_data_4_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_4),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_4),
-	.X(POHAN_BUF_CGRA_config_config_data_4_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_5),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_5),
-	.X(POHAN_BUF_CGRA_config_config_data_4_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_6),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_6),
-	.X(POHAN_BUF_CGRA_config_config_data_4_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_7),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_7),
-	.X(POHAN_BUF_CGRA_config_config_data_4_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_8),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_8),
-	.X(POHAN_BUF_CGRA_config_config_data_4_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_9),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_9),
-	.X(POHAN_BUF_CGRA_config_config_data_4_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_10),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_10),
-	.X(POHAN_BUF_CGRA_config_config_data_4_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_11),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_11),
-	.X(POHAN_BUF_CGRA_config_config_data_4_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_12),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_12),
-	.X(POHAN_BUF_CGRA_config_config_data_4_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_13),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_13),
-	.X(POHAN_BUF_CGRA_config_config_data_4_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_14),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_14),
-	.X(POHAN_BUF_CGRA_config_config_data_4_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_15),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_15),
-	.X(POHAN_BUF_CGRA_config_config_data_4_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_16),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_16),
-	.X(POHAN_BUF_CGRA_config_config_data_4_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_17),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_17),
-	.X(POHAN_BUF_CGRA_config_config_data_4_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_18),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_18),
-	.X(POHAN_BUF_CGRA_config_config_data_4_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_19),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_19),
-	.X(POHAN_BUF_CGRA_config_config_data_4_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_20),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_20),
-	.X(POHAN_BUF_CGRA_config_config_data_4_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_21),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_21),
-	.X(POHAN_BUF_CGRA_config_config_data_4_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_22),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_22),
-	.X(POHAN_BUF_CGRA_config_config_data_4_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_23),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_23),
-	.X(POHAN_BUF_CGRA_config_config_data_4_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_24),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_24),
-	.X(POHAN_BUF_CGRA_config_config_data_4_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_25),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_25),
-	.X(POHAN_BUF_CGRA_config_config_data_4_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_26),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_26),
-	.X(POHAN_BUF_CGRA_config_config_data_4_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_27),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_27),
-	.X(POHAN_BUF_CGRA_config_config_data_4_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_28),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_28),
-	.X(POHAN_BUF_CGRA_config_config_data_4_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_29),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_29),
-	.X(POHAN_BUF_CGRA_config_config_data_4_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_30),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_30),
-	.X(POHAN_BUF_CGRA_config_config_data_4_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_3_31),
-	.X(POHAN_BUF_CGRA_config_config_addr_4_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_3_31),
-	.X(POHAN_BUF_CGRA_config_config_data_4_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].STALL_BIT[0].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_3_0),
-	.X(POHAN_BUF_CGRA_stall_4_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].STALL_BIT[1].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_3_1),
-	.X(POHAN_BUF_CGRA_stall_4_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].STALL_BIT[2].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_3_2),
-	.X(POHAN_BUF_CGRA_stall_4_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].STALL_BIT[3].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_3_3),
-	.X(POHAN_BUF_CGRA_stall_4_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_0),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_0),
-	.X(POHAN_BUF_CGRA_config_config_data_5_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_1),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_1),
-	.X(POHAN_BUF_CGRA_config_config_data_5_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_2),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_2),
-	.X(POHAN_BUF_CGRA_config_config_data_5_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_3),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_3),
-	.X(POHAN_BUF_CGRA_config_config_data_5_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_4),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_4),
-	.X(POHAN_BUF_CGRA_config_config_data_5_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_5),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_5),
-	.X(POHAN_BUF_CGRA_config_config_data_5_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_6),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_6),
-	.X(POHAN_BUF_CGRA_config_config_data_5_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_7),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_7),
-	.X(POHAN_BUF_CGRA_config_config_data_5_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_8),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_8),
-	.X(POHAN_BUF_CGRA_config_config_data_5_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_9),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_9),
-	.X(POHAN_BUF_CGRA_config_config_data_5_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_10),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_10),
-	.X(POHAN_BUF_CGRA_config_config_data_5_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_11),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_11),
-	.X(POHAN_BUF_CGRA_config_config_data_5_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_12),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_12),
-	.X(POHAN_BUF_CGRA_config_config_data_5_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_13),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_13),
-	.X(POHAN_BUF_CGRA_config_config_data_5_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_14),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_14),
-	.X(POHAN_BUF_CGRA_config_config_data_5_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_15),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_15),
-	.X(POHAN_BUF_CGRA_config_config_data_5_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_16),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_16),
-	.X(POHAN_BUF_CGRA_config_config_data_5_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_17),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_17),
-	.X(POHAN_BUF_CGRA_config_config_data_5_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_18),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_18),
-	.X(POHAN_BUF_CGRA_config_config_data_5_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_19),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_19),
-	.X(POHAN_BUF_CGRA_config_config_data_5_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_20),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_20),
-	.X(POHAN_BUF_CGRA_config_config_data_5_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_21),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_21),
-	.X(POHAN_BUF_CGRA_config_config_data_5_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_22),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_22),
-	.X(POHAN_BUF_CGRA_config_config_data_5_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_23),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_23),
-	.X(POHAN_BUF_CGRA_config_config_data_5_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_24),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_24),
-	.X(POHAN_BUF_CGRA_config_config_data_5_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_25),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_25),
-	.X(POHAN_BUF_CGRA_config_config_data_5_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_26),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_26),
-	.X(POHAN_BUF_CGRA_config_config_data_5_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_27),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_27),
-	.X(POHAN_BUF_CGRA_config_config_data_5_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_28),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_28),
-	.X(POHAN_BUF_CGRA_config_config_data_5_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_29),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_29),
-	.X(POHAN_BUF_CGRA_config_config_data_5_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_30),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_30),
-	.X(POHAN_BUF_CGRA_config_config_data_5_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_4_31),
-	.X(POHAN_BUF_CGRA_config_config_addr_5_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_4_31),
-	.X(POHAN_BUF_CGRA_config_config_data_5_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].STALL_BIT[0].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_4_0),
-	.X(POHAN_BUF_CGRA_stall_5_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].STALL_BIT[1].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_4_1),
-	.X(POHAN_BUF_CGRA_stall_5_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].STALL_BIT[2].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_4_2),
-	.X(POHAN_BUF_CGRA_stall_5_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].STALL_BIT[3].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_4_3),
-	.X(POHAN_BUF_CGRA_stall_5_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_0),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_0),
-	.X(POHAN_BUF_CGRA_config_config_data_6_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_1),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_1),
-	.X(POHAN_BUF_CGRA_config_config_data_6_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_2),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_2),
-	.X(POHAN_BUF_CGRA_config_config_data_6_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_3),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_3),
-	.X(POHAN_BUF_CGRA_config_config_data_6_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_4),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_4),
-	.X(POHAN_BUF_CGRA_config_config_data_6_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_5),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_5),
-	.X(POHAN_BUF_CGRA_config_config_data_6_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_6),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_6),
-	.X(POHAN_BUF_CGRA_config_config_data_6_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_7),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_7),
-	.X(POHAN_BUF_CGRA_config_config_data_6_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_8),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_8),
-	.X(POHAN_BUF_CGRA_config_config_data_6_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_9),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_9),
-	.X(POHAN_BUF_CGRA_config_config_data_6_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_10),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_10),
-	.X(POHAN_BUF_CGRA_config_config_data_6_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_11),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_11),
-	.X(POHAN_BUF_CGRA_config_config_data_6_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_12),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_12),
-	.X(POHAN_BUF_CGRA_config_config_data_6_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_13),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_13),
-	.X(POHAN_BUF_CGRA_config_config_data_6_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_14),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_14),
-	.X(POHAN_BUF_CGRA_config_config_data_6_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_15),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_15),
-	.X(POHAN_BUF_CGRA_config_config_data_6_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_16),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_16),
-	.X(POHAN_BUF_CGRA_config_config_data_6_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_17),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_17),
-	.X(POHAN_BUF_CGRA_config_config_data_6_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_18),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_18),
-	.X(POHAN_BUF_CGRA_config_config_data_6_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_19),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_19),
-	.X(POHAN_BUF_CGRA_config_config_data_6_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_20),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_20),
-	.X(POHAN_BUF_CGRA_config_config_data_6_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_21),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_21),
-	.X(POHAN_BUF_CGRA_config_config_data_6_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_22),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_22),
-	.X(POHAN_BUF_CGRA_config_config_data_6_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_23),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_23),
-	.X(POHAN_BUF_CGRA_config_config_data_6_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_24),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_24),
-	.X(POHAN_BUF_CGRA_config_config_data_6_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_25),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_25),
-	.X(POHAN_BUF_CGRA_config_config_data_6_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_26),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_26),
-	.X(POHAN_BUF_CGRA_config_config_data_6_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_27),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_27),
-	.X(POHAN_BUF_CGRA_config_config_data_6_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_28),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_28),
-	.X(POHAN_BUF_CGRA_config_config_data_6_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_29),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_29),
-	.X(POHAN_BUF_CGRA_config_config_data_6_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_30),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_30),
-	.X(POHAN_BUF_CGRA_config_config_data_6_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_5_31),
-	.X(POHAN_BUF_CGRA_config_config_addr_6_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_5_31),
-	.X(POHAN_BUF_CGRA_config_config_data_6_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].STALL_BIT[0].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_5_0),
-	.X(POHAN_BUF_CGRA_stall_6_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].STALL_BIT[1].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_5_1),
-	.X(POHAN_BUF_CGRA_stall_6_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].STALL_BIT[2].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_5_2),
-	.X(POHAN_BUF_CGRA_stall_6_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].STALL_BIT[3].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_5_3),
-	.X(POHAN_BUF_CGRA_stall_6_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_0),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_0),
-	.X(POHAN_BUF_CGRA_config_config_data_7_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_1),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_1),
-	.X(POHAN_BUF_CGRA_config_config_data_7_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_2),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_2),
-	.X(POHAN_BUF_CGRA_config_config_data_7_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_3),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_3),
-	.X(POHAN_BUF_CGRA_config_config_data_7_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_4),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_4),
-	.X(POHAN_BUF_CGRA_config_config_data_7_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_5),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_5),
-	.X(POHAN_BUF_CGRA_config_config_data_7_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_6),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_6),
-	.X(POHAN_BUF_CGRA_config_config_data_7_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_7),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_7),
-	.X(POHAN_BUF_CGRA_config_config_data_7_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_8),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_8),
-	.X(POHAN_BUF_CGRA_config_config_data_7_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_9),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_9),
-	.X(POHAN_BUF_CGRA_config_config_data_7_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_10),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_10),
-	.X(POHAN_BUF_CGRA_config_config_data_7_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_11),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_11),
-	.X(POHAN_BUF_CGRA_config_config_data_7_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_12),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_12),
-	.X(POHAN_BUF_CGRA_config_config_data_7_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_13),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_13),
-	.X(POHAN_BUF_CGRA_config_config_data_7_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_14),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_14),
-	.X(POHAN_BUF_CGRA_config_config_data_7_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_15),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_15),
-	.X(POHAN_BUF_CGRA_config_config_data_7_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_16),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_16),
-	.X(POHAN_BUF_CGRA_config_config_data_7_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_17),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_17),
-	.X(POHAN_BUF_CGRA_config_config_data_7_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_18),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_18),
-	.X(POHAN_BUF_CGRA_config_config_data_7_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_19),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_19),
-	.X(POHAN_BUF_CGRA_config_config_data_7_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_20),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_20),
-	.X(POHAN_BUF_CGRA_config_config_data_7_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_21),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_21),
-	.X(POHAN_BUF_CGRA_config_config_data_7_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_22),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_22),
-	.X(POHAN_BUF_CGRA_config_config_data_7_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_23),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_23),
-	.X(POHAN_BUF_CGRA_config_config_data_7_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_24),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_24),
-	.X(POHAN_BUF_CGRA_config_config_data_7_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_25),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_25),
-	.X(POHAN_BUF_CGRA_config_config_data_7_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_26),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_26),
-	.X(POHAN_BUF_CGRA_config_config_data_7_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_27),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_27),
-	.X(POHAN_BUF_CGRA_config_config_data_7_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_28),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_28),
-	.X(POHAN_BUF_CGRA_config_config_data_7_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_29),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_29),
-	.X(POHAN_BUF_CGRA_config_config_data_7_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_30),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_30),
-	.X(POHAN_BUF_CGRA_config_config_data_7_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (.A(POHAN_BUF_CGRA_config_config_addr_6_31),
-	.X(POHAN_BUF_CGRA_config_config_addr_7_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (.A(POHAN_BUF_CGRA_config_config_data_6_31),
-	.X(POHAN_BUF_CGRA_config_config_data_7_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].STALL_BIT[0].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_6_0),
-	.X(POHAN_BUF_CGRA_stall_7_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].STALL_BIT[1].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_6_1),
-	.X(POHAN_BUF_CGRA_stall_7_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].STALL_BIT[2].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_6_2),
-	.X(POHAN_BUF_CGRA_stall_7_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].STALL_BIT[3].POHAN_BUF_STALL  (.A(POHAN_BUF_CGRA_stall_6_3),
-	.X(POHAN_BUF_CGRA_stall_7_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_0),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN4_CGRA_config_config_data_0),
-	.X(POHAN_BUF_CGRA_config_config_data_0_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_1),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN22_CGRA_config_config_data_1),
-	.X(POHAN_BUF_CGRA_config_config_data_0_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_2),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN16_CGRA_config_config_data_2),
-	.X(POHAN_BUF_CGRA_config_config_data_0_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_3),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN21_CGRA_config_config_data_3),
-	.X(POHAN_BUF_CGRA_config_config_data_0_3));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_4),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN23_CGRA_config_config_data_4),
-	.X(POHAN_BUF_CGRA_config_config_data_0_4));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_5),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN72_CGRA_config_config_data_5),
-	.X(POHAN_BUF_CGRA_config_config_data_0_5));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_6),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN20_CGRA_config_config_data_6),
-	.X(POHAN_BUF_CGRA_config_config_data_0_6));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_7),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN8_CGRA_config_config_data_7),
-	.X(POHAN_BUF_CGRA_config_config_data_0_7));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_8),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN10_CGRA_config_config_data_8),
-	.X(POHAN_BUF_CGRA_config_config_data_0_8));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_9),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN7_CGRA_config_config_data_9),
-	.X(POHAN_BUF_CGRA_config_config_data_0_9));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_10),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN13_CGRA_config_config_data_10),
-	.X(POHAN_BUF_CGRA_config_config_data_0_10));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_11),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN18_CGRA_config_config_data_11),
-	.X(POHAN_BUF_CGRA_config_config_data_0_11));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_12),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN11_CGRA_config_config_data_12),
-	.X(POHAN_BUF_CGRA_config_config_data_0_12));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_13),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN15_CGRA_config_config_data_13),
-	.X(POHAN_BUF_CGRA_config_config_data_0_13));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_14),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN14_CGRA_config_config_data_14),
-	.X(POHAN_BUF_CGRA_config_config_data_0_14));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_15),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN6_CGRA_config_config_data_15),
-	.X(POHAN_BUF_CGRA_config_config_data_0_15));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_16),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN12_CGRA_config_config_data_16),
-	.X(POHAN_BUF_CGRA_config_config_data_0_16));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_17),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN17_CGRA_config_config_data_17),
-	.X(POHAN_BUF_CGRA_config_config_data_0_17));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_18),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN5_CGRA_config_config_data_18),
-	.X(POHAN_BUF_CGRA_config_config_data_0_18));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_19),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN19_CGRA_config_config_data_19),
-	.X(POHAN_BUF_CGRA_config_config_data_0_19));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_20),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN9_CGRA_config_config_data_20),
-	.X(POHAN_BUF_CGRA_config_config_data_0_20));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_21),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN1_CGRA_config_config_data_21),
-	.X(POHAN_BUF_CGRA_config_config_data_0_21));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_22),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN25_CGRA_config_config_data_22),
-	.X(POHAN_BUF_CGRA_config_config_data_0_22));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_23),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN24_CGRA_config_config_data_23),
-	.X(POHAN_BUF_CGRA_config_config_data_0_23));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_24),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN2_CGRA_config_config_data_24),
-	.X(POHAN_BUF_CGRA_config_config_data_0_24));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_25),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN3_CGRA_config_config_data_25),
-	.X(POHAN_BUF_CGRA_config_config_data_0_25));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_26),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN28_CGRA_config_config_data_26),
-	.X(POHAN_BUF_CGRA_config_config_data_0_26));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_27),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN31_CGRA_config_config_data_27),
-	.X(POHAN_BUF_CGRA_config_config_data_0_27));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_28),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN29_CGRA_config_config_data_28),
-	.X(POHAN_BUF_CGRA_config_config_data_0_28));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_29),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN30_CGRA_config_config_data_29),
-	.X(POHAN_BUF_CGRA_config_config_data_0_29));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_30),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN27_CGRA_config_config_data_30),
-	.X(POHAN_BUF_CGRA_config_config_data_0_30));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (.A(CGRA_config_config_addr_31),
-	.X(POHAN_BUF_CGRA_config_config_addr_0_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (.A(FE_PHN82_CGRA_config_config_data_31),
-	.X(POHAN_BUF_CGRA_config_config_data_0_31));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_STALL_BIT[0].POHAN_BUF_STALL  (.A(FE_OFN262_CGRA_stall_0),
-	.X(POHAN_BUF_CGRA_stall_0_0));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_STALL_BIT[1].POHAN_BUF_STALL  (.A(FE_OFN543_CGRA_stall_1),
-	.X(POHAN_BUF_CGRA_stall_0_1));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_STALL_BIT[2].POHAN_BUF_STALL  (.A(CGRA_stall_2),
-	.X(POHAN_BUF_CGRA_stall_0_2));
-   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_STALL_BIT[3].POHAN_BUF_STALL  (.A(FE_PHN67_CGRA_stall_3),
-	.X(POHAN_BUF_CGRA_stall_0_3));
-   sky130_fd_sc_hd__a21o_2 g1937__3680 (.A1(wbs_adr_i[2]),
+	.ck_in(CTS_5), 
+	.VDD(VDD), 
+	.VSS(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_0),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_0),
+	.X(POHAN_BUF_CGRA_config_config_data_1_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_1),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_1),
+	.X(POHAN_BUF_CGRA_config_config_data_1_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_2),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_2),
+	.X(POHAN_BUF_CGRA_config_config_data_1_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_3),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_3),
+	.X(POHAN_BUF_CGRA_config_config_data_1_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_4),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_4),
+	.X(POHAN_BUF_CGRA_config_config_data_1_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_5),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_5),
+	.X(POHAN_BUF_CGRA_config_config_data_1_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_6),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_6),
+	.X(POHAN_BUF_CGRA_config_config_data_1_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_7),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_7),
+	.X(POHAN_BUF_CGRA_config_config_data_1_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_8),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_8),
+	.X(POHAN_BUF_CGRA_config_config_data_1_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_9),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_9),
+	.X(POHAN_BUF_CGRA_config_config_data_1_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_10),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_10),
+	.X(POHAN_BUF_CGRA_config_config_data_1_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_11),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_11),
+	.X(POHAN_BUF_CGRA_config_config_data_1_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_12),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_12),
+	.X(POHAN_BUF_CGRA_config_config_data_1_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_13),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_13),
+	.X(POHAN_BUF_CGRA_config_config_data_1_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_14),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_14),
+	.X(POHAN_BUF_CGRA_config_config_data_1_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_15),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_15),
+	.X(POHAN_BUF_CGRA_config_config_data_1_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_16),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_16),
+	.X(POHAN_BUF_CGRA_config_config_data_1_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_17),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_17),
+	.X(POHAN_BUF_CGRA_config_config_data_1_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_18),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_18),
+	.X(POHAN_BUF_CGRA_config_config_data_1_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_19),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_19),
+	.X(POHAN_BUF_CGRA_config_config_data_1_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_20),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_20),
+	.X(POHAN_BUF_CGRA_config_config_data_1_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_21),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_21),
+	.X(POHAN_BUF_CGRA_config_config_data_1_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_22),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_22),
+	.X(POHAN_BUF_CGRA_config_config_data_1_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_23),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_23),
+	.X(POHAN_BUF_CGRA_config_config_data_1_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_24),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_24),
+	.X(POHAN_BUF_CGRA_config_config_data_1_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_25),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_25),
+	.X(POHAN_BUF_CGRA_config_config_data_1_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_26),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_26),
+	.X(POHAN_BUF_CGRA_config_config_data_1_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_27),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_27),
+	.X(POHAN_BUF_CGRA_config_config_data_1_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_28),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_28),
+	.X(POHAN_BUF_CGRA_config_config_data_1_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_29),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_29),
+	.X(POHAN_BUF_CGRA_config_config_data_1_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_30),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_30),
+	.X(POHAN_BUF_CGRA_config_config_data_1_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_0_31),
+	.X(POHAN_BUF_CGRA_config_config_addr_1_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_0_31),
+	.X(POHAN_BUF_CGRA_config_config_data_1_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].STALL_BIT[0].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_0_0),
+	.X(POHAN_BUF_CGRA_stall_1_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].STALL_BIT[1].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_0_1),
+	.X(POHAN_BUF_CGRA_stall_1_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].STALL_BIT[2].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_0_2),
+	.X(POHAN_BUF_CGRA_stall_1_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[0].STALL_BIT[3].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_0_3),
+	.X(POHAN_BUF_CGRA_stall_1_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_0),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_0),
+	.X(POHAN_BUF_CGRA_config_config_data_2_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_1),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_1),
+	.X(POHAN_BUF_CGRA_config_config_data_2_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_2),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_2),
+	.X(POHAN_BUF_CGRA_config_config_data_2_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_3),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_3),
+	.X(POHAN_BUF_CGRA_config_config_data_2_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_4),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_4),
+	.X(POHAN_BUF_CGRA_config_config_data_2_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_5),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_5),
+	.X(POHAN_BUF_CGRA_config_config_data_2_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_6),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_6),
+	.X(POHAN_BUF_CGRA_config_config_data_2_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_7),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_7),
+	.X(POHAN_BUF_CGRA_config_config_data_2_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_8),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_8),
+	.X(POHAN_BUF_CGRA_config_config_data_2_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_9),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_9),
+	.X(POHAN_BUF_CGRA_config_config_data_2_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_10),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_10),
+	.X(POHAN_BUF_CGRA_config_config_data_2_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_11),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_11),
+	.X(POHAN_BUF_CGRA_config_config_data_2_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_12),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_12),
+	.X(POHAN_BUF_CGRA_config_config_data_2_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_13),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_13),
+	.X(POHAN_BUF_CGRA_config_config_data_2_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_14),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_14),
+	.X(POHAN_BUF_CGRA_config_config_data_2_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_15),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_15),
+	.X(POHAN_BUF_CGRA_config_config_data_2_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_16),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_16),
+	.X(POHAN_BUF_CGRA_config_config_data_2_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_17),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_17),
+	.X(POHAN_BUF_CGRA_config_config_data_2_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_18),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_18),
+	.X(POHAN_BUF_CGRA_config_config_data_2_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_19),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_19),
+	.X(POHAN_BUF_CGRA_config_config_data_2_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_20),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_20),
+	.X(POHAN_BUF_CGRA_config_config_data_2_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_21),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_21),
+	.X(POHAN_BUF_CGRA_config_config_data_2_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_22),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_22),
+	.X(POHAN_BUF_CGRA_config_config_data_2_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_23),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_23),
+	.X(POHAN_BUF_CGRA_config_config_data_2_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_24),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_24),
+	.X(POHAN_BUF_CGRA_config_config_data_2_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_25),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_25),
+	.X(POHAN_BUF_CGRA_config_config_data_2_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_26),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_26),
+	.X(POHAN_BUF_CGRA_config_config_data_2_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_27),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_27),
+	.X(POHAN_BUF_CGRA_config_config_data_2_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_28),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_28),
+	.X(POHAN_BUF_CGRA_config_config_data_2_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_29),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_29),
+	.X(POHAN_BUF_CGRA_config_config_data_2_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_30),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_30),
+	.X(POHAN_BUF_CGRA_config_config_data_2_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_1_31),
+	.X(POHAN_BUF_CGRA_config_config_addr_2_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_1_31),
+	.X(POHAN_BUF_CGRA_config_config_data_2_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].STALL_BIT[0].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_1_0),
+	.X(POHAN_BUF_CGRA_stall_2_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].STALL_BIT[1].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_1_1),
+	.X(POHAN_BUF_CGRA_stall_2_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].STALL_BIT[2].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_1_2),
+	.X(POHAN_BUF_CGRA_stall_2_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[1].STALL_BIT[3].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_1_3),
+	.X(POHAN_BUF_CGRA_stall_2_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_0),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_0),
+	.X(POHAN_BUF_CGRA_config_config_data_3_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_1),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_1),
+	.X(POHAN_BUF_CGRA_config_config_data_3_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_2),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_2),
+	.X(POHAN_BUF_CGRA_config_config_data_3_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_3),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_3),
+	.X(POHAN_BUF_CGRA_config_config_data_3_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_4),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_4),
+	.X(POHAN_BUF_CGRA_config_config_data_3_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_5),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_5),
+	.X(POHAN_BUF_CGRA_config_config_data_3_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_6),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_6),
+	.X(POHAN_BUF_CGRA_config_config_data_3_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_7),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_7),
+	.X(POHAN_BUF_CGRA_config_config_data_3_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_8),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_8),
+	.X(POHAN_BUF_CGRA_config_config_data_3_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_9),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_9),
+	.X(POHAN_BUF_CGRA_config_config_data_3_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_10),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_10),
+	.X(POHAN_BUF_CGRA_config_config_data_3_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_11),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_11),
+	.X(POHAN_BUF_CGRA_config_config_data_3_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_12),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_12),
+	.X(POHAN_BUF_CGRA_config_config_data_3_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_13),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_13),
+	.X(POHAN_BUF_CGRA_config_config_data_3_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_14),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_14),
+	.X(POHAN_BUF_CGRA_config_config_data_3_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_15),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_15),
+	.X(POHAN_BUF_CGRA_config_config_data_3_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_16),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_16),
+	.X(POHAN_BUF_CGRA_config_config_data_3_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_17),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_17),
+	.X(POHAN_BUF_CGRA_config_config_data_3_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_18),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_18),
+	.X(POHAN_BUF_CGRA_config_config_data_3_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_19),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_19),
+	.X(POHAN_BUF_CGRA_config_config_data_3_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_20),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_20),
+	.X(POHAN_BUF_CGRA_config_config_data_3_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_21),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_21),
+	.X(POHAN_BUF_CGRA_config_config_data_3_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_22),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_22),
+	.X(POHAN_BUF_CGRA_config_config_data_3_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_23),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_23),
+	.X(POHAN_BUF_CGRA_config_config_data_3_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_24),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_24),
+	.X(POHAN_BUF_CGRA_config_config_data_3_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_25),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_25),
+	.X(POHAN_BUF_CGRA_config_config_data_3_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_26),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_26),
+	.X(POHAN_BUF_CGRA_config_config_data_3_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_27),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_27),
+	.X(POHAN_BUF_CGRA_config_config_data_3_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_28),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_28),
+	.X(POHAN_BUF_CGRA_config_config_data_3_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_29),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_29),
+	.X(POHAN_BUF_CGRA_config_config_data_3_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_30),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_30),
+	.X(POHAN_BUF_CGRA_config_config_data_3_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_2_31),
+	.X(POHAN_BUF_CGRA_config_config_addr_3_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_2_31),
+	.X(POHAN_BUF_CGRA_config_config_data_3_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].STALL_BIT[0].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_2_0),
+	.X(POHAN_BUF_CGRA_stall_3_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].STALL_BIT[1].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_2_1),
+	.X(POHAN_BUF_CGRA_stall_3_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].STALL_BIT[2].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_2_2),
+	.X(POHAN_BUF_CGRA_stall_3_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[2].STALL_BIT[3].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_2_3),
+	.X(POHAN_BUF_CGRA_stall_3_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_0),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_0),
+	.X(POHAN_BUF_CGRA_config_config_data_4_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_1),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_1),
+	.X(POHAN_BUF_CGRA_config_config_data_4_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_2),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_2),
+	.X(POHAN_BUF_CGRA_config_config_data_4_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_3),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_3),
+	.X(POHAN_BUF_CGRA_config_config_data_4_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_4),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_4),
+	.X(POHAN_BUF_CGRA_config_config_data_4_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_5),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_5),
+	.X(POHAN_BUF_CGRA_config_config_data_4_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_6),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_6),
+	.X(POHAN_BUF_CGRA_config_config_data_4_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_7),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_7),
+	.X(POHAN_BUF_CGRA_config_config_data_4_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_8),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_8),
+	.X(POHAN_BUF_CGRA_config_config_data_4_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_9),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_9),
+	.X(POHAN_BUF_CGRA_config_config_data_4_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_10),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_10),
+	.X(POHAN_BUF_CGRA_config_config_data_4_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_11),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_11),
+	.X(POHAN_BUF_CGRA_config_config_data_4_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_12),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_12),
+	.X(POHAN_BUF_CGRA_config_config_data_4_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_13),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_13),
+	.X(POHAN_BUF_CGRA_config_config_data_4_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_14),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_14),
+	.X(POHAN_BUF_CGRA_config_config_data_4_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_15),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_15),
+	.X(POHAN_BUF_CGRA_config_config_data_4_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_16),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_16),
+	.X(POHAN_BUF_CGRA_config_config_data_4_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_17),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_17),
+	.X(POHAN_BUF_CGRA_config_config_data_4_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_18),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_18),
+	.X(POHAN_BUF_CGRA_config_config_data_4_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_19),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_19),
+	.X(POHAN_BUF_CGRA_config_config_data_4_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_20),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_20),
+	.X(POHAN_BUF_CGRA_config_config_data_4_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_21),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_21),
+	.X(POHAN_BUF_CGRA_config_config_data_4_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_22),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_22),
+	.X(POHAN_BUF_CGRA_config_config_data_4_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_23),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_23),
+	.X(POHAN_BUF_CGRA_config_config_data_4_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_24),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_24),
+	.X(POHAN_BUF_CGRA_config_config_data_4_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_25),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_25),
+	.X(POHAN_BUF_CGRA_config_config_data_4_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_26),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_26),
+	.X(POHAN_BUF_CGRA_config_config_data_4_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_27),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_27),
+	.X(POHAN_BUF_CGRA_config_config_data_4_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_28),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_28),
+	.X(POHAN_BUF_CGRA_config_config_data_4_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_29),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_29),
+	.X(POHAN_BUF_CGRA_config_config_data_4_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_30),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_30),
+	.X(POHAN_BUF_CGRA_config_config_data_4_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_3_31),
+	.X(POHAN_BUF_CGRA_config_config_addr_4_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_3_31),
+	.X(POHAN_BUF_CGRA_config_config_data_4_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].STALL_BIT[0].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_3_0),
+	.X(POHAN_BUF_CGRA_stall_4_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].STALL_BIT[1].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_3_1),
+	.X(POHAN_BUF_CGRA_stall_4_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].STALL_BIT[2].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_3_2),
+	.X(POHAN_BUF_CGRA_stall_4_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[3].STALL_BIT[3].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_3_3),
+	.X(POHAN_BUF_CGRA_stall_4_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_0),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_0),
+	.X(POHAN_BUF_CGRA_config_config_data_5_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_1),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_1),
+	.X(POHAN_BUF_CGRA_config_config_data_5_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_2),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_2),
+	.X(POHAN_BUF_CGRA_config_config_data_5_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_3),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_3),
+	.X(POHAN_BUF_CGRA_config_config_data_5_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_4),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_4),
+	.X(POHAN_BUF_CGRA_config_config_data_5_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_5),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_5),
+	.X(POHAN_BUF_CGRA_config_config_data_5_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_6),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_6),
+	.X(POHAN_BUF_CGRA_config_config_data_5_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_7),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_7),
+	.X(POHAN_BUF_CGRA_config_config_data_5_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_8),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_8),
+	.X(POHAN_BUF_CGRA_config_config_data_5_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_9),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_9),
+	.X(POHAN_BUF_CGRA_config_config_data_5_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_10),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_10),
+	.X(POHAN_BUF_CGRA_config_config_data_5_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_11),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_11),
+	.X(POHAN_BUF_CGRA_config_config_data_5_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_12),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_12),
+	.X(POHAN_BUF_CGRA_config_config_data_5_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_13),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_13),
+	.X(POHAN_BUF_CGRA_config_config_data_5_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_14),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_14),
+	.X(POHAN_BUF_CGRA_config_config_data_5_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_15),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_15),
+	.X(POHAN_BUF_CGRA_config_config_data_5_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_16),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_16),
+	.X(POHAN_BUF_CGRA_config_config_data_5_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_17),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_17),
+	.X(POHAN_BUF_CGRA_config_config_data_5_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_18),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_18),
+	.X(POHAN_BUF_CGRA_config_config_data_5_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_19),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_19),
+	.X(POHAN_BUF_CGRA_config_config_data_5_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_20),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_20),
+	.X(POHAN_BUF_CGRA_config_config_data_5_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_21),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_21),
+	.X(POHAN_BUF_CGRA_config_config_data_5_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_22),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_22),
+	.X(POHAN_BUF_CGRA_config_config_data_5_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_23),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_23),
+	.X(POHAN_BUF_CGRA_config_config_data_5_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_24),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_24),
+	.X(POHAN_BUF_CGRA_config_config_data_5_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_25),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_25),
+	.X(POHAN_BUF_CGRA_config_config_data_5_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_26),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_26),
+	.X(POHAN_BUF_CGRA_config_config_data_5_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_27),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_27),
+	.X(POHAN_BUF_CGRA_config_config_data_5_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_28),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_28),
+	.X(POHAN_BUF_CGRA_config_config_data_5_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_29),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_29),
+	.X(POHAN_BUF_CGRA_config_config_data_5_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_30),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_30),
+	.X(POHAN_BUF_CGRA_config_config_data_5_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_4_31),
+	.X(POHAN_BUF_CGRA_config_config_addr_5_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_4_31),
+	.X(POHAN_BUF_CGRA_config_config_data_5_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].STALL_BIT[0].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_4_0),
+	.X(POHAN_BUF_CGRA_stall_5_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].STALL_BIT[1].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_4_1),
+	.X(POHAN_BUF_CGRA_stall_5_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].STALL_BIT[2].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_4_2),
+	.X(POHAN_BUF_CGRA_stall_5_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[4].STALL_BIT[3].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_4_3),
+	.X(POHAN_BUF_CGRA_stall_5_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_0),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_0),
+	.X(POHAN_BUF_CGRA_config_config_data_6_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_1),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_1),
+	.X(POHAN_BUF_CGRA_config_config_data_6_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_2),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_2),
+	.X(POHAN_BUF_CGRA_config_config_data_6_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_3),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_3),
+	.X(POHAN_BUF_CGRA_config_config_data_6_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_4),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_4),
+	.X(POHAN_BUF_CGRA_config_config_data_6_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_5),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_5),
+	.X(POHAN_BUF_CGRA_config_config_data_6_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_6),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_6),
+	.X(POHAN_BUF_CGRA_config_config_data_6_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_7),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_7),
+	.X(POHAN_BUF_CGRA_config_config_data_6_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_8),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_8),
+	.X(POHAN_BUF_CGRA_config_config_data_6_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_9),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_9),
+	.X(POHAN_BUF_CGRA_config_config_data_6_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_10),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_10),
+	.X(POHAN_BUF_CGRA_config_config_data_6_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_11),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_11),
+	.X(POHAN_BUF_CGRA_config_config_data_6_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_12),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_12),
+	.X(POHAN_BUF_CGRA_config_config_data_6_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_13),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_13),
+	.X(POHAN_BUF_CGRA_config_config_data_6_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_14),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_14),
+	.X(POHAN_BUF_CGRA_config_config_data_6_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_15),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_15),
+	.X(POHAN_BUF_CGRA_config_config_data_6_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_16),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_16),
+	.X(POHAN_BUF_CGRA_config_config_data_6_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_17),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_17),
+	.X(POHAN_BUF_CGRA_config_config_data_6_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_18),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_18),
+	.X(POHAN_BUF_CGRA_config_config_data_6_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_19),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_19),
+	.X(POHAN_BUF_CGRA_config_config_data_6_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_20),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_20),
+	.X(POHAN_BUF_CGRA_config_config_data_6_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_21),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_21),
+	.X(POHAN_BUF_CGRA_config_config_data_6_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_22),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_22),
+	.X(POHAN_BUF_CGRA_config_config_data_6_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_23),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_23),
+	.X(POHAN_BUF_CGRA_config_config_data_6_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_24),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_24),
+	.X(POHAN_BUF_CGRA_config_config_data_6_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_25),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_25),
+	.X(POHAN_BUF_CGRA_config_config_data_6_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_26),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_26),
+	.X(POHAN_BUF_CGRA_config_config_data_6_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_27),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_27),
+	.X(POHAN_BUF_CGRA_config_config_data_6_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_28),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_28),
+	.X(POHAN_BUF_CGRA_config_config_data_6_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_29),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_29),
+	.X(POHAN_BUF_CGRA_config_config_data_6_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_30),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_30),
+	.X(POHAN_BUF_CGRA_config_config_data_6_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_5_31),
+	.X(POHAN_BUF_CGRA_config_config_addr_6_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_5_31),
+	.X(POHAN_BUF_CGRA_config_config_data_6_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].STALL_BIT[0].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_5_0),
+	.X(POHAN_BUF_CGRA_stall_6_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].STALL_BIT[1].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_5_1),
+	.X(POHAN_BUF_CGRA_stall_6_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].STALL_BIT[2].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_5_2),
+	.X(POHAN_BUF_CGRA_stall_6_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[5].STALL_BIT[3].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_5_3),
+	.X(POHAN_BUF_CGRA_stall_6_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_0),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_0),
+	.X(POHAN_BUF_CGRA_config_config_data_7_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_1),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_1),
+	.X(POHAN_BUF_CGRA_config_config_data_7_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_2),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_2),
+	.X(POHAN_BUF_CGRA_config_config_data_7_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_3),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_3),
+	.X(POHAN_BUF_CGRA_config_config_data_7_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_4),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_4),
+	.X(POHAN_BUF_CGRA_config_config_data_7_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_5),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_5),
+	.X(POHAN_BUF_CGRA_config_config_data_7_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_6),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_6),
+	.X(POHAN_BUF_CGRA_config_config_data_7_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_7),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_7),
+	.X(POHAN_BUF_CGRA_config_config_data_7_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_8),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_8),
+	.X(POHAN_BUF_CGRA_config_config_data_7_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_9),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_9),
+	.X(POHAN_BUF_CGRA_config_config_data_7_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_10),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_10),
+	.X(POHAN_BUF_CGRA_config_config_data_7_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_11),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_11),
+	.X(POHAN_BUF_CGRA_config_config_data_7_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_12),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_12),
+	.X(POHAN_BUF_CGRA_config_config_data_7_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_13),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_13),
+	.X(POHAN_BUF_CGRA_config_config_data_7_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_14),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_14),
+	.X(POHAN_BUF_CGRA_config_config_data_7_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_15),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_15),
+	.X(POHAN_BUF_CGRA_config_config_data_7_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_16),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_16),
+	.X(POHAN_BUF_CGRA_config_config_data_7_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_17),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_17),
+	.X(POHAN_BUF_CGRA_config_config_data_7_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_18),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_18),
+	.X(POHAN_BUF_CGRA_config_config_data_7_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_19),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_19),
+	.X(POHAN_BUF_CGRA_config_config_data_7_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_20),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_20),
+	.X(POHAN_BUF_CGRA_config_config_data_7_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_21),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_21),
+	.X(POHAN_BUF_CGRA_config_config_data_7_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_22),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_22),
+	.X(POHAN_BUF_CGRA_config_config_data_7_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_23),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_23),
+	.X(POHAN_BUF_CGRA_config_config_data_7_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_24),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_24),
+	.X(POHAN_BUF_CGRA_config_config_data_7_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_25),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_25),
+	.X(POHAN_BUF_CGRA_config_config_data_7_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_26),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_26),
+	.X(POHAN_BUF_CGRA_config_config_data_7_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_27),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_27),
+	.X(POHAN_BUF_CGRA_config_config_data_7_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_28),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_28),
+	.X(POHAN_BUF_CGRA_config_config_data_7_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_29),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_29),
+	.X(POHAN_BUF_CGRA_config_config_data_7_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_30),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_30),
+	.X(POHAN_BUF_CGRA_config_config_data_7_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (
+	.A(POHAN_BUF_CGRA_config_config_addr_6_31),
+	.X(POHAN_BUF_CGRA_config_config_addr_7_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (
+	.A(POHAN_BUF_CGRA_config_config_data_6_31),
+	.X(POHAN_BUF_CGRA_config_config_data_7_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].STALL_BIT[0].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_6_0),
+	.X(POHAN_BUF_CGRA_stall_7_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].STALL_BIT[1].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_6_1),
+	.X(POHAN_BUF_CGRA_stall_7_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].STALL_BIT[2].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_6_2),
+	.X(POHAN_BUF_CGRA_stall_7_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE[6].STALL_BIT[3].POHAN_BUF_STALL  (
+	.A(POHAN_BUF_CGRA_stall_6_3),
+	.X(POHAN_BUF_CGRA_stall_7_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[0].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_0),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[0].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN4_CGRA_config_config_data_0),
+	.X(POHAN_BUF_CGRA_config_config_data_0_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[1].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_1),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[1].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN22_CGRA_config_config_data_1),
+	.X(POHAN_BUF_CGRA_config_config_data_0_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[2].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_2),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[2].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN16_CGRA_config_config_data_2),
+	.X(POHAN_BUF_CGRA_config_config_data_0_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[3].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_3),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[3].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN21_CGRA_config_config_data_3),
+	.X(POHAN_BUF_CGRA_config_config_data_0_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[4].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_4),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[4].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN23_CGRA_config_config_data_4),
+	.X(POHAN_BUF_CGRA_config_config_data_0_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[5].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_5),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[5].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN72_CGRA_config_config_data_5),
+	.X(POHAN_BUF_CGRA_config_config_data_0_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[6].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_6),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[6].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN20_CGRA_config_config_data_6),
+	.X(POHAN_BUF_CGRA_config_config_data_0_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[7].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_7),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[7].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN8_CGRA_config_config_data_7),
+	.X(POHAN_BUF_CGRA_config_config_data_0_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[8].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_8),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[8].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN10_CGRA_config_config_data_8),
+	.X(POHAN_BUF_CGRA_config_config_data_0_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[9].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_9),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[9].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN7_CGRA_config_config_data_9),
+	.X(POHAN_BUF_CGRA_config_config_data_0_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[10].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_10),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[10].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN13_CGRA_config_config_data_10),
+	.X(POHAN_BUF_CGRA_config_config_data_0_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[11].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_11),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[11].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN18_CGRA_config_config_data_11),
+	.X(POHAN_BUF_CGRA_config_config_data_0_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[12].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_12),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[12].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN11_CGRA_config_config_data_12),
+	.X(POHAN_BUF_CGRA_config_config_data_0_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[13].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_13),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[13].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN15_CGRA_config_config_data_13),
+	.X(POHAN_BUF_CGRA_config_config_data_0_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[14].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_14),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[14].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN14_CGRA_config_config_data_14),
+	.X(POHAN_BUF_CGRA_config_config_data_0_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[15].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_15),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[15].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN6_CGRA_config_config_data_15),
+	.X(POHAN_BUF_CGRA_config_config_data_0_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[16].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_16),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[16].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN12_CGRA_config_config_data_16),
+	.X(POHAN_BUF_CGRA_config_config_data_0_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[17].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_17),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[17].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN17_CGRA_config_config_data_17),
+	.X(POHAN_BUF_CGRA_config_config_data_0_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[18].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_18),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[18].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN5_CGRA_config_config_data_18),
+	.X(POHAN_BUF_CGRA_config_config_data_0_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[19].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_19),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[19].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN19_CGRA_config_config_data_19),
+	.X(POHAN_BUF_CGRA_config_config_data_0_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[20].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_20),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[20].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN9_CGRA_config_config_data_20),
+	.X(POHAN_BUF_CGRA_config_config_data_0_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[21].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_21),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[21].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN1_CGRA_config_config_data_21),
+	.X(POHAN_BUF_CGRA_config_config_data_0_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[22].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_22),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[22].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN25_CGRA_config_config_data_22),
+	.X(POHAN_BUF_CGRA_config_config_data_0_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[23].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_23),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[23].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN24_CGRA_config_config_data_23),
+	.X(POHAN_BUF_CGRA_config_config_data_0_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[24].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_24),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[24].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN2_CGRA_config_config_data_24),
+	.X(POHAN_BUF_CGRA_config_config_data_0_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[25].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_25),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[25].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN3_CGRA_config_config_data_25),
+	.X(POHAN_BUF_CGRA_config_config_data_0_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[26].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_26),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[26].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN28_CGRA_config_config_data_26),
+	.X(POHAN_BUF_CGRA_config_config_data_0_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[27].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_27),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[27].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN31_CGRA_config_config_data_27),
+	.X(POHAN_BUF_CGRA_config_config_data_0_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[28].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_28),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[28].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN29_CGRA_config_config_data_28),
+	.X(POHAN_BUF_CGRA_config_config_data_0_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[29].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_29),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[29].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN30_CGRA_config_config_data_29),
+	.X(POHAN_BUF_CGRA_config_config_data_0_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[30].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_30),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[30].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN27_CGRA_config_config_data_30),
+	.X(POHAN_BUF_CGRA_config_config_data_0_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[31].POHAN_BUF_CONFIG_ADDR  (
+	.A(CGRA_config_config_addr_31),
+	.X(POHAN_BUF_CGRA_config_config_addr_0_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_CONFIG_BIT[31].POHAN_BUF_CONFIG_DATA  (
+	.A(FE_PHN82_CGRA_config_config_data_31),
+	.X(POHAN_BUF_CGRA_config_config_data_0_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_STALL_BIT[0].POHAN_BUF_STALL  (
+	.A(FE_OFN262_CGRA_stall_0),
+	.X(POHAN_BUF_CGRA_stall_0_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_STALL_BIT[1].POHAN_BUF_STALL  (
+	.A(FE_OFN543_CGRA_stall_1),
+	.X(POHAN_BUF_CGRA_stall_0_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_STALL_BIT[2].POHAN_BUF_STALL  (
+	.A(CGRA_stall_2),
+	.X(POHAN_BUF_CGRA_stall_0_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__buf_12 \BUF_STAGE_0_STALL_BIT[3].POHAN_BUF_STALL  (
+	.A(FE_PHN67_CGRA_stall_3),
+	.X(POHAN_BUF_CGRA_stall_0_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__a21o_2 g1937__3680 (
+	.A1(wbs_adr_i[2]),
 	.A2(n_94),
 	.B1(ckmux_rst),
-	.X(wbs_ctl_u0_n_1071));
-   sky130_fd_sc_hd__o41ai_1 g1938__1617 (.A1(wbs_ack_o),
+	.X(wbs_ctl_u0_n_1071), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__o41ai_1 g1938__1617 (
+	.A1(wbs_ack_o),
 	.A2(n_100),
 	.A3(wbs_adr_i[2]),
 	.A4(n_91),
 	.B1(n_32),
-	.Y(wbs_ctl_u0_n_1077));
-   sky130_fd_sc_hd__a21o_2 g1939__2802 (.A1(wbs_adr_i[2]),
+	.Y(wbs_ctl_u0_n_1077), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__a21o_2 g1939__2802 (
+	.A1(wbs_adr_i[2]),
 	.A2(n_92),
 	.B1(ckmux_rst),
-	.X(wbs_ctl_u0_n_1068));
-   sky130_fd_sc_hd__o21ai_0 g1940__1705 (.A1(n_93),
+	.X(wbs_ctl_u0_n_1068), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__o21ai_0 g1940__1705 (
+	.A1(n_93),
 	.A2(wbs_adr_i[2]),
 	.B1(n_32),
-	.Y(wbs_ctl_u0_n_1066));
-   sky130_fd_sc_hd__nor2_1 g1942__5122 (.A(n_97),
+	.Y(wbs_ctl_u0_n_1066), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2_1 g1942__5122 (
+	.A(n_97),
 	.B(wbs_adr_i[3]),
-	.Y(n_94));
-   sky130_fd_sc_hd__nand4bb_1 g1943__8246 (.A_N(wbs_adr_i[0]),
+	.Y(n_94), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand4bb_1 g1943__8246 (
+	.A_N(wbs_adr_i[0]),
 	.B_N(n_99),
 	.C(n_88),
 	.D(wbs_adr_i[4]),
-	.Y(n_97));
-   sky130_fd_sc_hd__clkinv_1 g1944 (.A(n_92),
-	.Y(n_93));
-   sky130_fd_sc_hd__nor3_1 g1945__7098 (.A(n_99),
+	.Y(n_97), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__clkinv_1 g1944 (
+	.A(n_92),
+	.Y(n_93), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor3_1 g1945__7098 (
+	.A(n_99),
 	.B(wbs_adr_i[3]),
 	.C(n_90),
-	.Y(n_92));
-   sky130_fd_sc_hd__or3_1 g1946__6131 (.A(wbs_we_i),
+	.Y(n_92), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or3_1 g1946__6131 (
+	.A(wbs_we_i),
 	.B(n_89),
 	.C(n_98),
-	.X(n_91));
-   sky130_fd_sc_hd__or4b_1 g1947__1881 (.A(wbs_ack_o),
+	.X(n_91), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4b_1 g1947__1881 (
+	.A(wbs_ack_o),
 	.B(n_100),
 	.C(n_89),
 	.D_N(wbs_we_i),
-	.X(n_99));
-   sky130_fd_sc_hd__nand2b_1 g1948__5115 (.A_N(n_90),
+	.X(n_99), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand2b_1 g1948__5115 (
+	.A_N(n_90),
 	.B(wbs_adr_i[3]),
-	.Y(n_98));
-   sky130_fd_sc_hd__or3b_1 g1949__7482 (.A(wbs_adr_i[0]),
+	.Y(n_98), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or3b_1 g1949__7482 (
+	.A(wbs_adr_i[0]),
 	.B(wbs_adr_i[4]),
 	.C_N(n_88),
-	.X(n_90));
-   sky130_fd_sc_hd__or4_1 g1950__4733 (.A(wbs_adr_i[21]),
+	.X(n_90), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g1950__4733 (
+	.A(wbs_adr_i[21]),
 	.B(wbs_adr_i[22]),
 	.C(n_82),
 	.D(n_86),
-	.X(n_89));
-   sky130_fd_sc_hd__nor4_1 g1951__6161 (.A(wbs_adr_i[6]),
+	.X(n_89), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor4_1 g1951__6161 (
+	.A(wbs_adr_i[6]),
 	.B(wbs_adr_i[5]),
 	.C(wbs_adr_i[7]),
 	.D(n_87),
-	.Y(n_88));
-   sky130_fd_sc_hd__or4_1 g1952__9315 (.A(wbs_adr_i[8]),
+	.Y(n_88), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g1952__9315 (
+	.A(wbs_adr_i[8]),
 	.B(wbs_adr_i[11]),
 	.C(n_85),
 	.D(n_83),
-	.X(n_87));
-   sky130_fd_sc_hd__or4_1 g1953__9945 (.A(wbs_adr_i[18]),
+	.X(n_87), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g1953__9945 (
+	.A(wbs_adr_i[18]),
 	.B(wbs_adr_i[19]),
 	.C(n_81),
 	.D(n_84),
-	.X(n_86));
-   sky130_fd_sc_hd__nand2_1 g1954__2883 (.A(n_32),
+	.X(n_86), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand2_1 g1954__2883 (
+	.A(n_32),
 	.B(wbs_adr_i[0]),
-	.Y(wbs_ctl_u0_n_1074));
-   sky130_fd_sc_hd__or3_1 g1955__2346 (.A(wbs_adr_i[1]),
+	.Y(wbs_ctl_u0_n_1074), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or3_1 g1955__2346 (
+	.A(wbs_adr_i[1]),
 	.B(wbs_adr_i[13]),
 	.C(wbs_adr_i[10]),
-	.X(n_85));
-   sky130_fd_sc_hd__nand4bb_1 g1956__1666 (.A_N(wbs_adr_i[31]),
+	.X(n_85), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand4bb_1 g1956__1666 (
+	.A_N(wbs_adr_i[31]),
 	.B_N(wbs_adr_i[30]),
 	.C(wbs_adr_i[29]),
 	.D(wbs_adr_i[28]),
-	.Y(n_84));
-   sky130_fd_sc_hd__or4_1 g1957__7410 (.A(wbs_adr_i[9]),
+	.Y(n_84), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g1957__7410 (
+	.A(wbs_adr_i[9]),
 	.B(wbs_adr_i[14]),
 	.C(wbs_adr_i[15]),
 	.D(wbs_adr_i[12]),
-	.X(n_83));
-   sky130_fd_sc_hd__or4_1 g1961__6417 (.A(wbs_adr_i[16]),
+	.X(n_83), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g1961__6417 (
+	.A(wbs_adr_i[16]),
 	.B(wbs_adr_i[23]),
 	.C(wbs_adr_i[20]),
 	.D(wbs_adr_i[17]),
-	.X(n_82));
-   sky130_fd_sc_hd__or4_1 g1962__5477 (.A(wbs_adr_i[24]),
+	.X(n_82), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__or4_1 g1962__5477 (
+	.A(wbs_adr_i[24]),
 	.B(wbs_adr_i[25]),
 	.C(wbs_adr_i[27]),
 	.D(wbs_adr_i[26]),
-	.X(n_81));
-   sky130_fd_sc_hd__mux2_4 g1963__2398 (.A0(wb_rst_i),
+	.X(n_81), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__mux2_4 g1963__2398 (
+	.A0(wb_rst_i),
 	.A1(io_in[35]),
 	.S(FE_OFN6_la_data_in_96),
-	.X(ckmux_rst));
-   sky130_fd_sc_hd__nand2_1 g1964__5107 (.A(wbs_stb_i),
+	.X(ckmux_rst), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand2_1 g1964__5107 (
+	.A(wbs_stb_i),
 	.B(wbs_cyc_i),
-	.Y(n_100));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_message_reg_0 (.CLK(wbs_ctl_u0_rc_gclk_1076),
+	.Y(n_100), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_message_reg_0 (
+	.CLK(wbs_ctl_u0_rc_gclk_1076),
 	.D(n_79),
-	.Q(io_out[36]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_message_reg_1 (.CLK(wbs_ctl_u0_rc_gclk_1076),
+	.Q(io_out[36]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_message_reg_1 (
+	.CLK(wbs_ctl_u0_rc_gclk_1076),
 	.D(n_78),
-	.Q(io_out[37]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_read_reg (.CLK(wbs_ctl_u0_rc_gclk_1076),
+	.Q(io_out[37]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_read_reg (
+	.CLK(wbs_ctl_u0_rc_gclk_1076),
 	.D(n_77),
-	.Q(CGRA_config_read));
-   sky130_fd_sc_hd__nor2_1 g1475__6260 (.A(n_76),
+	.Q(CGRA_config_read), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2_1 g1475__6260 (
+	.A(n_76),
 	.B(ckmux_rst),
-	.Y(n_79));
-   sky130_fd_sc_hd__nor2_1 g1476__4319 (.A(n_75),
+	.Y(n_79), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2_1 g1476__4319 (
+	.A(n_75),
 	.B(ckmux_rst),
-	.Y(n_78));
-   sky130_fd_sc_hd__nor2_1 g1477__8428 (.A(n_74),
+	.Y(n_78), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2_1 g1477__8428 (
+	.A(n_74),
 	.B(ckmux_rst),
-	.Y(n_77));
-   sky130_fd_sc_hd__mux2i_2 g1478__5526 (.A0(io_out[36]),
+	.Y(n_77), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__mux2i_2 g1478__5526 (
+	.A0(io_out[36]),
 	.A1(wbs_dat_i[0]),
 	.S(n_73),
-	.Y(n_76));
-   sky130_fd_sc_hd__mux2i_2 g1479__6783 (.A0(io_out[37]),
+	.Y(n_76), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__mux2i_2 g1479__6783 (
+	.A0(io_out[37]),
 	.A1(wbs_dat_i[1]),
 	.S(n_73),
-	.Y(n_75));
-   sky130_fd_sc_hd__mux2i_2 g1480__3680 (.A0(CGRA_config_read),
+	.Y(n_75), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__mux2i_2 g1480__3680 (
+	.A0(CGRA_config_read),
 	.A1(wbs_dat_i[0]),
 	.S(n_120),
-	.Y(n_74));
-   sky130_fd_sc_hd__nor3b_1 g1481__1617 (.A(n_97),
+	.Y(n_74), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor3b_1 g1481__1617 (
+	.A(n_97),
 	.B(wbs_adr_i[2]),
 	.C_N(wbs_adr_i[3]),
-	.Y(n_73));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_write_reg (.CLK(CTS_20),
+	.Y(n_73), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_write_reg (
+	.CLK(CTS_20),
 	.D(n_71),
-	.Q(CGRA_config_write));
-   sky130_fd_sc_hd__and3_1 g1483__1705 (.A(n_32),
+	.Q(CGRA_config_write), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and3_1 g1483__1705 (
+	.A(n_32),
 	.B(wbs_dat_i[0]),
 	.C(n_70),
-	.X(n_71));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_20 (.CLK(CTS_8),
+	.X(n_71), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_20 (
+	.CLK(CTS_8),
 	.D(n_31),
-	.Q(CGRA_config_config_data_20));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_stall_reg_1 (.CLK(wbs_ctl_u0_rc_gclk_1073),
+	.Q(CGRA_config_config_data_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_stall_reg_1 (
+	.CLK(wbs_ctl_u0_rc_gclk_1073),
 	.D(n_38),
-	.Q(CGRA_stall_1));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_stall_reg_2 (.CLK(wbs_ctl_u0_rc_gclk_1073),
+	.Q(CGRA_stall_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_stall_reg_2 (
+	.CLK(wbs_ctl_u0_rc_gclk_1073),
 	.D(n_42),
-	.Q(CGRA_stall_2));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_stall_reg_3 (.CLK(wbs_ctl_u0_rc_gclk_1073),
+	.Q(CGRA_stall_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_stall_reg_3 (
+	.CLK(wbs_ctl_u0_rc_gclk_1073),
 	.D(n_40),
-	.Q(CGRA_stall_3));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_6 (.CLK(CTS_3),
+	.Q(CGRA_stall_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_6 (
+	.CLK(CTS_3),
 	.D(n_67),
-	.Q(wbs_dat_o[6]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_7 (.CLK(CTS_1),
+	.Q(wbs_dat_o[6]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_7 (
+	.CLK(CTS_1),
 	.D(n_65),
-	.Q(FE_OFN38_wbs_dat_o_7));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_8 (.CLK(CTS_1),
+	.Q(FE_OFN38_wbs_dat_o_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_8 (
+	.CLK(CTS_1),
 	.D(n_66),
-	.Q(wbs_dat_o[8]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_9 (.CLK(CTS_4),
+	.Q(wbs_dat_o[8]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_9 (
+	.CLK(CTS_4),
 	.D(n_64),
-	.Q(wbs_dat_o[9]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_10 (.CLK(CTS_3),
+	.Q(wbs_dat_o[9]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_10 (
+	.CLK(CTS_3),
 	.D(n_63),
-	.Q(wbs_dat_o[10]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_11 (.CLK(CTS_3),
+	.Q(wbs_dat_o[10]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_11 (
+	.CLK(CTS_3),
 	.D(n_62),
-	.Q(wbs_dat_o[11]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_12 (.CLK(CTS_2),
+	.Q(wbs_dat_o[11]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_12 (
+	.CLK(CTS_2),
 	.D(n_61),
-	.Q(wbs_dat_o[12]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_13 (.CLK(CTS_4),
+	.Q(wbs_dat_o[12]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_13 (
+	.CLK(CTS_4),
 	.D(n_59),
-	.Q(wbs_dat_o[13]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_14 (.CLK(CTS_4),
+	.Q(wbs_dat_o[13]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_14 (
+	.CLK(CTS_4),
 	.D(n_58),
-	.Q(wbs_dat_o[14]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_15 (.CLK(CTS_4),
+	.Q(wbs_dat_o[14]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_15 (
+	.CLK(CTS_4),
 	.D(n_57),
-	.Q(wbs_dat_o[15]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_16 (.CLK(CTS_1),
+	.Q(wbs_dat_o[15]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_16 (
+	.CLK(CTS_1),
 	.D(n_56),
-	.Q(wbs_dat_o[16]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_17 (.CLK(CTS_3),
+	.Q(wbs_dat_o[16]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_17 (
+	.CLK(CTS_3),
 	.D(n_68),
-	.Q(wbs_dat_o[17]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_18 (.CLK(CTS_3),
+	.Q(wbs_dat_o[17]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_18 (
+	.CLK(CTS_3),
 	.D(n_55),
-	.Q(wbs_dat_o[18]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_19 (.CLK(CTS_4),
+	.Q(wbs_dat_o[18]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_19 (
+	.CLK(CTS_4),
 	.D(n_54),
-	.Q(wbs_dat_o[19]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_20 (.CLK(CTS_3),
+	.Q(wbs_dat_o[19]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_20 (
+	.CLK(CTS_3),
 	.D(n_53),
-	.Q(wbs_dat_o[20]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_21 (.CLK(CTS_2),
+	.Q(wbs_dat_o[20]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_21 (
+	.CLK(CTS_2),
 	.D(n_52),
-	.Q(wbs_dat_o[21]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_22 (.CLK(CTS_1),
+	.Q(wbs_dat_o[21]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_22 (
+	.CLK(CTS_1),
 	.D(n_49),
-	.Q(wbs_dat_o[22]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_23 (.CLK(CTS_4),
+	.Q(wbs_dat_o[22]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_23 (
+	.CLK(CTS_4),
 	.D(n_51),
-	.Q(wbs_dat_o[23]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_24 (.CLK(CTS_2),
+	.Q(wbs_dat_o[23]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_24 (
+	.CLK(CTS_2),
 	.D(n_50),
-	.Q(wbs_dat_o[24]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_25 (.CLK(CTS_2),
+	.Q(wbs_dat_o[24]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_25 (
+	.CLK(CTS_2),
 	.D(n_69),
-	.Q(wbs_dat_o[25]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_26 (.CLK(CTS_4),
+	.Q(wbs_dat_o[25]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_26 (
+	.CLK(CTS_4),
 	.D(n_48),
-	.Q(wbs_dat_o[26]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_27 (.CLK(CTS_1),
+	.Q(wbs_dat_o[26]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_27 (
+	.CLK(CTS_1),
 	.D(n_47),
-	.Q(wbs_dat_o[27]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_28 (.CLK(CTS_4),
+	.Q(wbs_dat_o[27]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_28 (
+	.CLK(CTS_4),
 	.D(n_46),
-	.Q(wbs_dat_o[28]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_29 (.CLK(CTS_2),
+	.Q(wbs_dat_o[28]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_29 (
+	.CLK(CTS_2),
 	.D(n_45),
-	.Q(wbs_dat_o[29]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_30 (.CLK(CTS_2),
+	.Q(wbs_dat_o[29]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_30 (
+	.CLK(CTS_2),
 	.D(n_44),
-	.Q(wbs_dat_o[30]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_31 (.CLK(CTS_2),
+	.Q(wbs_dat_o[30]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_31 (
+	.CLK(CTS_2),
 	.D(n_43),
-	.Q(wbs_dat_o[31]));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_0 (.CLK(CTS_15),
+	.Q(wbs_dat_o[31]), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_0 (
+	.CLK(CTS_15),
 	.D(n_30),
-	.Q(CGRA_config_config_data_0));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_1 (.CLK(CTS_15),
+	.Q(CGRA_config_config_data_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_1 (
+	.CLK(CTS_15),
 	.D(n_29),
-	.Q(CGRA_config_config_data_1));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_2 (.CLK(CTS_15),
+	.Q(CGRA_config_config_data_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_2 (
+	.CLK(CTS_15),
 	.D(n_28),
-	.Q(CGRA_config_config_data_2));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_3 (.CLK(CTS_15),
+	.Q(CGRA_config_config_data_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_3 (
+	.CLK(CTS_15),
 	.D(n_27),
-	.Q(CGRA_config_config_data_3));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_4 (.CLK(CTS_15),
+	.Q(CGRA_config_config_data_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_4 (
+	.CLK(CTS_15),
 	.D(n_26),
-	.Q(CGRA_config_config_data_4));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_5 (.CLK(CTS_15),
+	.Q(CGRA_config_config_data_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_5 (
+	.CLK(CTS_15),
 	.D(n_25),
-	.Q(CGRA_config_config_data_5));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_6 (.CLK(CTS_15),
+	.Q(CGRA_config_config_data_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_6 (
+	.CLK(CTS_15),
 	.D(n_24),
-	.Q(CGRA_config_config_data_6));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_7 (.CLK(CTS_15),
+	.Q(CGRA_config_config_data_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_7 (
+	.CLK(CTS_15),
 	.D(n_23),
-	.Q(CGRA_config_config_data_7));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_8 (.CLK(CTS_14),
+	.Q(CGRA_config_config_data_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_8 (
+	.CLK(CTS_14),
 	.D(n_22),
-	.Q(CGRA_config_config_data_8));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_9 (.CLK(CTS_14),
+	.Q(CGRA_config_config_data_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_9 (
+	.CLK(CTS_14),
 	.D(n_21),
-	.Q(CGRA_config_config_data_9));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_10 (.CLK(CTS_14),
+	.Q(CGRA_config_config_data_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_10 (
+	.CLK(CTS_14),
 	.D(n_20),
-	.Q(CGRA_config_config_data_10));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_11 (.CLK(CTS_14),
+	.Q(CGRA_config_config_data_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_11 (
+	.CLK(CTS_14),
 	.D(n_19),
-	.Q(CGRA_config_config_data_11));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_12 (.CLK(CTS_14),
+	.Q(CGRA_config_config_data_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_12 (
+	.CLK(CTS_14),
 	.D(n_18),
-	.Q(CGRA_config_config_data_12));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_13 (.CLK(CTS_14),
+	.Q(CGRA_config_config_data_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_13 (
+	.CLK(CTS_14),
 	.D(n_17),
-	.Q(CGRA_config_config_data_13));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_14 (.CLK(CTS_9),
+	.Q(CGRA_config_config_data_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_14 (
+	.CLK(CTS_9),
 	.D(n_16),
-	.Q(CGRA_config_config_data_14));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_15 (.CLK(CTS_9),
+	.Q(CGRA_config_config_data_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_15 (
+	.CLK(CTS_9),
 	.D(n_15),
-	.Q(CGRA_config_config_data_15));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_16 (.CLK(CTS_9),
+	.Q(CGRA_config_config_data_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_16 (
+	.CLK(CTS_9),
 	.D(n_14),
-	.Q(CGRA_config_config_data_16));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_17 (.CLK(CTS_9),
+	.Q(CGRA_config_config_data_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_17 (
+	.CLK(CTS_9),
 	.D(n_13),
-	.Q(FE_PHN87_CGRA_config_config_data_17));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_18 (.CLK(CTS_9),
+	.Q(FE_PHN87_CGRA_config_config_data_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_18 (
+	.CLK(CTS_9),
 	.D(n_12),
-	.Q(CGRA_config_config_data_18));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_19 (.CLK(CTS_9),
+	.Q(CGRA_config_config_data_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_19 (
+	.CLK(CTS_9),
 	.D(n_11),
-	.Q(CGRA_config_config_data_19));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_stall_reg_0 (.CLK(wbs_ctl_u0_rc_gclk_1073),
+	.Q(CGRA_config_config_data_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_stall_reg_0 (
+	.CLK(wbs_ctl_u0_rc_gclk_1073),
 	.D(n_60),
-	.Q(CGRA_stall_0));
-   sky130_fd_sc_hd__nor3b_1 g1535__5122 (.A(n_99),
+	.Q(CGRA_stall_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor3b_1 g1535__5122 (
+	.A(n_99),
 	.B(n_98),
 	.C_N(wbs_adr_i[2]),
-	.Y(n_70));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_22 (.CLK(CTS_8),
+	.Y(n_70), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_22 (
+	.CLK(CTS_8),
 	.D(n_10),
-	.Q(FE_PHN83_CGRA_config_config_data_22));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_23 (.CLK(CTS_8),
+	.Q(FE_PHN83_CGRA_config_config_data_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_23 (
+	.CLK(CTS_8),
 	.D(n_9),
-	.Q(CGRA_config_config_data_23));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_24 (.CLK(CTS_8),
+	.Q(CGRA_config_config_data_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_24 (
+	.CLK(CTS_8),
 	.D(n_8),
-	.Q(CGRA_config_config_data_24));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_25 (.CLK(CTS_8),
+	.Q(CGRA_config_config_data_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_25 (
+	.CLK(CTS_8),
 	.D(n_7),
-	.Q(CGRA_config_config_data_25));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_26 (.CLK(CTS_7),
+	.Q(CGRA_config_config_data_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_26 (
+	.CLK(CTS_7),
 	.D(n_6),
-	.Q(CGRA_config_config_data_26));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_27 (.CLK(CTS_7),
+	.Q(CGRA_config_config_data_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_27 (
+	.CLK(CTS_7),
 	.D(n_5),
-	.Q(FE_PHN64_CGRA_config_config_data_27));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_28 (.CLK(CTS_7),
+	.Q(FE_PHN64_CGRA_config_config_data_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_28 (
+	.CLK(CTS_7),
 	.D(n_4),
-	.Q(CGRA_config_config_data_28));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_29 (.CLK(CTS_7),
+	.Q(CGRA_config_config_data_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_29 (
+	.CLK(CTS_7),
 	.D(n_3),
-	.Q(CGRA_config_config_data_29));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_3 (.CLK(CTS_18),
+	.Q(CGRA_config_config_data_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_3 (
+	.CLK(CTS_18),
 	.D(n_27),
-	.Q(CGRA_config_config_addr_3));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_31 (.CLK(CTS_7),
+	.Q(CGRA_config_config_addr_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_31 (
+	.CLK(CTS_7),
 	.D(n_2),
-	.Q(CGRA_config_config_data_31));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_4 (.CLK(CTS_18),
+	.Q(CGRA_config_config_data_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_4 (
+	.CLK(CTS_18),
 	.D(n_26),
-	.Q(CGRA_config_config_addr_4));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_30 (.CLK(CTS_7),
+	.Q(CGRA_config_config_addr_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_30 (
+	.CLK(CTS_7),
 	.D(n_1),
-	.Q(CGRA_config_config_data_30));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_2 (.CLK(CTS_17),
+	.Q(CGRA_config_config_data_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_2 (
+	.CLK(CTS_17),
 	.D(n_28),
-	.Q(CGRA_config_config_addr_2));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_5 (.CLK(CTS_18),
+	.Q(CGRA_config_config_addr_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_5 (
+	.CLK(CTS_18),
 	.D(n_25),
-	.Q(CGRA_config_config_addr_5));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_0 (.CLK(CTS_18),
+	.Q(CGRA_config_config_addr_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_0 (
+	.CLK(CTS_18),
 	.D(n_30),
-	.Q(CGRA_config_config_addr_0));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_1 (.CLK(CTS_18),
+	.Q(CGRA_config_config_addr_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_1 (
+	.CLK(CTS_18),
 	.D(n_29),
-	.Q(CGRA_config_config_addr_1));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_6 (.CLK(CTS_18),
+	.Q(CGRA_config_config_addr_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_6 (
+	.CLK(CTS_18),
 	.D(n_24),
-	.Q(CGRA_config_config_addr_6));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_7 (.CLK(CTS_17),
+	.Q(CGRA_config_config_addr_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_7 (
+	.CLK(CTS_17),
 	.D(n_23),
-	.Q(CGRA_config_config_addr_7));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_8 (.CLK(CTS_17),
+	.Q(CGRA_config_config_addr_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_8 (
+	.CLK(CTS_17),
 	.D(n_22),
-	.Q(CGRA_config_config_addr_8));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_9 (.CLK(CTS_17),
+	.Q(CGRA_config_config_addr_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_9 (
+	.CLK(CTS_17),
 	.D(n_21),
-	.Q(CGRA_config_config_addr_9));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_10 (.CLK(CTS_16),
+	.Q(CGRA_config_config_addr_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_10 (
+	.CLK(CTS_16),
 	.D(n_20),
-	.Q(CGRA_config_config_addr_10));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_11 (.CLK(CTS_16),
+	.Q(CGRA_config_config_addr_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_11 (
+	.CLK(CTS_16),
 	.D(n_19),
-	.Q(CGRA_config_config_addr_11));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_12 (.CLK(CTS_16),
+	.Q(CGRA_config_config_addr_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_12 (
+	.CLK(CTS_16),
 	.D(n_18),
-	.Q(CGRA_config_config_addr_12));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_13 (.CLK(CTS_16),
+	.Q(CGRA_config_config_addr_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_13 (
+	.CLK(CTS_16),
 	.D(n_17),
-	.Q(CGRA_config_config_addr_13));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_14 (.CLK(CTS_16),
+	.Q(CGRA_config_config_addr_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_14 (
+	.CLK(CTS_16),
 	.D(n_16),
-	.Q(CGRA_config_config_addr_14));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_15 (.CLK(CTS_12),
+	.Q(CGRA_config_config_addr_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_15 (
+	.CLK(CTS_12),
 	.D(n_15),
-	.Q(CGRA_config_config_addr_15));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_16 (.CLK(CTS_12),
+	.Q(CGRA_config_config_addr_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_16 (
+	.CLK(CTS_12),
 	.D(n_14),
-	.Q(CGRA_config_config_addr_16));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_17 (.CLK(CTS_12),
+	.Q(CGRA_config_config_addr_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_17 (
+	.CLK(CTS_12),
 	.D(n_13),
-	.Q(CGRA_config_config_addr_17));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_18 (.CLK(CTS_12),
+	.Q(CGRA_config_config_addr_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_18 (
+	.CLK(CTS_12),
 	.D(n_12),
-	.Q(CGRA_config_config_addr_18));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_19 (.CLK(CTS_12),
+	.Q(CGRA_config_config_addr_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_19 (
+	.CLK(CTS_12),
 	.D(n_11),
-	.Q(CGRA_config_config_addr_19));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_20 (.CLK(CTS_11),
+	.Q(CGRA_config_config_addr_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_20 (
+	.CLK(CTS_11),
 	.D(n_31),
-	.Q(CGRA_config_config_addr_20));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_21 (.CLK(CTS_11),
+	.Q(CGRA_config_config_addr_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_21 (
+	.CLK(CTS_11),
 	.D(n_0),
-	.Q(CGRA_config_config_addr_21));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_22 (.CLK(CTS_11),
+	.Q(CGRA_config_config_addr_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_22 (
+	.CLK(CTS_11),
 	.D(n_10),
-	.Q(CGRA_config_config_addr_22));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_23 (.CLK(CTS_11),
+	.Q(CGRA_config_config_addr_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_23 (
+	.CLK(CTS_11),
 	.D(n_9),
-	.Q(CGRA_config_config_addr_23));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_24 (.CLK(CTS_11),
+	.Q(CGRA_config_config_addr_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_24 (
+	.CLK(CTS_11),
 	.D(n_8),
-	.Q(CGRA_config_config_addr_24));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_25 (.CLK(CTS_10),
+	.Q(CGRA_config_config_addr_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_25 (
+	.CLK(CTS_10),
 	.D(n_7),
-	.Q(CGRA_config_config_addr_25));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_26 (.CLK(CTS_10),
+	.Q(CGRA_config_config_addr_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_26 (
+	.CLK(CTS_10),
 	.D(n_6),
-	.Q(CGRA_config_config_addr_26));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_27 (.CLK(CTS_10),
+	.Q(CGRA_config_config_addr_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_27 (
+	.CLK(CTS_10),
 	.D(n_5),
-	.Q(CGRA_config_config_addr_27));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_28 (.CLK(CTS_10),
+	.Q(CGRA_config_config_addr_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_28 (
+	.CLK(CTS_10),
 	.D(n_4),
-	.Q(CGRA_config_config_addr_28));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_29 (.CLK(CTS_10),
+	.Q(CGRA_config_config_addr_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_29 (
+	.CLK(CTS_10),
 	.D(n_3),
-	.Q(CGRA_config_config_addr_29));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_30 (.CLK(CTS_10),
+	.Q(CGRA_config_config_addr_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_30 (
+	.CLK(CTS_10),
 	.D(n_1),
-	.Q(CGRA_config_config_addr_30));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_31 (.CLK(CTS_10),
+	.Q(CGRA_config_config_addr_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_addr_reg_31 (
+	.CLK(CTS_10),
 	.D(n_2),
-	.Q(CGRA_config_config_addr_31));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_0 (.CLK(CTS_2),
+	.Q(CGRA_config_config_addr_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_0 (
+	.CLK(CTS_2),
 	.D(n_37),
-	.Q(FE_OFN5_wbs_dat_o_0));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_1 (.CLK(CTS_3),
+	.Q(FE_OFN5_wbs_dat_o_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_1 (
+	.CLK(CTS_3),
 	.D(n_36),
-	.Q(FE_OFN4_wbs_dat_o_1));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_2 (.CLK(CTS_1),
+	.Q(FE_OFN4_wbs_dat_o_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_2 (
+	.CLK(CTS_1),
 	.D(n_35),
-	.Q(FE_OFN3_wbs_dat_o_2));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_3 (.CLK(CTS_3),
+	.Q(FE_OFN3_wbs_dat_o_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_3 (
+	.CLK(CTS_3),
 	.D(n_34),
-	.Q(FE_OFN2_wbs_dat_o_3));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_4 (.CLK(CTS_1),
+	.Q(FE_OFN2_wbs_dat_o_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_4 (
+	.CLK(CTS_1),
 	.D(n_33),
-	.Q(FE_OFN1_wbs_dat_o_4));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_5 (.CLK(CTS_4),
+	.Q(FE_OFN1_wbs_dat_o_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_rdata_reg_5 (
+	.CLK(CTS_4),
 	.D(n_41),
-	.Q(FE_OFN0_wbs_dat_o_5));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_ack_o_reg (.CLK(CTS_20),
+	.Q(FE_OFN0_wbs_dat_o_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_ack_o_reg (
+	.CLK(CTS_20),
 	.D(n_39),
-	.Q(wbs_ack_o));
-   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_21 (.CLK(CTS_8),
+	.Q(wbs_ack_o), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__dfxtp_1 wbs_ctl_u0_reg_cfg_wdata_reg_21 (
+	.CLK(CTS_8),
 	.D(n_0),
-	.Q(CGRA_config_config_data_21));
-   sky130_fd_sc_hd__and2_0 g1586__8246 (.A(FE_OFN363_CGRA_read_config_data_25),
+	.Q(CGRA_config_config_data_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1586__8246 (
+	.A(FE_OFN363_CGRA_read_config_data_25),
 	.B(n_32),
-	.X(n_69));
-   sky130_fd_sc_hd__and2_0 g1587__7098 (.A(FE_OFN351_CGRA_read_config_data_17),
+	.X(n_69), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1587__7098 (
+	.A(FE_OFN351_CGRA_read_config_data_17),
 	.B(n_32),
-	.X(n_68));
-   sky130_fd_sc_hd__and2_0 g1588__6131 (.A(FE_OFN327_CGRA_read_config_data_6),
+	.X(n_68), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1588__6131 (
+	.A(FE_OFN327_CGRA_read_config_data_6),
 	.B(n_32),
-	.X(n_67));
-   sky130_fd_sc_hd__and2_0 g1589__1881 (.A(FE_OFN333_CGRA_read_config_data_8),
+	.X(n_67), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1589__1881 (
+	.A(FE_OFN333_CGRA_read_config_data_8),
 	.B(n_32),
-	.X(n_66));
-   sky130_fd_sc_hd__and2_0 g1590__5115 (.A(FE_PDN26_FE_OFN329_CGRA_read_config_data_7),
+	.X(n_66), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1590__5115 (
+	.A(FE_PDN26_FE_OFN329_CGRA_read_config_data_7),
 	.B(n_32),
-	.X(n_65));
-   sky130_fd_sc_hd__and2_0 g1591__7482 (.A(FE_OFN335_CGRA_read_config_data_9),
+	.X(n_65), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1591__7482 (
+	.A(FE_OFN335_CGRA_read_config_data_9),
 	.B(n_32),
-	.X(n_64));
-   sky130_fd_sc_hd__and2_0 g1592__4733 (.A(FE_OFN337_CGRA_read_config_data_10),
+	.X(n_64), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1592__4733 (
+	.A(FE_OFN337_CGRA_read_config_data_10),
 	.B(n_32),
-	.X(n_63));
-   sky130_fd_sc_hd__and2_0 g1593__6161 (.A(FE_OFN339_CGRA_read_config_data_11),
+	.X(n_63), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1593__6161 (
+	.A(FE_OFN339_CGRA_read_config_data_11),
 	.B(n_32),
-	.X(n_62));
-   sky130_fd_sc_hd__and2_0 g1594__9315 (.A(FE_OFN341_CGRA_read_config_data_12),
+	.X(n_62), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1594__9315 (
+	.A(FE_OFN341_CGRA_read_config_data_12),
 	.B(n_32),
-	.X(n_61));
-   sky130_fd_sc_hd__nand2b_1 g1595__9945 (.A_N(wbs_dat_i[0]),
+	.X(n_61), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand2b_1 g1595__9945 (
+	.A_N(wbs_dat_i[0]),
 	.B(n_32),
-	.Y(n_60));
-   sky130_fd_sc_hd__and2_0 g1596__2883 (.A(FE_OFN343_CGRA_read_config_data_13),
+	.Y(n_60), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1596__2883 (
+	.A(FE_OFN343_CGRA_read_config_data_13),
 	.B(n_32),
-	.X(n_59));
-   sky130_fd_sc_hd__and2_0 g1598__2346 (.A(FE_OFN345_CGRA_read_config_data_14),
+	.X(n_59), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1598__2346 (
+	.A(FE_OFN345_CGRA_read_config_data_14),
 	.B(n_32),
-	.X(n_58));
-   sky130_fd_sc_hd__and2_0 g1599__1666 (.A(FE_OFN347_CGRA_read_config_data_15),
+	.X(n_58), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1599__1666 (
+	.A(FE_OFN347_CGRA_read_config_data_15),
 	.B(n_32),
-	.X(n_57));
-   sky130_fd_sc_hd__and2_0 g1600__7410 (.A(FE_OFN349_CGRA_read_config_data_16),
+	.X(n_57), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1600__7410 (
+	.A(FE_OFN349_CGRA_read_config_data_16),
 	.B(n_32),
-	.X(n_56));
-   sky130_fd_sc_hd__and2_0 g1603__6417 (.A(FE_PDN3_FE_OFN257_CGRA_read_config_data_18),
+	.X(n_56), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1603__6417 (
+	.A(FE_PDN3_FE_OFN257_CGRA_read_config_data_18),
 	.B(n_32),
-	.X(n_55));
-   sky130_fd_sc_hd__and2_0 g1604__5477 (.A(FE_OFN259_CGRA_read_config_data_19),
+	.X(n_55), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1604__5477 (
+	.A(FE_OFN259_CGRA_read_config_data_19),
 	.B(n_32),
-	.X(n_54));
-   sky130_fd_sc_hd__and2_0 g1605__2398 (.A(FE_OFN355_CGRA_read_config_data_20),
+	.X(n_54), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1605__2398 (
+	.A(FE_OFN355_CGRA_read_config_data_20),
 	.B(n_32),
-	.X(n_53));
-   sky130_fd_sc_hd__and2_0 g1606__5107 (.A(FE_PDN29_FE_OFN357_CGRA_read_config_data_21),
+	.X(n_53), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1606__5107 (
+	.A(FE_PDN29_FE_OFN357_CGRA_read_config_data_21),
 	.B(n_32),
-	.X(n_52));
-   sky130_fd_sc_hd__and2_0 g1608__6260 (.A(FE_OFN261_CGRA_read_config_data_23),
+	.X(n_52), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1608__6260 (
+	.A(FE_OFN261_CGRA_read_config_data_23),
 	.B(n_32),
-	.X(n_51));
-   sky130_fd_sc_hd__and2_0 g1609__4319 (.A(FE_PDN0_FE_OFN361_CGRA_read_config_data_24),
+	.X(n_51), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1609__4319 (
+	.A(FE_PDN0_FE_OFN361_CGRA_read_config_data_24),
 	.B(n_32),
-	.X(n_50));
-   sky130_fd_sc_hd__and2_0 g1610__8428 (.A(FE_OFN359_CGRA_read_config_data_22),
+	.X(n_50), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1610__8428 (
+	.A(FE_OFN359_CGRA_read_config_data_22),
 	.B(n_32),
-	.X(n_49));
-   sky130_fd_sc_hd__and2_0 g1613__5526 (.A(FE_OFN365_CGRA_read_config_data_26),
+	.X(n_49), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1613__5526 (
+	.A(FE_OFN365_CGRA_read_config_data_26),
 	.B(n_32),
-	.X(n_48));
-   sky130_fd_sc_hd__and2_0 g1614__6783 (.A(FE_OFN367_CGRA_read_config_data_27),
+	.X(n_48), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1614__6783 (
+	.A(FE_OFN367_CGRA_read_config_data_27),
 	.B(n_32),
-	.X(n_47));
-   sky130_fd_sc_hd__and2_0 g1615__3680 (.A(FE_PDN6_FE_OFN369_CGRA_read_config_data_28),
+	.X(n_47), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1615__3680 (
+	.A(FE_PDN6_FE_OFN369_CGRA_read_config_data_28),
 	.B(n_32),
-	.X(n_46));
-   sky130_fd_sc_hd__and2_0 g1616__1617 (.A(FE_OFN371_CGRA_read_config_data_29),
+	.X(n_46), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1616__1617 (
+	.A(FE_OFN371_CGRA_read_config_data_29),
 	.B(n_32),
-	.X(n_45));
-   sky130_fd_sc_hd__and2_0 g1618__2802 (.A(FE_OFN373_CGRA_read_config_data_30),
+	.X(n_45), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1618__2802 (
+	.A(FE_OFN373_CGRA_read_config_data_30),
 	.B(n_32),
-	.X(n_44));
-   sky130_fd_sc_hd__and2_0 g1619__1705 (.A(FE_OFN375_CGRA_read_config_data_31),
+	.X(n_44), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1619__1705 (
+	.A(FE_OFN375_CGRA_read_config_data_31),
 	.B(n_32),
-	.X(n_43));
-   sky130_fd_sc_hd__nand2b_1 g1629__5122 (.A_N(wbs_dat_i[2]),
+	.X(n_43), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand2b_1 g1629__5122 (
+	.A_N(wbs_dat_i[2]),
 	.B(n_32),
-	.Y(n_42));
-   sky130_fd_sc_hd__and2_0 g1636__8246 (.A(FE_OFN255_CGRA_read_config_data_5),
+	.Y(n_42), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1636__8246 (
+	.A(FE_OFN255_CGRA_read_config_data_5),
 	.B(n_32),
-	.X(n_41));
-   sky130_fd_sc_hd__nand2b_1 g1650__7098 (.A_N(wbs_dat_i[3]),
+	.X(n_41), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand2b_1 g1650__7098 (
+	.A_N(wbs_dat_i[3]),
 	.B(n_32),
-	.Y(n_40));
-   sky130_fd_sc_hd__nor2_1 g1652__6131 (.A(n_100),
+	.Y(n_40), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2_1 g1652__6131 (
+	.A(n_100),
 	.B(ckmux_rst),
-	.Y(n_39));
-   sky130_fd_sc_hd__nand2b_1 g1654__1881 (.A_N(wbs_dat_i[1]),
+	.Y(n_39), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nand2b_1 g1654__1881 (
+	.A_N(wbs_dat_i[1]),
 	.B(n_32),
-	.Y(n_38));
-   sky130_fd_sc_hd__and2_0 g1681__5115 (.A(FE_OFN319_CGRA_read_config_data_0),
+	.Y(n_38), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1681__5115 (
+	.A(FE_OFN319_CGRA_read_config_data_0),
 	.B(n_32),
-	.X(n_37));
-   sky130_fd_sc_hd__and2_0 g1682__7482 (.A(FE_OFN321_CGRA_read_config_data_1),
+	.X(n_37), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1682__7482 (
+	.A(FE_OFN321_CGRA_read_config_data_1),
 	.B(n_32),
-	.X(n_36));
-   sky130_fd_sc_hd__and2_0 g1683__4733 (.A(FE_OFN323_CGRA_read_config_data_2),
+	.X(n_36), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1683__4733 (
+	.A(FE_OFN323_CGRA_read_config_data_2),
 	.B(n_32),
-	.X(n_35));
-   sky130_fd_sc_hd__and2_0 g1684__6161 (.A(FE_PDN48_FE_OFN253_CGRA_read_config_data_3),
+	.X(n_35), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1684__6161 (
+	.A(FE_PDN48_FE_OFN253_CGRA_read_config_data_3),
 	.B(n_32),
-	.X(n_34));
-   sky130_fd_sc_hd__and2_0 g1685__9315 (.A(FE_OFN325_CGRA_read_config_data_4),
+	.X(n_34), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__and2_0 g1685__9315 (
+	.A(FE_OFN325_CGRA_read_config_data_4),
 	.B(n_32),
-	.X(n_33));
-   sky130_fd_sc_hd__nor2b_1 g1688__9945 (.A(FE_OFN376_ckmux_rst),
+	.X(n_33), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1688__9945 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[20]),
-	.Y(n_31));
-   sky130_fd_sc_hd__nor2b_1 g1689__2883 (.A(ckmux_rst),
+	.Y(n_31), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1689__2883 (
+	.A(ckmux_rst),
 	.B_N(wbs_dat_i[0]),
-	.Y(n_30));
-   sky130_fd_sc_hd__nor2b_1 g1690__2346 (.A(ckmux_rst),
+	.Y(n_30), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1690__2346 (
+	.A(ckmux_rst),
 	.B_N(wbs_dat_i[1]),
-	.Y(n_29));
-   sky130_fd_sc_hd__nor2b_1 g1691__1666 (.A(ckmux_rst),
+	.Y(n_29), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1691__1666 (
+	.A(ckmux_rst),
 	.B_N(wbs_dat_i[2]),
-	.Y(n_28));
-   sky130_fd_sc_hd__nor2b_1 g1692__7410 (.A(ckmux_rst),
+	.Y(n_28), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1692__7410 (
+	.A(ckmux_rst),
 	.B_N(wbs_dat_i[3]),
-	.Y(n_27));
-   sky130_fd_sc_hd__nor2b_1 g1693__6417 (.A(ckmux_rst),
+	.Y(n_27), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1693__6417 (
+	.A(ckmux_rst),
 	.B_N(wbs_dat_i[4]),
-	.Y(n_26));
-   sky130_fd_sc_hd__nor2b_1 g1694__5477 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_26), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1694__5477 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[5]),
-	.Y(n_25));
-   sky130_fd_sc_hd__nor2b_1 g1695__2398 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_25), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1695__2398 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[6]),
-	.Y(n_24));
-   sky130_fd_sc_hd__nor2b_1 g1696__5107 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_24), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1696__5107 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[7]),
-	.Y(n_23));
-   sky130_fd_sc_hd__nor2b_1 g1697__6260 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_23), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1697__6260 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[8]),
-	.Y(n_22));
-   sky130_fd_sc_hd__nor2b_1 g1698__4319 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_22), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1698__4319 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[9]),
-	.Y(n_21));
-   sky130_fd_sc_hd__nor2b_1 g1699__8428 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_21), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1699__8428 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[10]),
-	.Y(n_20));
-   sky130_fd_sc_hd__nor2b_1 g1700__5526 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_20), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1700__5526 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[11]),
-	.Y(n_19));
-   sky130_fd_sc_hd__nor2b_1 g1701__6783 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_19), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1701__6783 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[12]),
-	.Y(n_18));
-   sky130_fd_sc_hd__nor2b_1 g1702__3680 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_18), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1702__3680 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[13]),
-	.Y(n_17));
-   sky130_fd_sc_hd__nor2b_1 g1703__1617 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_17), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1703__1617 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[14]),
-	.Y(n_16));
-   sky130_fd_sc_hd__nor2b_1 g1704__2802 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_16), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1704__2802 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[15]),
-	.Y(n_15));
-   sky130_fd_sc_hd__nor2b_1 g1705__1705 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_15), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1705__1705 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[16]),
-	.Y(n_14));
-   sky130_fd_sc_hd__nor2b_1 g1706__5122 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_14), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1706__5122 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[17]),
-	.Y(n_13));
-   sky130_fd_sc_hd__nor2b_1 g1707__8246 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_13), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1707__8246 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[18]),
-	.Y(n_12));
-   sky130_fd_sc_hd__nor2b_1 g1708__7098 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_12), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1708__7098 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[19]),
-	.Y(n_11));
-   sky130_fd_sc_hd__nor2b_1 g1709__6131 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_11), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1709__6131 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[22]),
-	.Y(n_10));
-   sky130_fd_sc_hd__nor2b_1 g1710__1881 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_10), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1710__1881 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[23]),
-	.Y(n_9));
-   sky130_fd_sc_hd__nor2b_1 g1711__5115 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_9), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1711__5115 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[24]),
-	.Y(n_8));
-   sky130_fd_sc_hd__nor2b_1 g1712__7482 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_8), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1712__7482 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[25]),
-	.Y(n_7));
-   sky130_fd_sc_hd__nor2b_1 g1713__4733 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_7), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1713__4733 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[26]),
-	.Y(n_6));
-   sky130_fd_sc_hd__nor2b_1 g1714__6161 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_6), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1714__6161 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[27]),
-	.Y(n_5));
-   sky130_fd_sc_hd__nor2b_1 g1715__9315 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_5), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1715__9315 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[28]),
-	.Y(n_4));
-   sky130_fd_sc_hd__nor2b_1 g1716__9945 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_4), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1716__9945 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[29]),
-	.Y(n_3));
-   sky130_fd_sc_hd__nor2b_1 g1717__2883 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_3), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1717__2883 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[31]),
-	.Y(n_2));
-   sky130_fd_sc_hd__nor2b_1 g1718__2346 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_2), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1718__2346 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[30]),
-	.Y(n_1));
-   sky130_fd_sc_hd__nor2b_1 g1719__1666 (.A(FE_OFN376_ckmux_rst),
+	.Y(n_1), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g1719__1666 (
+	.A(FE_OFN376_ckmux_rst),
 	.B_N(wbs_dat_i[21]),
-	.Y(n_0));
-   sky130_fd_sc_hd__inv_2 drc_bufs1977 (.A(FE_OFN376_ckmux_rst),
-	.Y(n_32));
-   sky130_fd_sc_hd__nor2b_1 g2 (.A(wbs_adr_i[2]),
+	.Y(n_0), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__inv_2 drc_bufs1977 (
+	.A(FE_OFN376_ckmux_rst),
+	.Y(n_32), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
+   sky130_fd_sc_hd__nor2b_1 g2 (
+	.A(wbs_adr_i[2]),
 	.B_N(n_94),
-	.Y(n_120));
+	.Y(n_120), 
+	.VPWR(VDD), 
+	.VPB(VDD), 
+	.VNB(VSS), 
+	.VGND(VSS));
 endmodule
 
